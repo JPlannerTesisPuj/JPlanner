@@ -17,19 +17,19 @@
       {
         "Lunes": [
           "10:00",
-          "18:00"
+          "12:00"
         ]
       },
       {
         "Martes": [
           "10:00",
-          "15:00"
+          "13:00"
         ]
       },
       {
         "Sabado": [
           "7:00",
-          "14:00"
+          "9:00"
         ]
       }
     ]
@@ -46,13 +46,13 @@
       {
         "Lunes": [
           "8:00",
-          "17:00"
+          "10:00"
         ]
       },
       {
         "Martes": [
-          "9:00",
-          "14:00"
+          "8:00",
+          "10:00"
         ]
       }
     ]
@@ -69,19 +69,19 @@
       {
         "Sabado": [
           "8:00",
-          "17:00"
+          "11:00"
         ]
       },
       {
         "Miercoles": [
           "7:00",
-          "22:00"
+          "9:00"
         ]
       },
       {
         "Domingo": [
           "12:00",
-          "20:00"
+          "14:00"
         ]
       }
     ]
@@ -98,13 +98,13 @@
       {
         "Lunes": [
           "9:00",
-          "13:00"
+          "11:00"
         ]
       },
       {
         "Domingo": [
           "7:00",
-          "20:00"
+          "10:00"
         ]
       }
     ]
@@ -127,19 +127,19 @@
       {
         "Domingo": [
           "12:00",
-          "16:00"
+          "14:00"
         ]
       },
       {
         "Jueves": [
           "9:00",
-          "19:00"
+          "11:00"
         ]
       },
       {
         "Martes": [
           "9:00",
-          "13:00"
+          "11:00"
         ]
       }
     ]
@@ -156,25 +156,25 @@
       {
         "Lunes": [
           "7:00",
-          "16:00"
+          "9:00"
         ]
       },
       {
         "Miercoles": [
           "10:00",
-          "17:00"
+          "12:00"
         ]
       },
       {
         "Jueves": [
           "11:00",
-          "16:00"
+          "13:00"
         ]
       },
       {
         "Sabado": [
           "11:00",
-          "14:00"
+          "13:00"
         ]
       }
     ]
@@ -191,25 +191,25 @@
       {
         "Lunes": [
           "8:00",
-          "22:00"
+          "10:00"
         ]
       },
       {
         "Martes": [
           "7:00",
-          "20:00"
+          "9:00"
         ]
       },
       {
         "Miercoles": [
           "8:00",
-          "19:00"
+          "10:00"
         ]
       },
       {
         "Jueves": [
           "10:00",
-          "15:00"
+          "12:00"
         ]
       }
     ]
@@ -226,25 +226,25 @@
       {
         "Martes": [
           "7:00",
-          "14:00"
+          "9:00"
         ]
       },
       {
         "Viernes": [
           "11:00",
-          "22:00"
+          "13:00"
         ]
       },
       {
         "Sabado": [
           "12:00",
-          "16:00"
+          "15:00"
         ]
       },
       {
         "Miercoles": [
           "11:00",
-          "19:00"
+          "13:00"
         ]
       }
     ]
@@ -261,7 +261,7 @@
       {
         "Jueves": [
           "10:00",
-          "17:00"
+          "12:00"
         ]
       }
     ]
@@ -278,25 +278,25 @@
       {
         "Sabado": [
           "11:00",
-          "17:00"
+          "13:00"
         ]
       },
       {
         "Miercoles": [
           "11:00",
-          "17:00"
+          "13:00"
         ]
       },
       {
         "Viernes": [
           "12:00",
-          "15:00"
+          "14:00"
         ]
       },
       {
         "Domingo": [
           "9:00",
-          "20:00"
+          "12:00"
         ]
       }
     ]
@@ -313,7 +313,7 @@
       {
         "Viernes": [
           "9:00",
-          "15:00"
+          "12:00"
         ]
       }
     ]
@@ -330,13 +330,13 @@
       {
         "Miercoles": [
           "10:00",
-          "16:00"
+          "12:00"
         ]
       },
       {
         "Viernes": [
           "9:00",
-          "15:00"
+          "11:00"
         ]
       }
     ]
@@ -370,19 +370,19 @@
       {
         "Martes": [
           "8:00",
-          "19:00"
+          "10:00"
         ]
       },
       {
         "Sabado": [
           "8:00",
-          "18:00"
+          "10:00"
         ]
       },
       {
         "Miercoles": [
           "11:00",
-          "21:00"
+          "13:00"
         ]
       }
     ]
@@ -399,25 +399,25 @@
       {
         "Miercoles": [
           "11:00",
-          "14:00"
+          "13:00"
         ]
       },
       {
         "Viernes": [
           "9:00",
-          "13:00"
+          "11:00"
         ]
       },
       {
         "Sabado": [
           "11:00",
-          "16:00"
+          "13:00"
         ]
       },
       {
         "Domingo": [
           "12:00",
-          "21:00"
+          "14:00"
         ]
       }
     ]
@@ -434,19 +434,19 @@
       {
         "Viernes": [
           "12:00",
-          "19:00"
+          "14:00"
         ]
       },
       {
         "Domingo": [
           "11:00",
-          "18:00"
+          "13:00"
         ]
       },
       {
         "Lunes": [
           "11:00",
-          "15:00"
+          "13:00"
         ]
       }
     ]
@@ -463,13 +463,13 @@
       {
         "Martes": [
           "12:00",
-          "13:00"
+          "15:00"
         ]
       },
       {
         "Jueves": [
           "9:00",
-          "21:00"
+          "11:00"
         ]
       }
     ]
@@ -486,13 +486,13 @@
       {
         "Martes": [
           "8:00",
-          "13:00"
+          "10:00"
         ]
       },
       {
         "Jueves": [
           "12:00",
-          "17:00"
+          "14:00"
         ]
       }
     ]
@@ -509,13 +509,13 @@
       {
         "Jueves": [
           "12:00",
-          "22:00"
+          "13:00"
         ]
       },
       {
         "Sabado": [
           "7:00",
-          "20:00"
+          "10:00"
         ]
       }
     ]
@@ -532,7 +532,7 @@
       {
         "Martes": [
           "11:00",
-          "14:00"
+          "13:00"
         ]
       }
     ]
@@ -549,13 +549,13 @@
       {
         "Sabado": [
           "11:00",
-          "18:00"
+          "13:00"
         ]
       },
       {
         "Domingo": [
           "8:00",
-          "21:00"
+          "11:00"
         ]
       }
     ]
@@ -572,25 +572,25 @@
       {
         "Sabado": [
           "12:00",
-          "18:00"
+          "14:00"
         ]
       },
       {
         "Domingo": [
           "11:00",
-          "14:00"
+          "13:00"
         ]
       },
       {
         "Lunes": [
           "8:00",
-          "19:00"
+          "10:00"
         ]
       },
       {
         "Martes": [
           "12:00",
-          "16:00"
+          "13:00"
         ]
       }
     ]
@@ -613,19 +613,19 @@
       {
         "Lunes": [
           "7:00",
-          "13:00"
+          "9:00"
         ]
       },
       {
         "Martes": [
           "7:00",
-          "13:00"
+          "9:00"
         ]
       },
       {
         "Miercoles": [
           "7:00",
-          "20:00"
+          "9:00"
         ]
       }
     ]
@@ -642,19 +642,19 @@
       {
         "Lunes": [
           "10:00",
-          "15:00"
+          "12:00"
         ]
       },
       {
         "Miercoles": [
           "8:00",
-          "19:00"
+          "10:00"
         ]
       },
       {
         "Jueves": [
           "10:00",
-          "18:00"
+          "12:00"
         ]
       }
     ]
@@ -671,19 +671,19 @@
       {
         "Sabado": [
           "11:00",
-          "14:00"
+          "13:00"
         ]
       },
       {
         "Domingo": [
           "10:00",
-          "22:00"
+          "12:00"
         ]
       },
       {
         "Jueves": [
           "10:00",
-          "17:00"
+          "12:00"
         ]
       },
       {
@@ -706,25 +706,25 @@
       {
         "Lunes": [
           "9:00",
-          "15:00"
+          "10:00"
         ]
       },
       {
         "Miercoles": [
           "10:00",
-          "19:00"
+          "11:00"
         ]
       },
       {
         "Martes": [
           "10:00",
-          "16:00"
+          "11:00"
         ]
       },
       {
         "Jueves": [
           "11:00",
-          "18:00"
+          "13:00"
         ]
       }
     ]
@@ -741,19 +741,19 @@
       {
         "Jueves": [
           "9:00",
-          "13:00"
+          "11:00"
         ]
       },
       {
         "Viernes": [
           "9:00",
-          "16:00"
+          "11:00"
         ]
       },
       {
         "Sabado": [
           "7:00",
-          "17:00"
+          "9:00"
         ]
       }
     ]
@@ -798,20 +798,20 @@
     "numeroClase": "4f20ed25-380d-453e-8fda-6208656540e0}",
     "nombre": "CHASE",
     "profesor": "Viola Hester",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "2-153",
     "department": "TURNBULL AVENUE",
     "horarios": [
       {
         "Miercoles": [
           "10:00",
-          "21:00"
+          "12:00"
         ]
       },
       {
         "Domingo": [
           "7:00",
-          "15:00"
+          "10:00"
         ]
       }
     ]
@@ -821,26 +821,26 @@
     "numeroClase": "343d7e28-dd8e-4fdb-af07-c0f548ffd7b2}",
     "nombre": "FAXON",
     "profesor": "Aileen Olsen",
-    "creditos": 3,
+    "creditos": 4,
     "salon": "4-879",
     "department": "RYERSON STREET",
     "horarios": [
       {
         "Miercoles": [
           "10:00",
-          "19:00"
+          "12:00"
         ]
       },
       {
         "Jueves": [
           "11:00",
-          "16:00"
+          "13:00"
         ]
       },
       {
         "Viernes": [
           "10:00",
-          "15:00"
+          "12:00"
         ]
       }
     ]
@@ -850,20 +850,20 @@
     "numeroClase": "23e93047-6945-4294-86c9-91fe6632d0dd}",
     "nombre": "COURTLAND",
     "profesor": "Heather Morales",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "2-655",
     "department": "MALBONE STREET",
     "horarios": [
       {
         "Miercoles": [
           "11:00",
-          "22:00"
+          "13:00"
         ]
       },
       {
         "Sabado": [
           "7:00",
-          "16:00"
+          "9:00"
         ]
       }
     ]
@@ -873,14 +873,14 @@
     "numeroClase": "0dd8ffae-5a1e-4f0d-90c1-3b06c1480520}",
     "nombre": "NETTIE",
     "profesor": "Eileen Wyatt",
-    "creditos": 5,
+    "creditos": 1,
     "salon": "4-483",
     "department": "VANDERVOORT AVENUE",
     "horarios": [
       {
         "Domingo": [
-          "11:00",
-          "20:00"
+          "10:00",
+          "12:00"
         ]
       }
     ]
@@ -897,19 +897,19 @@
       {
         "Jueves": [
           "9:00",
-          "22:00"
+          "11:00"
         ]
       },
       {
         "Viernes": [
           "11:00",
-          "15:00"
+          "13:00"
         ]
       },
       {
         "Lunes": [
           "8:00",
-          "16:00"
+          "10:00"
         ]
       }
     ]
@@ -926,13 +926,13 @@
       {
         "Domingo": [
           "12:00",
-          "19:00"
+          "14:00"
         ]
       },
       {
         "Martes": [
           "12:00",
-          "13:00"
+          "14:00"
         ]
       }
     ]
@@ -942,7 +942,7 @@
     "numeroClase": "04dd41ff-780d-450b-9a2f-fd6d6d7de7cc}",
     "nombre": "GRACEY",
     "profesor": "Hatfield Glenn",
-    "creditos": 4,
+    "creditos": 1,
     "salon": "6-869",
     "department": "ARLINGTON AVENUE",
     "horarios": [
@@ -966,13 +966,13 @@
       {
         "Martes": [
           "11:00",
-          "21:00"
+          "13:00"
         ]
       },
       {
         "Lunes": [
           "7:00",
-          "16:00"
+          "9:00"
         ]
       }
     ]
@@ -989,7 +989,7 @@
       {
         "Martes": [
           "8:00",
-          "19:00"
+          "11:00"
         ]
       }
     ]
@@ -999,14 +999,14 @@
     "numeroClase": "f3db34ef-e397-4dd1-81a9-4e1064d467f9}",
     "nombre": "RODMAN",
     "profesor": "Benita Key",
-    "creditos": 6,
+    "creditos": 2,
     "salon": "4-786",
     "department": "LESTER COURT",
     "horarios": [
       {
         "Lunes": [
           "10:00",
-          "19:00"
+          "12:00"
         ]
       }
     ]
@@ -1016,14 +1016,14 @@
     "numeroClase": "3d707742-2b99-497c-918f-f38408432410}",
     "nombre": "COVENTRY",
     "profesor": "Greer Everett",
-    "creditos": 6,
+    "creditos": 1,
     "salon": "2-865",
     "department": "KINGS PLACE",
     "horarios": [
       {
         "Lunes": [
           "10:00",
-          "14:00"
+          "12:00"
         ]
       }
     ]
@@ -1033,20 +1033,20 @@
     "numeroClase": "5d5f81e9-d552-4bae-9e02-a2831b2b7c11}",
     "nombre": "SHARON",
     "profesor": "Marsha Strickland",
-    "creditos": 1,
+    "creditos": 3,
     "salon": "4-331",
     "department": "CATON AVENUE",
     "horarios": [
       {
         "Lunes": [
           "8:00",
-          "17:00"
+          "10:00"
         ]
       },
       {
         "Miercoles": [
           "8:00",
-          "18:00"
+          "10:00"
         ]
       }
     ]
@@ -1063,7 +1063,7 @@
       {
         "Miercoles": [
           "12:00",
-          "17:00"
+          "14:00"
         ]
       },
       {
@@ -1074,8 +1074,8 @@
       },
       {
         "Martes": [
-          "7:00",
-          "17:00"
+          "12:00",
+          "14:00"
         ]
       }
     ]
@@ -1092,13 +1092,13 @@
       {
         "Lunes": [
           "12:00",
-          "13:00"
+          "14:00"
         ]
       },
       {
         "Viernes": [
           "9:00",
-          "18:00"
+          "11:00"
         ]
       }
     ]
@@ -1108,32 +1108,32 @@
     "numeroClase": "4cd0ad8e-fd45-4c35-9abe-1c86b4003b61}",
     "nombre": "NEEDMORE",
     "profesor": "Gibbs Harris",
-    "creditos": 1,
+    "creditos": 4,
     "salon": "4-208",
     "department": "MILTON STREET",
     "horarios": [
       {
         "Sabado": [
           "9:00",
-          "13:00"
+          "11:00"
         ]
       },
       {
         "Lunes": [
           "7:00",
-          "13:00"
+          "9:00"
         ]
       },
       {
         "Miercoles": [
           "12:00",
-          "16:00"
+          "14:00"
         ]
       },
       {
         "Viernes": [
           "9:00",
-          "20:00"
+          "11:00"
         ]
       }
     ]
@@ -1150,13 +1150,13 @@
       {
         "Domingo": [
           "9:00",
-          "17:00"
+          "11:00"
         ]
       },
       {
         "Lunes": [
           "10:00",
-          "22:00"
+          "12:00"
         ]
       }
     ]
@@ -1166,14 +1166,14 @@
     "numeroClase": "e8e41b35-6ec0-40c9-9e54-9a623ff95d19}",
     "nombre": "CHEMUNG",
     "profesor": "Kathie Woodard",
-    "creditos": 6,
+    "creditos": 1,
     "salon": "6-883",
     "department": "HILLEL PLACE",
     "horarios": [
       {
         "Sabado": [
           "7:00",
-          "16:00"
+          "9:00"
         ]
       }
     ]
@@ -1183,26 +1183,26 @@
     "numeroClase": "f3bf085f-a90c-4d7f-b939-52cd959fef3f}",
     "nombre": "SUNWEST",
     "profesor": "Key Hampton",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "6-575",
     "department": "VERONA PLACE",
     "horarios": [
       {
         "Domingo": [
           "9:00",
-          "16:00"
+          "11:00"
         ]
       },
       {
         "Martes": [
           "11:00",
-          "17:00"
+          "13:00"
         ]
       },
       {
         "Miercoles": [
           "11:00",
-          "22:00"
+          "13:00"
         ]
       }
     ]
@@ -1212,14 +1212,14 @@
     "numeroClase": "0b684dbe-3264-4779-9da9-bd809689d72d}",
     "nombre": "WORTON",
     "profesor": "Prince Lambert",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "6-900",
     "department": "BARTLETT STREET",
     "horarios": [
       {
         "Martes": [
           "8:00",
-          "21:00"
+          "11:00"
         ]
       }
     ]
@@ -1229,26 +1229,26 @@
     "numeroClase": "ab0ce9d1-2424-46af-b91c-92e3ab03b181}",
     "nombre": "MULBERRY",
     "profesor": "Mueller Riggs",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "2-364",
     "department": "GIRARD STREET",
     "horarios": [
       {
         "Viernes": [
           "11:00",
-          "17:00"
+          "14:00"
         ]
       },
       {
         "Sabado": [
           "7:00",
-          "22:00"
+          "9:00"
         ]
       },
       {
         "Miercoles": [
           "7:00",
-          "20:00"
+          "9:00"
         ]
       }
     ]
@@ -1258,7 +1258,7 @@
     "numeroClase": "26372e1d-533f-4f58-a1ce-1a246f50b732}",
     "nombre": "BYRNEDALE",
     "profesor": "Hayes Case",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "6-579",
     "department": "CONDUIT BOULEVARD",
     "horarios": [
@@ -1271,13 +1271,13 @@
       {
         "Sabado": [
           "12:00",
-          "22:00"
+          "14:00"
         ]
       },
       {
         "Lunes": [
           "12:00",
-          "15:00"
+          "14:00"
         ]
       }
     ]
@@ -1294,19 +1294,19 @@
       {
         "Jueves": [
           "10:00",
-          "22:00"
+          "12:00"
         ]
       },
       {
         "Domingo": [
           "12:00",
-          "20:00"
+          "14:00"
         ]
       },
       {
         "Lunes": [
           "7:00",
-          "14:00"
+          "9:00"
         ]
       }
     ]
@@ -1323,13 +1323,13 @@
       {
         "Lunes": [
           "9:00",
-          "20:00"
+          "11:00"
         ]
       },
       {
         "Domingo": [
           "9:00",
-          "22:00"
+          "11:00"
         ]
       }
     ]
@@ -1339,20 +1339,20 @@
     "numeroClase": "f43e1352-4d40-44b4-b968-5517bc5334e7}",
     "nombre": "WATERFORD",
     "profesor": "Talley Dotson",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "1-579",
     "department": "HARRISON AVENUE",
     "horarios": [
       {
         "Jueves": [
           "12:00",
-          "13:00"
+          "14:00"
         ]
       },
       {
         "Sabado": [
           "7:00",
-          "13:00"
+          "9:00"
         ]
       }
     ]
@@ -1362,20 +1362,20 @@
     "numeroClase": "895798c4-9fe4-4362-9530-bc778b875d16}",
     "nombre": "AUSTINBURG",
     "profesor": "Jami Meadows",
-    "creditos": 6,
+    "creditos": 2,
     "salon": "4-406",
     "department": "ALLEN AVENUE",
     "horarios": [
       {
         "Lunes": [
           "7:00",
-          "18:00"
+          "9:00"
         ]
       },
       {
         "Martes": [
           "9:00",
-          "17:00"
+          "11:00"
         ]
       }
     ]
@@ -1385,20 +1385,20 @@
     "numeroClase": "792d8e65-f18a-4798-a3ac-feb757dcb0c8}",
     "nombre": "LOPEZO",
     "profesor": "Cathleen Gay",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "6-718",
     "department": "DEVON AVENUE",
     "horarios": [
       {
         "Martes": [
           "9:00",
-          "21:00"
+          "11:00"
         ]
       },
       {
         "Miercoles": [
           "12:00",
-          "16:00"
+          "14:00"
         ]
       }
     ]
@@ -1415,13 +1415,13 @@
       {
         "Lunes": [
           "9:00",
-          "22:00"
+          "11:00"
         ]
       },
       {
         "Miercoles": [
           "10:00",
-          "15:00"
+          "12:00"
         ]
       }
     ]
@@ -1437,19 +1437,19 @@
     "horarios": [
       {
         "Miercoles": [
-          "8:00",
-          "19:00"
+          "14:00",
+          "16:00"
         ]
       },
       {
         "Jueves": [
-          "7:00",
+          "16:00",
           "18:00"
         ]
       },
       {
         "Viernes": [
-          "11:00",
+          "16:00",
           "18:00"
         ]
       }
@@ -1460,13 +1460,13 @@
     "numeroClase": "b6ef4ed0-0898-409a-b7ac-3a8bff7d8e91}",
     "nombre": "DOWNSVILLE",
     "profesor": "Gwen Guy",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "2-595",
     "department": "BOULEVARD COURT",
     "horarios": [
       {
         "Viernes": [
-          "7:00",
+          "18:00",
           "21:00"
         ]
       }
@@ -1477,25 +1477,25 @@
     "numeroClase": "c0a74193-1aee-4ac4-ac2d-f2b1134abba4}",
     "nombre": "OLA",
     "profesor": "Tran Murray",
-    "creditos": 2,
+    "creditos": 3,
     "salon": "6-48",
     "department": "DOUGHTY STREET",
     "horarios": [
       {
         "Sabado": [
-          "10:00",
+          "19:00",
           "21:00"
         ]
       },
       {
         "Domingo": [
-          "11:00",
+          "20:00",
           "22:00"
         ]
       },
       {
         "Martes": [
-          "8:00",
+          "13:00",
           "15:00"
         ]
       }
@@ -1506,19 +1506,19 @@
     "numeroClase": "3fff512a-c8ea-4bf0-be7f-6e7d79da619f}",
     "nombre": "CALVARY",
     "profesor": "Susie Wallace",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "5-87",
     "department": "DEBEVOISE AVENUE",
     "horarios": [
       {
         "Viernes": [
-          "10:00",
+          "18:00",
           "20:00"
         ]
       },
       {
         "Domingo": [
-          "8:00",
+          "13:00",
           "15:00"
         ]
       }
@@ -1529,31 +1529,31 @@
     "numeroClase": "8bd042d8-70ab-48fb-9a64-c873a1f8415a}",
     "nombre": "DEPUTY",
     "profesor": "Tucker Dyer",
-    "creditos": 1,
+    "creditos": 4,
     "salon": "4-250",
     "department": "DITMARS STREET",
     "horarios": [
       {
         "Miercoles": [
-          "7:00",
+          "15:00",
           "17:00"
         ]
       },
       {
         "Domingo": [
-          "11:00",
+          "15:00",
           "17:00"
         ]
       },
       {
         "Lunes": [
-          "9:00",
+          "20:00",
           "22:00"
         ]
       },
       {
         "Martes": [
-          "9:00",
+          "12:00",
           "14:00"
         ]
       }
@@ -1564,13 +1564,13 @@
     "numeroClase": "c4e20388-a236-443e-8e8e-e1849be0081e}",
     "nombre": "DUBOIS",
     "profesor": "Cunningham Montoya",
-    "creditos": 5,
+    "creditos": 2,
     "salon": "3-888",
     "department": "CYRUS AVENUE",
     "horarios": [
       {
         "Miercoles": [
-          "8:00",
+          "19:00",
           "21:00"
         ]
       },
@@ -1587,13 +1587,13 @@
     "numeroClase": "dfa762cc-4fa8-4227-8d72-1941dbf5fbbc}",
     "nombre": "BOURG",
     "profesor": "Walls Lloyd",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "1-450",
     "department": "COOPER STREET",
     "horarios": [
       {
         "Jueves": [
-          "7:00",
+          "17:00",
           "20:00"
         ]
       }
@@ -1604,13 +1604,13 @@
     "numeroClase": "48622539-583b-4d58-83c3-e8e6b08a0752}",
     "nombre": "UMAPINE",
     "profesor": "Phoebe Jensen",
-    "creditos": 6,
+    "creditos": 2,
     "salon": "6-36",
     "department": "MATTHEWS COURT",
     "horarios": [
       {
         "Viernes": [
-          "12:00",
+          "19:00",
           "21:00"
         ]
       }
@@ -1621,25 +1621,25 @@
     "numeroClase": "9fd59864-4470-483f-9c52-df6c3f93cdd4}",
     "nombre": "CANOOCHEE",
     "profesor": "Colleen Bowen",
-    "creditos": 6,
+    "creditos": 4,
     "salon": "4-986",
     "department": "FOUNTAIN AVENUE",
     "horarios": [
       {
         "Martes": [
-          "10:00",
+          "20:00",
           "22:00"
         ]
       },
       {
         "Jueves": [
-          "8:00",
+          "20:00",
           "22:00"
         ]
       },
       {
         "Viernes": [
-          "8:00",
+          "17:00",
           "19:00"
         ]
       },
@@ -1656,19 +1656,19 @@
     "numeroClase": "1534392a-c262-4e34-a5b5-e0e65059bfd2}",
     "nombre": "BEDIAS",
     "profesor": "Rasmussen Huffman",
-    "creditos": 6,
+    "creditos": 2,
     "salon": "2-336",
     "department": "BUFFALO AVENUE",
     "horarios": [
       {
         "Lunes": [
-          "9:00",
+          "14:00",
           "18:00"
         ]
       },
       {
         "Miercoles": [
-          "7:00",
+          "17:00",
           "19:00"
         ]
       }
@@ -1679,14 +1679,14 @@
     "numeroClase": "c4743e0b-2e7c-43df-9865-a4ac13a5d1a4}",
     "nombre": "OGEMA",
     "profesor": "Marquita Callahan",
-    "creditos": 5,
+    "creditos": 1,
     "salon": "3-263",
     "department": "MILL STREET",
     "horarios": [
       {
         "Martes": [
           "11:00",
-          "13:00"
+          "12:00"
         ]
       }
     ]
@@ -1703,7 +1703,7 @@
       {
         "Lunes": [
           "7:00",
-          "19:00"
+          "10:00"
         ]
       }
     ]
@@ -1713,20 +1713,20 @@
     "numeroClase": "89f5380a-79af-4d81-8122-0af3554f709a}",
     "nombre": "SUITLAND",
     "profesor": "Stanley Bender",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "3-194",
     "department": "JORALEMON STREET",
     "horarios": [
       {
         "Miercoles": [
           "9:00",
-          "18:00"
+          "11:00"
         ]
       },
       {
         "Viernes": [
           "12:00",
-          "22:00"
+          "14:00"
         ]
       }
     ]
@@ -1736,14 +1736,14 @@
     "numeroClase": "4b17006a-84a6-451b-917c-2ede7064c074}",
     "nombre": "MATHEWS",
     "profesor": "Baxter Weeks",
-    "creditos": 5,
+    "creditos": 2,
     "salon": "2-363",
     "department": "OLIVER STREET",
     "horarios": [
       {
         "Sabado": [
           "11:00",
-          "16:00"
+          "13:00"
         ]
       }
     ]
@@ -1753,7 +1753,7 @@
     "numeroClase": "48eb9dbc-dd50-4cf3-bdda-9fdebeaa76e3}",
     "nombre": "SOHAM",
     "profesor": "Riley Gonzalez",
-    "creditos": 4,
+    "creditos": 2,
     "salon": "4-296",
     "department": "LACON COURT",
     "horarios": [
@@ -1770,31 +1770,31 @@
     "numeroClase": "1b13d748-0706-48ed-9df0-537b4fb4a8e9}",
     "nombre": "ACCOVILLE",
     "profesor": "Ratliff Mooney",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "2-194",
     "department": "BOWNE STREET",
     "horarios": [
       {
         "Lunes": [
           "7:00",
-          "19:00"
+          "9:00"
         ]
       },
       {
         "Lunes": [
-          "9:00",
+          "11:00",
           "13:00"
         ]
       },
       {
         "Martes": [
-          "7:00",
+          "11:00",
           "13:00"
         ]
       },
       {
         "Viernes": [
-          "9:00",
+          "14:00",
           "16:00"
         ]
       }
@@ -1811,25 +1811,25 @@
     "horarios": [
       {
         "Lunes": [
-          "10:00",
+          "13:00",
           "15:00"
         ]
       },
       {
         "Viernes": [
-          "10:00",
+          "19:00",
           "21:00"
         ]
       },
       {
         "Sabado": [
-          "9:00",
+          "12:00",
           "14:00"
         ]
       },
       {
         "Domingo": [
-          "11:00",
+          "19:00",
           "21:00"
         ]
       }
@@ -1846,7 +1846,7 @@
     "horarios": [
       {
         "Miercoles": [
-          "8:00",
+          "13:00",
           "16:00"
         ]
       }
@@ -1857,13 +1857,13 @@
     "numeroClase": "722f6d43-df63-4386-b96a-3e6af39c7f2d}",
     "nombre": "TYRO",
     "profesor": "Myers Wynn",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "4-150",
     "department": "BRISTOL STREET",
     "horarios": [
       {
         "Martes": [
-          "12:00",
+          "15:00",
           "17:00"
         ]
       },
@@ -1886,19 +1886,19 @@
     "horarios": [
       {
         "Jueves": [
-          "9:00",
+          "11:00",
           "13:00"
         ]
       },
       {
         "Lunes": [
-          "11:00",
+          "19:00",
           "21:00"
         ]
       },
       {
         "Martes": [
-          "9:00",
+          "18:00",
           "20:00"
         ]
       }
@@ -1909,25 +1909,25 @@
     "numeroClase": "673075f2-16c9-49b1-b79d-b2362fdac95a}",
     "nombre": "MAURY",
     "profesor": "Gladys Hardy",
-    "creditos": 1,
+    "creditos": 3,
     "salon": "2-254",
     "department": "FREEMAN STREET",
     "horarios": [
       {
         "Miercoles": [
-          "11:00",
+          "16:00",
           "18:00"
         ]
       },
       {
         "Jueves": [
-          "11:00",
+          "19:00",
           "21:00"
         ]
       },
       {
         "Viernes": [
-          "12:00",
+          "13:00",
           "15:00"
         ]
       }
@@ -1945,18 +1945,18 @@
       {
         "Lunes": [
           "11:00",
-          "15:00"
+          "13:00"
         ]
       },
       {
         "Martes": [
-          "11:00",
+          "16:00",
           "18:00"
         ]
       },
       {
         "Miercoles": [
-          "12:00",
+          "14:00",
           "16:00"
         ]
       }
@@ -1967,25 +1967,25 @@
     "numeroClase": "4a61b76b-bc48-4e6a-a352-d6639d347c75}",
     "nombre": "GARDINER",
     "profesor": "English Kennedy",
-    "creditos": 2,
+    "creditos": 3,
     "salon": "4-933",
     "department": "LINCOLN ROAD",
     "horarios": [
       {
         "Miercoles": [
-          "10:00",
+          "15:00",
           "17:00"
         ]
       },
       {
         "Jueves": [
-          "10:00",
+          "18:00",
           "20:00"
         ]
       },
       {
         "Domingo": [
-          "10:00",
+          "16:00",
           "18:00"
         ]
       }
@@ -1996,13 +1996,13 @@
     "numeroClase": "c6f541dd-bce4-4aa3-b713-ede09c1caac7}",
     "nombre": "GOODVILLE",
     "profesor": "Fletcher Benton",
-    "creditos": 6,
+    "creditos": 1,
     "salon": "4-823",
     "department": "BROOME STREET",
     "horarios": [
       {
         "Martes": [
-          "8:00",
+          "16:00",
           "18:00"
         ]
       }
@@ -2013,13 +2013,13 @@
     "numeroClase": "71400085-63df-4d95-8e46-469cfa26b2a9}",
     "nombre": "COCHRANVILLE",
     "profesor": "Guthrie Fry",
-    "creditos": 5,
+    "creditos": 1,
     "salon": "6-508",
     "department": "LOUIS PLACE",
     "horarios": [
       {
         "Martes": [
-          "12:00",
+          "17:00",
           "19:00"
         ]
       }
@@ -2030,19 +2030,19 @@
     "numeroClase": "1bbb1033-d292-4b98-b067-731f3aa69489}",
     "nombre": "HACKNEYVILLE",
     "profesor": "Brewer Mercado",
-    "creditos": 5,
+    "creditos": 2,
     "salon": "3-433",
     "department": "SCHENCK AVENUE",
     "horarios": [
       {
         "Lunes": [
           "8:00",
-          "17:00"
+          "10:00"
         ]
       },
       {
         "Martes": [
-          "8:00",
+          "19:00",
           "21:00"
         ]
       }
@@ -2053,25 +2053,25 @@
     "numeroClase": "eb89cc01-d279-48fc-bdb7-f420ca4f040f}",
     "nombre": "DOWLING",
     "profesor": "Kristen Maynard",
-    "creditos": 6,
+    "creditos": 4,
     "salon": "3-916",
     "department": "ROCK STREET",
     "horarios": [
       {
         "Miercoles": [
-          "8:00",
+          "19:00",
           "21:00"
         ]
       },
       {
         "Jueves": [
-          "10:00",
+          "16:00",
           "18:00"
         ]
       },
       {
         "Viernes": [
-          "12:00",
+          "19:00",
           "21:00"
         ]
       }
@@ -2082,13 +2082,13 @@
     "numeroClase": "37fb99ff-12ea-4a47-bb20-b9fe11e72145}",
     "nombre": "ALLISON",
     "profesor": "Arline Herman",
-    "creditos": 4,
+    "creditos": 2,
     "salon": "6-656",
     "department": "LAFAYETTE WALK",
     "horarios": [
       {
         "Sabado": [
-          "10:00",
+          "15:00",
           "17:00"
         ]
       },
@@ -2105,25 +2105,25 @@
     "numeroClase": "50cd0ef6-7d7b-4084-b581-3c6dbca43ded}",
     "nombre": "JACKSONBURG",
     "profesor": "Natalie Coleman",
-    "creditos": 2,
+    "creditos": 3,
     "salon": "3-342",
     "department": "POPLAR AVENUE",
     "horarios": [
       {
         "Martes": [
-          "11:00",
+          "13:00",
           "15:00"
         ]
       },
       {
         "Sabado": [
-          "8:00",
+          "19:00",
           "21:00"
         ]
       },
       {
         "Domingo": [
-          "10:00",
+          "18:00",
           "20:00"
         ]
       }
@@ -2134,19 +2134,19 @@
     "numeroClase": "d4c382dc-9a42-42af-941b-1bdb2d798867}",
     "nombre": "OLNEY",
     "profesor": "Beulah Gould",
-    "creditos": 3,
+    "creditos": 2,
     "salon": "1-57",
     "department": "ELM PLACE",
     "horarios": [
       {
         "Domingo": [
-          "8:00",
+          "12:00",
           "14:00"
         ]
       },
       {
         "Jueves": [
-          "12:00",
+          "15:00",
           "17:00"
         ]
       }
@@ -2157,25 +2157,25 @@
     "numeroClase": "d6434708-b0b9-470c-8c3d-fe712613fc2d}",
     "nombre": "WAKARUSA",
     "profesor": "Melva Shields",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "5-957",
     "department": "BILLINGS PLACE",
     "horarios": [
       {
         "Miercoles": [
-          "11:00",
+          "15:00",
           "17:00"
         ]
       },
       {
         "Jueves": [
-          "9:00",
+          "18:00",
           "20:00"
         ]
       },
       {
         "Domingo": [
-          "9:00",
+          "16:00",
           "18:00"
         ]
       }
@@ -2186,13 +2186,13 @@
     "numeroClase": "05e5ae27-3d7b-4420-a075-76343a5eb368}",
     "nombre": "GORHAM",
     "profesor": "Leila Nunez",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "5-65",
     "department": "EAGLE STREET",
     "horarios": [
       {
         "Jueves": [
-          "11:00",
+          "15:00",
           "17:00"
         ]
       },
@@ -2204,7 +2204,7 @@
       },
       {
         "Viernes": [
-          "9:00",
+          "14:00",
           "16:00"
         ]
       }
@@ -2215,14 +2215,14 @@
     "numeroClase": "a60bdca2-ff13-46b9-8c7f-e17d81b8308a}",
     "nombre": "RUTHERFORD",
     "profesor": "Baird Padilla",
-    "creditos": 5,
+    "creditos": 3,
     "salon": "2-687",
     "department": "HEYWARD STREET",
     "horarios": [
       {
         "Jueves": [
           "10:00",
-          "19:00"
+          "13:00"
         ]
       }
     ]
@@ -2232,31 +2232,31 @@
     "numeroClase": "8d428fec-f42c-4b3d-98b6-4280fc73994b}",
     "nombre": "CARLTON",
     "profesor": "Salas Prince",
-    "creditos": 6,
+    "creditos": 3,
     "salon": "4-736",
     "department": "VETERANS AVENUE",
     "horarios": [
       {
         "Jueves": [
-          "8:00",
+          "15:00",
           "17:00"
         ]
       },
       {
         "Viernes": [
-          "9:00",
+          "16:00",
           "18:00"
         ]
       },
       {
         "Lunes": [
-          "11:00",
+          "14:00",
           "16:00"
         ]
       },
       {
         "Sabado": [
-          "12:00",
+          "16:00",
           "18:00"
         ]
       }
@@ -2267,31 +2267,31 @@
     "numeroClase": "e2022988-b9ae-4547-b125-9f9e97e81de6}",
     "nombre": "CRESAPTOWN",
     "profesor": "Maynard Gonzales",
-    "creditos": 5,
+    "creditos": 4,
     "salon": "2-623",
     "department": "FULLER PLACE",
     "horarios": [
       {
         "Martes": [
-          "12:00",
+          "19:00",
           "21:00"
         ]
       },
       {
         "Viernes": [
-          "9:00",
+          "11:00",
           "13:00"
         ]
       },
       {
         "Jueves": [
-          "9:00",
+          "13:00",
           "15:00"
         ]
       },
       {
-        "Lunes: [
-          "8:00",
+        "Lunes": [
+          "13:00",
           "15:00"
         ]
       }
