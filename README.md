@@ -1,5 +1,5 @@
 # JPlanner
-
+#SPRINT INSTALLATION
 Entrar al siguiente link:
 -https://spring.io/tools
 
@@ -35,5 +35,6 @@ C:\Program Files\Java\jdk1.8.0_71\jre\bin\javaw.exe               <-Acá colocan
 
 Y listo!
 
+#ANGULAR INSTALLATION
 
 This is a repository where web application JPlanner is built.
