@@ -35,7 +35,7 @@ C:\Program Files\Java\jdk1.8.0_71\jre\bin\javaw.exe               <-Acá colocan
 
 Y listo!
 
-#ANGULAR INSTALLATION
+# ANGULAR INSTALLATION
 
 Para la instalación y creación de un nuevo proyecto en Angular 6 se deben seguir las siguientes instrucciones:
 Descargar las siguientes aplicaciones
