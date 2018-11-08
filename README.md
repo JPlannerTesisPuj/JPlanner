@@ -1,5 +1,5 @@
 # JPlanner
-
+#SPRINT INSTALLATION
 Entrar al siguiente link:
 -https://spring.io/tools
 
@@ -35,5 +35,34 @@ C:\Program Files\Java\jdk1.8.0_71\jre\bin\javaw.exe               <-Acá colocan
 
 Y listo!
 
+# ANGULAR INSTALLATION
 
-This is a repository where web application JPlanner is built.
+Para la instalación y creación de un nuevo proyecto en Angular 6 se deben seguir las siguientes instrucciones:
+Descargar las siguientes aplicaciones
+Node js: https://nodejs.org/es/ descargar la version actual
+Git: https://git-scm.com/ ir al link de descarga segun sistema operativo
+En la siguiente pagina se encuentran los comandos mas importantes implementados por angular cli, el cual es un ayudante de creación y puesta en marcha de Angular https://cli.angular.io/.
+
+Tras descargar e instalar las herramientas(ambas no necesitan opciones de instalación en especifico) se instalará Angular cli con el comando
+
+
+--npm install -g @angular/cli
+luego en consola nos dirijimos al sitio en el cual se desea crear un nuevo proyecto por ejemplo
+
+
+cd Desktop
+se nos creará en el escritorio, digitar el siguiente comando
+
+
+--ng new my-dream-app
+se esperan unos minutos y las consola nos informa que fue creado satisfactoriamente, Angular posee un servidor interno el cual nos permite correr nuestra aplicación, para ponerlo en marcha digitamos
+
+
+--ng serve
+en consola se nos informará en que puerto esta situado el servidor ejemplo
+localhost/4200
+Para más información dirigirse a -- https://cli.angular.io/ -- https://github.com/angular/angular-cli/wiki
+Curso de Angular 6 : https://www.youtube.com/watch?v=AR1tLGQ7COs&index=3&list=LLPeAk0L7s60ebYx6LiP9fOA&t=1880s
+
+
+
