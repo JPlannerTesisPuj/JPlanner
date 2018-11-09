@@ -46,7 +46,7 @@ En la siguiente pagina se encuentran los comandos mas importantes implementados 
 Tras descargar e instalar las herramientas(ambas no necesitan opciones de instalación en especifico) se instalará Angular cli con el comando
 
 
---npm install -g @angular/cli
+-- npm install -g @angular/cli
 luego en consola nos dirijimos al sitio en el cual se desea crear un nuevo proyecto por ejemplo
 
 
@@ -54,11 +54,11 @@ cd Desktop
 se nos creará en el escritorio, digitar el siguiente comando
 
 
---ng new my-dream-app
+-- ng new my-dream-app
 se esperan unos minutos y las consola nos informa que fue creado satisfactoriamente, Angular posee un servidor interno el cual nos permite correr nuestra aplicación, para ponerlo en marcha digitamos
 
 
---ng serve
+-- ng serve
 en consola se nos informará en que puerto esta situado el servidor ejemplo
 localhost/4200
 Para más información dirigirse a -- https://cli.angular.io/ -- https://github.com/angular/angular-cli/wiki
