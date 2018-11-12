@@ -1,5 +1,6 @@
 # JPlanner
-#SPRINT INSTALLATION
+
+## SPRING INSTALLATION
 Entrar al siguiente link:
 -https://spring.io/tools
 
@@ -35,7 +36,9 @@ C:\Program Files\Java\jdk1.8.0_71\jre\bin\javaw.exe               <-Acá colocan
 
 Y listo!
 
-# ANGULAR INSTALLATION
+---
+
+## ANGULAR INSTALLATION
 
 Para la instalación y creación de un nuevo proyecto en Angular 6 se deben seguir las siguientes instrucciones:
 Descargar las siguientes aplicaciones
@@ -46,23 +49,31 @@ En la siguiente pagina se encuentran los comandos mas importantes implementados 
 Tras descargar e instalar las herramientas(ambas no necesitan opciones de instalación en especifico) se instalará Angular cli con el comando
 
 
--- npm install -g @angular/cli
+- ```npm install -g @angular/cli```
+
 luego en consola nos dirijimos al sitio en el cual se desea crear un nuevo proyecto por ejemplo
 
+### Para abrir el proyecto ya existente
+
+Abrir la carpeta Angular, abrir la terminal en dicha ubicación y ejecutar:
+
+- ```npm install``` se esperan unos minutos hasta que en la consola se indique que la instalación terminó, después digitamos
+
+- ```npm serve --open``` en consola se nos informará en que puerto esta situado el servidor, en este caso http://localhost:4200, y este se abrirá automáticamente en el navegador por defecto
+
+### Para crear un nuevo proyecto
 
 cd Desktop
 se nos creará en el escritorio, digitar el siguiente comando
 
-
--- ng new my-dream-app
+- ```ng new my-dream-app```
 se esperan unos minutos y las consola nos informa que fue creado satisfactoriamente, Angular posee un servidor interno el cual nos permite correr nuestra aplicación, para ponerlo en marcha digitamos
 
+- ```ng serve```
 
--- ng serve
 en consola se nos informará en que puerto esta situado el servidor ejemplo
-localhost/4200
+http://localhost:4200
 Para más información dirigirse a -- https://cli.angular.io/ -- https://github.com/angular/angular-cli/wiki
 Curso de Angular 6 : https://www.youtube.com/watch?v=AR1tLGQ7COs&index=3&list=LLPeAk0L7s60ebYx6LiP9fOA&t=1880s
-
 
 
