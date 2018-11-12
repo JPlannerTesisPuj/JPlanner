@@ -3,8 +3,7 @@ import { Subject } from '../shared/model/Subject';
 
 @Component({
   selector: 'app-display-class',
-  templateUrl: './display-class.component.html',
-  styleUrls: ['./display-class.component.css']
+  templateUrl: './display-class.component.html'
 })
 export class DisplayClassComponent implements OnInit {
 
