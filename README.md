@@ -77,3 +77,18 @@ Para más información dirigirse a -- https://cli.angular.io/ -- https://github.
 Curso de Angular 6 : https://www.youtube.com/watch?v=AR1tLGQ7COs&index=3&list=LLPeAk0L7s60ebYx6LiP9fOA&t=1880s
 
 
+
+### GULP
+
+-	npm install --global gulp-cli
+-	npm install --save-dev gulp@next
+-	npm install gulp-sass --save-dev
+-	npm install gulp-autoprefixer --save-dev
+
+Este gulpfile se encarga de compilar todos los archivos scss del proyecto minificandolos y agregandoles un prefijo.
+Cuando se cree un nuevo componente se debe cambiar la extension de su css a scss , eliminar la linea de estilos del component.ts que referencia a ese scss
+y agregar el archivo scss de este componente en el gulpfile en el arreglo de sassFiles y a los imports del archivo styles.scss.
+
+Los archivos nuevos quedan en app/styles/styles.css. La justificacion para realizar esto es que solo se van a cargar los estilos estaticos una unica vez
+y el resto de veces que el sitio se cargue ya estaran cacheados, lo que aumentaria el performance en el sitio.
+

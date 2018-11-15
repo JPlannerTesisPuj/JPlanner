@@ -8,8 +8,7 @@ import { Horary } from '../shared/model/Horary';
  */
 @Component({
   selector: 'app-display-classes',
-  templateUrl: './display-classes.component.html',
-  styleUrls: ['./display-classes.component.css']
+  templateUrl: './display-classes.component.html'
 })
 export class DisplayClassesComponent implements OnInit {
 
