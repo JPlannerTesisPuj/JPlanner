@@ -1,0 +1,23 @@
+body{
+font-family:'Montserrat', sans-serif;
+}
+table {
+    border-collapse:separate;
+    border:solid black 1px;
+    border-radius:6px !important;
+    -moz-border-radius:6px !important;
+}
+
+td, th {
+    border-left:solid black 1px;
+    border-top:solid black 1px;
+}
+
+th {
+    
+    border-top: none !important;
+}
+
+td:first-child, th:first-child {
+     border-left: none !important;
+}
