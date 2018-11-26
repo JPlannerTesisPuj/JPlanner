@@ -8,18 +8,29 @@ import { AppComponent } from './app.component';
 import { DisplayClassesComponent } from './display-classes/display-classes.component';
 import { DisplayClassComponent } from './display-class/display-class.component';
 
+import {MatDialogModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClassModalComponent } from './class-modal/class-modal.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DisplayClassesComponent,
-    DisplayClassComponent
+    DisplayClassComponent,
+    ClassModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
+  entryComponents: [
+    ClassModalComponent,
+  ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,13 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+a{
+    cursor: pointer;
+    .subject{
+    display: inline-block;
+    border: 1px solid #ccc;
+    margin: 20px;
+    padding: 10px;
+    width:150px;
+    height: 50px;
+    text-align: center;
+    }
+}

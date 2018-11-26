@@ -1,0 +1,20 @@
+<h2 mat-dialog-tittle> Datos de la Materia: </h2>
+  <b>ID: </b><span>{{ subject.id }}</span><br />
+  <b>Número de clase: </b><span>{{ subject.numeroClase }}</span><br />
+  <b>Nombre: </b><span>{{ subject.nombre }}</span><br />
+  <b>Profesor: </b><span>{{ subject.profesor }}</span><br />
+  <b>Creditos: </b><span>{{ subject.creditos }}</span><br />
+  <b>Salon: </b><span>{{ subject.salon }}</span><br />
+  <b>Departamento: </b><span>{{ subject.departamento }}</span><br />
+  <div>
+    <b>Horario: </b>
+    <ul>
+      <li *ngFor="let h of subject.horario">
+        {{ h.dia }}
+        <ul>
+          <li>{{ h.horaInicio }}</li>
+          <li>{{ h.horaFin }}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
