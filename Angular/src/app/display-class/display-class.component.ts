@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from '../shared/model/Subject';
+import {MatDialog,MAT_DIALOG_DATA } from '@angular/material';
+import { ClassModalComponent } from '../class-modal/class-modal.component';
 
 @Component({
   selector: 'app-display-class',
@@ -10,9 +12,17 @@ export class DisplayClassComponent implements OnInit {
   // Se solicita un objeto de tipo Subject como parámetro para invocar al componente
   @Input() private subject: Subject;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+  openDialog(subject){
+    let dialogRef = this.dialog.open(ClassModalComponent, {
+      data:{class:subject}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(subject);
+    });
   }
 
 }

@@ -1,22 +1,6 @@
 <!-- Mira si la materia que le llego no es nula y si no lo es imprime su información -->
-<div *ngIf="subject" class="subject" style="border: 1px solid #ccc; margin: 20px; padding: 10px;">
-  <b>ID: </b><span>{{ subject.id }}</span><br />
-  <b>Número de clase: </b><span>{{ subject.numeroClase }}</span><br />
-  <b>Nombre: </b><span>{{ subject.nombre }}</span><br />
-  <b>Profesor: </b><span>{{ subject.profesor }}</span><br />
-  <b>Creditos: </b><span>{{ subject.creditos }}</span><br />
-  <b>Salon: </b><span>{{ subject.salon }}</span><br />
-  <b>Departamento: </b><span>{{ subject.departamento }}</span><br />
-  <div>
-    <b>Horario: </b>
-    <ul>
-      <li *ngFor="let h of subject.horario">
-        {{ h.dia }}
-        <ul>
-          <li>{{ h.horaInicio }}</li>
-          <li>{{ h.horaFin }}</li>
-        </ul>
-      </li>
-    </ul>
+<a (click)="openDialog(subject)">
+  <div *ngIf="subject" class="subject">
+    {{ subject.nombre }}
   </div>
-</div>
+</a>
