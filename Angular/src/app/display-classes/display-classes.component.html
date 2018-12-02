@@ -1,5 +1,6 @@
 <h2>Clases</h2>
-<div>
+<div class="classes">
+  {{this.error}}
   <!-- Se recorre la lista de materias y se crea un app-display-class por cada materia -->
   <div *ngFor="let class of classes">
     <app-display-class [subject]="class"></app-display-class>

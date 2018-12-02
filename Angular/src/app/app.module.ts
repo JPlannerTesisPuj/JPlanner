@@ -11,13 +11,19 @@ import { DisplayClassComponent } from './display-class/display-class.component';
 import {MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClassModalComponent } from './class-modal/class-modal.component';
+import { FilterComponent } from './filter/filter.component';
+
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
+import { DataService } from './shared/data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayClassesComponent,
     DisplayClassComponent,
-    ClassModalComponent
+    ClassModalComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,13 +31,16 @@ import { ClassModalComponent } from './class-modal/class-modal.component';
     HttpClientModule,
     FormsModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+  
+
   ],
   entryComponents: [
     ClassModalComponent,
   ],
 
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

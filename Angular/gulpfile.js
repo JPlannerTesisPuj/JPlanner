@@ -7,7 +7,8 @@ var sassFiles = [
     sassDir,
     './src/app/display-class/display-class.component.scss',
     './src/app/display-classes/display-classes.component.scss',
-    './src/app//class-modal/class-modal.component.scss'
+    './src/app/class-modal/class-modal.component.scss',
+    './src/app/date-time-picker/date-time-picker.component.scss'
 ]
 
 
