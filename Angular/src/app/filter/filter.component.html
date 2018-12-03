@@ -1,0 +1,25 @@
+<ng-multiselect-dropdown class="week-dropdown"
+  [placeholder]="'Dias de la Semana'"
+  [data]="dropdownListWeek"
+  [(ngModel)]="selectedItemsWeek"
+  [settings]="dropdownSettings"
+  
+>
+</ng-multiselect-dropdown>
+
+<select id = "hourFrom" class="hour-dropdown" [(ngModel)]="selectedOptionFrom"(ngModelChange)="onChangeFrom($event)">
+  <option value="" disabled selected>Hora de Inicio</option>
+  <option *ngFor="let hour of hoursFrom">
+{{hour}}
+</option>
+</select>
+
+<select id="hourTo" [(ngModel)]="selectedOptionTo" class="hour-dropdown">
+    <option value="" disabled selected>Hora Final</option>
+    <option *ngFor="let hour of hoursTo">
+    {{hour}}
+    </option>
+    </select>
+
+<button class="filter-btn" (click)="filter()">Filtrar</button>
+<button class="filter-btn" (click)="filterViewAll()">Ver Todos</button>

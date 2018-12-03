@@ -1,0 +1,17 @@
+.week-dropdown >div:first-child{
+    display: inline-block;
+    margin: 20px;
+    width:20%;  
+    .selected-item{
+        margin:3px;
+    }
+}
+
+.hour-dropdown{
+    height: 38px;
+    width: 20%;
+    &#hourTo{
+        display: none;
+        margin-left: 20px;
+    }
+}
