@@ -37,13 +37,15 @@ export class ReadJsonFileService {
    * @param hourTo Hora en formato long en la cual fializara la franja horaria para filtrar
    */
   public filterClassesDayHour(fileName:string, arrayWeekDays:string, hourFrom, hourTo:string): Observable<any> {
-    
-    console.log(hourFrom);
+    //Si no hay dias especificados busque en todos las horas requeridas
+    if(arrayWeekDays=='')
+      arrayWeekDays = 'Lunes-Martes-Miercoles-Jueves-Viernes-Sabado-Domingo';
     //Si solo busca por dia, entonces la franja horaria abarca todo el dia
     if(isNaN(hourFrom)){
       hourFrom =  0;
       hourTo = '86399 ';
     }
+    console.log(arrayWeekDays);
     console.log(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo);
     return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo, { withCredentials: true }));
   }

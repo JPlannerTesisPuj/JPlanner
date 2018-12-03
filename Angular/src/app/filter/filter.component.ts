@@ -76,14 +76,15 @@ export class FilterComponent implements OnInit {
   }
 
   validate(){
-    if(this.selectedItemsWeek.length==0){
-      alert('Porfavor eliga un dia de la semana');
+      if(this.selectedOptionFrom =='' && this.selectedItemsWeek.length==0){
+      alert('Porfavor eliga una opcion de filtro');
       return false;
-    }
-    else if(this.selectedOptionTo=='' && this.selectedOptionFrom !='' ){
+      }
+      else if(this.selectedOptionTo=='' && this.selectedOptionFrom !='' ){
       alert('Porfavor eliga una franja horaria');
       return false;
-    }
+      }
+      
     return true;
   }
   initHoursFrom(){

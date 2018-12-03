@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,6 +97,7 @@ public class JSONFileRestService {
 
 	}
 	
+	//Servicio para filtar por hora y dia
 	@RequestMapping(value = "files/read/json/{fileName}/{day}/{hour-from}/{hour-to}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	ResponseEntity<String> getJSONFileHourDayFilter(@PathVariable("fileName") String fileName,@PathVariable("day") String day,@PathVariable("hour-from") String hourFrom,@PathVariable("hour-to") String hourTo) throws JsonProcessingException {
@@ -117,14 +119,7 @@ public class JSONFileRestService {
 					return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
 				}
 				try {
-					/*
-					ObjectMapper mapper = new ObjectMapper();
-					InputStream is = PujClass.class.getResourceAsStream("/json/" + fileName + ".json");
-					PujClass[] testObj = mapper.readValue(is, PujClass[].class);
-					for(PujClass pc: testObj)
-						for(HashMap<String,Object> hm:pc.getHorarios())
-								System.out.print(hm.toString());
-					*/
+
 					BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 					StringBuilder JSONFileBuilder = new StringBuilder();
 
@@ -133,10 +128,16 @@ public class JSONFileRestService {
 					while ((inputStringLine = streamReader.readLine()) != null) {
 						JSONFileBuilder.append(inputStringLine);
 					}
+					
+					//Se calcula el numero maximo de horarios de una materia
+					ArrayList<Integer> maxNumber = JsonPath.read(JSONFileBuilder.toString(), "$..horarios.length()");
+					int horaryMax = (Collections.max(maxNumber));
 					String[] arrayDays = day.split("-");
 					String filter = "$..[?(";
+					//Se itera sobre los dias que vienen en la peticion
 					for(int i=0 ; i<arrayDays.length;++i) {
-						for (int j = 0; j<7;++j) {
+						//Se itera sobre el numero maximo de horarios para crear la query
+						for (int j = 0; j<horaryMax;++j) {
 							filter += "@.horarios["+j+"].dia=='"+arrayDays[i]+"'"+
 									" && (@.horarios["+j+"].horaInicio >="+hourFrom
 											+ "&& @.horarios["+j+"].horaFin <="+hourTo+")"+"||";
