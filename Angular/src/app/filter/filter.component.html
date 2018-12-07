@@ -1,25 +1,37 @@
-<ng-multiselect-dropdown class="week-dropdown"
-  [placeholder]="'Dias de la Semana'"
-  [data]="dropdownListWeek"
-  [(ngModel)]="selectedItemsWeek"
-  [settings]="dropdownSettings"
-  
->
+<ng-multiselect-dropdown class="fdropdown week-dropdown" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek" [(ngModel)]="selectedItemsWeek"
+  [settings]="dropdownSettings">
 </ng-multiselect-dropdown>
 
-<select id = "hourFrom" class="hour-dropdown" [(ngModel)]="selectedOptionFrom"(ngModelChange)="onChangeFrom($event)">
+<select id="hourFrom" class=" fdropdown hour-dropdown" [(ngModel)]="selectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
   <option value="" disabled selected>Hora de Inicio</option>
   <option *ngFor="let hour of hoursFrom">
-{{hour}}
-</option>
+    {{hour}}
+  </option>
 </select>
 
-<select id="hourTo" [(ngModel)]="selectedOptionTo" class="hour-dropdown">
-    <option value="" disabled selected>Hora Final</option>
-    <option *ngFor="let hour of hoursTo">
+<select id="hourTo" [(ngModel)]="selectedOptionTo" class="fdropdown hour-dropdown">
+  <option value="" disabled selected>Hora Final</option>
+  <option *ngFor="let hour of hoursTo">
     {{hour}}
-    </option>
-    </select>
+  </option>
+</select>
 
-<button class="filter-btn" (click)="filter()">Filtrar</button>
-<button class="filter-btn" (click)="filterViewAll()">Ver Todos</button>
+
+<div class="credits">
+  <input required="required" id="credit-input-1" class="input-number"  type="text" maxlength="2" pattern="\d{1,2}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue" [value]="creditValue" (ngModelChange)="onChangeInputCreditOne($event)"/>
+  <select id="creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="fdropdown credit-dropdown">
+    <option value="" disabled selected>Filtrar Por Creditos</option>
+    <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
+      {{comparator.value}}
+    </option>
+  </select>
+  <input required="required" id="credit-input-2" class="input-number"  type="text" maxlength="2" pattern="\d{1,2}"  oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue2" [value]="creditValue2" (ngModelChange)="onChangeInputCreditTwo($event)"/>
+  
+  
+</div>
+
+<div>
+  <button class="filter-btn" (click)="filterDays()">Filtra Por Dias</button>
+  <button class="filter-btn" (click)="filterCredits()">Filtrar Por Creditos</button>
+  <button class="filter-btn" (click)="filterViewAll()">Ver Todos</button>
+</div>

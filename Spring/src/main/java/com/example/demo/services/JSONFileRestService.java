@@ -173,6 +173,88 @@ public class JSONFileRestService {
 				return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
 	}
 
+	//Servicio para filtar por creditos
+	@RequestMapping(value = "files/read/json/{fileName}/credits/{credit1Value}/{operator}/{credit2Value}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	ResponseEntity<String> getJSONFileCreditsFilter(@PathVariable("fileName") String fileName,@PathVariable("credit1Value") int credit1Value,@PathVariable("operator") int operator,@PathVariable("credit2Value") int credit2Value) throws JsonProcessingException {
+		// Se obtiene la información del archivo
+				InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
+
+				// Si no existe el archivo se crea un JSON que contiene especificando el error
+				if (in == null) {
+					errorResponse = new HashMap<>();
+					errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
+					errorResponse.put("error", "Error al abrir el archivo");
+					errorResponse.put("message", "No se ha encontrado el archivo " + fileName + ".json para leer");
+					errorResponse.put("path", "/files/read/json/" + fileName);
+					
+					// Convierte el Mapa con la especificación del error en un String en forma de JSON
+					String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
+					
+					// Retorna un String en forma de JSON con un error 400 
+					return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+				}
+				try {
+
+					BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+					StringBuilder JSONFileBuilder = new StringBuilder();
+
+					// Crea un String con toda la información del archivo JSON
+					String inputStringLine;
+					while ((inputStringLine = streamReader.readLine()) != null) {
+						JSONFileBuilder.append(inputStringLine);
+					}
+					
+					System.out.println(credit1Value);
+					System.out.println(credit2Value);
+					System.out.println(operator);
+					String filter = "$..[?(@.creditos " ;
+					//Meneja operador de dos valores
+					if(credit1Value > -1) {
+						filter+=">= "+credit1Value+"&&@.creditos <= " + credit2Value;
+					}
+					//Maneja operadores de 1 solo valor
+					else if(credit1Value == -1){
+						switch(operator) {
+						//Mayor a
+						case 1:
+							filter+=">= ";
+							break;
+						
+						//Menor a
+						case 2:
+							filter+="<= ";
+							break;
+							
+						//igual a
+						case 3:
+							filter+="== ";
+							break;
+						}
+						
+					}
+					filter+=credit2Value+")]";
+					ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), filter);
+					String filteredJSON = new ObjectMapper().writeValueAsString(classes);
+					return new ResponseEntity<>(filteredJSON.toString(), HttpStatus.OK);
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				// Si hubo un error al leer el archivo se crea un JSON que contiene especificando el error
+				errorResponse = new HashMap<>();
+				errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
+				errorResponse.put("error", "Error al abrir el archivo");
+				errorResponse.put("message", "No se pudo leer el archivo " + fileName + ".json para leer");
+				errorResponse.put("path", "/files/read/json/" + fileName);
+				
+				// Convierte el Mapa con la especificación del error en un String en forma de JSON
+				String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
+				
+				// Retorna un String en forma de JSON con un error 400 
+				return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+	}
 
 	
 }

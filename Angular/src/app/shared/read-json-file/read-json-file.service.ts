@@ -45,9 +45,14 @@ export class ReadJsonFileService {
       hourFrom =  0;
       hourTo = '86399 ';
     }
-    console.log(arrayWeekDays);
-    console.log(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo);
     return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo, { withCredentials: true }));
   }
 
+  public filterClassesCredits(fileName:string,creditValue1:number,operator:number,creditValue2:number): Observable<any> {
+    if(creditValue1 === null)
+        creditValue1 = -1;
+    console.log(this.baseUrl + 'files/read/json/' + fileName+'/credits/'+creditValue1+'/'+operator+'/'+creditValue2);
+    return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/credits/'+creditValue1+'/'+operator+'/'+creditValue2, { withCredentials: true }));
+
+  }
 }
