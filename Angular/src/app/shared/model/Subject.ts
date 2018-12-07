@@ -5,33 +5,54 @@ import { Horary } from "./Horary";
  */
 export class Subject {
 
-    public id: string;
+    public _id: string;
     public numeroClase: string;
+    public codigo: string;
     public nombre: string;
     public profesor: string;
     public creditos: number;
+    public cuposTotales: number;
+    public cuposDisponibles: number;
+    public modoEnsenanza: string;
+    public estado: string;
+    public grado: string;
     public salon: string;
     public departamento: string;
-    public horario: Horary[];
+    public descripcion: string;
+    public horarios: Horary[];
 
     constructor(
         private nId: string,
         private nNumeroClase: string,
+        private nCodigo: string,
         private nNombre: string,
         private nProfesor: string,
         private nCreditos: number,
+        private nCuposTotales: number,
+        private nCuposDisponibles: number,
+        private nModoEnsenanza: string,
+        private nEstado: string,
+        private nGrado: string,
         private nSalon: string,
         private nDepartamento: string,
-        private nHorario: Horary[],
+        private nDescripcion: string,
+        private nHorarios: Horary[],
     ) {
-        this.id = nId;
+        this._id = nId;
         this.numeroClase = nNumeroClase;
+        this.codigo = nCodigo;
         this.nombre = nNombre;
         this.profesor = nProfesor;
         this.creditos = nCreditos;
+        this.cuposTotales = nCuposTotales;
+        this.cuposDisponibles = nCuposDisponibles;
+        this.modoEnsenanza = nModoEnsenanza;
+        this.estado = nEstado;
+        this.grado = nGrado;
         this.salon = nSalon;
         this.departamento = nDepartamento;
-        this.horario = nHorario;
+        this.descripcion = nDescripcion;
+        this.horarios = nHorarios;
     }
 
 }
