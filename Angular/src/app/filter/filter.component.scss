@@ -1,17 +1,34 @@
-.week-dropdown >div:first-child{
-    display: inline-block;
+.fdropdown {
     margin: 20px;
-    width:20%;  
-    .selected-item{
-        margin:3px;
+    &.week-dropdown {
+        .multiselect-dropdown {
+            display: inline-block;
+            width: 20%;
+            .selected-item {
+                margin: 3px;
+            }
+        }
+    }
+    &.hour-dropdown{
+        height: 38px;
+        width: 20%;
+        &#hourTo {
+            display: none;
+        }
     }
 }
 
-.hour-dropdown{
-    height: 38px;
-    width: 20%;
-    &#hourTo{
+.credits{
+    display: inline-block;
+    .credit-dropdown{
+        height: 38px;
+    }
+    .input-number{
+        text-align: center;
+        width:40px;
         display: none;
-        margin-left: 20px;
+        &:invalid {
+            border-color: red;
+          }
     }
 }
