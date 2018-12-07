@@ -20,8 +20,8 @@
       <li *ngFor="let h of subject.horarios">
         {{ h.dia }}
         <ul>
-          <li>{{ h.horaInicio }}</li>
-          <li>{{ h.horaFin }}</li>
+          <li>{{ msToHMS( h.horaInicio) }}</li>
+          <li>{{ msToHMS( h.horaFin) }}</li>
         </ul>
       </li>
     </ul>
