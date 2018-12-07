@@ -4,13 +4,13 @@
 export class Horary {
 
     public dia: string;
-    public horaInicio: string;
-    public horaFin: string;
+    public horaInicio: number;
+    public horaFin: number;
 
     constructor(
         private nDia: string,
-        private nHoraInicio: string,
-        private nHoraFin: string
+        private nHoraInicio: number,
+        private nHoraFin: number
     ) {
         this.dia = nDia;
         this.horaInicio = nHoraInicio;
