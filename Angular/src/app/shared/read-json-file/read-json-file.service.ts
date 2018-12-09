@@ -49,6 +49,11 @@ export class ReadJsonFileService {
     return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo, { withCredentials: true }));
   }
 
+  public filterInfoSearch(fileName:string, infoSearch:string): Observable<any> {
+    console.log(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch);
+    return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch, { withCredentials: true }));
+  }
+
   public filterClassesCredits(fileName:string,creditValue1:number,operator:number,creditValue2:number): Observable<Subject> {
     if(creditValue1 === null)
         creditValue1 = -1;

@@ -30,7 +30,10 @@
   
 </div>
 
+<input [(ngModel)]="miBuscador" [value]="miBuscador" type="text" id="miBuscador" placeholder="Buscar..">
+
 <div>
+  <button class="filter-btn" (click)="filterNom_Dep_Pro()">Filtrar Busqueda</button>
   <button class="filter-btn" (click)="filterDays()">Filtra Por Dias</button>
   <button class="filter-btn" (click)="filterCredits()">Filtrar Por Creditos</button>
   <button class="filter-btn" (click)="filterViewAll()">Ver Todos</button>

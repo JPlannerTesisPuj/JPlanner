@@ -18,6 +18,7 @@ export class FilterComponent implements OnInit {
   private creditsComparatorOptions = {};
   private creditsComparator: any;
   private filterMsj;
+  private miBuscador: String;
   private creditValue;
   private creditValue2;
 
@@ -144,6 +145,15 @@ export class FilterComponent implements OnInit {
     for (let i = numberItem; i <= 22; ++i) {
       this.hoursTo.push(i + ':00');
     }
+  }
+
+  filterNom_Dep_Pro() {
+    //Mensaje que sera enviado
+    var data = {
+      "type": "filterInfoSearch",
+      "infoSearch": this.miBuscador
+    }
+    this.data.changeMessage(data);
   }
   onChangeInputCreditOne(item: any) {
     if (item != '') {

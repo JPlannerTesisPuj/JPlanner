@@ -42,7 +42,14 @@ export class DisplayClassesComponent implements OnInit {
         this.readJSONFileService.filterClassesDayHour('classes', this.filter['days'], this.filter['hourFrom'], this.filter['hourTo'])
           .subscribe(classes => {
             this.classes = classes;
-          });
+          }
+          );
+      } else if (this.filter['type'] == 'filterInfoSearch') {
+        this.readJSONFileService.filterInfoSearch('classes', this.filter['infoSearch'])
+          .subscribe(classes => {
+            this.classes = classes;
+          }
+          );
       } else if (this.filter['type'] == 'filterCredits') {
         console.log(this.filter);
         this.readJSONFileService.filterClassesCredits('classes', this.filter['credit1Value'], this.filter['operator'], this.filter['credit2Value'])
