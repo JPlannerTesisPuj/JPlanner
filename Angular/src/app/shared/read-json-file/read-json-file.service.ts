@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
+import { Subject } from '../model/Subject';
 
 /**
  * Permite consumir servicios externos para leer archivos JSON
@@ -24,8 +25,8 @@ export class ReadJsonFileService {
    * 
    * @param fileName Nombre del archivo que se quiere obtener
    */
-  public readJSONFile(fileName: string): Observable<any> {
-    return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName, { withCredentials: true }));
+  public readJSONFile(fileName: string): Observable<Subject> {
+    return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName, { withCredentials: true }));
   }
   /**
    * 
@@ -36,7 +37,7 @@ export class ReadJsonFileService {
    * @param hourFrom Hora en formato long desde la cual se establecera la franja horaria para filtar
    * @param hourTo Hora en formato long en la cual fializara la franja horaria para filtrar
    */
-  public filterClassesDayHour(fileName:string, arrayWeekDays:string, hourFrom, hourTo:string): Observable<any> {
+  public filterClassesDayHour(fileName:string, arrayWeekDays:string, hourFrom, hourTo:string): Observable<Subject> {
     //Si no hay dias especificados busque en todos las horas requeridas
     if(arrayWeekDays=='')
       arrayWeekDays = 'Lunes-Martes-Miercoles-Jueves-Viernes-Sabado-Domingo';
@@ -45,9 +46,7 @@ export class ReadJsonFileService {
       hourFrom =  0;
       hourTo = '86399 ';
     }
-    console.log(arrayWeekDays);
-    console.log(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo);
-    return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo, { withCredentials: true }));
+    return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo, { withCredentials: true }));
   }
 
   public filterInfoSearch(fileName:string, infoSearch:string): Observable<any> {
@@ -55,4 +54,11 @@ export class ReadJsonFileService {
     return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch, { withCredentials: true }));
   }
 
+  public filterClassesCredits(fileName:string,creditValue1:number,operator:number,creditValue2:number): Observable<Subject> {
+    if(creditValue1 === null)
+        creditValue1 = -1;
+    console.log(this.baseUrl + 'files/read/json/' + fileName+'/credits/'+creditValue1+'/'+operator+'/'+creditValue2);
+    return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName+'/credits/'+creditValue1+'/'+operator+'/'+creditValue2, { withCredentials: true }));
+
+  }
 }

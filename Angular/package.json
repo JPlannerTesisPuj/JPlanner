@@ -22,8 +22,10 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "angular2-number-picker": "^0.8.8",
     "core-js": "^2.5.4",
     "ng-multiselect-dropdown": "^0.2.3",
+    "ng-number-picker": "^1.1.6",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
