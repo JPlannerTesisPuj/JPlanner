@@ -16,6 +16,7 @@ export class FilterComponent implements OnInit {
   private selectedOptionFrom ="";
   private selectedOptionTo ="";
   private filterMsj;
+  private miBuscador: String;
   
   constructor(private readJSONFileService: ReadJsonFileService,private data: DataService) { }
 
@@ -107,4 +108,14 @@ export class FilterComponent implements OnInit {
       this.hoursTo.push(i+':00');
     }
   }
+
+  filterNom_Dep_Pro() {
+    //Mensaje que sera enviado
+    var data = {
+      "type": "filterInfoSearch",
+      "infoSearch": this.miBuscador
+    }
+    this.data.changeMessage(data);
+  }
+
 }

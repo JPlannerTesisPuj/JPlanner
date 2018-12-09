@@ -1,9 +1,12 @@
+
+
+<input [(ngModel)]="miBuscador" [value]="miBuscador" type="text" id="miBuscador" placeholder="Buscar..">
+
 <ng-multiselect-dropdown class="week-dropdown"
   [placeholder]="'Dias de la Semana'"
   [data]="dropdownListWeek"
   [(ngModel)]="selectedItemsWeek"
   [settings]="dropdownSettings"
-  
 >
 </ng-multiselect-dropdown>
 
@@ -23,3 +26,5 @@
 
 <button class="filter-btn" (click)="filter()">Filtrar</button>
 <button class="filter-btn" (click)="filterViewAll()">Ver Todos</button>
+<button class="filter-btn" (click)="filterNom_Dep_Pro()">Filtrar Busqueda</button>
+

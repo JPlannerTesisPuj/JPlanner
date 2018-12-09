@@ -44,6 +44,12 @@ export class DisplayClassesComponent implements OnInit {
             this.printClasses(classes);
           }
           );
+      } else if (this.filter['type'] == 'filterInfoSearch') {
+        this.readJSONFileService.filterInfoSearch('classes', this.filter['infoSearch'])
+          .subscribe(classes => {
+            this.printClasses(classes);
+          }
+          );
       }
     });
 

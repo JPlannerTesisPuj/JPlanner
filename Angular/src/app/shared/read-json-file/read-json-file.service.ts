@@ -50,4 +50,9 @@ export class ReadJsonFileService {
     return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo, { withCredentials: true }));
   }
 
+  public filterInfoSearch(fileName:string, infoSearch:string): Observable<any> {
+    console.log(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch);
+    return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch, { withCredentials: true }));
+  }
+
 }
