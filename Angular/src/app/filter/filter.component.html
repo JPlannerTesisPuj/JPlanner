@@ -30,7 +30,11 @@
   
 </div>
 
-<input [(ngModel)]="miBuscador" [value]="miBuscador" type="text" id="miBuscador" placeholder="Buscar..">
+<div class = "search-container">
+<input [(ngModel)]="searchBox" [value]="searchBox" type="text" id="searchBox" placeholder="Buscar..">
+<div class ="error-msg" id="error-searchBox"></div>
+</div>
+
 
 <div>
   <button class="filter-btn" (click)="filterNom_Dep_Pro()">Filtrar Busqueda</button>
