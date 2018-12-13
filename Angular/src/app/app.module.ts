@@ -8,8 +8,9 @@ import { AppComponent } from './app.component';
 import { DisplayClassesComponent } from './display-classes/display-classes.component';
 import { DisplayClassComponent } from './display-class/display-class.component';
 
-import {MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ClassModalComponent } from './class-modal/class-modal.component';
 import { FilterComponent } from './filter/filter.component';
 
@@ -33,8 +34,7 @@ import { DataService } from './shared/data.service';
     MatDialogModule,
     BrowserAnimationsModule,
     NgMultiSelectDropDownModule.forRoot(),
-  
-
+    DragDropModule,
   ],
   entryComponents: [
     ClassModalComponent,
