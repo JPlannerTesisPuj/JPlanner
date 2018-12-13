@@ -50,7 +50,7 @@
 				"horaFin": 64800
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			}
@@ -108,7 +108,7 @@
 				"horaFin": 68400
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 32400,
 				"horaFin": 39600
 			},
@@ -147,7 +147,7 @@
 				"horaFin": 43200
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 32400,
 				"horaFin": 43200
 			}
@@ -316,7 +316,7 @@
 				"horaFin": 32400
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 36000,
 				"horaFin": 46800
 			},
@@ -345,7 +345,7 @@
 		"descripcion": "Qui sunt mollit consequat sint ut qui eiusmod. Ex quis incididunt aute excepteur est labore ipsum irure. Enim aute incididunt labore sint ea duis proident. Officia enim aliquip aliqua ad aliqua consectetur id labore velit id cillum fugiat enim in. Tempor est anim in est aliquip et.\r\n",
 		"horarios": [
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			}
@@ -582,7 +582,7 @@
 		"descripcion": "Ad id aliquip consectetur duis exercitation. Nulla excepteur velit in et amet. Veniam laborum officia sit veniam veniam duis velit laboris eiusmod amet non exercitation ad. Enim minim Lorem occaecat eiusmod. Deserunt veniam proident magna irure tempor excepteur magna. Amet esse qui consectetur eiusmod consectetur id qui do deserunt.\r\n",
 		"horarios": [
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 46800,
 				"horaFin": 61200
 			},
@@ -853,7 +853,7 @@
 		"descripcion": "Ex ipsum adipisicing eiusmod anim adipisicing. Laboris laborum elit in quis consequat esse labore cupidatat et occaecat sunt magna anim. Et sunt excepteur sunt irure irure nisi laborum velit do dolore culpa. Lorem nostrud adipisicing eu eiusmod est et nulla elit commodo duis minim voluptate sint sint. Ex tempor ea culpa voluptate Lorem proident ex consequat.\r\n",
 		"horarios": [
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			}
@@ -882,7 +882,7 @@
 				"horaFin": 64800
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 61200,
 				"horaFin": 75600
 			}
@@ -1076,7 +1076,7 @@
 				"horaFin": 64800
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			}
@@ -1110,7 +1110,7 @@
 				"horaFin": 61200
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 46800,
 				"horaFin": 61200
 			},
@@ -1207,7 +1207,7 @@
 				"horaFin": 72000
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			},
@@ -1388,7 +1388,7 @@
 				"horaFin": 54000
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			},
@@ -1675,7 +1675,7 @@
 				"horaFin": 57600
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			},
@@ -1956,7 +1956,7 @@
 				"horaFin": 36000
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			},
@@ -1995,7 +1995,7 @@
 				"horaFin": 72000
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			}
@@ -2165,7 +2165,7 @@
 				"horaFin": 39600
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 28800,
 				"horaFin": 39600
 			},
@@ -2199,7 +2199,7 @@
 				"horaFin": 57600
 			},
 			{
-				"dia": "Domingos",
+				"dia": "Domingo",
 				"horaInicio": 61200,
 				"horaFin": 75600
 			},
