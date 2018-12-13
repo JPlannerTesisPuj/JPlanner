@@ -18,7 +18,7 @@ export class FilterComponent implements OnInit {
   private creditsComparatorOptions = {};
   private creditsComparator: any;
   private filterMsj;
-  private miBuscador: String;
+  private searchBox: String;
   private creditValue;
   private creditValue2;
 
@@ -148,13 +148,15 @@ export class FilterComponent implements OnInit {
   }
 
   filterNom_Dep_Pro() {
+    if(this.validateSearchBox()){
     //Mensaje que sera enviado
     var data = {
       "type": "filterInfoSearch",
-      "infoSearch": this.miBuscador
+      "infoSearch": this.searchBox
     }
     this.data.changeMessage(data);
-  }
+   }
+}
   onChangeInputCreditOne(item: any) {
     if (item != '') {
       if (item >= 19)
@@ -178,6 +180,27 @@ export class FilterComponent implements OnInit {
         }
       }
     }
+  }
+  validateSearchBox(){
+    var ret = true;
+    var firstChar=this.searchBox.charAt(0);
+    var errorMsg ;
+    if(this.searchBox.length <3){
+      ret = false;
+      errorMsg = '<p>Digite por lo menos 3 carácteres</p>'
+    }
+    if(firstChar.match(/[a-z]/i) == null){
+      ret = false;
+      errorMsg = '<p>No inicie su busqueda por un carácter especial</p>'
+    }
+      var err = document.getElementById('error-searchBox');
+      if(!ret){
+        err.style.visibility = 'visible'
+        err.innerHTML = errorMsg;
+      }else{
+        err.style.visibility = 'hidden'
+      }
+    return ret;
   }
 
 }

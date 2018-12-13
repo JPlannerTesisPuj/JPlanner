@@ -1,6 +1,4 @@
 <!-- Mira si la materia que le llego no es nula y si no lo es imprime su información -->
-<a (click)="openDialog(subject)">
-  <div *ngIf="subject" class="subject">
-    {{ subject.nombre }}
-  </div>
-</a>
+<div *ngIf="subject" class="subject" cdkDrag>
+  <a (click)="openDialog(subject)">{{ subject.nombre }}</a>
+</div>
