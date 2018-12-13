@@ -1,16 +1,17 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-a{
-    cursor: pointer;
-    .subject{
+.subject {
+    cursor: move;
     display: inline-block;
     border: 1px solid #ccc;
     margin: 20px;
     padding: 10px;
-    width:150px;
+    width: 150px;
     text-align: center;
-        &:hover{
-           background: cornflowerblue; 
-        }
+    background: #fff;
+    &:hover {
+        background: cornflowerblue;
     }
-    
+    a {
+        cursor: pointer;
+    }
 }
