@@ -32,3 +32,11 @@
           }
     }
 }
+
+.search-container{
+    display:inline-block;
+    .error-msg{
+        position: absolute;
+        visibility: hidden;
+    }
+}
