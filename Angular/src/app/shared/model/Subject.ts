@@ -20,6 +20,7 @@ export class Subject {
     public departamento: string;
     public descripcion: string;
     public horarios: Horary[];
+    public ciclo_lectivo: string;
 
     constructor(
         private nId: string,
@@ -37,6 +38,7 @@ export class Subject {
         private nDepartamento: string,
         private nDescripcion: string,
         private nHorarios: Horary[],
+        private nCiclo_lectivo: string
     ) {
         this._id = nId;
         this.numeroClase = nNumeroClase;
@@ -53,6 +55,7 @@ export class Subject {
         this.departamento = nDepartamento;
         this.descripcion = nDescripcion;
         this.horarios = nHorarios;
+        this.ciclo_lectivo = nCiclo_lectivo;
     }
 
 }
