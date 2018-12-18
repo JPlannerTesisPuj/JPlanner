@@ -14,13 +14,16 @@ import { CalendarView } from 'angular-calendar';
 
 export class CalendarComponent implements OnInit {
 
-  view: CalendarView = CalendarView.Week;
-  CalendarView = CalendarView;
+  view: CalendarView = CalendarView.Day;
+  calendarView = CalendarView; // Enum
   viewDate: Date = new Date();
+  daysito: string;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    this.daysito = this.viewDate.getDay() + '';
+    
   }
 
 }
