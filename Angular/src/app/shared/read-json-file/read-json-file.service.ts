@@ -61,4 +61,10 @@ export class ReadJsonFileService {
     return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName+'/credits/'+creditValue1+'/'+operator+'/'+creditValue2, { withCredentials: true }));
 
   }
+
+  public filterSchoolYear(fileName:string,cycle:string):  Observable<Subject> {
+    console.log(this.baseUrl + 'files/read/json/' + fileName+'/cycle/'+cycle);
+    return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName+'/cycle/'+cycle, { withCredentials: true }));
+
+  }
 }

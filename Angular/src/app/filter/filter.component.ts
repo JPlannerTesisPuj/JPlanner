@@ -15,12 +15,12 @@ export class FilterComponent implements OnInit {
   private hoursFrom = [];
   private hoursTo = [];
   private selectedOptionFrom = "";
-  private selectedOptionSchoolYear = "";
+  private year= "";
   private selectedOptionTo = "";
   private creditsComparatorOptions = {};
   private creditsComparator: any;
   private filterMsj;
-  private searchBox: String;
+  private searchBox: string;
   private creditValue;
   private creditValue2;
 
@@ -92,6 +92,7 @@ export class FilterComponent implements OnInit {
     this.dropdownSchoolYear.push(yearMinor1Cycle);
     var yearMinor2Cycle = this.yearMinor(+yearMinor1Cycle.split("-")[0],+yearMinor1Cycle.split("-")[1]);
     this.dropdownSchoolYear.push(yearMinor2Cycle);
+  
     this.dropdownSchoolYear.sort();
   }
   yearMajor(year, cycle){
@@ -179,6 +180,16 @@ export class FilterComponent implements OnInit {
       "type": "view all",
     }
     this.data.changeMessage(data);
+  }
+
+  filterSchoolYear(){
+    
+    
+    var data = {
+      "type": "schoolYear",
+      "cycle" : this.year
+    }
+    this.data.changeMessage(data)
   }
 
   validate() {

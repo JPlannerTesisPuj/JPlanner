@@ -35,12 +35,13 @@
 <div class ="error-msg" id="error-searchBox"></div>
 </div>
 
-<select id="schoolYear" class=" fdropdown hour-dropdown" [(ngModel)]="selectedOptionSchoolYear">
-  <option value="" disabled selected>Ciclo lectivo</option>
-  <option *ngFor="let cycle of dropdownSchoolYear">
-    {{cycle}}
+<select  [(ngModel)]="year"  class=" fdropdown hour-dropdown" >
+  <option  value="" disabled selected>Ciclo lectivo</option>
+  <option  *ngFor="let schoolyear of dropdownSchoolYear">
+    {{schoolyear}}
   </option>
 </select>
+
  
 
 
@@ -50,4 +51,5 @@
   <button class="filter-btn" (click)="filterDays()">Filtra Por Dias</button>
   <button class="filter-btn" (click)="filterCredits()">Filtrar Por Creditos</button>
   <button class="filter-btn" (click)="filterViewAll()">Ver Todos</button>
+  <button class="filter-btn" (click)="filterSchoolYear()">Filtrar por ciclo lectivo</button>
 </div>
