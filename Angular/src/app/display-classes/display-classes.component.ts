@@ -57,6 +57,13 @@ export class DisplayClassesComponent implements OnInit {
             this.classes = classes;
           });
       }
+      else if (this.filter['type'] == 'schoolYear'){
+        console.log(this.filter);
+        this.readJSONFileService.filterSchoolYear('classes', this.filter['cycle'])
+        .subscribe(classes => {
+          this.classes = classes;
+        });
+      }
     });
 
   }

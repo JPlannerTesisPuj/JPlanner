@@ -9,16 +9,18 @@ import { DataService } from '../shared/data.service';
 
 export class FilterComponent implements OnInit {
   private dropdownListWeek = [];
+  private dropdownSchoolYear = [];
   private selectedItemsWeek = [];
   private dropdownSettings = {};
   private hoursFrom = [];
   private hoursTo = [];
   private selectedOptionFrom = "";
+  private year= "";
   private selectedOptionTo = "";
   private creditsComparatorOptions = {};
   private creditsComparator: any;
   private filterMsj;
-  private searchBox: String;
+  private searchBox: string;
   private creditValue;
   private creditValue2;
 
@@ -48,6 +50,84 @@ export class FilterComponent implements OnInit {
       unSelectAllText: 'Remover Todos'
     };
     this.initHoursFrom();
+    this.schoolYear();
+  }
+
+  schoolYear() {
+    var currentdate = new Date();
+    var fullYear= currentdate.getFullYear();
+    var actualCycle;
+    if (currentdate.getMonth() < 6)
+    {
+      actualCycle = 1;
+    }
+    else if(currentdate.getMonth() == 6){
+      if(currentdate.getDate() > 16)
+      {
+        actualCycle = 2;
+      }
+      else{
+        actualCycle = 1;
+      }
+    }
+    else if(currentdate.getMonth() == 7 ){
+      if(currentdate.getDate() < 14)
+      {
+        actualCycle = 2;
+      }
+      else{
+        actualCycle = 3;
+      }
+    }
+    else if(currentdate.getMonth() >= 8){
+      actualCycle = 3;
+    }   
+    var yearActualCycle = fullYear + "-" + actualCycle
+    this.dropdownSchoolYear.push(yearActualCycle);
+    var yearMajor1Cycle = this.yearMajor(fullYear,actualCycle);
+    this.dropdownSchoolYear.push(yearMajor1Cycle);
+    var yearMajor2Cycle = this.yearMajor(+yearMajor1Cycle.split("-")[0],+yearMajor1Cycle.split("-")[1]);
+    this.dropdownSchoolYear.push(yearMajor2Cycle);
+    var yearMinor1Cycle = this.yearMinor(fullYear,actualCycle);
+    this.dropdownSchoolYear.push(yearMinor1Cycle);
+    var yearMinor2Cycle = this.yearMinor(+yearMinor1Cycle.split("-")[0],+yearMinor1Cycle.split("-")[1]);
+    this.dropdownSchoolYear.push(yearMinor2Cycle);
+  
+    this.dropdownSchoolYear.sort();
+  }
+  yearMajor(year, cycle){
+    var newCycle = cycle + 1;
+    var auxYear = year;
+
+    if(newCycle == 3){
+      return auxYear + "-" + newCycle;
+    }
+    else if(newCycle == 2){
+       return auxYear + "-" + newCycle;
+    }
+    else if(newCycle == 4){
+      newCycle = 1;
+      auxYear = auxYear + 1;
+      return auxYear + "-" + newCycle;
+    }
+  }
+
+  yearMinor(year,cycle){
+    var newCycle = cycle - 1;
+    var auxYear = year
+
+    if(newCycle == 0){
+      newCycle = 3
+      auxYear = auxYear - 1
+      return auxYear + "-" + newCycle;
+    }
+    else if(newCycle == 2){
+      return auxYear + "-" + newCycle;
+    }
+    else if(newCycle == 1){
+      return auxYear + "-" + newCycle;
+    }
+    
   }
 
   filterCredits() {
@@ -100,6 +180,16 @@ export class FilterComponent implements OnInit {
       "type": "view all",
     }
     this.data.changeMessage(data);
+  }
+
+  filterSchoolYear(){
+    
+    
+    var data = {
+      "type": "schoolYear",
+      "cycle" : this.year
+    }
+    this.data.changeMessage(data)
   }
 
   validate() {
