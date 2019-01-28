@@ -1,5 +1,12 @@
 .box-row {
     height: 30px;
-    background-color: black;
     margin-bottom: 10px;
+
+    &_grey {
+        background-color: #aaaaaa;
+    }
+
+    &_black {
+        background-color: #000000;
+    }
 }
