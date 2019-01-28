@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { Subject } from '../shared/model/Subject';
 import { Horary } from '../shared/model/Horary';
@@ -13,7 +13,7 @@ import { DataService } from '../shared/data.service';
 })
 export class DisplayClassesComponent implements OnInit {
 
-
+  @Input() aux;
 
   // Lista que tiene la información de las materias que se quieren visualizar
   private classes;
@@ -23,6 +23,10 @@ export class DisplayClassesComponent implements OnInit {
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
   ngOnInit() {
+
+    console.log(this.aux);
+
+
     //Supscripción a los mensajes
     this.data.currentMessage.subscribe(message => {
       //Reinicio arreglo y mensaje de eror
@@ -66,9 +70,13 @@ export class DisplayClassesComponent implements OnInit {
       }
     });
 
+    console.log(this.classes);
+
   }
 
-
+  drop(event) {
+    console.log('holi');
+  }
 
 }
 

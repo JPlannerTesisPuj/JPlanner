@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CalendarView, CalendarEvent } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay } from 'date-fns';
-
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Subject } from '../shared/model/Subject';
+import { Subject as SubjectRXJS } from 'rxjs';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -43,68 +45,8 @@ export class CalendarComponent implements OnInit {
   // end: is the end Date (includes the day and the hour) of the day that the classes is taken
   // color: is the color that the class will be displayed with in the calendar
   // title: is the text that will be displayed inside the class box
-  private classes: CalendarEvent[] = [
-    {
-      start: addHours(this.getDayInWeek(2), 7),
-      end: addHours(this.getDayInWeek(2), 9),
-      color: colors.black,
-      title: 'Materia 1',
-    },
-    {
-      start: addHours(this.getDayInWeek(4), 7),
-      end: addHours(this.getDayInWeek(4), 9),
-      color: colors.black,
-      title: 'Materia 1',
-    },
-    {
-      start: addHours(this.getDayInWeek(1), 14),
-      end: addHours(this.getDayInWeek(1), 16),
-      color: colors.black,
-      title: 'Materia 2',
-    },
-    {
-      start: addHours(this.getDayInWeek(3), 14),
-      end: addHours(this.getDayInWeek(3), 16),
-      color: colors.black,
-      title: 'Materia 2',
-    },
-    {
-      start: addHours(this.getDayInWeek(5), 7),
-      end: addHours(this.getDayInWeek(5), 11),
-      color: colors.black,
-      title: 'Materia 3',
-    },
-    {
-      start: addHours(this.getDayInWeek(1), 18),
-      end: addHours(this.getDayInWeek(1), 20),
-      color: colors.black,
-      title: 'Materia 4',
-    },
-    {
-      start: addHours(this.getDayInWeek(3), 18),
-      end: addHours(this.getDayInWeek(3), 20),
-      color: colors.black,
-      title: 'Materia 4',
-    },
-    {
-      start: addHours(this.getDayInWeek(5), 18),
-      end: addHours(this.getDayInWeek(5), 20),
-      color: colors.black,
-      title: 'Materia 4',
-    },
-    {
-      start: addHours(this.getDayInWeek(6), 8),
-      end: addHours(this.getDayInWeek(6), 13),
-      color: colors.black,
-      title: 'Materia 5',
-    },
-    {
-      start: addHours(this.getDayInWeek(0), 9),
-      end: addHours(this.getDayInWeek(0), 11),
-      color: colors.black,
-      title: 'Materia 6',
-    },
-  ];
+  private classes: CalendarEvent[] = [];
+  private refresh: SubjectRXJS<any> = new SubjectRXJS();
 
   constructor() { }
 
@@ -139,6 +81,42 @@ export class CalendarComponent implements OnInit {
     }
 
     return desiredDay;
+  }
+
+  drop(event: CdkDragDrop<Subject[]>) {
+    let subjectToDisplay: Subject = event.previousContainer.data[event.previousIndex];
+
+    for (let horary of subjectToDisplay.horarios) {
+      this.classes.push({
+        start: addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio/3600),
+        end: addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin/3600),
+        color: colors.black,
+        title: subjectToDisplay.nombre,
+      });
+    }
+    this.refresh.next();
+  }
+
+  private getDayNumberByName(name: string): number {
+    let dayNumber: number = 0;
+
+    if(name.toUpperCase() === 'domingo'.toUpperCase()) {
+      return 0;
+    } else if(name.toUpperCase() === 'lunes'.toUpperCase()) {
+      return 1;
+    } else if(name.toUpperCase() === 'martes'.toUpperCase()) {
+      return 2;
+    } else if(name.toUpperCase() === 'miércoles'.toUpperCase() || name.toUpperCase() === 'miercoles'.toUpperCase()) {
+      return 3;
+    } else if(name.toUpperCase() === 'jueves'.toUpperCase()) {
+      return 4;
+    } else if(name.toUpperCase() === 'viernes'.toUpperCase()) {
+      return 5;
+    } else if(name.toUpperCase() === 'sábado'.toUpperCase() || name.toUpperCase() === 'sabado'.toUpperCase()) {
+      return 6;
+    }
+
+    return dayNumber;
   }
 
 }

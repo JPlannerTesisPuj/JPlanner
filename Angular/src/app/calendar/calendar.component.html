@@ -92,7 +92,11 @@
   - dayStartHour: from default 0 to 7
   - dayEndHour: from default 23 to 22
 -->
-<div [ngSwitch]="view">
+<div
+  [ngSwitch]="view"
+  cdkDropList
+  #calendarList="cdkDropList"
+  (cdkDropListDropped)="drop($event)">
   <mwl-calendar-week-view *ngSwitchCase="calendarView.Week"
     [viewDate]="viewDate"
     [events]="classes"
@@ -115,3 +119,6 @@
     (eventTimesChanged)="eventTimesChanged($event)">
   </mwl-calendar-day-view>
 </div>
+
+<app-filter></app-filter>
+<app-display-classes [aux]="calendarList"></app-display-classes>

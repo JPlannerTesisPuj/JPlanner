@@ -1,8 +1,14 @@
 <h2>Clases</h2>
-<div class="classes">
+
+<div
+  cdkDropList
+  #classesList="cdkDropList"
+  [cdkDropListData]="classes"
+  [cdkDropListConnectedTo]="aux">
   {{this.error}}
   <!-- Se recorre la lista de materias y se crea un app-display-class por cada materia -->
-  <div *ngFor="let class of classes">
+  <div *ngFor="let class of classes" cdkDrag>
     <app-display-class [subject]="class"></app-display-class>
   </div>
 </div>
+

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from '../shared/model/Subject';
-import {MatDialog,MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-display-class',
@@ -14,11 +15,11 @@ export class DisplayClassComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit() {
-  }
-  openDialog(subject){
+  ngOnInit() { }
+
+  openDialog(subject) {
     let dialogRef = this.dialog.open(ClassModalComponent, {
-      data:{class:subject}
+      data: { class: subject }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(subject);
