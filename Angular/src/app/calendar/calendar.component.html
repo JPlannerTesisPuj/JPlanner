@@ -95,7 +95,7 @@
 <div [ngSwitch]="view">
   <mwl-calendar-week-view *ngSwitchCase="calendarView.Week"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="classes"
     [refresh]="refresh"
     [hourSegments]="1"
     [dayStartHour]="7"
@@ -106,7 +106,7 @@
   </mwl-calendar-week-view>
   <mwl-calendar-day-view *ngSwitchCase="calendarView.Day" 
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="classes"
     [refresh]="refresh"
     [hourSegments]="1"
     [dayStartHour]="7"
