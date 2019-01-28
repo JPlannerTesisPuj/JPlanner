@@ -34,11 +34,11 @@ public class JSONFileRestService {
 
 	/**
 	 * Método que sirve para leer cualquier archivo JSON que esté ubicado en la c
-	 * rpeta src/main/resources/json y devolverlo como un JSON mediante la
-	 * petición de un método GET. El archivo que se leerá será el que pida el usu
-	 * rio por medio de la variable file_name.
+	 * rpeta src/main/resources/json y devolverlo como un JSON mediante la petición
+	 * de un método GET. El archivo que se leerá será el que pida el usu rio por
+	 * medio de la variable file_name.
 	 * 
-	 * La URL utilizada para hacer la petición es /files/read/json/{nombre del 
+	 * La URL utilizada para hacer la petición es /files/read/json/{nombre del
 	 * rchivo}
 	 * 
 	 * @param file_name Nombre del archivo que se leerá
@@ -62,7 +62,7 @@ public class JSONFileRestService {
 			errorResponse.put("message", "No se ha encontrado el archivo " + fileName + ".json para leer");
 			errorResponse.put("path", "/files/read/json/" + fileName);
 
-			// Convierte el Mapa con la especificación del error en un String en forma de 
+			// Convierte el Mapa con la especificación del error en un String en forma de
 			// SON
 			String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
 
@@ -96,7 +96,7 @@ public class JSONFileRestService {
 		errorResponse.put("message", "No se pudo leer el archivo " + fileName + ".json para leer");
 		errorResponse.put("path", "/files/read/json/" + fileName);
 
-		// Convierte el Mapa con la especificación del error en un String en forma de 
+		// Convierte el Mapa con la especificación del error en un String en forma de
 		// SON
 		String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
 
@@ -122,7 +122,7 @@ public class JSONFileRestService {
 			errorResponse.put("message", "No se ha encontrado el archivo " + fileName + ".json para leer");
 			errorResponse.put("path", "/files/read/json/" + fileName);
 
-			// Convierte el Mapa con la especificación del error en un String en forma de 
+			// Convierte el Mapa con la especificación del error en un String en forma de
 			// SON
 			String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
 
@@ -177,7 +177,7 @@ public class JSONFileRestService {
 		errorResponse.put("message", "No se pudo leer el archivo " + fileName + ".json para leer");
 		errorResponse.put("path", "/files/read/json/" + fileName);
 
-		// Convierte el Mapa con la especificación del error en un String en forma de 
+		// Convierte el Mapa con la especificación del error en un String en forma de
 		// SON
 		String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
 
@@ -202,7 +202,7 @@ public class JSONFileRestService {
 			errorResponse.put("message", "No se ha encontrado el archivo " + fileName + ".json para leer");
 			errorResponse.put("path", "/files/read/json/" + fileName);
 
-			// Convierte el Mapa con la especificación del error en un String en forma de 
+			// Convierte el Mapa con la especificación del error en un String en forma de
 			// SON
 			String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
 
@@ -265,7 +265,7 @@ public class JSONFileRestService {
 		errorResponse.put("message", "No se pudo leer el archivo " + fileName + ".json para leer");
 		errorResponse.put("path", "/files/read/json/" + fileName);
 
-		// Convierte el Mapa con la especificación del error en un String en forma de 
+		// Convierte el Mapa con la especificación del error en un String en forma de
 		// SON
 		String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
 
@@ -333,66 +333,143 @@ public class JSONFileRestService {
 		// Retorna un String en forma de JSON con un error 400
 		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
 	}
+
 	
-	// Servicio para filtar por ciclo lectivo
-			@RequestMapping(value = "files/read/json/{fileName}/cycle/{schoolYear}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-			@ResponseBody
-			ResponseEntity<String> getJSONFileSchoolYear(@PathVariable("fileName") String fileName,
-					@PathVariable("schoolYear") String schoolYear) throws JsonProcessingException {
-				// Se obtiene la información del archivo
-				InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
-				
-				System.out.println(schoolYear);
+	// Servicio para filtros avanzados
+	@RequestMapping(value = "files/read/json/{fileName}/adv-filter/{teachingMode}/{classState}/{classID}/{classNumber}/{classCode}/{classSizeOpOne}/{classSizeOperator}/{classSizeOpTwo}/{schoolarYear}/{grade}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	ResponseEntity<String> getJSONAdvFilter(@PathVariable("fileName") String fileName,
+			@PathVariable("teachingMode") String teachingMode, @PathVariable("classState") String classState,
+			@PathVariable("classID") String classID, @PathVariable("classNumber") String classNumber,
+			@PathVariable("classCode") String classCode, @PathVariable("classSizeOpOne") String classSizeOpOne,
+			@PathVariable("classSizeOperator") Integer classSizeOperator,
+			@PathVariable("classSizeOpTwo") String classSizeOpTwo, @PathVariable("schoolarYear") String schoolarYear,
+			@PathVariable("grade") String grade) throws JsonProcessingException {
+		// Se obtiene la información del archivo
+		InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
 
-				// Si no existe el archivo se crea un JSON que contiene especificando el error
-				if (in == null) {
-					errorResponse = new HashMap<>();
-					errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
-					errorResponse.put("error", "Error al abrir el archivo");
-					errorResponse.put("message", "No se ha encontrado el archivo " + fileName + ".json para leer");
-					errorResponse.put("path", "/files/read/json/" + fileName);
+		// Si no existe el archivo se crea un JSON que contiene especificando el error
+		if (in == null) {
+			errorResponse = new HashMap<>();
+			errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
+			errorResponse.put("error", "Error al abrir el archivo");
+			errorResponse.put("message", "No se ha encontrado el archivo " + fileName + ".json para leer");
+			errorResponse.put("path", "/files/read/json/" + fileName);
 
-					// Convierte el Mapa con la especificación del error en un String en forma de
-					// JSON
-					String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
+			// Convierte el Mapa con la especificación del error en un String en forma de
+			// JSON
+			String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
 
-					// Retorna un String en forma de JSON con un error 400
-					return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
-				}
-				try {
+			// Retorna un String en forma de JSON con un error 400
+			return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+		}
+		try {
 
-					BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-					StringBuilder JSONFileBuilder = new StringBuilder();
+			BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+			StringBuilder JSONFileBuilder = new StringBuilder();
 
-					// Crea un String con toda la información del archivo JSON
-					String inputStringLine;
-					while ((inputStringLine = streamReader.readLine()) != null) {
-						JSONFileBuilder.append(inputStringLine);
-					}
-					// Filtro
-					String filter =  "$..[?(@.ciclo_lectivo == " + "'"+ schoolYear + "')]";
-					ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), filter);
-					String filteredJSON = new ObjectMapper().writeValueAsString(classes);
-
-					return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-				// Si hubo un error al leer el archivo se crea un JSON que contiene
-				// especificando el error
-				errorResponse = new HashMap<>();
-				errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
-				errorResponse.put("error", "Error al abrir el archivo");
-				errorResponse.put("message", "No se pudo leer el archivo " + fileName + ".json para leer");
-				errorResponse.put("path", "/files/read/json/" + fileName);
-
-				// Convierte el Mapa con la especificación del error en un String en forma de
-				// JSON
-				String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
-
-				// Retorna un String en forma de JSON con un error 400
-				return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+			// Crea un String con toda la información del archivo JSON
+			String inputStringLine;
+			while ((inputStringLine = streamReader.readLine()) != null) {
+				JSONFileBuilder.append(inputStringLine);
 			}
+			// Filtro
+			String filter_state = "", filter_mode = "", filter_id = "", filter_number = "", filter_cupos = "",
+					filter_code = "", filter_schoolYear = "", filter_grade = "";
+
+			if (!teachingMode.equals("none")) {
+				if (teachingMode.equals("virtual")) {
+					filter_mode = "=='Virtual'";
+				} else if (teachingMode.equals("attendance")) {
+					filter_mode = "=='Presencial'";
+				}
+			}
+			if (!classState.equals("both")) {
+				if (classState.equals("closed")) {
+					filter_state = "=='cerrada'";
+				} else if (classState.equals("open")) {
+					filter_state = "=='abierta'";
+				}
+			}
+
+			if (!classID.equals("none")) {
+				filter_id = "=='" + classID + "'";
+			}
+			if (!classNumber.equals("none")) {
+				filter_number = "=='" + classNumber + "'";
+			}
+			if (!classNumber.equals("none")) {
+				filter_number = "=='" + classNumber + "'";
+			}
+			if (!classCode.equals("none")) {
+				filter_code = "=='" + classNumber + "'";
+			}
+			if (!schoolarYear.equals("none")) {
+				filter_schoolYear = "=='" + schoolarYear + "'";
+			}
+			if (!grade.equals("none")) {
+				if (grade.equals("master"))
+					filter_grade = "=='Maestria'";
+				else if (grade.equals("pre"))
+					filter_grade = "=='Pregrado'";
+				else if (grade.equals("post"))
+					filter_grade = "=='Postgrado'";
+
+			}
+
+			switch (classSizeOperator) {
+			case 0: {
+				filter_cupos = "";
+				break;
+			}
+			case 1: {
+				filter_cupos = ">=" + classSizeOpTwo;
+				break;
+			}
+			case 2: {
+				filter_cupos = "<=" + classSizeOpTwo;
+				break;
+			}
+			case 3: {
+				filter_cupos = "==" + classSizeOpTwo;
+				break;
+			}
+			case 4: {
+				filter_cupos = ">=" + classSizeOpOne + " && @.cuposDisponibles <= " + classSizeOpTwo;
+				break;
+			}
+
+			default:
+				break;
+			}
+
+			String baseFilter = "$..[?(@.estado " + filter_state + "&& @.modoEnsenanza " + filter_mode + "&& @._id "
+					+ filter_id + "&& @.numeroClase " + filter_number + "&& @.codigo " + filter_code
+					+ "&& @.cuposDisponibles " + filter_cupos + "&& @.ciclo_lectivo " + filter_schoolYear
+					+ "&& @.grado " + filter_grade + ")]";
+
+			ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
+			String filteredJSON = new ObjectMapper().writeValueAsString(classes);
+
+			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Si hubo un error al leer el archivo se crea un JSON que contiene
+		// especificando el error
+		errorResponse = new HashMap<>();
+		errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
+		errorResponse.put("error", "Error al abrir el archivo");
+		errorResponse.put("message", "No se pudo leer el archivo " + fileName + ".json para leer");
+		errorResponse.put("path", "/files/read/json/" + fileName);
+
+		// Convierte el Mapa con la especificación del error en un String en forma de
+		// JSON
+		String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
+
+		// Retorna un String en forma de JSON con un error 400
+		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+	}
 
 }
