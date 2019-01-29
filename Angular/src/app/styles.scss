@@ -2,6 +2,8 @@
 @import './display-classes/display-classes.component'; 
 @import './filter/filter.component'; 
 @import './adv-filter/adv-filter.component'; 
+@import './app.component';
 // This library is used to style the Calendar View provided by angular-calendar.
 // Maybe, if we stick with this component, we should create the styles for the calendar.
 @import "../../../node_modules/angular-calendar/css/angular-calendar.css";
+@import "../../../node_modules/gridlex/dist/gridlex.css";
