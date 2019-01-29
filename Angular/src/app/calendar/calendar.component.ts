@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { CalendarView, CalendarEvent } from 'angular-calendar';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay } from 'date-fns';
+import { CalendarView, CalendarEvent, CalendarEventAction } from 'angular-calendar';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { ClassModalComponent } from '../class-modal/class-modal.component';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -39,31 +41,34 @@ export class CalendarComponent implements OnInit {
   private view: CalendarView = CalendarView.Week;
   private calendarView = CalendarView; // Enum
   private viewDate: Date = new Date();
+  private calendarClasses: Subject[] = [];
 
-  // This variable contains the classes that will be displayed on the calendar
-  // start: is the start Date (includes the day and the hour) of the day that the classes is taken
-  // end: is the end Date (includes the day and the hour) of the day that the classes is taken
-  // color: is the color that the class will be displayed with in the calendar
-  // title: is the text that will be displayed inside the class box
+  /**
+   * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
+   * start: fecha de inicio de la materia, incluye la hora en que inicia la clase y el día de la semana en que se tomará.
+   * end: fecha de fin de la materia, incluye la hora en que finaliza la clase y el día de la semana en que se tomará.
+   * color: es el color con el que se pintará la materia en el horario.
+   * title: es el título de la clase que aparecerá en el bloque del horario de la materia
+   */
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() { }
 
   /**
-   * Takes a day number in the week and gets what day could it be in the current week.
+   * Toma el número de un día en la semana y obtiene la fecha de ese día en la semana actual.
    * 
-   * 0: Sunday
-   * 1: Monday
-   * 2: Tuesday
-   * 3: Wednesday
-   * 4: Thursday
-   * 5: Friday
-   * 6: Saturday
+   * 0: Domingo
+   * 1: Lunes
+   * 2: Martes
+   * 3: Miércoles
+   * 4: Jueves
+   * 5: Viernes
+   * 6: Sábado
    * 
-   * @param desiredDayNumber The desired day in number that we want to display in the calendar
+   * @param desiredDayNumber El número del día deseado que se desea mostrar en el horario.
    */
   private getDayInWeek(desiredDayNumber: number): Date {
     let desiredDay: Date = new Date();
@@ -83,40 +88,101 @@ export class CalendarComponent implements OnInit {
     return desiredDay;
   }
 
-  drop(event: CdkDragDrop<Subject[]>) {
+  /**
+   * Reacciona al evento de soltar un elemento dentro del Horario, tomando la información de la materia
+   * que se desea agregar al calenario y guardándola en un arreglo que contiene la información de todas las materias
+   * del horario.
+   * 
+   * @param event Evento de soltar una materia en el Horario
+   */
+  private dropClass(event: CdkDragDrop<Subject[]>) {
     let subjectToDisplay: Subject = event.previousContainer.data[event.previousIndex];
 
-    for (let horary of subjectToDisplay.horarios) {
-      this.classes.push({
-        start: addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio/3600),
-        end: addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin/3600),
-        color: colors.black,
-        title: subjectToDisplay.nombre,
-      });
+    // Mira si la clase no ha sido agregada al horario
+    if (!this.calendarClasses.some(myClass => myClass._id === subjectToDisplay._id)) {
+      let isOverlapped: boolean = false;
+      let newClasses: CalendarEvent[] = this.classes;
+
+      for (let horary of subjectToDisplay.horarios) {
+        let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
+        let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+        isOverlapped = this.checkOverlappingClasses(startHour, endHour);
+
+        // Si la clase no se cruza con ninguna materia la guarda en un arreglo auxiliar de clases
+        if(isOverlapped) {
+          break;
+        } else {
+          newClasses.push({
+            start: startHour,
+            end: endHour,
+            color: colors.black,
+            title: subjectToDisplay.nombre,
+            id: subjectToDisplay._id,
+          });
+        }
+      }
+
+      // Si ninguna materia se cruzó entonces iguala el arreglo de las clases al arreglo de las nuevas clases
+      if (!isOverlapped) {
+        this.classes = newClasses;
+        this.calendarClasses.push(subjectToDisplay);
+        this.refresh.next();
+      }
     }
-    this.refresh.next();
   }
 
+  /**
+   * Mira si la materia nueva que se agregará al horario se cruza con las otras materias
+   * 
+   * @param startHour Hora de inicio
+   * @param endHour Hora de fin
+   */
+  private checkOverlappingClasses(startHour: Date, endHour: Date) {
+    return this.classes.some(function (myClass) {
+      return areRangesOverlapping(startHour, endHour, myClass.start, myClass.end);
+    });
+  }
+
+  /**
+   * Toma el nombre de un día de la semana y retorna el número equivalente al día de la semana.
+   * 
+   * @param name Nombre del día de la semana
+   */
   private getDayNumberByName(name: string): number {
     let dayNumber: number = 0;
 
-    if(name.toUpperCase() === 'domingo'.toUpperCase()) {
+    if (name.toUpperCase() === 'domingo'.toUpperCase()) {
       return 0;
-    } else if(name.toUpperCase() === 'lunes'.toUpperCase()) {
+    } else if (name.toUpperCase() === 'lunes'.toUpperCase()) {
       return 1;
-    } else if(name.toUpperCase() === 'martes'.toUpperCase()) {
+    } else if (name.toUpperCase() === 'martes'.toUpperCase()) {
       return 2;
-    } else if(name.toUpperCase() === 'miércoles'.toUpperCase() || name.toUpperCase() === 'miercoles'.toUpperCase()) {
+    } else if (name.toUpperCase() === 'miércoles'.toUpperCase() || name.toUpperCase() === 'miercoles'.toUpperCase()) {
       return 3;
-    } else if(name.toUpperCase() === 'jueves'.toUpperCase()) {
+    } else if (name.toUpperCase() === 'jueves'.toUpperCase()) {
       return 4;
-    } else if(name.toUpperCase() === 'viernes'.toUpperCase()) {
+    } else if (name.toUpperCase() === 'viernes'.toUpperCase()) {
       return 5;
-    } else if(name.toUpperCase() === 'sábado'.toUpperCase() || name.toUpperCase() === 'sabado'.toUpperCase()) {
+    } else if (name.toUpperCase() === 'sábado'.toUpperCase() || name.toUpperCase() === 'sabado'.toUpperCase()) {
       return 6;
     }
 
     return dayNumber;
+  }
+
+  /**
+   * Maneja los eventos dentro de el horario
+   * 
+   * @param action Acción a la cual se va a responder
+   * @param event Evento al cual se está respondiendo
+   */
+  private handleEvent(action: string, event: CalendarEvent): void {
+
+    let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
+
+    let dialogRef = this.dialog.open(ClassModalComponent, {
+      data: { class: subjectToShowthis }
+    });
   }
 
 }

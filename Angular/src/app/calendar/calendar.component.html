@@ -96,7 +96,7 @@
   [ngSwitch]="view"
   cdkDropList
   #calendarList="cdkDropList"
-  (cdkDropListDropped)="drop($event)">
+  (cdkDropListDropped)="dropClass($event)">
   <mwl-calendar-week-view *ngSwitchCase="calendarView.Week"
     [viewDate]="viewDate"
     [events]="classes"
@@ -121,4 +121,4 @@
 </div>
 
 <app-filter></app-filter>
-<app-display-classes [aux]="calendarList"></app-display-classes>
+<app-display-classes [calendarList]="calendarList"></app-display-classes>

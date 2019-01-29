@@ -21,9 +21,6 @@ export class DisplayClassComponent implements OnInit {
     let dialogRef = this.dialog.open(ClassModalComponent, {
       data: { class: subject }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(subject);
-    });
   }
 
 }

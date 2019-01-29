@@ -1,10 +1,12 @@
 <h2>Clases</h2>
 
 <div
+  class="found-classes"
   cdkDropList
   #classesList="cdkDropList"
   [cdkDropListData]="classes"
-  [cdkDropListConnectedTo]="aux">
+  [cdkDropListConnectedTo]="calendarList"
+  (cdkDropListDropped)="dropInside($event)">
   {{this.error}}
   <!-- Se recorre la lista de materias y se crea un app-display-class por cada materia -->
   <div *ngFor="let class of classes" cdkDrag>
