@@ -102,15 +102,6 @@ export class FilterComponent implements OnInit {
     this.data.changeMessage(data);
   }
 
-  filterSchoolYear(){
-    
-    
-    var data = {
-      "type": "schoolYear",
-      "cycle" : this.year
-    }
-    this.data.changeMessage(data)
-  }
 
   validate() {
     if (this.selectedOptionFrom == '' && this.selectedItemsWeek.length == 0) {
