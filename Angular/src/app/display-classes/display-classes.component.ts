@@ -64,6 +64,11 @@ export class DisplayClassesComponent implements OnInit {
           this.classes = classes;
         });
       }
+      else if (this.filter['type'] === 'adv-filter'){
+        this.readJSONFileService.advFilter('classes',this.filter).subscribe(classes => {
+          this.classes = classes;
+        });
+      }
     });
 
   }
