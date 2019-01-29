@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { Subject } from '../shared/model/Subject';
 import { Horary } from '../shared/model/Horary';
 import { DataService } from '../shared/data.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 /**
  * Clase que actúa como controlador de la vista que desplega la información de una lista de materias.
@@ -13,7 +14,8 @@ import { DataService } from '../shared/data.service';
 })
 export class DisplayClassesComponent implements OnInit {
 
-
+  // Lista externa con la que la lista de clases estará relacionada
+  @Input() calendarList;
 
   // Lista que tiene la información de las materias que se quieren visualizar
   private classes;
@@ -33,7 +35,7 @@ export class DisplayClassesComponent implements OnInit {
       if (this.filter['type'] == 'view all') {
         this.readJSONFileService.readJSONFile('classes')
           .subscribe(classes => {
-           this.classes = classes;
+            this.classes = classes;
           }
           );
 
@@ -57,12 +59,12 @@ export class DisplayClassesComponent implements OnInit {
             this.classes = classes;
           });
       }
-      else if (this.filter['type'] == 'schoolYear'){
+      else if (this.filter['type'] == 'schoolYear') {
         console.log(this.filter);
         this.readJSONFileService.filterSchoolYear('classes', this.filter['cycle'])
-        .subscribe(classes => {
-          this.classes = classes;
-        });
+          .subscribe(classes => {
+            this.classes = classes;
+          });
       }
       else if (this.filter['type'] === 'adv-filter'){
         this.readJSONFileService.advFilter('classes',this.filter).subscribe(classes => {
@@ -70,10 +72,13 @@ export class DisplayClassesComponent implements OnInit {
         });
       }
     });
-
   }
 
-
+  private dropInside(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    }
+  }
 
 }
 
