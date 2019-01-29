@@ -24,6 +24,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { DataService } from './shared/data.service';
 import { CalendarComponent } from './calendar/calendar.component';
+import { AdvFilterComponent } from './adv-filter/adv-filter.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     ClassModalComponent,
     FilterComponent,
     CalendarComponent,
+    AdvFilterComponent,
   ],
   imports: [
     BrowserModule,

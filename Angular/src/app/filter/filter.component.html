@@ -35,16 +35,6 @@
 <div class ="error-msg" id="error-searchBox"></div>
 </div>
 
-<select  [(ngModel)]="year"  class=" fdropdown hour-dropdown" >
-  <option  value="" disabled selected>Ciclo lectivo</option>
-  <option  *ngFor="let schoolyear of dropdownSchoolYear">
-    {{schoolyear}}
-  </option>
-</select>
-
- 
-
-
 
 <div>
   <button class="filter-btn" (click)="filterNom_Dep_Pro()">Filtrar Busqueda</button>

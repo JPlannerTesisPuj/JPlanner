@@ -1,0 +1,25 @@
+body *{
+    box-sizing: content-box;
+}
+#adv-filters {
+    margin-left:30px;
+    div{
+        float:left;
+        border:1px solid;
+        padding: 10px;
+        height: 35px;
+        line-height: 35px;
+    }
+   .filter-btn{
+        display: block;
+        clear: both;
+        margin:0;
+    }
+    label{
+        padding-right: 15px;
+        margin:0;
+    }
+    #class-size{
+        margin-bottom: 20px;
+    }
+}
