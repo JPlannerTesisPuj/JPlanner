@@ -339,11 +339,15 @@ public class JSONFileRestService {
 	@RequestMapping(value = "files/read/json/{fileName}/adv-filter/{teachingMode}/{classState}/{classID}/{classNumber}/{classCode}/{classSizeOpOne}/{classSizeOperator}/{classSizeOpTwo}/{schoolarYear}/{grade}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	ResponseEntity<String> getJSONAdvFilter(@PathVariable("fileName") String fileName,
-			@PathVariable("teachingMode") String teachingMode, @PathVariable("classState") String classState,
-			@PathVariable("classID") String classID, @PathVariable("classNumber") String classNumber,
-			@PathVariable("classCode") String classCode, @PathVariable("classSizeOpOne") String classSizeOpOne,
+			@PathVariable("teachingMode") String teachingMode,
+			@PathVariable("classState") String classState,
+			@PathVariable("classID") String classID,
+			@PathVariable("classNumber") String classNumber,
+			@PathVariable("classCode") String classCode, 
+			@PathVariable("classSizeOpOne") String classSizeOpOne,
 			@PathVariable("classSizeOperator") Integer classSizeOperator,
-			@PathVariable("classSizeOpTwo") String classSizeOpTwo, @PathVariable("schoolarYear") String schoolarYear,
+			@PathVariable("classSizeOpTwo") String classSizeOpTwo, 
+			@PathVariable("schoolarYear") String schoolarYear,
 			@PathVariable("grade") String grade) throws JsonProcessingException {
 		// Se obtiene la información del archivo
 		InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
@@ -398,11 +402,8 @@ public class JSONFileRestService {
 			if (!classNumber.equals("none")) {
 				filter_number = "=='" + classNumber + "'";
 			}
-			if (!classNumber.equals("none")) {
-				filter_number = "=='" + classNumber + "'";
-			}
 			if (!classCode.equals("none")) {
-				filter_code = "=='" + classNumber + "'";
+				filter_code = "=='" + classCode + "'";
 			}
 			if (!schoolarYear.equals("none")) {
 				filter_schoolYear = "=='" + schoolarYear + "'";
