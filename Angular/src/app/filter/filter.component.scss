@@ -1,17 +1,18 @@
 .fdropdown {
-    margin: 20px;
+    margin-bottom: 10px;
     &.week-dropdown {
         .multiselect-dropdown {
             display: inline-block;
-            width: 20%;
+            width: 90%;
             .selected-item {
                 margin: 3px;
             }
         }
     }
     &.hour-dropdown{
-        height: 38px;
-        width: 20%;
+        height: 40px;
+        width: 100%;
+        border-radius: 4px;
         &#hourTo {
             display: none;
         }
@@ -25,8 +26,8 @@
     }
     .input-number{
         text-align: center;
-        width:40px;
         display: none;
+        margin-bottom: 10px;
         &:invalid {
             border-color: red;
           }
@@ -35,6 +36,11 @@
 
 .search-container{
     display:inline-block;
+    
+    input {
+        width: 96%;
+        padding: 3px;
+    }
     .error-msg{
         position: absolute;
         visibility: hidden;

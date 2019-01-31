@@ -10,7 +10,8 @@ var sassFiles = [
     './src/app/class-modal/class-modal.component.scss',
     './src/app/filter/filter.component.scss',
     './src/app/adv-filter/adv-filter.component.scss',
-    'src/app/app.component.scss'
+    'src/app/app.component.scss',
+    './src/app/calendar/calendar.component.scss'
 ]
 
 gulp.task('css', function(){
