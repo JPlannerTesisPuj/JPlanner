@@ -1,122 +1,121 @@
-<div class="menu-container col-4_xs-12_sm-12_md-12_lg-4">
-  <mat-tab-group>
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <i class="material-icons">
-          search
-        </i>
-      </ng-template>
-
-      <h2>Búsqueda</h2>
-      <div class="sub-menu-container">
-        <mat-tab-group>
-
-          <mat-tab label="Básica">
-            <app-filter></app-filter>
-          </mat-tab>
-
-          <mat-tab label="Avanzada">
-            <app-adv-filter></app-adv-filter>
-          </mat-tab>
-
-        </mat-tab-group>
-      </div>
-    </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <i class="material-icons">
-          bar_chart
-        </i>
-      </ng-template>
-
-      <app-display-classes [calendarList]="calendarList"></app-display-classes>
-    </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <i class="material-icons">
-          shopping_cart
-        </i>
-      </ng-template>
-      <h2>Carrito de compras</h2>
-
-    </mat-tab>
-  </mat-tab-group>
-</div>
-
-<div class="schedule-container col-8_xs-12_sm-12_md-12_lg-8">
-  <!--
+<!--
   The steps to customize the Calendar was taken from here https://github.com/mattlewis92/angular-calendar#how-do-i-use-a-custom-template
 
   The difference between this template and the default one is that this doesn't show the date of the day, just the name.
 -->
-  <ng-template #customTemplateJPlanner let-days="days" let-locale="locale" let-dayHeaderClicked="dayHeaderClicked" let-eventDropped="eventDropped">
-    <div class="cal-day-headers">
-      <div class="cal-header" *ngFor="let day of days; trackBy:trackByWeekDayHeaderDate" [class.cal-past]="day.isPast" [class.cal-today]="day.isToday"
-        [class.cal-future]="day.isFuture" [class.cal-weekend]="day.isWeekend" [ngClass]="day.cssClass" (mwlClick)="dayHeaderClicked.emit({day: day})"
-        mwlDroppable dragOverClass="cal-drag-over" (drop)="eventDropped.emit({event: $event.dropData.event, newStart: day.date})">
-        <b>{{ day.date | calendarDate:'weekViewColumnHeader':locale }}</b>
-        <br>
-      </div>
+<ng-template #customTemplateJPlanner
+  let-days="days"
+  let-locale="locale"
+  let-dayHeaderClicked="dayHeaderClicked"
+  let-eventDropped="eventDropped">
+  <div class="cal-day-headers">
+    <div class="cal-header" *ngFor="let day of days; trackBy:trackByWeekDayHeaderDate"
+      [class.cal-past]="day.isPast"
+      [class.cal-today]="day.isToday"
+      [class.cal-future]="day.isFuture"
+      [class.cal-weekend]="day.isWeekend"
+      [ngClass]="day.cssClass"
+      (mwlClick)="dayHeaderClicked.emit({day: day})"
+      mwlDroppable dragOverClass="cal-drag-over"
+      (drop)="eventDropped.emit({event: $event.dropData.event, newStart: day.date})">
+      <b>{{ day.date | calendarDate:'weekViewColumnHeader':locale }}</b>
+      <br>
     </div>
-    <ng-template [ngTemplateOutlet]="customTemplate || defaultTemplate" [ngTemplateOutletContext]="{days: days, locale: locale, dayHeaderClicked: dayHeaderClicked, eventDropped: eventDropped}">
-    </ng-template>
+  </div>
+  <ng-template
+    [ngTemplateOutlet]="customTemplate || defaultTemplate"
+    [ngTemplateOutletContext]="{days: days, locale: locale, dayHeaderClicked: dayHeaderClicked, eventDropped: eventDropped}">
   </ng-template>
+</ng-template>
 
-  <!--
+<!--
   This button group helps testing the behaviour of the calendar in a Week View and a Day View. The real behaviour
   expected for this is to show the Day View when is displayed in a mobile screen, but that is out if the scope for the actual User Story.
 -->
-  <div class="btn-group">
-    <div *ngIf="view == calendarView.Day" class="btn btn-primary" (click)="view = calendarView.Week" [class.active]="view === calendarView.Week">
-      Week
-    </div>
-    <div *ngIf="view == calendarView.Week" class="btn btn-primary" (click)="view = calendarView.Day" [class.active]="view === calendarView.Day">
-      Day
-    </div>
+<div class="grid">
+  <div class="col-12 sm-hidden">
+
+<div class="btn-group">
+  <div *ngIf="view == calendarView.Day"
+    class="btn btn-primary"
+    (click)="view = calendarView.Week"
+    [class.active]="view === calendarView.Week">
+    Week
   </div>
+  <div *ngIf="view == calendarView.Week"
+    class="btn btn-primary"
+    (click)="view = calendarView.Day"
+    [class.active]="view === calendarView.Day">
+    Day
+  </div>
+</div>
+</div>
+</div>
+<br />
 
-  <br />
-
-  <!--
+<!--
   This button group helps testing the behaviour of switching the day in a Day View.
 -->
 
-  <div class="btn-group" *ngIf="view == calendarView.Day">
-    <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-      Previous
-    </div>
-    <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-      Today
-    </div>
-    <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-      Next
-    </div>
+<div class="btn-group" *ngIf="view == calendarView.Day">
+  <div
+    class="btn btn-primary"
+    mwlCalendarPreviousView
+    [view]="view"
+    [(viewDate)]="viewDate"
+    (viewDateChange)="activeDayIsOpen = false">
+    Previous
   </div>
+  <div
+    class="btn btn-outline-secondary"
+    mwlCalendarToday
+    [(viewDate)]="viewDate">
+    Today
+  </div>
+  <div
+    class="btn btn-primary"
+    mwlCalendarNextView
+    [view]="view"
+    [(viewDate)]="viewDate"
+    (viewDateChange)="activeDayIsOpen = false">
+    Next
+  </div>
+</div>
 
-  <!--
+<!--
   The actual View Day Template doesn't show the name of the day, this block is just to display the name of the day.
 -->
 
-  <div *ngIf="view == calendarView.Day">
-    <b>{{ viewDate | calendarDate:'weekViewColumnHeader':locale }}</b>
-  </div>
+<div *ngIf="view == calendarView.Day">
+  <b>{{ viewDate | calendarDate:'weekViewColumnHeader':locale }}</b>
+</div>
 
-  <!--
+<!--
   The Attributes of the views changed were:
   - hourSegments: from default 2 to 1
   - dayStartHour: from default 0 to 7
   - dayEndHour: from default 23 to 22
 -->
-  <div [ngSwitch]="view" cdkDropList #calendarList="cdkDropList" (cdkDropListDropped)="dropClass($event)">
-    <mwl-calendar-week-view *ngSwitchCase="calendarView.Week" [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1"
-      [dayStartHour]="7" [dayEndHour]="22" [headerTemplate]="customTemplateJPlanner" (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)">
-    </mwl-calendar-week-view>
-    <mwl-calendar-day-view *ngSwitchCase="calendarView.Day" [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1"
-      [dayStartHour]="7" [dayEndHour]="22" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-    </mwl-calendar-day-view>
-  </div>
-
+<div [ngSwitch]="view">
+  <mwl-calendar-week-view *ngSwitchCase="calendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [hourSegments]="1"
+    [dayStartHour]="7"
+    [dayEndHour]="22"
+    [headerTemplate]="customTemplateJPlanner"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view *ngSwitchCase="calendarView.Day" 
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [hourSegments]="1"
+    [dayStartHour]="7"
+    [dayEndHour]="22"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-day-view>
 </div>
