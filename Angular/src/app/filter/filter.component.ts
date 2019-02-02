@@ -9,7 +9,9 @@ import { DataService } from '../shared/data.service';
 
 export class FilterComponent implements OnInit {
   private dropdownListWeek = [];
+  private dropdownListSearch = [];
   private selectedItemsWeek = [];
+  private selectedItemsSearch = [];
   private dropdownSettings = {};
   private hoursFrom = [];
   private hoursTo = [];
@@ -31,6 +33,9 @@ export class FilterComponent implements OnInit {
     //Subscripcion para recbir mensajes
     this.data.currentMessage.subscribe(message => this.filterMsj = message);
 
+    this.dropdownListSearch = [
+      'Nombre de Asignatura', 'Profesor', 'Departamento'
+    ];
     this.dropdownListWeek = [
       'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'
     ];
@@ -49,28 +54,19 @@ export class FilterComponent implements OnInit {
     };
     this.initHoursFrom();
   }
- 
-  filterCredits() {
+
+  filterUnificado() {
+
     var data = {
-      "type": "filterCredits",
-      "operator":this.creditsComparator.key,
+      "type": "filterUnificado",
+      "days": "none",
+      "operator": this.creditsComparator.key,
+      "infoSearch": "none",
+      "dropdownInfo": "none"
     }
-    console.log(this.creditsComparator.key);
-    if (this.creditsComparator.key === undefined) {
-      alert("Elija un comparador de creditos");
-    } else if (this.creditsComparator.key == 4) {
-      data["credit1Value"] = Number(this.creditValue);
-      data["credit2Value"] = Number(this.creditValue2);
-      this.data.changeMessage(data);
-    } else {
-      data["credit1Value"] = null;
-      data["credit2Value"] = Number(this.creditValue2);
-      this.data.changeMessage(data);
-    }
-    
-  }
-  filterDays() {
+
     if (this.validate()) {
+
       //Convierte el arreglo de dias a un string separado con -
       var days = this.selectedItemsWeek.toString().replace(/,/g, '-');
 
@@ -83,33 +79,51 @@ export class FilterComponent implements OnInit {
       var hmsTo = this.selectedOptionTo + ":00";
       var splittedTo = hmsTo.split(':');
       var secondsTo = (+splittedTo[0]) * 60 * 60 + (+splittedTo[1]) * 60 + (+splittedTo[2]);
-      //Mensaje que sera enviado
-      var data = {
-        "type": "filterHourDay",
-        "days": days,
-        "hourFrom": secondsFrom,
-        "hourTo": secondsTo
-      }
-      this.data.changeMessage(data);
-    }
-  }
 
-  filterViewAll() {
-    //Mensaje que sera enviado
-    var data = {
-      "type": "view all",
+      data["days"] = days;
+      data["hourFrom"] = secondsFrom;
+      data["hourTo"] = secondsTo;
+      
+    }else{
+      data["hourFrom"] = '0';
+      data["hourTo"] = '0';
     }
+
+    if (this.creditsComparator.key === undefined) {
+      //alert("Elija un comparador de creditos");
+      data["operator"] = '0';
+      data["credit1Value"] = '-1';
+      data["credit2Value"] = '-1';
+
+    } else if (this.creditsComparator.key == 4) {
+
+      data["credit1Value"] = Number(this.creditValue);
+      data["credit2Value"] = Number(this.creditValue2);
+    } else {
+
+      data["credit1Value"] = null;
+      data["credit2Value"] = Number(this.creditValue2);
+    }
+
+    if(this.validateSearchBox()){
+
+      var selectedDropdown = this.selectedItemsSearch.toString().replace(/,/g, '-');
+
+      data["infoSearch"] = this.searchBox;
+      data["dropdownInfo"] = selectedDropdown;
+    } 
+
     this.data.changeMessage(data);
-  }
 
+  }
 
   validate() {
     if (this.selectedOptionFrom == '' && this.selectedItemsWeek.length == 0) {
-      alert('Porfavor eliga una opcion de filtro');
+      //alert('Por favor eliga una opcion de filtro');
       return false;
     }
     else if (this.selectedOptionTo == '' && this.selectedOptionFrom != '') {
-      alert('Porfavor eliga una franja horaria');
+      //alert('Por favor eliga una franja horaria');
       return false;
     }
 
@@ -148,16 +162,6 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  filterNom_Dep_Pro() {
-    if(this.validateSearchBox()){
-    //Mensaje que sera enviado
-    var data = {
-      "type": "filterInfoSearch",
-      "infoSearch": this.searchBox
-    }
-    this.data.changeMessage(data);
-   }
-}
   onChangeInputCreditOne(item: any) {
     if (item != '') {
       if (item >= 19)
@@ -184,15 +188,17 @@ export class FilterComponent implements OnInit {
   }
   validateSearchBox(){
     var ret = true;
-    var firstChar=this.searchBox.charAt(0);
     var errorMsg ;
-    if(this.searchBox.length <3){
-      ret = false;
-      errorMsg = '<p>Digite por lo menos 3 carácteres</p>'
-    }
-    if(firstChar.match(/[a-z]/i) == null){
-      ret = false;
-      errorMsg = '<p>No inicie su busqueda por un carácter especial</p>'
+
+    if(this.searchBox !== undefined){
+      if(this.searchBox.length <3){
+        ret = false;
+        errorMsg = '<p>Digite por lo menos 3 carácteres</p>'
+      }
+      if(this.searchBox.charAt(0).match(/[a-z]/i) == null){
+        ret = false;
+        errorMsg = '<p>No inicie su busqueda por un carácter especial</p>'
+      }
     }
       var err = document.getElementById('error-searchBox');
       if(!ret){
@@ -201,6 +207,7 @@ export class FilterComponent implements OnInit {
       }else{
         err.style.visibility = 'hidden'
       }
+
     return ret;
   }
 

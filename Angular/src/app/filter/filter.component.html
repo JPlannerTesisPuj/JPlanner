@@ -31,15 +31,15 @@
 </div>
 
 <div class = "search-container">
-<input [(ngModel)]="searchBox" [value]="searchBox" type="text" id="searchBox" placeholder="Buscar..">
+<input [(ngModel)]="searchBox" [value]="searchBox" type="text" id="searchBox" placeholder="Busqueda Específica...">
 <div class ="error-msg" id="error-searchBox"></div>
 </div>
 
+<ng-multiselect-dropdown class="fdropdown search-dropdown" [placeholder]="'Búsqueda Específica'" [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch"
+  [settings]="dropdownSettings">
+</ng-multiselect-dropdown>
 
-<div>
-  <button class="filter-btn" (click)="filterNom_Dep_Pro()">Filtrar Busqueda</button>
-  <button class="filter-btn" (click)="filterDays()">Filtra Por Dias</button>
-  <button class="filter-btn" (click)="filterCredits()">Filtrar Por Creditos</button>
-  <button class="filter-btn" (click)="filterViewAll()">Ver Todos</button>
-  <button class="filter-btn" (click)="filterSchoolYear()">Filtrar por ciclo lectivo</button>
+
+<div>  
+  <button class="filter-btn" (click)="filterUnificado()">Buscar</button>
 </div>

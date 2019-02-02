@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Subject } from '../model/Subject';
+import { BinaryOperator } from '@angular/compiler';
 
 /**
  * Permite consumir servicios externos para leer archivos JSON
@@ -49,9 +50,9 @@ export class ReadJsonFileService {
     return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName+'/'+arrayWeekDays+"/"+hourFrom+"/"+hourTo, { withCredentials: true }));
   }
 
-  public filterInfoSearch(fileName:string, infoSearch:string): Observable<any> {
+  public filterInfoSearch(fileName:string, infoSearch:string, dropdownInfo:string): Observable<any> {
     console.log(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch);
-    return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch, { withCredentials: true }));
+    return (this.http.get<any>(this.baseUrl + 'files/read/json/' + fileName+'/'+infoSearch+'/'+dropdownInfo, { withCredentials: true }));
   }
 
   public filterClassesCredits(fileName:string,creditValue1:number,operator:number,creditValue2:number): Observable<Subject> {
@@ -62,10 +63,41 @@ export class ReadJsonFileService {
 
   }
 
-  public filterSchoolYear(fileName:string,cycle:string):  Observable<Subject> {
-    console.log(this.baseUrl + 'files/read/json/' + fileName+'/cycle/'+cycle);
-    return (this.http.get<Subject>(this.baseUrl + 'files/read/json/' + fileName+'/cycle/'+cycle, { withCredentials: true }));
+  public filterUnificado(fileName:string, filter):  Observable<Subject> {
+    console.log(filter['class-size']);
 
+    if(filter['infoSearch'] === undefined)
+      filter['infoSearch'] = "none";
+
+    if(filter['dropdownInfo'] === '')
+      filter['dropdownInfo'] = "none";
+
+    //Si no hay dias especificados busque en todos las horas requeridas
+    if(filter['days'] == '' && !isNaN(filter['hourFrom']))
+      filter['days'] = 'Lunes-Martes-Miercoles-Jueves-Viernes-Sabado-Domingo';
+    //Si solo busca por dia, entonces la franja horaria abarca todo el dia
+    if(isNaN(filter['hourFrom']) && filter['days'] != 'none'){
+      filter['hourFrom'] =  0;
+      filter['hourTo'] = '86399 ';
+    }
+
+    if(filter['credit1Value'] === null)
+      filter['credit1Value'] = -1;
+
+      console.log("credit1Value: " + filter['credit1Value']);
+      console.log("credit2Value: " + filter['credit2Value']);
+
+    let url = this.baseUrl + 'files/read/json/' + fileName+'/filter/'
+    +filter['days']
+    +'/'+filter['hourFrom']
+    +'/'+filter['hourTo']
+    +'/'+filter['operator']
+    +'/'+filter['credit1Value']
+    +'/'+filter['credit2Value']
+    +'/'+filter['infoSearch']
+    +'/'+filter['dropdownInfo'];
+
+    return (this.http.get<Subject>(url, { withCredentials: true }));;
   }
 
   /**
