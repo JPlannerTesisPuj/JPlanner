@@ -619,6 +619,8 @@ public class JSONFileRestService {
 				if(banderaDays || banderaCreditos)
 					filter_search += " && (";
 				
+				filter_search += "(";
+				
 				String[] arraydropdownInfo = dropdownInfo.split("-");
 
 				for (int i = 0; i < arraydropdownInfo.length; ++i) {
