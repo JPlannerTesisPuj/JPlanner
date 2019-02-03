@@ -8,13 +8,18 @@ import { AppComponent } from './app.component';
 import { DisplayClassesComponent } from './display-classes/display-classes.component';
 import { DisplayClassComponent } from './display-class/display-class.component';
 
-import { MatDialogModule } from '@angular/material';
+// Librerías de Angular Material
+import { 
+  MatDialogModule,
+  MatTabsModule
+ } from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ClassModalComponent } from './class-modal/class-modal.component';
 import { FilterComponent } from './filter/filter.component';
 
-// Libraries needed to display the calendar
+// Librerías necesarias para mostrar el calendario
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -42,6 +47,7 @@ import { AdvFilterComponent } from './adv-filter/adv-filter.component';
     HttpClientModule,
     FormsModule,
     MatDialogModule,
+    MatTabsModule,
     BrowserAnimationsModule,
     NgMultiSelectDropDownModule.forRoot(),
     CommonModule,
