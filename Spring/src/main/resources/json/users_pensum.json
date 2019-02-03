@@ -1,189 +1,67 @@
 [
    {
       "asignaturas_aprobadas": [
-         {
-            "id_materia_cursada": "5bff1b9c819bad33aca8fb20"
-         },
-         {
-            "id_materia_cursada": "5bff1b9caffbea441e99f051"
-         },
-         {
-            "id_materia_cursada": "5bff1b9dd274f54989485e1e"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc76e5509207e6407"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c153ea6a47f5deb47"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d95588915fecc0838"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c0b2b5a4371cf05f8"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c92fdb32cb33301ee"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5f3a77cd14c1dd1d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce90b7d9001abceda"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce1db405a97b62c5c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c7fadeefc91e72771"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd754feb8b5fcd609"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cff30b98ffb10bd13"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb3fa5c00bfd15fa2"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c329b7e1adfc28870"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c800def454afeb053"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc856f64969b103cc"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1e199aa36aaead25"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c09e156e7b67420c3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c24ade34f3ac564b3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d82cbced132a6e244"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c515db1cfe7301443"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce89fa138948db4cc"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de32b48e31fb9a227"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc05cec589d3b29ff"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbbe3b7900efa164b"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbc5d2cb09c1f1040"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c881b2a7c9def727e"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbaaa31813c0d2f65"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8e923c840e7efa81"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cf4613221e5230197"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c9388773f800e1dd9"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c4aa81a3c0cc2f175"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da6b37ccdd98d46f5"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da774e0c8aad4198c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da23c962c7fb6e8c9"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c97d56481dcc75f58"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c13c40ca0884221f0"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d04259c3893d12b97"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1121038084ca5341"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d478464076adc90f3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2079b7e5830e021a"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cae1a1077dd031af3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c165238db8e1cb638"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c44f83dc610dfa50a"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c268fcbada7edb730"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd7c0330c6b5b1499"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d0754e6271ff38f45"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c35633317e081334f"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c934bd368e6718a26"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5cba41b4b27162cf"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c288eb324c7db2259"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc4c5f14dace48bd5"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d506fc45e8e5beac0"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccd6a1c30c9399ea2"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d57226b0753fa1623"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc52da8d8a61db224"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce615320a77e580ab"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c7b5ba5922c536665"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1fe9f0e4cc65e781"
-         }
+         "5bff1b9c819bad33aca8fb20",
+         "5bff1b9caffbea441e99f051",
+         "5bff1b9dd274f54989485e1e",
+         "5bff1b9cc76e5509207e6407",
+         "5bff1b9c153ea6a47f5deb47",
+         "5bff1b9d95588915fecc0838",
+         "5bff1b9c0b2b5a4371cf05f8",
+         "5bff1b9c92fdb32cb33301ee",
+         "5bff1b9c5f3a77cd14c1dd1d",
+         "5bff1b9ce90b7d9001abceda",
+         "5bff1b9ce1db405a97b62c5c",
+         "5bff1b9c7fadeefc91e72771",
+         "5bff1b9cd754feb8b5fcd609",
+         "5bff1b9cff30b98ffb10bd13",
+         "5bff1b9cb3fa5c00bfd15fa2",
+         "5bff1b9c329b7e1adfc28870",
+         "5bff1b9c800def454afeb053",
+         "5bff1b9cc856f64969b103cc",
+         "5bff1b9c1e199aa36aaead25",
+         "5bff1b9c09e156e7b67420c3",
+         "5bff1b9c24ade34f3ac564b3",
+         "5bff1b9d82cbced132a6e244",
+         "5bff1b9c515db1cfe7301443",
+         "5bff1b9ce89fa138948db4cc",
+         "5bff1b9de32b48e31fb9a227",
+         "5bff1b9cc05cec589d3b29ff",
+         "5bff1b9cbbe3b7900efa164b",
+         "5bff1b9cbc5d2cb09c1f1040",
+         "5bff1b9c881b2a7c9def727e",
+         "5bff1b9cbaaa31813c0d2f65",
+         "5bff1b9c8e923c840e7efa81",
+         "5bff1b9cf4613221e5230197",
+         "5bff1b9c9388773f800e1dd9",
+         "5bff1b9c4aa81a3c0cc2f175",
+         "5bff1b9da6b37ccdd98d46f5",
+         "5bff1b9da774e0c8aad4198c",
+         "5bff1b9da23c962c7fb6e8c9",
+         "5bff1b9c97d56481dcc75f58",
+         "5bff1b9c13c40ca0884221f0",
+         "5bff1b9d04259c3893d12b97",
+         "5bff1b9c1121038084ca5341",
+         "5bff1b9d478464076adc90f3",
+         "5bff1b9c2079b7e5830e021a",
+         "5bff1b9cae1a1077dd031af3",
+         "5bff1b9c165238db8e1cb638",
+         "5bff1b9c44f83dc610dfa50a",
+         "5bff1b9c268fcbada7edb730",
+         "5bff1b9cd7c0330c6b5b1499",
+         "5bff1b9d0754e6271ff38f45",
+         "5bff1b9c35633317e081334f",
+         "5bff1b9c934bd368e6718a26",
+         "5bff1b9c5cba41b4b27162cf",
+         "5bff1b9c288eb324c7db2259",
+         "5bff1b9cc4c5f14dace48bd5",
+         "5bff1b9d506fc45e8e5beac0",
+         "5bff1b9ccd6a1c30c9399ea2",
+         "5bff1b9d57226b0753fa1623",
+         "5bff1b9cc52da8d8a61db224",
+         "5bff1b9ce615320a77e580ab",
+         "5bff1b9c7b5ba5922c536665",
+         "5bff1b9c1fe9f0e4cc65e781"
       ],
       "carrera": "Ingeniería de Sistemas",
       "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJKdWFuIEZlbGlwZSBIZXJuYW5kZXoiOiJibGEifQ.gpoUucL8_m7DSG_9IOjKAtfRfi3tX1ISyq5Ex46Muwg",
@@ -192,186 +70,66 @@
    },
    {
       "asignaturas_aprobadas": [
-         {
-            "id_materia_cursada": "5bff1b9c1e199aa36aaead25"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d57226b0753fa1623"
-         },
-         {
-            "id_materia_cursada": "5bff1b9caffbea441e99f051"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da23c962c7fb6e8c9"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cf4613221e5230197"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc4c5f14dace48bd5"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc76e5509207e6407"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d04259c3893d12b97"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da774e0c8aad4198c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5cba41b4b27162cf"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c515db1cfe7301443"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c7fadeefc91e72771"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c153ea6a47f5deb47"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ca5011b298abd2916"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8e923c840e7efa81"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc856f64969b103cc"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c329b7e1adfc28870"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c800def454afeb053"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c09e156e7b67420c3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c13c40ca0884221f0"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc05cec589d3b29ff"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de32b48e31fb9a227"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c7b5ba5922c536665"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c35633317e081334f"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c842bca830ef0d873"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da6b37ccdd98d46f5"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c0b2b5a4371cf05f8"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce90b7d9001abceda"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c44f83dc610dfa50a"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de00a4a2de94c3907"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccd6a1c30c9399ea2"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c9388773f800e1dd9"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5f3a77cd14c1dd1d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbbe3b7900efa164b"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1fe9f0e4cc65e781"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd754feb8b5fcd609"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2079b7e5830e021a"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce1db405a97b62c5c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb3fa5c00bfd15fa2"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c4aa81a3c0cc2f175"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ca5011b298abd2916"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1bdeccb06c38da9d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbc5d2cb09c1f1040"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d0754e6271ff38f45"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c934bd368e6718a26"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce89fa138948db4cc"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d478464076adc90f3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d95588915fecc0838"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8acb87ec6d0423a7"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cff30b98ffb10bd13"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c24ade34f3ac564b3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb09bd1800cd22813"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c268fcbada7edb730"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c92fdb32cb33301ee"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1121038084ca5341"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         }
+         "5bff1b9c1e199aa36aaead25",
+         "5bff1b9d57226b0753fa1623",
+         "5bff1b9caffbea441e99f051",
+         "5bff1b9da23c962c7fb6e8c9",
+         "5bff1b9cf4613221e5230197",
+         "5bff1b9cc4c5f14dace48bd5",
+         "5bff1b9cc76e5509207e6407",
+         "5bff1b9d04259c3893d12b97",
+         "5bff1b9da774e0c8aad4198c",
+         "5bff1b9c5cba41b4b27162cf",
+         "5bff1b9c515db1cfe7301443",
+         "5bff1b9c7fadeefc91e72771",
+         "5bff1b9c153ea6a47f5deb47",
+         "5bff1b9ca5011b298abd2916",
+         "5bff1b9c8e923c840e7efa81",
+         "5bff1b9cc856f64969b103cc",
+         "5bff1b9c329b7e1adfc28870",
+         "5bff1b9c800def454afeb053",
+         "5bff1b9c09e156e7b67420c3",
+         "5bff1b9c13c40ca0884221f0",
+         "5bff1b9cc05cec589d3b29ff",
+         "5bff1b9de32b48e31fb9a227",
+         "5bff1b9c7b5ba5922c536665",
+         "5bff1b9c35633317e081334f",
+         "5bff1b9c842bca830ef0d873",
+         "5bff1b9da6b37ccdd98d46f5",
+         "5bff1b9c0b2b5a4371cf05f8",
+         "5bff1b9ce90b7d9001abceda",
+         "5bff1b9c44f83dc610dfa50a",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9de00a4a2de94c3907",
+         "5bff1b9ccd6a1c30c9399ea2",
+         "5bff1b9c9388773f800e1dd9",
+         "5bff1b9c5f3a77cd14c1dd1d",
+         "5bff1b9cbbe3b7900efa164b",
+         "5bff1b9c1fe9f0e4cc65e781",
+         "5bff1b9cd754feb8b5fcd609",
+         "5bff1b9c2079b7e5830e021a",
+         "5bff1b9ce1db405a97b62c5c",
+         "5bff1b9cb3fa5c00bfd15fa2",
+         "5bff1b9c4aa81a3c0cc2f175",
+         "5bff1b9ca5011b298abd2916",
+         "5bff1b9c1bdeccb06c38da9d",
+         "5bff1b9cbc5d2cb09c1f1040",
+         "5bff1b9d0754e6271ff38f45",
+         "5bff1b9c934bd368e6718a26",
+         "5bff1b9ce89fa138948db4cc",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9d478464076adc90f3",
+         "5bff1b9d95588915fecc0838",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9c8acb87ec6d0423a7",
+         "5bff1b9cff30b98ffb10bd13",
+         "5bff1b9c24ade34f3ac564b3",
+         "5bff1b9cb09bd1800cd22813",
+         "5bff1b9c268fcbada7edb730",
+         "5bff1b9c92fdb32cb33301ee",
+         "5bff1b9c1121038084ca5341",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9c20137f8ecbf15715"
       ],
       "carrera": "Arquitectura",
       "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJQZWRybyBQaWNhcGllZHJhIjoiYmxhIn0.1m7Y2NmKMsUN5JUdMOmrlyQeaGyEp0JZTy8k5vWnztI",
@@ -380,258 +138,90 @@
    },
    {
       "asignaturas_aprobadas": [
-         {
-            "id_materia_cursada": "5bff1b9de00a4a2de94c3907"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc52da8d8a61db224"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d95588915fecc0838"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1fe9f0e4cc65e781"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2079b7e5830e021a"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce90b7d9001abceda"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c288eb324c7db2259"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce615320a77e580ab"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c153ea6a47f5deb47"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c7fadeefc91e72771"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb3fa5c00bfd15fa2"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c35633317e081334f"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cae1a1077dd031af3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9dd274f54989485e1e"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d0754e6271ff38f45"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c92fdb32cb33301ee"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb09bd1800cd22813"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5f3a77cd14c1dd1d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da774e0c8aad4198c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb09bd1800cd22813"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd754feb8b5fcd609"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c881b2a7c9def727e"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1bdeccb06c38da9d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd7c0330c6b5b1499"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cf4613221e5230197"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce89fa138948db4cc"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cff30b98ffb10bd13"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ca5011b298abd2916"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c329b7e1adfc28870"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da23c962c7fb6e8c9"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c165238db8e1cb638"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc05cec589d3b29ff"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb09bd1800cd22813"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c0b2b5a4371cf05f8"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8e923c840e7efa81"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c268fcbada7edb730"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d506fc45e8e5beac0"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb09bd1800cd22813"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbbe3b7900efa164b"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1121038084ca5341"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1bdeccb06c38da9d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de32b48e31fb9a227"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d57226b0753fa1623"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1e199aa36aaead25"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbc5d2cb09c1f1040"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c7b5ba5922c536665"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ca5011b298abd2916"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ca5011b298abd2916"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5cba41b4b27162cf"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c800def454afeb053"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c09e156e7b67420c3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c515db1cfe7301443"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce1db405a97b62c5c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8acb87ec6d0423a7"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d04259c3893d12b97"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c842bca830ef0d873"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c4aa81a3c0cc2f175"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c13c40ca0884221f0"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc76e5509207e6407"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1fe9f0e4cc65e781"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccd6a1c30c9399ea2"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbaaa31813c0d2f65"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da6b37ccdd98d46f5"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c288eb324c7db2259"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c934bd368e6718a26"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d82cbced132a6e244"
-         },
-         {
-            "id_materia_cursada": "5bff1b9caffbea441e99f051"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c24ade34f3ac564b3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c842bca830ef0d873"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c44f83dc610dfa50a"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c97d56481dcc75f58"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c819bad33aca8fb20"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ca5011b298abd2916"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce1db405a97b62c5c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ca5011b298abd2916"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8acb87ec6d0423a7"
-         }
+         "5bff1b9de00a4a2de94c3907",
+         "5bff1b9cc52da8d8a61db224",
+         "5bff1b9d95588915fecc0838",
+         "5bff1b9c1fe9f0e4cc65e781",
+         "5bff1b9c2079b7e5830e021a",
+         "5bff1b9ce90b7d9001abceda",
+         "5bff1b9c288eb324c7db2259",
+         "5bff1b9ce615320a77e580ab",
+         "5bff1b9c153ea6a47f5deb47",
+         "5bff1b9c7fadeefc91e72771",
+         "5bff1b9cb3fa5c00bfd15fa2",
+         "5bff1b9c35633317e081334f",
+         "5bff1b9cae1a1077dd031af3",
+         "5bff1b9dd274f54989485e1e",
+         "5bff1b9d0754e6271ff38f45",
+         "5bff1b9c92fdb32cb33301ee",
+         "5bff1b9cb09bd1800cd22813",
+         "5bff1b9c5f3a77cd14c1dd1d",
+         "5bff1b9da774e0c8aad4198c",
+         "5bff1b9cb09bd1800cd22813",
+         "5bff1b9cd754feb8b5fcd609",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9c881b2a7c9def727e",
+         "5bff1b9c1bdeccb06c38da9d",
+         "5bff1b9cd7c0330c6b5b1499",
+         "5bff1b9cf4613221e5230197",
+         "5bff1b9ce89fa138948db4cc",
+         "5bff1b9cff30b98ffb10bd13",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9ca5011b298abd2916",
+         "5bff1b9c329b7e1adfc28870",
+         "5bff1b9da23c962c7fb6e8c9",
+         "5bff1b9c165238db8e1cb638",
+         "5bff1b9cc05cec589d3b29ff",
+         "5bff1b9cb09bd1800cd22813",
+         "5bff1b9c0b2b5a4371cf05f8",
+         "5bff1b9c8e923c840e7efa81",
+         "5bff1b9c268fcbada7edb730",
+         "5bff1b9d506fc45e8e5beac0",
+         "5bff1b9cb09bd1800cd22813",
+         "5bff1b9cbbe3b7900efa164b",
+         "5bff1b9c1121038084ca5341",
+         "5bff1b9c1bdeccb06c38da9d",
+         "5bff1b9de32b48e31fb9a227",
+         "5bff1b9d57226b0753fa1623",
+         "5bff1b9c1e199aa36aaead25",
+         "5bff1b9cbc5d2cb09c1f1040",
+         "5bff1b9c7b5ba5922c536665",
+         "5bff1b9ca5011b298abd2916",
+         "5bff1b9ca5011b298abd2916",
+         "5bff1b9c5cba41b4b27162cf",
+         "5bff1b9c800def454afeb053",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9c09e156e7b67420c3",
+         "5bff1b9c515db1cfe7301443",
+         "5bff1b9ce1db405a97b62c5c",
+         "5bff1b9c8acb87ec6d0423a7",
+         "5bff1b9d04259c3893d12b97",
+         "5bff1b9c842bca830ef0d873",
+         "5bff1b9c4aa81a3c0cc2f175",
+         "5bff1b9c13c40ca0884221f0",
+         "5bff1b9cc76e5509207e6407",
+         "5bff1b9c1fe9f0e4cc65e781",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9ccd6a1c30c9399ea2",
+         "5bff1b9cbaaa31813c0d2f65",
+         "5bff1b9da6b37ccdd98d46f5",
+         "5bff1b9c288eb324c7db2259",
+         "5bff1b9c934bd368e6718a26",
+         "5bff1b9d82cbced132a6e244",
+         "5bff1b9caffbea441e99f051",
+         "5bff1b9c24ade34f3ac564b3",
+         "5bff1b9c842bca830ef0d873",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9c44f83dc610dfa50a",
+         "5bff1b9c97d56481dcc75f58",
+         "5bff1b9c819bad33aca8fb20",
+         "5bff1b9ca5011b298abd2916",
+         "5bff1b9ce1db405a97b62c5c",
+         "5bff1b9ca5011b298abd2916",
+         "5bff1b9c8acb87ec6d0423a7"
       ],
       "carrera": "Quimica",
       "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJSaWNrIFNhbmNoZXoiOiJibGEifQ.UiruumcHWW6QXwGVd91EJwTUUQD3qTll8c4AgvHkCG4",
@@ -647,165 +237,59 @@
    },
    {
       "asignaturas_aprobadas": [
-         {
-            "id_materia_cursada": "5bff1b9c268fcbada7edb730"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de00a4a2de94c3907"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbaaa31813c0d2f65"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cff30b98ffb10bd13"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c165238db8e1cb638"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc52da8d8a61db224"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cf4613221e5230197"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c9388773f800e1dd9"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbbe3b7900efa164b"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c934bd368e6718a26"
-         },
-         {
-            "id_materia_cursada": "5bff1b9dd274f54989485e1e"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce90b7d9001abceda"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c0b2b5a4371cf05f8"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c4aa81a3c0cc2f175"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8e923c840e7efa81"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc4c5f14dace48bd5"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c881b2a7c9def727e"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1e199aa36aaead25"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc05cec589d3b29ff"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c842bca830ef0d873"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c44f83dc610dfa50a"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d506fc45e8e5beac0"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c97d56481dcc75f58"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c515db1cfe7301443"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c800def454afeb053"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5cba41b4b27162cf"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de00a4a2de94c3907"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8acb87ec6d0423a7"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5f3a77cd14c1dd1d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d82cbced132a6e244"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd754feb8b5fcd609"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc856f64969b103cc"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cae1a1077dd031af3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d0754e6271ff38f45"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1121038084ca5341"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd7c0330c6b5b1499"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c35633317e081334f"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c819bad33aca8fb20"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce615320a77e580ab"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         },
-         {
-            "id_materia_cursada": "5bff1b9da774e0c8aad4198c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de00a4a2de94c3907"
-         },
-         {
-            "id_materia_cursada": "5bff1b9caffbea441e99f051"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d04259c3893d12b97"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb09bd1800cd22813"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c20137f8ecbf15715"
-         }
+         "5bff1b9c268fcbada7edb730",
+         "5bff1b9de00a4a2de94c3907",
+         "5bff1b9cbaaa31813c0d2f65",
+         "5bff1b9cff30b98ffb10bd13",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9c165238db8e1cb638",
+         "5bff1b9cc52da8d8a61db224",
+         "5bff1b9cf4613221e5230197",
+         "5bff1b9c9388773f800e1dd9",
+         "5bff1b9cbbe3b7900efa164b",
+         "5bff1b9c934bd368e6718a26",
+         "5bff1b9dd274f54989485e1e",
+         "5bff1b9ce90b7d9001abceda",
+         "5bff1b9c0b2b5a4371cf05f8",
+         "5bff1b9c4aa81a3c0cc2f175",
+         "5bff1b9c8e923c840e7efa81",
+         "5bff1b9cc4c5f14dace48bd5",
+         "5bff1b9c881b2a7c9def727e",
+         "5bff1b9c1e199aa36aaead25",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9cc05cec589d3b29ff",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9c842bca830ef0d873",
+         "5bff1b9c44f83dc610dfa50a",
+         "5bff1b9d506fc45e8e5beac0",
+         "5bff1b9c97d56481dcc75f58",
+         "5bff1b9c515db1cfe7301443",
+         "5bff1b9c800def454afeb053",
+         "5bff1b9c5cba41b4b27162cf",
+         "5bff1b9de00a4a2de94c3907",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9c8acb87ec6d0423a7",
+         "5bff1b9c5f3a77cd14c1dd1d",
+         "5bff1b9d82cbced132a6e244",
+         "5bff1b9cd754feb8b5fcd609",
+         "5bff1b9cc856f64969b103cc",
+         "5bff1b9cae1a1077dd031af3",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9d0754e6271ff38f45",
+         "5bff1b9c1121038084ca5341",
+         "5bff1b9cd7c0330c6b5b1499",
+         "5bff1b9c35633317e081334f",
+         "5bff1b9c819bad33aca8fb20",
+         "5bff1b9ce615320a77e580ab",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9c20137f8ecbf15715",
+         "5bff1b9da774e0c8aad4198c",
+         "5bff1b9de00a4a2de94c3907",
+         "5bff1b9caffbea441e99f051",
+         "5bff1b9d04259c3893d12b97",
+         "5bff1b9cb09bd1800cd22813",
+         "5bff1b9c20137f8ecbf15715"
       ],
       "carrera": "Música",
       "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJOaWNvbGFzIFBpbmVkYSI6ImJsYSJ9.C6Y_EL81qbpnd7kDbQJWwATPSTBVqBotmbpn6cm8rtg",
@@ -814,135 +298,49 @@
    },
    {
       "asignaturas_aprobadas": [
-         {
-            "id_materia_cursada": "5bff1b9c1fe9f0e4cc65e781"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c7fadeefc91e72771"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5f3a77cd14c1dd1d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cae1a1077dd031af3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c9388773f800e1dd9"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1121038084ca5341"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cff30b98ffb10bd13"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbbe3b7900efa164b"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c0b2b5a4371cf05f8"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d478464076adc90f3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ccf825bceba9c9bb3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c268fcbada7edb730"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c5cba41b4b27162cf"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc76e5509207e6407"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1e199aa36aaead25"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c24ade34f3ac564b3"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d95588915fecc0838"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc05cec589d3b29ff"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cb09bd1800cd22813"
-         },
-         {
-            "id_materia_cursada": "5bff1b9de32b48e31fb9a227"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c92fdb32cb33301ee"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c881b2a7c9def727e"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cf4613221e5230197"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c153ea6a47f5deb47"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cbc5d2cb09c1f1040"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c97d56481dcc75f58"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce1db405a97b62c5c"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c934bd368e6718a26"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d57226b0753fa1623"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c165238db8e1cb638"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cc856f64969b103cc"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c8e923c840e7efa81"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c842bca830ef0d873"
-         },
-         {
-            "id_materia_cursada": "5bff1b9cd7c0330c6b5b1499"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d82cbced132a6e244"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c2a5cdbe1a084e554"
-         },
-         {
-            "id_materia_cursada": "5bff1b9d95588915fecc0838"
-         },
-         {
-            "id_materia_cursada": "5bff1b9ce615320a77e580ab"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c1bdeccb06c38da9d"
-         },
-         {
-            "id_materia_cursada": "5bff1b9c842bca830ef0d873"
-         }
+         "5bff1b9c1fe9f0e4cc65e781",
+         "5bff1b9c7fadeefc91e72771",
+         "5bff1b9c5f3a77cd14c1dd1d",
+         "5bff1b9cae1a1077dd031af3",
+         "5bff1b9c9388773f800e1dd9",
+         "5bff1b9c1121038084ca5341",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9cff30b98ffb10bd13",
+         "5bff1b9cbbe3b7900efa164b",
+         "5bff1b9c0b2b5a4371cf05f8",
+         "5bff1b9d478464076adc90f3",
+         "5bff1b9ccf825bceba9c9bb3",
+         "5bff1b9c268fcbada7edb730",
+         "5bff1b9c5cba41b4b27162cf",
+         "5bff1b9cc76e5509207e6407",
+         "5bff1b9c1e199aa36aaead25",
+         "5bff1b9c24ade34f3ac564b3",
+         "5bff1b9d95588915fecc0838",
+         "5bff1b9cc05cec589d3b29ff",
+         "5bff1b9cb09bd1800cd22813",
+         "5bff1b9de32b48e31fb9a227",
+         "5bff1b9c92fdb32cb33301ee",
+         "5bff1b9c881b2a7c9def727e",
+         "5bff1b9cf4613221e5230197",
+         "5bff1b9c153ea6a47f5deb47",
+         "5bff1b9cbc5d2cb09c1f1040",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9c97d56481dcc75f58",
+         "5bff1b9ce1db405a97b62c5c",
+         "5bff1b9c934bd368e6718a26",
+         "5bff1b9d57226b0753fa1623",
+         "5bff1b9c165238db8e1cb638",
+         "5bff1b9cc856f64969b103cc",
+         "5bff1b9c8e923c840e7efa81",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9c842bca830ef0d873",
+         "5bff1b9cd7c0330c6b5b1499",
+         "5bff1b9d82cbced132a6e244",
+         "5bff1b9c2a5cdbe1a084e554",
+         "5bff1b9d95588915fecc0838",
+         "5bff1b9ce615320a77e580ab",
+         "5bff1b9c1bdeccb06c38da9d",
+         "5bff1b9c842bca830ef0d873"
       ],
       "carrera": "Derecho",
       "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJNb25pY2EgUGFsYWNpb3MiOiJibGEifQ.4NIYC57BMDulDqzw8CcxzFOUUc1oNvlEoW2ugBK5df8",
