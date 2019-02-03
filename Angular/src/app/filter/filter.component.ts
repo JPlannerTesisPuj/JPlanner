@@ -21,6 +21,7 @@ export class FilterComponent implements OnInit {
   private searchBox: string;
   private creditValue;
   private creditValue2;
+  
 
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
@@ -62,7 +63,9 @@ export class FilterComponent implements OnInit {
       data["credit1Value"] = Number(this.creditValue);
       data["credit2Value"] = Number(this.creditValue2);
       this.data.changeMessage(data);
-    } else {
+    } else if (this.creditValue2 == '') {
+      alert("Porfavor escriba el número de creditos");
+    }else{
       data["credit1Value"] = null;
       data["credit2Value"] = Number(this.creditValue2);
       this.data.changeMessage(data);
