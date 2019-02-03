@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Injectable } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
@@ -6,6 +6,7 @@ import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
+import {HammerGestureConfig} from '@angular/platform-browser';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -41,6 +42,7 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView; // Enum
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
+  eventText = '';
 
   /**
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -53,6 +55,14 @@ export class CalendarComponent implements OnInit {
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
 
   constructor(public dialog: MatDialog) { }
+   
+  onSwipe(evt) {
+    const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
+    const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
+
+    this.eventText += `${x} ${y}<br/>`;
+}
+
 
   ngOnInit() { }
 

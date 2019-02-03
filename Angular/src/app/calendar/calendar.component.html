@@ -82,25 +82,31 @@
   <!--
   This button group helps testing the behaviour of switching the day in a Day View.
 -->
-
-  <div class="btn-group" *ngIf="view == calendarView.Day">
-    <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-      Previous
-    </div>
-    <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-      Today
-    </div>
-    <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-      Next
+<div class="grid">
+  <div class="col-12 sm-hidden">
+    <div class="gesture__zone" (swipe)="onSwipe($event)">
+      <div class="btn-group" *ngIf="view == calendarView.Day">
+        <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+        Previous
+        </div>
+        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+        Today
+        </div>
+        <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+        Next
+        </div>
+      </div>
     </div>
   </div>
-
+  
+</div>
   <!--
   The actual View Day Template doesn't show the name of the day, this block is just to display the name of the day.
 -->
 
   <div *ngIf="view == calendarView.Day">
     <b>{{ viewDate | calendarDate:'weekViewColumnHeader':locale }}</b>
+    <p [innerHTML]="eventText"></p>
   </div>
 
   <!--
@@ -117,6 +123,7 @@
     <mwl-calendar-day-view *ngSwitchCase="calendarView.Day" [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1"
       [dayStartHour]="7" [dayEndHour]="22" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-day-view>
+    
   </div>
 
 </div>
