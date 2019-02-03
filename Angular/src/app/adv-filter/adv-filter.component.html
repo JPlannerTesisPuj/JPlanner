@@ -1,42 +1,42 @@
-<div id="adv-filters">
+<div id="adv-filters" class="grid-noGutter">
 
-
-  <div id="teaching-mode">
-    <label for="teaching-mode">Modo de Enseñanza</label>
-    <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode">
+  <div id="teaching-mode" class="col-12 grid-noGutter">
+    <label for="teaching-mode" class="col-12"><strong>Modo de Enseñanza:</strong></label>
+    <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-12">
       <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
     </select>
   </div>
 
 
-  <div id="class-state">
-    <label for="class-state">Estado</label>
-    <input id="{{openStateCheckbox.id}}" type="checkbox" [(ngModel)]="openStateCheckbox.isChecked"> {{openStateCheckbox.name}}
-    <input id="{{closedStateCheckbox.id}}}" type="checkbox" [(ngModel)]="closedStateCheckbox.isChecked"> {{closedStateCheckbox.name}}
+  
+  <div id="class-state" class="col-12 grid-noGutter">
+    <label for="class-state" class="col-12"><strong>Estado</strong></label>
+    <input id="{{openStateCheckbox.id}}" type="checkbox" [(ngModel)]="openStateCheckbox.isChecked" class="col-1" /> <label class="col-5">{{openStateCheckbox.name}}</label>
+    <input id="{{closedStateCheckbox.id}}}" type="checkbox" [(ngModel)]="closedStateCheckbox.isChecked" class="col-1" /> <label class="col-5">{{closedStateCheckbox.name}}</label>
   </div>
 
 
-  <div id="id-filter">
-    <label for="id-filter">ID</label>
-    <input type="text" [(ngModel)]="searchedFilterId">
+  <div id="id-filter" class="col-12 grid-noGutter">
+    <label for="id-filter" class="col-12"><strong>ID</strong></label>
+    <input type="text" [(ngModel)]="searchedFilterId" class="col-12"/>
   </div>
 
 
-  <div id="number-filter">
-    <label for="number-filter">Número de Clase</label>
-    <input type="number" [(ngModel)]="searchedFilterNumber">
+  <div id="number-filter" class="col-12 grid-noGutter">
+    <label for="number-filter" class="col-12"><strong>Número de Clase</strong></label>
+    <input type="number" [(ngModel)]="searchedFilterNumber" class="col-12" />
   </div>
 
 
-  <div id="code-filter">
-    <label for="code-filter">Codigo de Clase</label>
-    <input type="number" [(ngModel)]="searchedFilterCode">
+  <div id="code-filter" class="col-12 grid-noGutter">
+    <label for="code-filter" class="col-12"><strong>Codigo de Clase</strong></label>
+    <input type="number" [(ngModel)]="searchedFilterCode" class="col-12" />
   </div>
 
-  <div id="schoolyear-filter">
-    <label for="schoolyear-filter">Ciclo Lectivo</label>
-    <select [(ngModel)]="year">
+  <div id="schoolyear-filter" class="col-12 grid-noGutter">
+    <label for="schoolyear-filter" class="col-12"><strong>Ciclo Lectivo</strong></label>
+    <select [(ngModel)]="year" class="col-12">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let schoolyear of dropdownSchoolYear">
         {{schoolyear}}
@@ -44,9 +44,9 @@
     </select>
   </div>
 
-  <div id="grade-filter">
-      <label for="garde-filter">Grado</label>
-      <select [(ngModel)]="gradeFilter">
+  <div id="grade-filter" class="col-12 grid-noGutter">
+      <label for="garde-filter" class="col-12"><strong>Grado</strong></label>
+      <select [(ngModel)]="gradeFilter" class="col-12">
           <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let grade of dropdownGrades" [ngValue]="grade.value">
           {{grade.name}}
@@ -54,18 +54,18 @@
       </select>
     </div>
 
-  <div id="class-size">
-    <label for="class-size">Cupos Disponibles</label>
-    <input id="class-size-input-1" class="input-number" required="required" type="text" maxlength="2" pattern="\d{1,2}" [(ngModel)]="sizeValue1"
+  <div id="class-size" class="col-12 grid-noGutter">
+    <label for="class-size"><strong>Cupos Disponibles</strong></label>
+    <input id="class-size-input-1" class="input-number col-12" required="required" type="text" maxlength="2" pattern="\d{1,2}" [(ngModel)]="sizeValue1"
       [value]="sizeValue1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" (ngModelChange)="onChangeInputSizeOne($event)"
     />
-    <select id="sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)">
+    <select id="sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)" class="fdropdown credit-dropdown col-12">
       <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let comparator of sizeComparatorOptions | keyvalue" [ngValue]="comparator">
         {{comparator.value}}
       </option>
     </select>
-    <input id="class-size-input-2" class="input-number" required="required" type="text" maxlength="2" pattern="\d{1,2}" [(ngModel)]="sizeValue2"
+    <input id="class-size-input-2" class="input-number col-12" required="required" type="text" maxlength="2" pattern="\d{1,2}" [(ngModel)]="sizeValue2"
       [value]="sizeValue2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" (ngModelChange)="onChangeInputSizeTwo($event)"
     />
   </div>

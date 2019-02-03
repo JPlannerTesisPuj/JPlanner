@@ -23,6 +23,7 @@ export class FilterComponent implements OnInit {
   private searchBox: string;
   private creditValue;
   private creditValue2;
+  
 
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
@@ -89,18 +90,23 @@ export class FilterComponent implements OnInit {
       data["hourTo"] = '0';
     }
 
+
     if (this.creditsComparator.key === undefined) {
       //alert("Elija un comparador de creditos");
       data["operator"] = '0';
       data["credit1Value"] = '-1';
       data["credit2Value"] = '-1';
-
     } else if (this.creditsComparator.key == 4) {
-
       data["credit1Value"] = Number(this.creditValue);
       data["credit2Value"] = Number(this.creditValue2);
-    } else {
-
+      this.data.changeMessage(data);
+      console.log
+      if(this.creditValue2 == '' || this.creditValue == ''){
+        alert("Porfavor escriba el número de creditos");
+      }
+    } else if (this.creditValue2 == '') {
+        alert("Porfavor escriba el número de creditos");
+    }else{
       data["credit1Value"] = null;
       data["credit2Value"] = Number(this.creditValue2);
     }

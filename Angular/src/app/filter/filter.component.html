@@ -1,45 +1,51 @@
-<ng-multiselect-dropdown class="fdropdown week-dropdown" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek" [(ngModel)]="selectedItemsWeek"
-  [settings]="dropdownSettings">
-</ng-multiselect-dropdown>
+<div class="grid-noGutter">
 
-<select id="hourFrom" class=" fdropdown hour-dropdown" [(ngModel)]="selectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
-  <option value="" disabled selected>Hora de Inicio</option>
-  <option *ngFor="let hour of hoursFrom">
-    {{hour}}
-  </option>
-</select>
+  <ng-multiselect-dropdown class="fdropdown week-dropdown col-12" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
+    [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
+  </ng-multiselect-dropdown>
 
-<select id="hourTo" [(ngModel)]="selectedOptionTo" class="fdropdown hour-dropdown">
-  <option value="" disabled selected>Hora Final</option>
-  <option *ngFor="let hour of hoursTo">
-    {{hour}}
-  </option>
-</select>
-
-
-<div class="credits">
-  <input required="required" id="credit-input-1" class="input-number"  type="text" maxlength="2" pattern="\d{1,2}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue" [value]="creditValue" (ngModelChange)="onChangeInputCreditOne($event)"/>
-  <select id="creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="fdropdown credit-dropdown">
-    <option value="" disabled selected>Filtrar Por Creditos</option>
-    <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
-      {{comparator.value}}
+  <select id="hourFrom" class="fdropdown hour-dropdown col-5" [(ngModel)]="selectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
+    <option value="" disabled selected>Hora inicial</option>
+    <option *ngFor="let hour of hoursFrom">
+      {{hour}}
     </option>
   </select>
-  <input required="required" id="credit-input-2" class="input-number"  type="text" maxlength="2" pattern="\d{1,2}"  oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue2" [value]="creditValue2" (ngModelChange)="onChangeInputCreditTwo($event)"/>
-  
-  
-</div>
 
-<div class = "search-container">
-<input [(ngModel)]="searchBox" [value]="searchBox" type="text" id="searchBox" placeholder="Busqueda Específica...">
-<div class ="error-msg" id="error-searchBox"></div>
-</div>
+  <select id="hourTo" [(ngModel)]="selectedOptionTo" class="fdropdown hour-dropdown col-5" data-push-left="off-2">
+    <option value="" disabled selected>Hora final</option>
+    <option *ngFor="let hour of hoursTo">
+      {{hour}}
+    </option>
+  </select>
 
-<ng-multiselect-dropdown class="fdropdown search-dropdown" [placeholder]="'Búsqueda Específica'" [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch"
-  [settings]="dropdownSettings">
-</ng-multiselect-dropdown>
+  <div class="credits col-12 grid-noGutter">
+    <input required="required" id="credit-input-1" class="input-number col-12" type="text" maxlength="2" pattern="\d{1,2}"
+      oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue" [value]="creditValue"
+      (ngModelChange)="onChangeInputCreditOne($event)" />
+    <select id="creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="fdropdown credit-dropdown col-12">
+      <option value="" disabled selected>Filtrar Por Creditos</option>
+      <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
+        {{comparator.value}}
+      </option>
+    </select>
+    <input required="required" id="credit-input-2" class="input-number col-12" type="text" maxlength="2" pattern="\d{1,2}"
+      oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue2" [value]="creditValue2"
+      (ngModelChange)="onChangeInputCreditTwo($event)" />
 
 
-<div>  
+
+  </div>
+
+  <div class="search-container col-12 grid-noGutter">
+    <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="input-number col-12" id="searchBox" placeholder="Buscar..">
+    <div class="error-msg" id="error-searchBox"></div>
+  </div>
+
+  <div class="search-container col-12 grid-noGutter">
+    <ng-multiselect-dropdown class="fdropdown week-dropdown col-12" [placeholder]="'Búsqueda Específica'" [data]="dropdownListSearch"
+      [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">
+    </ng-multiselect-dropdown>
+  </div>
+
   <button class="filter-btn" (click)="filterUnificado()">Buscar</button>
 </div>

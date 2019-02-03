@@ -1,14 +1,16 @@
 .filter-btn{
-    width: 10%;
     height: 40px;
-    margin: 30px;
-    margin-right: 0;
+    margin: 5px;
+    margin-top: 10px;
     font-size: 12px;
+    min-width: 25%;
 }
 .classes{
     min-height: 100px;
 }
 
 .found-classes {
-    margin-left: 20px;
+    margin-left: 10px;
+    height: 67vh;
+    overflow-y: scroll;
 }

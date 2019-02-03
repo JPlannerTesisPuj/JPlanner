@@ -32,8 +32,7 @@ const colors: any = {
 
 @Component({
   selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  templateUrl: './calendar.component.html'
 })
 
 export class CalendarComponent implements OnInit {
