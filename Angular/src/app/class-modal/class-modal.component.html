@@ -1,5 +1,6 @@
 <div class="small">
   <h2 mat-dialog-tittle> Datos de la Materia: </h2>
+  <button class ="remove-btn" (click)="removeSubject(subject)"> Remover del Horario</button>
   <b>ID: </b><span>{{ subject._id }}</span><br />
   <b>Número de clase: </b><span>{{ subject.numeroClase }}</span><br />
   <b>Código: </b><span>{{ subject.codigo }}</span><br />

@@ -54,7 +54,7 @@ export class CalendarComponent implements OnInit {
  
   private actions: CalendarEventAction[] = [
     {
-      label: '<i class="material-icons remove-btn"> clear </i>',
+      label: '<i class="material-icons remove-icon"> clear </i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Removed', event);
       }
