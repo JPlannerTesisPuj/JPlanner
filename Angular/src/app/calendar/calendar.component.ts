@@ -51,6 +51,15 @@ export class CalendarComponent implements OnInit {
    */
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
+ 
+  private actions: CalendarEventAction[] = [
+    {
+      label: '<i class="material-icons remove-btn"> clear </i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Removed', event);
+      }
+    },
+  ];
 
   constructor(public dialog: MatDialog) { }
 
@@ -117,6 +126,7 @@ export class CalendarComponent implements OnInit {
             color: colors.black,
             title: subjectToDisplay.nombre,
             id: subjectToDisplay._id,
+            actions : this.actions
           });
         }
       }
@@ -177,11 +187,22 @@ export class CalendarComponent implements OnInit {
    */
   private handleEvent(action: string, event: CalendarEvent): void {
 
-    let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
+    if(action === 'Clicked'){
+      let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
+      let dialogRef = this.dialog.open(ClassModalComponent, {
+        data: { class: subjectToShowthis }
+      });
+    }
+    else if(action === 'Removed'){
+      let newClasses: CalendarEvent[] = this.classes;
+      newClasses = newClasses.filter(subject => subject.id != event.id);
+      this.classes = newClasses;
+      this.calendarClasses = this.calendarClasses.filter(subject => subject._id != event.id);
+      this.refresh.next();
+    }
 
-    let dialogRef = this.dialog.open(ClassModalComponent, {
-      data: { class: subjectToShowthis }
-    });
   }
+
+  
 
 }
