@@ -20,7 +20,10 @@ for i in range (0,80):
     # between 0 to 69
     id = random.sample(range(69), 15)
     for j in range(0,random.randint(0,15)):
-       json_pensum["pre_requisitos"].append(json_materias[id[j]]["_id"])
+        if random_subject_id == id[j]:
+            continue
+        else:
+            json_pensum["pre_requisitos"].append(json_materias[id[j]]["_id"])
     pensum.append(json_pensum)
 
 # For saving the .json file in the current path

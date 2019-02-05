@@ -21,23 +21,15 @@ for i in range (0,6):
     json_pensum["nombre_estudiante"] = input("Nombre estudiante?")
     json_pensum["carrera"] = input("Carrea?")
     json_pensum["semestre"] = input("semestre?")
-    json_pensum["credenciales"] = str(id_generator(json_pensum["nombre_estudiante"],"bla")).split("\'")[1]
+    json_pensum["credenciales"] = str(id_generator(json_pensum["nombre_estudiante"],"payload")).split("\'")[1]
     json_pensum["asignaturas_aprobadas"] = list()
     users.append(json_pensum)
 
 for student in users:
     for key,value in student.items():
         for i in range(0,random.randint(0,61)):
-            dict_classes_in_pensum = dict()
-            dict_classes_in_pensum["id_materia_cursada"] =  json_materias[random.randint(0,69)]["_id"] 
-            student["asignaturas_aprobadas"].append(dict_classes_in_pensum)
-
-print(json.dumps(users,sort_keys=True, indent=3))
-print(len(users))
-
-f= open("users_pensum.json","w+")
-f.write(json.dumps(users,sort_keys=True, indent=3))
-f.close()
+            id = random.sample(range(69), 69)
+            student["asignaturas_aprobadas"].append(json_materias[id[i]]["_id"])
 
 
 
