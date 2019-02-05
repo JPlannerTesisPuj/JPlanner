@@ -51,6 +51,17 @@ export class CalendarComponent implements OnInit {
    */
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
+ 
+
+  //Se añade un evento personalizado a cada uno de las materias del calendario
+  private actions: CalendarEventAction[] = [
+    {
+      label: '<i class="material-icons remove-icon"> clear </i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Removed', event);
+      }
+    },
+  ];
 
   constructor(public dialog: MatDialog) { }
 
@@ -100,7 +111,8 @@ export class CalendarComponent implements OnInit {
     // Mira si la clase no ha sido agregada al horario
     if (!this.calendarClasses.some(myClass => myClass._id === subjectToDisplay._id)) {
       let isOverlapped: boolean = false;
-      let newClasses: CalendarEvent[] = this.classes;
+      let newClasses: CalendarEvent[];
+      newClasses = Object.assign([],this.classes);
 
       for (let horary of subjectToDisplay.horarios) {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
@@ -117,6 +129,7 @@ export class CalendarComponent implements OnInit {
             color: colors.black,
             title: subjectToDisplay.nombre,
             id: subjectToDisplay._id,
+            actions : this.actions
           });
         }
       }
@@ -177,11 +190,32 @@ export class CalendarComponent implements OnInit {
    */
   private handleEvent(action: string, event: CalendarEvent): void {
 
-    let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
-
-    let dialogRef = this.dialog.open(ClassModalComponent, {
-      data: { class: subjectToShowthis }
-    });
+    //
+    if(action === 'Clicked'){
+      let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
+      let dialogRef = this.dialog.open(ClassModalComponent, {
+        data: { class: subjectToShowthis }
+      });
+    }
+    else if(action === 'Removed'){
+      this.removeClass(event.id);
+    }
   }
+
+  /**
+   * 
+   * @param id Id de la materia que se removera
+   * 
+   * Se remueva la materia del horario
+   */
+  private removeClass(id){
+    let newClasses: CalendarEvent[] ;
+    newClasses = Object.assign([],this.classes);
+    newClasses = newClasses.filter(subject => subject.id != id);
+    this.classes = newClasses;
+    this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
+    this.refresh.next();
+  }
+  
 
 }
