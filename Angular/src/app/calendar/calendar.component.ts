@@ -52,6 +52,8 @@ export class CalendarComponent implements OnInit {
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
  
+
+  //Se añade un evento personalizado a cada uno de las materias del calendario
   private actions: CalendarEventAction[] = [
     {
       label: '<i class="material-icons remove-icon"> clear </i>',
@@ -188,6 +190,7 @@ export class CalendarComponent implements OnInit {
    */
   private handleEvent(action: string, event: CalendarEvent): void {
 
+    //
     if(action === 'Clicked'){
       let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
       let dialogRef = this.dialog.open(ClassModalComponent, {
@@ -199,6 +202,12 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * @param id Id de la materia que se removera
+   * 
+   * Se remueva la materia del horario
+   */
   private removeClass(id){
     let newClasses: CalendarEvent[] ;
     newClasses = Object.assign([],this.classes);
