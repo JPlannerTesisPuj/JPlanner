@@ -109,7 +109,8 @@ export class CalendarComponent implements OnInit {
     // Mira si la clase no ha sido agregada al horario
     if (!this.calendarClasses.some(myClass => myClass._id === subjectToDisplay._id)) {
       let isOverlapped: boolean = false;
-      let newClasses: CalendarEvent[] = this.classes;
+      let newClasses: CalendarEvent[];
+      newClasses = Object.assign([],this.classes);
 
       for (let horary of subjectToDisplay.horarios) {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
@@ -194,15 +195,18 @@ export class CalendarComponent implements OnInit {
       });
     }
     else if(action === 'Removed'){
-      let newClasses: CalendarEvent[] = this.classes;
-      newClasses = newClasses.filter(subject => subject.id != event.id);
-      this.classes = newClasses;
-      this.calendarClasses = this.calendarClasses.filter(subject => subject._id != event.id);
-      this.refresh.next();
+      this.removeClass(event.id);
     }
-
   }
 
+  private removeClass(id){
+    let newClasses: CalendarEvent[] ;
+    newClasses = Object.assign([],this.classes);
+    newClasses = newClasses.filter(subject => subject.id != id);
+    this.classes = newClasses;
+    this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
+    this.refresh.next();
+  }
   
 
 }
