@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
@@ -112,17 +112,26 @@ export class CalendarComponent implements OnInit {
     if (!this.calendarClasses.some(myClass => myClass._id === subjectToDisplay._id)) {
       let isOverlapped: boolean = false;
       let newClasses: CalendarEvent[];
+      let classOverlapped = null;
+      let arrayOverlapped;
       newClasses = Object.assign([],this.classes);
 
       for (let horary of subjectToDisplay.horarios) {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
         let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
-        isOverlapped = this.checkOverlappingClasses(startHour, endHour);
+        arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
+        classOverlapped = arrayOverlapped["classOverlapped"]
+        isOverlapped = arrayOverlapped["isOverLapped"];
 
         // Si la clase no se cruza con ninguna materia la guarda en un arreglo auxiliar de clases
         if(isOverlapped) {
-          break;
-        } else {
+            this.displaySelectingOptions(subjectToDisplay,classOverlapped).then(
+              function(value){
+                console.log(value);
+              }
+            );
+            break;
+         } else {
           newClasses.push({
             start: startHour,
             end: endHour,
@@ -148,11 +157,20 @@ export class CalendarComponent implements OnInit {
    * 
    * @param startHour Hora de inicio
    * @param endHour Hora de fin
+   * 
+   * Retorna un objeto con un booleano que dice si las materias se curzan o no y la clase que esta isncrita en el horario que impide inscribir la nueva
    */
   private checkOverlappingClasses(startHour: Date, endHour: Date) {
-    return this.classes.some(function (myClass) {
-      return areRangesOverlapping(startHour, endHour, myClass.start, myClass.end);
-    });
+    let overlapped =null;
+
+    return{
+      "isOverLapped": 
+      this.classes.some(function (myClass) {
+      overlapped = myClass;
+      return  areRangesOverlapping(startHour, endHour, myClass.start, myClass.end);
+    }),
+    "classOverlapped": overlapped,
+  };
   }
 
   /**
@@ -216,6 +234,29 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
     this.refresh.next();
   }
+
+  async  displaySelectingOptions(tryingSubject,registeredSubject){
+    let ret=null;
+    const dialogref = this.dialog.open(OverlapClassConfirmationDialog, {
+      data: {
+        "tryToAddClass" : tryingSubject,
+        "addedClass": registeredSubject,
+      }
+    });
+    
+    return await (dialogref.afterClosed().toPromise());
+
+  }
+
+
   
 
+}
+
+@Component({
+  selector: 'overlap-class-confirmation-dialog',
+  templateUrl: 'operlap-class-confirmation-dialog.html',
+})
+export class OverlapClassConfirmationDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

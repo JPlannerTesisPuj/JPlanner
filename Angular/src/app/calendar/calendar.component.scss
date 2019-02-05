@@ -85,3 +85,13 @@
 .remove-icon{
     color:red;
 }
+
+.confirm-dialog{
+    .displayed-data-dailog{
+        text-transform: lowercase;
+        font-weight: bold;
+    }
+    .dialog-btn{
+        margin-right: 10px;
+    }
+}

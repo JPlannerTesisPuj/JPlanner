@@ -1,0 +1,11 @@
+<div class="confirm-dialog">
+  <h2 mat-dialog-title>Conflicto</h2>
+  <mat-dialog-content class="mat-typography">
+    <h3>Intenta inscribir <span class="displayed-data-dailog">{{data.tryToAddClass.nombre}}</span> Pero se curza con <span class="displayed-data-dailog">{{data.addedClass.title}}</span></h3>
+    
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button class="dialog-btn" mat-button [mat-dialog-close]="true">Inscribir <span class="displayed-data-dailog">{{data.tryToAddClass.nombre}}</span> y eliminar <span class="displayed-data-dailog">{{data.addedClass.title}}</span></button>
+    <button class="dialog-btn" mat-button  [mat-dialog-close]="false" >Cancelar</button>
+  </mat-dialog-actions>
+</div>
