@@ -31,37 +31,9 @@ export class DisplayClassesComponent implements OnInit {
       this.classes = [];
       this.error = "";
       this.filter = message;
-      //Si el type del filtro es view all, invoca el metodo para leer todo el JSON
-      if (this.filter['type'] == 'view all') {
-        this.readJSONFileService.readJSONFile('classes')
-          .subscribe(classes => {
-            this.classes = classes;
-          }
-          );
-
-        //Si el filtro es de tipo filterHourDay, invoque el metodo con el filtro de horas y dias
-      } else if (this.filter['type'] == 'filterHourDay') {
-        this.readJSONFileService.filterClassesDayHour('classes', this.filter['days'], this.filter['hourFrom'], this.filter['hourTo'])
-          .subscribe(classes => {
-            this.classes = classes;
-          }
-          );
-      } else if (this.filter['type'] == 'filterInfoSearch') {
-        this.readJSONFileService.filterInfoSearch('classes', this.filter['infoSearch'])
-          .subscribe(classes => {
-            this.classes = classes;
-          }
-          );
-      } else if (this.filter['type'] == 'filterCredits') {
+      if (this.filter['type'] == 'filterUnificado') {
         console.log(this.filter);
-        this.readJSONFileService.filterClassesCredits('classes', this.filter['credit1Value'], this.filter['operator'], this.filter['credit2Value'])
-          .subscribe(classes => {
-            this.classes = classes;
-          });
-      }
-      else if (this.filter['type'] == 'schoolYear') {
-        console.log(this.filter);
-        this.readJSONFileService.filterSchoolYear('classes', this.filter['cycle'])
+        this.readJSONFileService.filterUnificado('classes', this.filter)
           .subscribe(classes => {
             this.classes = classes;
           });
