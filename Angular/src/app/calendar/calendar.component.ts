@@ -6,6 +6,8 @@ import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
+import { DataService } from '../shared/data.service';
+import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -41,6 +43,7 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView; // Enum
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
+  private verticalMenuIndex: number = 0;
 
   /**
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -51,7 +54,7 @@ export class CalendarComponent implements OnInit {
    */
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
- 
+
 
   //Se añade un evento personalizado a cada uno de las materias del calendario
   private actions: CalendarEventAction[] = [
@@ -63,9 +66,30 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private data: DataService, private readJSONFileService: ReadJsonFileService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    /**
+     * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
+     * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
+     */
+    let filter;
+    this.data.currentMessage.subscribe(message => {
+      filter = message;
+      if (filter['type'] == 'filterUnificado') {
+        console.log(filter);
+        this.readJSONFileService.filterUnificado('classes', filter).subscribe(classes => {
+          this.verticalMenuIndex = 1;
+        });
+      }
+      else if (filter['type'] === 'adv-filter') {
+        this.readJSONFileService.advFilter('classes', filter).subscribe(classes => {
+          this.verticalMenuIndex = 1;
+        });
+      }
+    });
+  }
 
   /**
    * Toma el número de un día en la semana y obtiene la fecha de ese día en la semana actual.
@@ -112,7 +136,7 @@ export class CalendarComponent implements OnInit {
     if (!this.calendarClasses.some(myClass => myClass._id === subjectToDisplay._id)) {
       let isOverlapped: boolean = false;
       let newClasses: CalendarEvent[];
-      newClasses = Object.assign([],this.classes);
+      newClasses = Object.assign([], this.classes);
 
       for (let horary of subjectToDisplay.horarios) {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
@@ -120,7 +144,7 @@ export class CalendarComponent implements OnInit {
         isOverlapped = this.checkOverlappingClasses(startHour, endHour);
 
         // Si la clase no se cruza con ninguna materia la guarda en un arreglo auxiliar de clases
-        if(isOverlapped) {
+        if (isOverlapped) {
           break;
         } else {
           newClasses.push({
@@ -129,7 +153,7 @@ export class CalendarComponent implements OnInit {
             color: colors.black,
             title: subjectToDisplay.nombre,
             id: subjectToDisplay._id,
-            actions : this.actions
+            actions: this.actions
           });
         }
       }
@@ -191,13 +215,13 @@ export class CalendarComponent implements OnInit {
   private handleEvent(action: string, event: CalendarEvent): void {
 
     //
-    if(action === 'Clicked'){
+    if (action === 'Clicked') {
       let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
       let dialogRef = this.dialog.open(ClassModalComponent, {
         data: { class: subjectToShowthis }
       });
     }
-    else if(action === 'Removed'){
+    else if (action === 'Removed') {
       this.removeClass(event.id);
     }
   }
@@ -208,14 +232,12 @@ export class CalendarComponent implements OnInit {
    * 
    * Se remueva la materia del horario
    */
-  private removeClass(id){
-    let newClasses: CalendarEvent[] ;
-    newClasses = Object.assign([],this.classes);
+  private removeClass(id) {
+    let newClasses: CalendarEvent[];
+    newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
     this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
     this.refresh.next();
   }
-  
-
 }
