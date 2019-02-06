@@ -6,6 +6,7 @@ import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
+import { DataService } from '../shared/data.service';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -41,6 +42,7 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView; // Enum
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
+  private verticalMenuIndex: number = 0;
 
   /**
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -63,9 +65,20 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private data: DataService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    /**
+     * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
+     * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
+     */
+    this.data.currentMessage.subscribe(message => {
+      if (message['type'] == 'filterUnificado' || message['type'] === 'adv-filter') {
+        this.verticalMenuIndex = 1;
+      }
+    });
+  }
 
   /**
    * Toma el número de un día en la semana y obtiene la fecha de ese día en la semana actual.
