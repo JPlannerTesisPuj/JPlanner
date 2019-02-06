@@ -78,7 +78,6 @@ export class CalendarComponent implements OnInit {
     this.data.currentMessage.subscribe(message => {
       filter = message;
       if (filter['type'] == 'filterUnificado') {
-        console.log(filter);
         this.readJSONFileService.filterUnificado('classes', filter).subscribe(classes => {
           this.verticalMenuIndex = 1;
         });
@@ -309,12 +308,9 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses.push(newClass);
     this.refresh.next();
   }
-
-
-  
-
 }
 
+//Componente con el dialogo de confirmación
 @Component({
   selector: 'overlap-class-confirmation-dialog',
   templateUrl: 'operlap-class-confirmation-dialog.html',
