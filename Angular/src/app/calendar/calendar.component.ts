@@ -150,8 +150,10 @@ export class CalendarComponent implements OnInit {
         // Si la clase no se cruza con ninguna materia la guarda en un arreglo auxiliar de clases
         if(isOverlapped) {
             this.displaySelectingOptions(subjectToDisplay,classOverlapped).then(
-              function(value){
-                console.log(value);
+              (value) => {
+                if(value){
+                  this.exchangeClasses(subjectToDisplay,classOverlapped);
+                }
               }
             );
             break;
@@ -258,7 +260,6 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
     this.refresh.next();
   }
-<<<<<<< HEAD
 
   async  displaySelectingOptions(tryingSubject,registeredSubject){
     let ret=null;
@@ -274,10 +275,31 @@ export class CalendarComponent implements OnInit {
   }
 
 
+  private  exchangeClasses(newClass,oldClass){
+    this.removeClass(oldClass.id);
+    let newClasses: CalendarEvent[];
+    newClasses = Object.assign([],this.classes);
+    for (let horary of newClass.horarios) {
+      let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
+      let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+      newClasses.push({
+        start: startHour,
+        end: endHour,
+        color: colors.black,
+        title: newClass.nombre,
+        id: newClass._id,
+        actions: this.actions
+      });
+    }
+
+    this.classes = newClasses;
+    this.calendarClasses.push(newClass);
+    this.refresh.next();
+  }
+
+
   
 
-=======
->>>>>>> 00d8c7aba7b364124ead6a39fab51a0eef304dbb
 }
 
 @Component({
