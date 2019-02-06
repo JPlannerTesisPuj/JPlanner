@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { DataService } from '../shared/data.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
 })
+
 
 export class FilterComponent implements OnInit {
   private dropdownListWeek = [];
@@ -23,6 +25,7 @@ export class FilterComponent implements OnInit {
   private searchBox: string;
   private creditValue;
   private creditValue2;
+  errorCreditos: boolean = false;
   
 
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
@@ -90,7 +93,7 @@ export class FilterComponent implements OnInit {
       data["hourTo"] = '0';
     }
 
-
+     
     if (this.creditsComparator.key === undefined) {
       //alert("Elija un comparador de creditos");
       data["operator"] = '0';
@@ -102,11 +105,17 @@ export class FilterComponent implements OnInit {
       this.data.changeMessage(data);
       console.log
       if(this.creditValue2 == '' || this.creditValue == ''){
-        alert("Porfavor escriba el número de creditos");
+        this.errorCreditos = true;
+        //alert("Porfavor escriba el número de creditos");
+        
+         
       }
     } else if (this.creditValue2 == '') {
-        alert("Porfavor escriba el número de creditos");
+        
+         this.errorCreditos = true;
+         alert("Porfavor escriba el número de creditos");
     }else{
+       this.errorCreditos = false;
       data["credit1Value"] = null;
       data["credit2Value"] = Number(this.creditValue2);
     }
