@@ -268,15 +268,14 @@ export class CalendarComponent implements OnInit {
    * Crea el dialogo y retorna una promesa con el valor seleccionado por el usuario en el dialogo
    */
   async  displaySelectingOptions(tryingSubject,registeredSubject){
-    let ret=null;
-    const dialogref = this.dialog.open(OverlapClassConfirmationDialog, {
+    const dialogRef = this.dialog.open(OverlapClassConfirmationDialog, {
       data: {
         "tryToAddClass" : tryingSubject,
         "addedClass": registeredSubject,
       }
     });
     
-    return await (dialogref.afterClosed().toPromise());
+    return await (dialogRef.afterClosed().toPromise());
 
   }
 
