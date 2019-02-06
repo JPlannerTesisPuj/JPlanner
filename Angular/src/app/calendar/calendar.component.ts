@@ -149,6 +149,7 @@ export class CalendarComponent implements OnInit {
 
         // Si la clase no se cruza con ninguna materia la guarda en un arreglo auxiliar de clases
         if(isOverlapped) {
+          // Resuelve la promesa y si el valor es positivo intercambia las materias
             this.displaySelectingOptions(subjectToDisplay,classOverlapped).then(
               (value) => {
                 if(value){
@@ -261,6 +262,12 @@ export class CalendarComponent implements OnInit {
     this.refresh.next();
   }
 
+  /**
+   * 
+   * @param tryingSubject Materia que se esta intentando inscribir
+   * @param registeredSubject Materia que esta actualmente registrada
+   * Crea el dialogo y retorna una promesa con el valor seleccionado por el usuario en el dialogo
+   */
   async  displaySelectingOptions(tryingSubject,registeredSubject){
     let ret=null;
     const dialogref = this.dialog.open(OverlapClassConfirmationDialog, {
@@ -275,6 +282,12 @@ export class CalendarComponent implements OnInit {
   }
 
 
+  /**
+   * 
+   * @param newClass Clase que sera inscrita
+   * @param oldClass Clase que sera removida
+   * Remueve la calse vieja y agrega la clase nueva
+   */
   private  exchangeClasses(newClass,oldClass){
     this.removeClass(oldClass.id);
     let newClasses: CalendarEvent[];
