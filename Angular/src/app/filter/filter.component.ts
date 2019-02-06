@@ -113,9 +113,9 @@ export class FilterComponent implements OnInit {
     } else if (this.creditValue2 == '') {
         
          this.errorCreditos = true;
-         alert("Porfavor escriba el número de creditos");
+         //alert("Porfavor escriba el número de creditos");
     }else{
-       this.errorCreditos = false;
+       this.errorCreditos = true;
       data["credit1Value"] = null;
       data["credit2Value"] = Number(this.creditValue2);
     }

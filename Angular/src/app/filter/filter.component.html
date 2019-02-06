@@ -23,10 +23,7 @@
       oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue" [value]="creditValue"
       (ngModelChange)="onChangeInputCreditOne($event)" />
       
-        <div class="alert" *ngIf="errorCreditos">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          Error porfavor digite numero valido de creditos
-        </div> 
+        
       
     <select id="creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="fdropdown credit-dropdown col-12">
       <option value="" disabled selected>Filtrar Por Creditos</option>
@@ -34,10 +31,14 @@
         {{comparator.value}}
       </option>
     </select>
+    
     <input required="required" id="credit-input-2" class="input-number col-12" type="text" maxlength="2" pattern="\d{1,2}"
       oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue2" [value]="creditValue2"
       (ngModelChange)="onChangeInputCreditTwo($event)" />
-
+      <div class="alert" *ngIf="errorCreditos">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Error porfavor digite numero valido de creditos
+      </div> 
 
 
   </div>
