@@ -1,5 +1,11 @@
 <div class="menu-container col-4_xs-12_sm-12_md-12_lg-4">
-  <mat-tab-group>
+
+  <!--
+    verticalMenuIndex es una variable numérica del componente que le indica al menú
+    qué pestaña debe seleccionar. Así mismo, el menú le indica el número de la pestaña
+    que el usuario seleccione. El primer index del menú comienza en 0.
+  -->
+  <mat-tab-group [(selectedIndex)]="verticalMenuIndex">
     <mat-tab>
       <ng-template mat-tab-label>
         <i class="material-icons">
