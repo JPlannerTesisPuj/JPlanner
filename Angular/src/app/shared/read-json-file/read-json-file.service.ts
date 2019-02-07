@@ -31,8 +31,6 @@ export class ReadJsonFileService {
   }
 
   public filterUnificado(fileName:string, filter):  Observable<Subject> {
-    console.log(filter['class-size']);
-
     if(filter['infoSearch'] === undefined)
       filter['infoSearch'] = "none";
 
@@ -50,9 +48,6 @@ export class ReadJsonFileService {
 
     if(filter['credit1Value'] === null)
       filter['credit1Value'] = -1;
-
-      console.log("credit1Value: " + filter['credit1Value']);
-      console.log("credit2Value: " + filter['credit2Value']);
 
     let url = this.baseUrl + 'files/read/json/' + fileName+'/filter/'
     +filter['days']
@@ -77,7 +72,6 @@ export class ReadJsonFileService {
    */  
   public advFilter(fileName:string,filter):  Observable<Subject> {
     let op1,op2,comp
-    console.log(filter['class-size']);
     op1 = filter['class-size']['firstOp'];
     op2 = filter['class-size']['secondOp'];
     comp = filter['class-size']['comp'];

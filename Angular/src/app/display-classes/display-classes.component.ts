@@ -32,7 +32,6 @@ export class DisplayClassesComponent implements OnInit {
       this.error = "";
       this.filter = message;
       if (this.filter['type'] == 'filterUnificado') {
-        console.log(this.filter);
         this.readJSONFileService.filterUnificado('classes', this.filter)
           .subscribe(classes => {
             this.classes = classes;
