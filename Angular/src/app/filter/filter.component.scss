@@ -17,6 +17,15 @@
             display: none;
         }
     }
+    &.search-dropdown {
+        .multiselect-dropdown {
+            display: inline-block;
+            width: 10%;
+            .selected-item {
+                margin: 3px;
+            }
+        }
+    }
 }
 
 .credits,#class-size{
@@ -35,6 +44,7 @@
 }
 
 .search-container{
+    margin: 20px;
     display:inline-block;
     
     input {

@@ -74,3 +74,24 @@
 .cal-day-view .cal-event-container {
     width: calc(100% - 70px) !important;
 }
+
+.cal-display-sm {
+    display: none;
+    @media (max-width: 768px) {
+        display: block;
+    }
+}
+
+.remove-icon{
+    color:red;
+}
+
+.confirm-dialog{
+    .displayed-data-dailog{
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+    .dialog-btn{
+        margin-right: 10px;
+    }
+}
