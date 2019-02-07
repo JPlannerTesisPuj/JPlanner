@@ -105,3 +105,23 @@
     z-index: 10;
     background-color: #42a5f5;
   }
+.cal-display-sm {
+    display: none;
+    @media (max-width: 768px) {
+        display: block;
+    }
+}
+
+.remove-icon{
+    color:red;
+}
+
+.confirm-dialog{
+    .displayed-data-dailog{
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+    .dialog-btn{
+        margin-right: 10px;
+    }
+}

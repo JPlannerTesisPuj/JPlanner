@@ -28,7 +28,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { DataService } from './shared/data.service';
-import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/calendar.component';
 import { AdvFilterComponent } from './adv-filter/adv-filter.component';
 
 
@@ -41,6 +41,7 @@ import { AdvFilterComponent } from './adv-filter/adv-filter.component';
     FilterComponent,
     CalendarComponent,
     AdvFilterComponent,
+    OverlapClassConfirmationDialog
   ],
   imports: [
     BrowserModule,
@@ -61,6 +62,7 @@ import { AdvFilterComponent } from './adv-filter/adv-filter.component';
   ],
   entryComponents: [
     ClassModalComponent,
+    OverlapClassConfirmationDialog
   ],
 
   providers: [DataService],
