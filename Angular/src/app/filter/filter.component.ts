@@ -100,7 +100,6 @@ export class FilterComponent implements OnInit {
       data["credit1Value"] = Number(this.creditValue);
       data["credit2Value"] = Number(this.creditValue2);
       this.data.changeMessage(data);
-      console.log
       if(this.creditValue2 == '' || this.creditValue == ''){
         alert("Porfavor escriba el número de creditos");
       }
