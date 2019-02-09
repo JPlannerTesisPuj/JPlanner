@@ -232,7 +232,6 @@ public class JSONFileRestService {
 					+ " && @.cuposDisponibles " + filter_cupos + " && @.ciclo_lectivo " + filter_schoolYear
 					+ " && @.grado " + filter_grade + ")]";
 
-			System.out.println(baseFilter);
 			
 			ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
 			String filteredJSON = new ObjectMapper().writeValueAsString(classes);
