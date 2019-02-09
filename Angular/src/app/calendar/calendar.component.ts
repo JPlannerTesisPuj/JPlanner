@@ -44,7 +44,7 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView; // Enum
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
-  eventText = '';
+  private eventText = '';
   private verticalMenuIndex: number = 0;
   /**
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -56,13 +56,26 @@ export class CalendarComponent implements OnInit {
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
 
+  
+
    
   onSwipe(evt) {
     const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
     const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
 
-    this.eventText += `${x} ${y}<br/>`;
+    this.eventText = `${x}`;
+    console.log(x)
+    if (this.eventText == 'left') {
+      this.viewDate = subDays(this.viewDate,1);
+      console.log(this.viewDate);
+    }
+    else if (this.eventText == 'right') {
+      this.viewDate = addDays(this.viewDate,1);
+      console.log(this.viewDate);
+
+    }
 }
+
 
 
   //Se añade un evento personalizado a cada uno de las materias del calendario
