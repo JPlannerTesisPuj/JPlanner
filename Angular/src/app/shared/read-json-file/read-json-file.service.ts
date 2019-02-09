@@ -15,7 +15,10 @@ export class ReadJsonFileService {
 
  
   // URL base a donde se harán las peticiones
-  private baseUrl: string = 'http://localhost:8080/';
+  // URL local
+  // private baseUrl: string = 'http://localhost:8080/';
+  // URL global
+  private baseUrl: string = 'http://34.73.139.18:8080/';
 
   // Se pide la dependencia de HTTP para poder realizar peticiones
   constructor(private http: HttpClient) { }
