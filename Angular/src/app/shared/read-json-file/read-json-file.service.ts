@@ -44,7 +44,6 @@ export class ReadJsonFileService {
     if(days == 'none')
     days = 'Lunes-Martes-Miercoles-Jueves-Viernes-Sabado-Domingo';
     
-    console.log(filter['searchBox']);
     let url = this.baseUrl + 'files/read/json/' + fileName+'/class-filter/'
     +days
     +'/'+filter['hours']['from']
