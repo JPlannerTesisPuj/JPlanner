@@ -77,15 +77,8 @@ export class CalendarComponent implements OnInit {
     let filter;
     this.data.currentMessage.subscribe(message => {
       filter = message;
-      if (filter['type'] == 'filterUnificado') {
-        this.readJSONFileService.filterUnificado('classes', filter).subscribe(classes => {
-          this.verticalMenuIndex = 1;
-        });
-      }
-      else if (filter['type'] === 'adv-filter') {
-        this.readJSONFileService.advFilter('classes', filter).subscribe(classes => {
-          this.verticalMenuIndex = 1;
-        });
+      if (filter['type'] == 'filter') {
+        this.verticalMenuIndex = 1;
       }
     });
   }
@@ -308,6 +301,8 @@ export class CalendarComponent implements OnInit {
     this.refresh.next();
   }
 }
+
+
 
 //Componente con el dialogo de confirmación
 @Component({
