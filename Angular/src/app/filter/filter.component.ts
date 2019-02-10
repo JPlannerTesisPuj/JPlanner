@@ -138,13 +138,18 @@ export class FilterComponent implements OnInit {
     return true;
   }
   initHoursFrom() {
+    this.hoursFrom.push("Ninguno");
     for (let i = 7; i <= 21; ++i) {
       this.hoursFrom.push(i + ':00');
     }
   }
 
   onChangeFromHour(item: any) {
+    
     var hour = document.getElementById('hourTo');
+    if(item == "Ninguno"){
+      hour.style.display = 'none';
+    }else
     hour.style.display = 'inline-block'
     this.changeHoursTo(item);
   }
@@ -156,20 +161,26 @@ export class FilterComponent implements OnInit {
     if(item.key == 0){
       credit1.style.display = 'none'
       credit2.style.display = 'none'
-      this.creditValue = '-1';
-      this.creditValue2 = '-1';
+      //this.creditValue = '-1';
+      //this.creditValue2 = '-1';
     }
     else {if (item.key != 4) {
       credit1.style.display = 'none'
       credit2.style.display = 'inline-block'
+      this.creditValue2 = '2';
       } else if (item.key == 4) {
       credit1.style.display = 'inline-block'
       credit2.style.display = 'inline-block'
+      this.creditValue = '1';
+      this.creditValue2 = '2';
       }
     }
   }
 
   changeHoursTo(item) {
+    /*if(item == "Ninguno"){
+      return '-1';
+    }else*/
     this.hoursTo = [];
     var numberItem = item.substring(0, item.indexOf(':'));
     numberItem++;
