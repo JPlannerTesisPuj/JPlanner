@@ -64,15 +64,11 @@ export class CalendarComponent implements OnInit {
     const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
 
     this.eventText = `${x}`;
-    console.log(x)
     if (this.eventText == 'left') {
       this.viewDate = subDays(this.viewDate,1);
-      console.log(this.viewDate);
     }
     else if (this.eventText == 'right') {
       this.viewDate = addDays(this.viewDate,1);
-      console.log(this.viewDate);
-
     }
 }
 
