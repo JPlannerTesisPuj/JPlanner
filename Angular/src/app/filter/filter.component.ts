@@ -40,7 +40,7 @@ export class FilterComponent implements OnInit {
     this.dropdownListWeek = [
       'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'
     ];
-    this.creditsComparatorOptions = { 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre" };
+    this.creditsComparatorOptions = {0:"Ninguno", 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre"};
 
     //Opciones de configruacion del dropdwn
     this.dropdownSettings = {
@@ -53,6 +53,7 @@ export class FilterComponent implements OnInit {
       selectAllText: 'Seleccionar Todos',
       unSelectAllText: 'Remover Todos'
     };
+    
     this.initHoursFrom();
   }
 
@@ -91,11 +92,12 @@ export class FilterComponent implements OnInit {
     }
 
 
-    if (this.creditsComparator.key === undefined) {
+    if (this.creditsComparator.key === undefined ) {
       //alert("Elija un comparador de creditos");
       data["operator"] = '0';
       data["credit1Value"] = '-1';
       data["credit2Value"] = '-1';
+      
     } else if (this.creditsComparator.key == 4) {
       data["credit1Value"] = Number(this.creditValue);
       data["credit2Value"] = Number(this.creditValue2);
@@ -109,6 +111,7 @@ export class FilterComponent implements OnInit {
       data["credit1Value"] = null;
       data["credit2Value"] = Number(this.creditValue2);
     }
+    
 
     if(this.validateSearchBox()){
 
@@ -149,12 +152,20 @@ export class FilterComponent implements OnInit {
   onChangeFromCredit(item: any) {
     var credit1 = document.getElementById('credit-input-1');
     var credit2 = document.getElementById('credit-input-2');
-    if (item.key != 4) {
+    console.log(item);
+    if(item.key == 0){
+      credit1.style.display = 'none'
+      credit2.style.display = 'none'
+      this.creditValue = '-1';
+      this.creditValue2 = '-1';
+    }
+    else {if (item.key != 4) {
       credit1.style.display = 'none'
       credit2.style.display = 'inline-block'
-    } else if (item.key == 4) {
+      } else if (item.key == 4) {
       credit1.style.display = 'inline-block'
       credit2.style.display = 'inline-block'
+      }
     }
   }
 
