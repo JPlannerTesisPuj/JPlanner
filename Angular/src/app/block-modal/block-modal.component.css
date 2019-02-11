@@ -1,0 +1,25 @@
+.small {
+    font-size: 8px;
+}
+/**
+.fdropdown {
+    margin-bottom: 10px;
+    &.week-dropdown {
+        .multiselect-dropdown {
+            display: inline-block;
+            width: 90%;
+            .selected-item {
+                margin: 3px;
+            }
+        }
+    }
+    &.hour-dropdown{
+        height: 40px;
+        width: 100%;
+        border-radius: 4px;
+        &#hourTo {
+            display: none;
+        }
+    }
+}
+*/

@@ -1,0 +1,32 @@
+<div class="small">
+    <h2 mat-dialog-tittle> Datos del bloqueo</h2>
+
+    <b>Seleccione un nombre para el bloqueo</b>
+
+    <input [(ngModel)]="nombreBloqueo"/>
+
+    <b>Seleccione el/los día(s) en los que desea añadir el bloqueo</b>
+
+    <ng-multiselect-dropdown class="fdropdown week-dropdown col-12" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
+      [(ngModel)]="blockSelectedItemsWeek" [settings]="dropdownSettings">
+    </ng-multiselect-dropdown>
+
+    <b>Seleccione el horario</b>
+
+    <select id="hourFrom" class="fdropdown hour-dropdown col-5" [(ngModel)]="blockSelectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
+        <option value="" disabled selected>Hora inicial</option>
+        <option *ngFor="let hour of hoursFrom">
+          {{hour}}
+        </option>
+      </select>
+    
+      <select id="hourTo" [(ngModel)]="blockSelectedOptionTo" class="fdropdown hour-dropdown col-5" data-push-left="off-2">
+        <option value="" disabled selected>Hora final</option>
+        <option *ngFor="let hour of hoursTo">
+          {{hour}}
+        </option>
+      </select>
+
+      <button (click)="addBlock()">Agregar Bloqueo</button>
+
+</div>
