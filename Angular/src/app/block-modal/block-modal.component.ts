@@ -11,11 +11,11 @@ export class BlockModalComponent implements OnInit {
 
   ngOnInit() {
   }
+
   @Output() messageEvent = new EventEmitter<string>();
 
-  //Envias los datos
+  //Envias los datos del modal al calendar
   addBlock(){
-    console.log("emitiendo");
     this.message = 'Master';
     this.messageEvent.emit("holis");
   }

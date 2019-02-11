@@ -314,22 +314,22 @@ export class CalendarComponent implements OnInit {
 
   /**
    * 
-   * @param nombreBloqueo Nombre del bloqueo suministrado por el usuario
-   * @param dia Día del bloqueo
-   * @param horaInicio Hora en la que inicia el bloqueo
-   * @param horaFin Hora en la que finaliza el bloqueo
+   * @param blockName Nombre del bloqueo suministrado por el usuario
+   * @param day Día del bloqueo
+   * @param initialHour Hora en la que inicia el bloqueo
+   * @param finalHour Hora en la que finaliza el bloqueo
    */
-  private addBlock(nombreBloqueo: string, dia: string, horaInicio: number, horaFin: number): void {
+  private addBlock(blockName: string, day: string, initialHour: number, finalHour: number): void {
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([],this.classes);
 
-    let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(dia)), horaInicio / 3600);
-    let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(dia)), horaFin / 3600);
+    let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), initialHour / 3600);
+    let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), finalHour / 3600);
     newClasses.push({
       start: startHour,
       end: endHour,
       color: colors.red,
-      title: nombreBloqueo,
+      title: blockName,
       actions: this.actions
     });
   }
