@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, Input } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
@@ -8,6 +8,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
+import { BlockModalComponent } from '../block-modal/block-modal.component';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -44,6 +45,9 @@ export class CalendarComponent implements OnInit {
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
   private verticalMenuIndex: number = 0;
+
+  message:string;
+
 
   /**
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -329,6 +333,14 @@ export class CalendarComponent implements OnInit {
       actions: this.actions
     });
   }
+
+  receiveMessage($event) {
+    //Lo que necesites hacer
+    console.log("recibiendo");
+    this.message = $event
+    console.log(this.message);
+  }
+
 
 }
 
