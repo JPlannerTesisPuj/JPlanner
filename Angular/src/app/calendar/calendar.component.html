@@ -107,7 +107,7 @@
       <div>
         <b>{{ viewDate | calendarDate:'weekViewColumnHeader':locale }}</b>
       </div>
-      <div class="gesture__zone" (swipe)="onSwipe($event)">
+      <div (swipe)="onSwipe($event)">
       <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1"
         [dayStartHour]="7" [dayEndHour]="22" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
       </mwl-calendar-day-view>

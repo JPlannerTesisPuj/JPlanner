@@ -74,31 +74,6 @@
 .cal-day-view .cal-event-container {
     width: calc(100% - 70px) !important;
 }
-
-.gesture__zone {
-    
-  }
-  
-  h1, p, .gesture__indicator {
-     -webkit-user-select: none; /* Chrome all / Safari all */
-    -moz-user-select: none;   /* Firefox all */
-    -ms-user-select: none;  /* IE 10+ */
-     user-select: none;  /* Likely future */ 
-  }
-  
-  .gesture__indicator {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 50px;
-    display: block;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 45px;
-    z-index: 10;
-    background-color: #42a5f5;
-  }
 .cal-display-sm {
     display: none;
     @media (max-width: 768px) {

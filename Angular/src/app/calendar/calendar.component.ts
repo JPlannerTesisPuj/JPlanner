@@ -58,11 +58,10 @@ export class CalendarComponent implements OnInit {
 
   
 
-   
+   //Captura el evento swipe cuando este se realice en el calendar: left o right
   onSwipe(evt) {
     const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
     const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
-
     this.eventText = `${x}`;
     if (this.eventText == 'left') {
       this.viewDate = subDays(this.viewDate,1);
