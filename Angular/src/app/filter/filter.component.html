@@ -33,16 +33,25 @@
     <input required="required" id="credit-input-1" class="input-number col-12" type="text" maxlength="2" pattern="\d{1,2}"
       oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue" [value]="creditValue"
       (ngModelChange)="onChangeInputCreditOne($event)" />
+
     <select id="creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="credit-dropdown col-12">
+
       <option value="" disabled selected>Filtrar Por Creditos</option>
       <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
         {{comparator.value}}
       </option>
     </select>
+    
     <input required="required" id="credit-input-2" class="input-number col-12" type="text" maxlength="2" pattern="\d{1,2}"
       oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue2" [value]="creditValue2"
       (ngModelChange)="onChangeInputCreditTwo($event)" />
-</div>
+
+      <div class="alert" *ngIf="errorCreditos">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Por favor, digite un número válido de créditos
+      </div> 
+
+  </div>
 
 
   <div id="search-fields" class="col-12 grid-noGutter">
