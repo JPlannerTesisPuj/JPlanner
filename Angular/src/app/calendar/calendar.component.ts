@@ -402,12 +402,7 @@ export class CalendarComponent implements OnInit {
     var res = this.message.split(",");
     this.addBlock(res[0],res[1],Number(res[2]),Number(res[3]));
   }
-
-  /*
-  open() {
-    this.dialog.open(BlockModalComponent);
-  }*/
-
+  
 }
 
 

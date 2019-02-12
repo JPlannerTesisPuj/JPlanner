@@ -7,7 +7,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class BlockModalComponent implements OnInit {
 
   private blockName: string;
-  private message;
   private blockSelectedItemsWeek: string;
 
   private blockSelectedOptionFrom = "";
@@ -23,7 +22,7 @@ export class BlockModalComponent implements OnInit {
   ngOnInit() {
 
     this.dropdownListWeek = [
-      'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'
+      'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
     ];
 
     //Opciones de configuración del dropdown
@@ -90,7 +89,6 @@ export class BlockModalComponent implements OnInit {
     //Unir todo el mensaje para enviarlo
     let data = this.blockName + "," + daysBlock + "," + selectedFromSeconds + "," + selectedToSeconds;
 
-    this.message = 'Master';
     this.messageEvent.emit(data);
   }
 
