@@ -1,31 +1,40 @@
 <div class="small">
-    <!-- <h2 mat-dialog-tittle> Datos del bloqueo</h2>
+    <h2 mat-dialog-tittle> Datos del bloqueo</h2>
 
     <b>Seleccione un nombre para el bloqueo</b>
+    <br>
 
-    <input [(ngModel)]="nombreBloqueo"/>
+    <div class="search-container col-12">
+      <input [(ngModel)]="blockName" type="text" class="col-12" placeholder="Nombre del bloqueo">
+    </div>
 
     <b>Seleccione el/los día(s) en los que desea añadir el bloqueo</b>
 
-    <ng-multiselect-dropdown class="fdropdown week-dropdown col-12" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
-      [(ngModel)]="blockSelectedItemsWeek" [settings]="dropdownSettings">
-    </ng-multiselect-dropdown>
+    <div class="grid-noGutter" id="basic-search">
+        <div id="week-days" class="col-12 grid-noGutter">
+          <label class="col-12" for="week-days"></label>
+          <ng-multiselect-dropdown class="col-12" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
+            [(ngModel)]="blockSelectedItemsWeek" [settings]="dropdownSettings">
+          </ng-multiselect-dropdown>
+    </div>
 
-    <b>Seleccione el horario</b>
+    <b>Seleccione una franja horaria</b>
 
-    <select id="hourFrom" class="fdropdown hour-dropdown col-5" [(ngModel)]="blockSelectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
-        <option value="" disabled selected>Hora inicial</option>
-        <option *ngFor="let hour of hoursFrom">
+    <div id="week-hours">
+        <label for='week-hours'></label>
+        <select id="blockHourFrom" class="hour-dropdown col-6" [(ngModel)]="blockSelectedOptionFrom" (ngModelChange)="onChangeFromBlockHour($event)">
+          <option value="" disabled selected>Hora inicial</option>
+          <option *ngFor="let hour of blockHoursFrom">
+            {{hour}}
+          </option>
+        </select>
+      <select id="blockHourTo" [(ngModel)]="blockSelectedOptionTo" class="hour-dropdown col-6" data-push-left="off-2">
+        <option value="" disabled selected>Hora final</option>
+        <option *ngFor="let hour of blockHoursTo">
           {{hour}}
         </option>
       </select>
-    
-      <select id="hourTo" [(ngModel)]="blockSelectedOptionTo" class="fdropdown hour-dropdown col-5" data-push-left="off-2">
-        <option value="" disabled selected>Hora final</option>
-        <option *ngFor="let hour of hoursTo">
-          {{hour}}
-        </option>
-      </select> -->
+    </div>
 
       <button (click)="addBlock()">Agregar Bloqueo</button>
 

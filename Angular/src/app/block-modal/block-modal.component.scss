@@ -2,25 +2,31 @@
 .small {
     font-size: 8px;
 }
-/**
-.fdropdown {
-    margin-bottom: 10px;
-    &.week-dropdown {
-        .multiselect-dropdown {
-            display: inline-block;
-            width: 90%;
-            .selected-item {
-                margin: 3px;
-            }
+#basic-search{
+    .dropdown-specific-field{
+        .dropdown-list{
+            margin-bottom:10px;
         }
     }
-    &.hour-dropdown{
-        height: 40px;
+    #week-hours{
         width: 100%;
-        border-radius: 4px;
-        &#hourTo {
-            display: none;
+        label[for="week-hours"]{
+            display: block;
+        }
+        .hour-dropdown{
+            float:left;
+            padding: 10px;
+                &#hourTo {
+                    display: none;
+                }
         }
     }
 }
-*/
+#class-size{
+    display: inline-block;
+}
+.search-container{
+    input {
+         padding: 3px;
+     }
+ }

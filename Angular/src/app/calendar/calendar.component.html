@@ -1,4 +1,3 @@
-<app-block-modal (messageEvent)="receiveMessage($event)"></app-block-modal>
 <div class="menu-container col-4_xs-12_sm-12_md-12_lg-4">
 
   <!--
@@ -13,23 +12,8 @@
           search
         </i>
       </ng-template>
-
-      <h2>Búsqueda</h2>
-      <div class="sub-menu-container">
-        <mat-tab-group>
-
-          <mat-tab label="Básica">
-            <app-filter></app-filter>
-          </mat-tab>
-
-          <mat-tab label="Avanzada">
-            <app-adv-filter></app-adv-filter>
-          </mat-tab>
-
-        </mat-tab-group>
-      </div>
+        <app-filter></app-filter>
     </mat-tab>
-
     <mat-tab>
       <ng-template mat-tab-label>
         <i class="material-icons">
@@ -115,5 +99,10 @@
 
     </div>
   </div>
+
+  <br>
+
+  <!-- <button (click)="open()">Agregar Bloqueo</button> -->
+  <app-block-modal (messageEvent)="receiveMessage($event)"></app-block-modal>
 
 </div>

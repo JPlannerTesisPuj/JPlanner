@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, Input } from '@angular/core';
-import { CalendarView, CalendarEvent, CalendarEventAction } from 'angular-calendar';
+import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
-import { Subject as SubjectRXJS } from 'rxjs';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { Subject as SubjectRXJS, generate } from 'rxjs';
+import { MatDialog, MAT_DIALOG_DATA, MatHeaderRow } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
+
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -45,6 +46,7 @@ export class CalendarComponent implements OnInit {
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
   private verticalMenuIndex: number = 0;
+  private listBlockID: Number[]= [];
 
   message:string;
 
@@ -81,17 +83,21 @@ export class CalendarComponent implements OnInit {
     let filter;
     this.data.currentMessage.subscribe(message => {
       filter = message;
-      if (filter['type'] == 'filterUnificado') {
-        this.readJSONFileService.filterUnificado('classes', filter).subscribe(classes => {
-          this.verticalMenuIndex = 1;
-        });
-      }
-      else if (filter['type'] === 'adv-filter') {
-        this.readJSONFileService.advFilter('classes', filter).subscribe(classes => {
-          this.verticalMenuIndex = 1;
-        });
+      if (filter['type'] == 'filter') {
+        this.verticalMenuIndex = 1;
       }
     });
+  }
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd
+  }: CalendarEventTimesChangedEvent): void {
+    event.start = newStart;
+    event.end = newEnd;
+    this.handleEvent('Dropped or resized', event);
+    this.refresh.next();
   }
 
   /**
@@ -241,9 +247,11 @@ export class CalendarComponent implements OnInit {
     //
     if (action === 'Clicked') {
       let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
-      let dialogRef = this.dialog.open(ClassModalComponent, {
-        data: { class: subjectToShowthis }
-      });
+      if(subjectToShowthis !== undefined){
+        let dialogRef = this.dialog.open(ClassModalComponent, {
+          data: { class: subjectToShowthis }
+        });
+      }
     }
     else if (action === 'Removed') {
       this.removeClass(event.id);
@@ -290,7 +298,7 @@ export class CalendarComponent implements OnInit {
    * @param oldClass Clase que sera removida
    * Remueve la calse vieja y agrega la clase nueva
    */
-  private  exchangeClasses(newClass,oldClass){
+  private exchangeClasses(newClass,oldClass){
     this.removeClass(oldClass.id);
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([],this.classes);
@@ -313,36 +321,96 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
+   * Esta función genera automáticamente un id para cada nuevo bloque
+   */
+  private generateBlockID(): number{
+    var flag= false;
+    var id_rand = Math.random();
+    this.listBlockID.forEach(blockId => {
+      if(blockId == id_rand)
+        flag = true;
+    });
+
+    if(flag){
+      this.generateBlockID();
+    }else{
+      this.listBlockID[this.listBlockID.length]= id_rand;
+      return id_rand;
+    }
+  }
+
+  /**
    * 
    * @param blockName Nombre del bloqueo suministrado por el usuario
    * @param day Día del bloqueo
    * @param initialHour Hora en la que inicia el bloqueo
    * @param finalHour Hora en la que finaliza el bloqueo
    */
-  private addBlock(blockName: string, day: string, initialHour: number, finalHour: number): void {
+  private addBlock(blockName: string, days: string, initialHour: number, finalHour: number): void {
+
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([],this.classes);
 
-    let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), initialHour / 3600);
-    let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), finalHour / 3600);
-    newClasses.push({
-      start: startHour,
-      end: endHour,
-      color: colors.red,
-      title: blockName,
-      actions: this.actions
-    });
+    if(days.includes("-")){  //Esto se da en caso de que el usuario haya escogido más de un día
+      var id_block= this.generateBlockID();
+      days.split("-").forEach(day => {
+        let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), initialHour / 3600);
+        let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), finalHour / 3600);
+        newClasses.push({
+          start: startHour,
+          end: endHour,
+          color: colors.red,
+          title: blockName,
+          id: id_block,
+          actions: this.actions,
+          draggable: true,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true
+          }
+        });
+      });
+    }else{      //Esto se da en el caso que el usuario haya escogido un solo día
+      let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(days)), initialHour / 3600);
+      let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(days)), finalHour / 3600);
+      newClasses.push({
+        start: startHour,
+        end: endHour,
+        color: colors.red,
+        title: blockName,
+        id: this.generateBlockID(),
+        actions: this.actions,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        }
+      });
+    }
+
+    this.classes = newClasses;
+    //this.calendarClasses.push(newClass);
+    this.refresh.next();
+
   }
 
+  //Esta función recibe los datos del modal del bloqueo
   receiveMessage($event) {
-    //Lo que necesites hacer
-    console.log("recibiendo");
     this.message = $event
-    console.log(this.message);
+
+    //Res contiene el mensaje separado por comas y lo convierte en un arreglo
+    var res = this.message.split(",");
+    this.addBlock(res[0],res[1],Number(res[2]),Number(res[3]));
   }
 
+  /*
+  open() {
+    this.dialog.open(BlockModalComponent);
+  }*/
 
 }
+
+
 
 //Componente con el dialogo de confirmación
 @Component({
