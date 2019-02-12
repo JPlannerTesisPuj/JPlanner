@@ -13,7 +13,6 @@
       "_id": "5bff1b9c09e156e7b67420c3",
       "pre_requisitos": [
          "5bff1b9ce90b7d9001abceda",
-         "5bff1b9c09e156e7b67420c3",
          "5bff1b9ca5011b298abd2916",
          "5bff1b9c881b2a7c9def727e",
          "5bff1b9c35633317e081334f",
@@ -31,7 +30,6 @@
          "5bff1b9c800def454afeb053",
          "5bff1b9de00a4a2de94c3907",
          "5bff1b9d57226b0753fa1623",
-         "5bff1b9caffbea441e99f051",
          "5bff1b9d478464076adc90f3",
          "5bff1b9cc52da8d8a61db224",
          "5bff1b9ce89fa138948db4cc"
@@ -234,7 +232,6 @@
          "5bff1b9cb09bd1800cd22813",
          "5bff1b9c8acb87ec6d0423a7",
          "5bff1b9ce89fa138948db4cc",
-         "5bff1b9c2079b7e5830e021a",
          "5bff1b9c13c40ca0884221f0"
       ]
    },
@@ -367,7 +364,6 @@
       "_id": "5bff1b9c934bd368e6718a26",
       "pre_requisitos": [
          "5bff1b9c881b2a7c9def727e",
-         "5bff1b9c934bd368e6718a26",
          "5bff1b9ccf825bceba9c9bb3",
          "5bff1b9c92fdb32cb33301ee",
          "5bff1b9c35633317e081334f",
@@ -422,7 +418,6 @@
    {
       "_id": "5bff1b9de00a4a2de94c3907",
       "pre_requisitos": [
-         "5bff1b9de00a4a2de94c3907",
          "5bff1b9c8e923c840e7efa81",
          "5bff1b9c268fcbada7edb730",
          "5bff1b9cae1a1077dd031af3",
