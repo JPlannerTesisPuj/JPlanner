@@ -1,42 +1,52 @@
-.fdropdown {
-    margin-bottom: 10px;
-    &.week-dropdown {
-        .multiselect-dropdown {
-            display: inline-block;
-            width: 90%;
-            .selected-item {
-                margin: 3px;
-            }
-        }
-    }
-    &.hour-dropdown{
-        height: 40px;
-        width: 100%;
-        border-radius: 4px;
-        &#hourTo {
-            display: none;
-        }
-    }
-    &.search-dropdown {
-        .multiselect-dropdown {
-            display: inline-block;
-            width: 10%;
-            .selected-item {
-                margin: 3px;
-            }
-        }
+.sub-menu-container{
+    button{
+        width:50%;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
 
+#basic-search,#adv-filters{
+    >div{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+}
+
+#basic-search{
+    .dropdown-specific-field{
+        .dropdown-list{
+            margin-bottom:10px;
+        }
+    }
+#week-hours{
+    width: 100%;
+
+label[for="week-hours"]{
+    display: block;
+}
+.hour-dropdown{
+    float:left;
+    padding: 10px;
+        &#hourTo {
+            display: none;
+        }
+}
+}
+}
+    
 .credits,#class-size{
     display: inline-block;
     .credit-dropdown{
-        height: 38px;
+        min-height: 35px;
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
     .input-number{
+        min-height: 35px;
         text-align: center;
         display: none;
-        margin-bottom: 10px;
         &:invalid {
             border-color: red;
           }
@@ -44,17 +54,29 @@
 }
 
 .search-container{
-    margin: 20px;
-    display:inline-block;
-    
-    input {
-        width: 96%;
+   input {
         padding: 3px;
     }
-    .error-msg{
-        position: absolute;
-        visibility: hidden;
+}
+
+#adv-filters {
+    &.hidden{
+    display:none;
     }
+    div{
+        margin-bottom: 10px;
+
+        select {
+            height: 35px;
+            line-height: 35px;
+            border-radius: 4px;
+        }
+    }
+
+   .filter-btn{
+        margin-left: auto;
+    }
+
 }
 
 

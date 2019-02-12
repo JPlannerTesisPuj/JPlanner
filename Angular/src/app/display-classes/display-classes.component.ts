@@ -32,15 +32,9 @@ export class DisplayClassesComponent implements OnInit {
       this.classes = [];
       this.error = "";
       this.filter = message;
-      if (this.filter['type'] == 'filterUnificado') {
-        console.log(this.filter);
-        this.readJSONFileService.filterUnificado('classes', this.filter)
-          .subscribe(classes => {
-            this.classes = classes;
-          });
-      }
-      else if (this.filter['type'] === 'adv-filter'){
-        this.readJSONFileService.advFilter('classes',this.filter).subscribe(classes => {
+      if (this.filter['type'] === 'filter'){
+        this.readJSONFileService.filter('classes',this.filter).subscribe(classes => {
+          //Pinta en el buscador las clases encontradas
           this.classes = classes;
         });
       }
