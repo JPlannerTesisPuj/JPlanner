@@ -155,7 +155,6 @@
          "5bff1b9ce1db405a97b62c5c",
          "5bff1b9d478464076adc90f3",
          "5bff1b9d57226b0753fa1623",
-         "5bff1b9c44f83dc610dfa50a",
          "5bff1b9ca5011b298abd2916",
          "5bff1b9c7b5ba5922c536665"
       ]
@@ -191,7 +190,6 @@
    {
       "_id": "5bff1b9c329b7e1adfc28870",
       "pre_requisitos": [
-         "5bff1b9c329b7e1adfc28870",
          "5bff1b9d506fc45e8e5beac0",
          "5bff1b9cd7c0330c6b5b1499",
          "5bff1b9c9388773f800e1dd9",
@@ -420,7 +418,6 @@
          "5bff1b9cc76e5509207e6407",
          "5bff1b9cbc5d2cb09c1f1040",
          "5bff1b9c153ea6a47f5deb47",
-         "5bff1b9ca5011b298abd2916"
       ]
    },
    {
@@ -473,7 +470,6 @@
       "pre_requisitos": [
          "5bff1b9c1fe9f0e4cc65e781",
          "5bff1b9c842bca830ef0d873",
-         "5bff1b9cae1a1077dd031af3",
          "5bff1b9c1bdeccb06c38da9d",
          "5bff1b9c5f3a77cd14c1dd1d",
          "5bff1b9cbaaa31813c0d2f65"
@@ -584,7 +580,6 @@
          "5bff1b9c92fdb32cb33301ee",
          "5bff1b9c515db1cfe7301443",
          "5bff1b9ce90b7d9001abceda",
-         "5bff1b9c2079b7e5830e021a"
       ]
    },
    {
@@ -654,7 +649,6 @@
       "_id": "5bff1b9c1e199aa36aaead25",
       "pre_requisitos": [
          "5bff1b9c5f3a77cd14c1dd1d",
-         "5bff1b9c1e199aa36aaead25"
       ]
    }
 ]
