@@ -31,8 +31,6 @@ public class JSONFileRestService {
 
 	// Variable para armar un JSON con un error
 	Map<String, Object> errorResponse;
-
-	
 	
 	// Servicio para filtros de clases
 	@RequestMapping(value = "files/read/json/{fileName}/class-filter/{days}/{hoursFrom}/{hoursTo}/"
@@ -255,6 +253,71 @@ public class JSONFileRestService {
 
 		// Retorna un String en forma de JSON con un error 400
 		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+	}
+	
+	@RequestMapping(value = "tokenauth/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	ResponseEntity<String> getJSONFile(@PathVariable("token") String token) throws JsonProcessingException {
+
+		// Se obtiene la información del archivo
+		InputStream in = getClass().getResourceAsStream("/json/" + "users_pensum" + ".json");
+
+		// Si no existe el archivo se crea un JSON que contiene especificando el error
+		if (in == null) {
+			errorResponse = new HashMap<>();
+			errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
+			errorResponse.put("error", "Error al abrir el archivo");
+			errorResponse.put("message", "No se ha encontrado el archivo " + "users_pensum" + ".json para leer");
+			errorResponse.put("path", "tokenauth/" + "users_pensum");
+
+			// Convierte el Mapa con la especificación del error en un String en forma de
+			// JSON
+			String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
+
+			// Retorna un String en forma de JSON con un error 400
+			return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+		}
+
+		try {
+			// Lee el archivo
+			BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+			StringBuilder JSONFileBuilder = new StringBuilder();
+
+			// Crea un String con toda la información del archivo JSON
+			String inputStringLine;
+			while ((inputStringLine = streamReader.readLine()) != null) {
+				JSONFileBuilder.append(inputStringLine);
+			}
+			
+			// Se crea el filtro para buscar el token en users_pensum.json
+			String baseFilter = "$..[?(@.credenciales == " + "'"+ token + "')]";
+
+			
+			ArrayList<Object> user = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
+			String filteredJSON = new ObjectMapper().writeValueAsString(user);
+			
+			// Retorna el archivo JSON leído
+			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Si hubo un error al leer el archivo se crea un JSON que contiene
+		// especificando el error
+		errorResponse = new HashMap<>();
+		errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
+		errorResponse.put("error", "Error al abrir el archivo");
+		errorResponse.put("message", "No se pudo leer el archivo " + "users_pensum" + ".json para leer");
+		errorResponse.put("path", "/files/read/json/" + "users_pensum");
+
+		// Convierte el Mapa con la especificación del error en un String en forma de
+		// SON
+		String errorJson = new ObjectMapper().writeValueAsString(errorResponse);
+
+		// Retorna un String en forma de JSON con un error 400
+		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+
 	}
 	
 	  	

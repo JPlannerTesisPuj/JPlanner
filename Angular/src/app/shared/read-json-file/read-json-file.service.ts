@@ -4,6 +4,7 @@ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angul
 import { Observable } from 'rxjs';
 import { Subject } from '../model/Subject';
 import { BinaryOperator } from '@angular/compiler';
+import { User } from '../model/User';
 
 /**
  * Permite consumir servicios externos para leer archivos JSON
@@ -16,7 +17,7 @@ export class ReadJsonFileService {
  
   // URL base a donde se harán las peticiones
   // URL local
-  // private baseUrl: string = 'http://localhost:8080/';
+  //private baseUrl: string = 'http://localhost:8080/';
   // URL global
   private baseUrl: string = 'http://34.73.139.18:8080/';
 
@@ -62,5 +63,15 @@ export class ReadJsonFileService {
     +'/'+filter['scholar-year']
     +'/'+filter['grade'];
     return (this.http.get<Subject>(url, { withCredentials: true }));;
+  }
+  /**
+   * Retorna un Observable con el usuario encontrado segun el token mandado
+   * 
+   * @param token token del usuario que se intenta autenticar
+   */  
+
+  public filterToken(token:string):  Observable<User[]> {
+    return (this.http.get<User[]>(this.baseUrl + 'tokenauth/' + token, { withCredentials: true }));
+
   }
 }
