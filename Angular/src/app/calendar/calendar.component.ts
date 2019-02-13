@@ -6,6 +6,7 @@ import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
+import {HammerGestureConfig} from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 /**
@@ -44,7 +45,6 @@ export class CalendarComponent implements OnInit {
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
   private verticalMenuIndex: number = 0;
-
   /**
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
    * start: fecha de inicio de la materia, incluye la hora en que inicia la clase y el día de la semana en que se tomará.
@@ -54,6 +54,22 @@ export class CalendarComponent implements OnInit {
    */
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
+
+  
+
+   //Captura el evento swipe cuando este se realice en el calendar: left o right
+  onSwipe(evt) {
+    const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
+    if (verticalSwipeMove == 'left') {
+      //Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actal mostrado.
+      this.viewDate = subDays(this.viewDate,1);
+    }
+    else if (verticalSwipeMove == 'right') {
+      //Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actal mostrado.
+      this.viewDate = addDays(this.viewDate,1);
+    }
+}
+
 
 
   //Se añade un evento personalizado a cada uno de las materias del calendario
