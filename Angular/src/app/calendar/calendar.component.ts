@@ -60,11 +60,11 @@ export class CalendarComponent implements OnInit {
    //Captura el evento swipe cuando este se realice en el calendar: left o right
   onSwipe(evt) {
     const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
-    if (verticalSwipeMove == 'left') {
+    if (verticalSwipeMove == 'right') {
       //Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actal mostrado.
       this.viewDate = subDays(this.viewDate,1);
     }
-    else if (verticalSwipeMove == 'right') {
+    else if (verticalSwipeMove == 'left') {
       //Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actal mostrado.
       this.viewDate = addDays(this.viewDate,1);
     }
