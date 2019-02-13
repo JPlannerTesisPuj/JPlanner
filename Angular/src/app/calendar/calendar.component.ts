@@ -44,7 +44,6 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView; // Enum
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
-  private eventText = '';
   private verticalMenuIndex: number = 0;
   /**
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -60,13 +59,13 @@ export class CalendarComponent implements OnInit {
 
    //Captura el evento swipe cuando este se realice en el calendar: left o right
   onSwipe(evt) {
-    const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
-    const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
-    this.eventText = `${x}`;
-    if (this.eventText == 'left') {
+    const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
+    if (verticalSwipeMove == 'left') {
+      //Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actal mostrado.
       this.viewDate = subDays(this.viewDate,1);
     }
-    else if (this.eventText == 'right') {
+    else if (verticalSwipeMove == 'right') {
+      //Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actal mostrado.
       this.viewDate = addDays(this.viewDate,1);
     }
 }
