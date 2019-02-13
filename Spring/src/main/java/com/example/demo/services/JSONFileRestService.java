@@ -139,6 +139,7 @@ public class JSONFileRestService {
 			if(!searchParams.equals("none") && !searchValue.equals("none")) {
 				String[] arraydropdownInfo = searchParams.split("-");
 
+				filter_search += "(";
 				for (int i = 0; i < arraydropdownInfo.length; ++i) {
 					// Se itera sobre las opciones escogidas de la búsqueda específica	
 					if(arraydropdownInfo[i].equals("Nombre de Asignatura")) {
@@ -154,7 +155,7 @@ public class JSONFileRestService {
 				}
 				
 				filter_search = filter_search.substring(0, filter_search.length() - 4);
-				
+				filter_search += ")";
 			}else {
 				filter_search = "@.departamento && @.profesor && @.nombre";
 			}
