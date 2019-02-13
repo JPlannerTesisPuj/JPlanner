@@ -29,7 +29,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { DataService } from './shared/data.service';
 import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/calendar.component';
-import { AdvFilterComponent } from './adv-filter/adv-filter.component';
 
 
 @NgModule({
@@ -40,7 +39,6 @@ import { AdvFilterComponent } from './adv-filter/adv-filter.component';
     ClassModalComponent,
     FilterComponent,
     CalendarComponent,
-    AdvFilterComponent,
     OverlapClassConfirmationDialog
   ],
   imports: [
