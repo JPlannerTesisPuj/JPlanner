@@ -405,6 +405,7 @@ CleanAll(){
   this.selectedOptionFrom = "";
   this.selectedOptionTo = "";
   this.creditsComparator = '';
+  this.onCleanCredit();
   
   
   this.selectedItemsWeek = [];
@@ -508,7 +509,18 @@ getSelectedCredits(){
       credit2.style.display = 'inline-block'
     }
   }
-
+  onCleanCredit(){
+    var credit1 = document.getElementById('credit-input-1');
+    var credit2 = document.getElementById('credit-input-2');
+    var credit3 = document.getElementById('class-size-input-1');
+    var credit4 = document.getElementById('class-size-input-2');
+    
+      credit1.style.display = 'none'
+      credit2.style.display = 'none'
+      credit3.style.display = 'none'
+      credit4.style.display = 'none'
+      
+  }
   /**
    * @param item El item que se selecciono en el dropdown de horas desde
    * Llena dinamicamente el arreglo de horas hasta para que siempre comienze desde la siguiente hora a la seleccionada
