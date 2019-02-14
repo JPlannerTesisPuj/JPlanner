@@ -64,7 +64,7 @@ export class FilterComponent implements OnInit {
     this.dropdownListWeek = [
       'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'
     ];
-    this.creditsComparatorOptions = {0:"Ninguno", 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre"};
+    this.creditsComparatorOptions = {0:"Cualquiera", 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre"};
 
     //Opciones de configruacion del dropdwn
     this.dropdownSettings = {
@@ -179,8 +179,7 @@ export class FilterComponent implements OnInit {
   this.dropdownSchoolYear.sort();
 }
 yearMajor(year, cycle) {
-  var newCycle = cycle + 1;
-  var auxYear = year;
+  
 
 
     if (this.creditsComparator.key === undefined ) {
@@ -501,8 +500,7 @@ getSelectedCredits(){
     if(item.key == 0){
       credit1.style.display = 'none'
       credit2.style.display = 'none'
-      //this.creditValue = '-1';
-      //this.creditValue2 = '-1';
+      
     }
     else {if (item.key != 4) {
       credit1.style.display = 'none'
