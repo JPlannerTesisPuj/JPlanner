@@ -313,6 +313,7 @@ getClassSizeOption() {
  * Crea el objeto filtro que se le enviara al servicio read-json-files
  */
 searchClasses() {
+
   let gradeToSend = this.gradeFilter;
   let modeToSend = this.selectedTeachingMode;
   let idToSend = this.searchedFilterId;
@@ -399,6 +400,37 @@ let classSizeToSend = this.getClassSizeOption();
   if(!this.isAdvancedSearch)
     this.restartAdvFilter(data);
   this.data.changeMessage(data);
+}
+CleanAll(){
+  this.selectedOptionFrom = "";
+  this.selectedOptionTo = "";
+  this.creditsComparator = '';
+  
+  
+  this.selectedItemsWeek = [];
+  this.searchBox = "";
+  this.selectedItemsSearch = [];
+  
+
+  this.defaultTeachingMode = 'Cualquiera';
+  this.openStateCheckbox = {
+    id: "open-state-checkbox",
+    name: 'Abierta',
+    isChecked: false,
+  }
+  this.closedStateCheckbox = {
+    id: 'closed-state-checkbox',
+    name: 'Cerrada',
+    isChecked: false,
+  }
+    this.selectedTeachingMode = this.defaultTeachingMode;
+    this.sizeComparator = this.defaultTeachingMode;
+    this.year = this.defaultTeachingMode;
+    this.gradeFilter = this.defaultTeachingMode;
+    
+  this.searchedFilterId = '';
+  this.searchedFilterNumber = '';
+  this.searchedFilterCode = '';
 }
 
 /**
