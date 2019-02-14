@@ -48,7 +48,7 @@ export class BlockModalComponent implements OnInit {
       }
     }
 
-  @Output() messageEvent = new EventEmitter<string>();
+  @Output() messageEvent = new EventEmitter<Object>();
 
   /**
    * Si horas desde se muestra, entonces se muestra el horas hasta
@@ -87,7 +87,12 @@ export class BlockModalComponent implements OnInit {
     var selectedToSeconds = (+selectedToSecondsArray[0]) * 60 * 60 + (+selectedToSecondsArray[1]) * 60;
 
     //Unir todo el mensaje para enviarlo
-    let data = this.blockName + "," + daysBlock + "," + selectedFromSeconds + "," + selectedToSeconds;
+    let data = {
+      ['blockName']: this.blockName,
+      ['daysBlock']: daysBlock,
+      ['selectedFromSeconds']: selectedFromSeconds,
+      ['selectedToSeconds']: selectedToSeconds
+    }
 
     this.messageEvent.emit(data);
   }

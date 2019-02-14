@@ -9,6 +9,7 @@ import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
+import { Horary } from '../shared/model/Horary';
 
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
@@ -45,6 +46,7 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView; // Enum
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
+  private calendarBlocks: Subject[] = [];
   private verticalMenuIndex: number = 0;
   private listBlockID: Number[]= [];
 
@@ -203,6 +205,7 @@ export class CalendarComponent implements OnInit {
       "isOverLapped": 
       this.classes.some(function (myClass) {
       overlapped = myClass;
+
       return  areRangesOverlapping(startHour, endHour, myClass.start, myClass.end);
     }),
     "classOverlapped": overlapped,
@@ -323,7 +326,7 @@ export class CalendarComponent implements OnInit {
   /**
    * Esta función genera automáticamente un id para cada nuevo bloque
    */
-  private generateBlockID(): number{
+  private generateBlockID(): string{
     var flag= false;
     var id_rand = Math.random();
     this.listBlockID.forEach(blockId => {
@@ -335,7 +338,7 @@ export class CalendarComponent implements OnInit {
       this.generateBlockID();
     }else{
       this.listBlockID[this.listBlockID.length]= id_rand;
-      return id_rand;
+      return ""+id_rand;
     }
   }
 
@@ -348,11 +351,21 @@ export class CalendarComponent implements OnInit {
    */
   private addBlock(blockName: string, days: string, initialHour: number, finalHour: number): void {
 
+    //En caso de no definir un nombre se colocá "Bloqueo" automáticamente
+    if(blockName === undefined){
+      blockName = "Bloqueo";
+    }
+
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([],this.classes);
 
+    //Se genera un id para el bloqueo a crear
+    var id_block= this.generateBlockID();
+
+    let horarios= [];
+    var horario;
+
     if(days.includes("-")){  //Esto se da en caso de que el usuario haya escogido más de un día
-      var id_block= this.generateBlockID();
       days.split("-").forEach(day => {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), initialHour / 3600);
         let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(day)), finalHour / 3600);
@@ -369,16 +382,19 @@ export class CalendarComponent implements OnInit {
             afterEnd: true
           }
         });
+        horario = new Horary(day,initialHour,finalHour); 
+        horarios.push(horario);
       });
     }else{      //Esto se da en el caso que el usuario haya escogido un solo día
       let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(days)), initialHour / 3600);
       let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(days)), finalHour / 3600);
+
       newClasses.push({
         start: startHour,
         end: endHour,
         color: colors.red,
         title: blockName,
-        id: this.generateBlockID(),
+        id: id_block,
         actions: this.actions,
         draggable: true,
         resizable: {
@@ -386,11 +402,21 @@ export class CalendarComponent implements OnInit {
           afterEnd: true
         }
       });
+
+      horario = new Horary(days,initialHour,finalHour); 
+      horarios.push(horario);
+
     }
 
-    this.classes = newClasses;
-    //this.calendarClasses.push(newClass);
-    this.refresh.next();
+    var newBlock = new Subject(id_block,'none',blockName,'none','none',0,0,0,'none','none','none','none','none','none',horarios,'none');
+    
+
+    //Si el bloqueo no se cruza se agrega al horario
+    if(!this.checkOverlappedBlock(newBlock)){
+      this.classes = newClasses;
+      this.calendarBlocks.push(newBlock);
+      this.refresh.next();
+    }
 
   }
 
@@ -398,9 +424,24 @@ export class CalendarComponent implements OnInit {
   receiveMessage($event) {
     this.message = $event
 
-    //Res contiene el mensaje separado por comas y lo convierte en un arreglo
-    var res = this.message.split(",");
-    this.addBlock(res[0],res[1],Number(res[2]),Number(res[3]));
+    this.addBlock(this.message['blockName'],this.message['daysBlock'],Number(this.message['selectedFromSeconds']),
+      Number(this.message['selectedToSeconds']));
+  }
+
+  //Verifica que el bloqueo no se cruce con otros bloqueos, retorna true en caso de que el horario se cruce
+  checkOverlappedBlock(block): boolean{
+
+    let isOverlapped: boolean = false;
+    let arrayOverlapped;
+
+    for (let horary of block.horarios) {
+      let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
+      let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+      arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
+      isOverlapped = arrayOverlapped["isOverLapped"];
+    }
+    return isOverlapped;
+
   }
   
 }
