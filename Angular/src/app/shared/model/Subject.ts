@@ -16,8 +16,9 @@ export class Subject {
     public modoEnsenanza: string;
     public estado: string;
     public grado: string;
-    public salon: string;
+    
     public departamento: string;
+    public prerrequisite: string[];
     public descripcion: string;
     public horarios: Horary[];
     public ciclo_lectivo: string;
@@ -34,8 +35,9 @@ export class Subject {
         private nModoEnsenanza: string,
         private nEstado: string,
         private nGrado: string,
-        private nSalon: string,
+        
         private nDepartamento: string,
+        public nPrerrequisite: string[],
         private nDescripcion: string,
         private nHorarios: Horary[],
         private nCiclo_lectivo: string
@@ -51,8 +53,9 @@ export class Subject {
         this.modoEnsenanza = nModoEnsenanza;
         this.estado = nEstado;
         this.grado = nGrado;
-        this.salon = nSalon;
+       
         this.departamento = nDepartamento;
+        this.prerrequisite = nPrerrequisite;
         this.descripcion = nDescripcion;
         this.horarios = nHorarios;
         this.ciclo_lectivo = nCiclo_lectivo;
