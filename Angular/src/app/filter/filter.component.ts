@@ -512,13 +512,13 @@ getSelectedCredits(){
   onCleanCredit(){
     var credit1 = document.getElementById('credit-input-1');
     var credit2 = document.getElementById('credit-input-2');
-    var credit3 = document.getElementById('class-size-input-1');
-    var credit4 = document.getElementById('class-size-input-2');
+    var sizeInput1 = document.getElementById('class-size-input-1');
+    var sizeInput2 = document.getElementById('class-size-input-2');
     
       credit1.style.display = 'none'
       credit2.style.display = 'none'
-      credit3.style.display = 'none'
-      credit4.style.display = 'none'
+      sizeInput1.style.display = 'none'
+      sizeInput2.style.display = 'none'
       
   }
   /**
