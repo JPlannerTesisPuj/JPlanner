@@ -77,7 +77,6 @@ export class FilterComponent implements OnInit {
       selectAllText: 'Seleccionar Todos',
       unSelectAllText: 'Remover Todos'
     };
-    
     this.initHoursFrom();
 
     this.sizeComparatorOptions = { 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre" };
@@ -179,29 +178,8 @@ export class FilterComponent implements OnInit {
   this.dropdownSchoolYear.sort();
 }
 yearMajor(year, cycle) {
-  
-
-
-    if (this.creditsComparator.key === undefined ) {
-      //alert("Elija un comparador de creditos");
-      data["operator"] = '0';
-      data["credit1Value"] = '-1';
-      data["credit2Value"] = '-1';
-      
-    } else if (this.creditsComparator.key == 4) {
-      data["credit1Value"] = Number(this.creditValue);
-      data["credit2Value"] = Number(this.creditValue2);
-      this.data.changeMessage(data);
-      if(this.creditValue2 == '' || this.creditValue == ''){
-        alert("Porfavor escriba el número de creditos");
-      }
-    } else if (this.creditValue2 == '') {
-        alert("Porfavor escriba el número de creditos");
-    }else{
-      data["credit1Value"] = null;
-      data["credit2Value"] = Number(this.creditValue2);
-    }
-    
+  var newCycle = cycle + 1;
+  var auxYear = year;
 
   if (newCycle == 3) {
     return auxYear + "-" + newCycle;
@@ -214,8 +192,7 @@ yearMajor(year, cycle) {
     auxYear = auxYear + 1;
     return auxYear + "-" + newCycle;
   }
-
-
+}
 
 yearMinor(year, cycle) {
   var newCycle = cycle - 1;
@@ -483,7 +460,6 @@ getSelectedCredits(){
    * Si horas desde se muestra, entonces se muestra el horas hasta
    */
   onChangeFromHour(item: any) {
-    
     var hour = document.getElementById('hourTo');
     if(item == "Ninguno"){
       hour.style.display = 'none';
@@ -496,7 +472,6 @@ getSelectedCredits(){
   onChangeFromCredit(item: any) {
     var credit1 = document.getElementById('credit-input-1');
     var credit2 = document.getElementById('credit-input-2');
-    console.log(item);
     if(item.key == 0){
       credit1.style.display = 'none'
       credit2.style.display = 'none'
@@ -521,9 +496,6 @@ getSelectedCredits(){
    * en horas desde
    */
   changeHoursTo(item) {
-    /*if(item == "Ninguno"){
-      return '-1';
-    }else*/
     this.hoursTo = [];
     var numberItem = item.substring(0, item.indexOf(':'));
     numberItem++;
