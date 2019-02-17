@@ -12,7 +12,7 @@
 		"estado": "cerrada",
 		"grado": "Pregrado",		
 		"departamento": "BANNER AVENUE",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c1fe9f0e4cc65e781",
 			"5bff1b9c1121038084ca5341"
 		],
@@ -41,6 +41,8 @@
 		"grado": "Maestria",
 		"salon": "7-65",
 		"departamento": "EMPIRE BOULEVARD",
+		"prerrequisito":[
+		],
 		"descripcion": "Enim adipisicing sit sit adipisicing sint. Aliqua laborum mollit veniam dolore aute consectetur. Velit proident veniam commodo adipisicing ut deserunt amet deserunt.\r\n",
 		"horarios": [
 			{
@@ -76,7 +78,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9cb3fa5c00bfd15fa2"
 		],
 		"departamento": "DUNNE PLACE",
@@ -103,7 +105,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "ELM AVENUE",
 		"descripcion": "Ad eu tempor quis esse anim consectetur et nulla nostrud. Sint sunt pariatur aute proident dolor magna eu nulla sint ex do. Non ex cillum in enim est laborum incididunt amet consectetur qui exercitation ad.\r\n",
 		"horarios": [
@@ -146,7 +148,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9ce90b7d9001abceda",
 			"5bff1b9c8acb87ec6d0423a7"
 		],
@@ -186,7 +188,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9cae1a1077dd031af3",
 			"5bff1b9cd7c0330c6b5b1499"
 		],
@@ -227,7 +229,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "BOWNE STREET",
 		"descripcion": "Quis ea tempor irure ullamco ut officia laboris fugiat. Consectetur tempor amet quis minim nostrud voluptate est nostrud ad. Nisi duis quis quis in minim tempor amet Lorem aliqua qui excepteur aliquip laboris nisi. Adipisicing exercitation nulla commodo sit exercitation minim officia pariatur officia amet ea incididunt minim. Do dolor ullamco deserunt mollit occaecat fugiat elit.\r\n",
 		"horarios": [
@@ -252,7 +254,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "MORTON STREET",
 		"descripcion": "Ex elit cupidatat aliqua ad incididunt dolore do aute. Occaecat commodo incididunt amet aute in sunt. Dolore ut officia voluptate ad.\r\n",
 		"horarios": [
@@ -283,7 +285,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c7b5ba5922c536665"
 		],
 		"departamento": "OCEAN AVENUE",
@@ -310,7 +312,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "DEGRAW STREET",
 		"descripcion": "Officia voluptate sint do mollit duis eu. Id incididunt sit fugiat mollit reprehenderit sunt qui in labore laboris exercitation. Duis sit irure occaecat fugiat quis ad proident voluptate veniam id ut nostrud culpa. Fugiat velit et magna aute do. Duis do mollit sunt nulla duis voluptate officia occaecat labore duis. Nostrud commodo irure sunt elit laborum ex duis sunt. Ea do consequat adipisicing adipisicing nostrud.\r\n",
 		"horarios": [
@@ -341,7 +343,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "HILL STREET",
 		"descripcion": "Culpa amet incididunt amet sint veniam dolor ad. Reprehenderit ut enim excepteur excepteur consectetur proident excepteur est cillum Lorem ad. Aute qui consequat veniam excepteur adipisicing est Lorem enim sunt enim sint. Aliquip nulla non nulla voluptate sunt.\r\n",
 		"horarios": [
@@ -378,7 +380,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9cc856f64969b103cc",
 			"5bff1b9c1e199aa36aaead25"
 		],
@@ -406,7 +408,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "WORTMAN AVENUE",
 		"descripcion": "Est excepteur tempor ex Lorem officia non minim fugiat magna pariatur ullamco qui proident. Consectetur veniam officia sint eu Lorem id culpa fugiat reprehenderit adipisicing aute sit eu in. Occaecat aliquip dolor exercitation sint labore. Ullamco quis labore elit fugiat laboris amet aute. Qui voluptate laboris qui elit ex est elit Lorem incididunt esse eiusmod. Duis adipisicing non deserunt dolore labore nulla exercitation adipisicing amet amet nostrud anim.\r\n",
 		"horarios": [
@@ -443,7 +445,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9caffbea441e99f051"
 		],
 		"departamento": "HANSON PLACE",
@@ -470,7 +472,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "JEROME AVENUE",
 		"descripcion": "Et cupidatat culpa ex mollit et minim laboris esse esse eiusmod culpa anim sunt dolor. Nostrud nostrud nulla ut amet eu id aliquip. Enim tempor sunt elit magna sint exercitation id quis duis enim nulla.\r\n",
 		"horarios": [
@@ -507,7 +509,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c515db1cfe7301443",
 			"5bff1b9cf4613221e5230197"
 		],
@@ -541,7 +543,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9cf4613221e5230197"
 		],
 		"departamento": "GRANITE STREET",
@@ -574,7 +576,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "CHAPEL STREET",
 		"descripcion": "Non Lorem officia velit in cupidatat eu ullamco velit minim magna minim consequat nostrud. Mollit amet ut dolore dolor aliquip consectetur amet mollit aliqua occaecat enim consectetur commodo quis. Dolor ad in enim ullamco minim culpa esse irure cupidatat irure.\r\n",
 		"horarios": [
@@ -605,6 +607,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
+		"prerrequisito":[],
 		"salon": "4-391",
 		"departamento": "POLY PLACE",
 		"descripcion": "Duis enim fugiat deserunt ex consectetur nisi anim. Velit dolore magna reprehenderit exercitation eu esse. Eiusmod voluptate dolor duis incididunt ut. Voluptate eu fugiat velit ea elit reprehenderit id et in ad. Pariatur nostrud labore ullamco in qui excepteur magna.\r\n",
@@ -642,7 +645,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9cc76e5509207e6407",
 			"5bff1b9c92fdb32cb33301ee"
 		],
@@ -676,7 +679,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "WOLF PLACE",
 		"descripcion": "Culpa enim nostrud ex nulla deserunt aute qui. Ullamco cillum nulla aute est nisi deserunt qui minim aute. Sunt ex reprehenderit voluptate cupidatat esse aliqua. Amet amet amet commodo consectetur laboris magna pariatur labore. Velit eu culpa exercitation in velit excepteur duis Lorem. Tempor fugiat ea ea dolor exercitation veniam. Lorem minim est occaecat aliquip consequat irure eiusmod velit ea in aliqua nostrud pariatur ipsum.\r\n",
 		"horarios": [
@@ -707,7 +710,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "BLAKE COURT",
 		"descripcion": "Est do do proident incididunt veniam. Aute Lorem mollit aliquip do amet sunt ut veniam consectetur in elit labore. Ea irure cupidatat nostrud nostrud ad ex. Dolor excepteur laboris aliquip pariatur duis duis eu eu qui qui.\r\n",
 		"horarios": [
@@ -744,7 +747,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "RADDE PLACE",
 		"descripcion": "Enim duis aliqua dolor magna non aute laboris voluptate. Aliquip et culpa et Lorem Lorem. Incididunt dolore adipisicing officia qui amet eu esse excepteur minim officia enim do dolor. Ad qui commodo ut consequat magna et consequat reprehenderit nostrud excepteur eiusmod. Commodo Lorem labore ipsum anim reprehenderit mollit excepteur do labore voluptate deserunt eu.\r\n",
 		"horarios": [
@@ -781,7 +784,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c819bad33aca8fb20"
 		],
 		"departamento": "LOCUST AVENUE",
@@ -814,7 +817,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "BOWERY STREET",
 		"descripcion": "Exercitation do occaecat dolore labore pariatur ullamco et aliqua exercitation ea eu in Lorem. Aliqua dolor in ad mollit incididunt officia do proident et elit nulla exercitation. In mollit do labore veniam ut nulla aute voluptate laborum aliqua ad eu ea. Mollit aute minim quis proident ut incididunt laborum duis in enim. Duis eiusmod reprehenderit laboris deserunt sit. Veniam elit velit commodo dolor ea cupidatat pariatur dolor cupidatat id quis nostrud anim. Ullamco laboris sunt laborum eu amet occaecat velit ex et pariatur.\r\n",
 		"horarios": [
@@ -857,7 +860,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "STRATFORD ROAD",
 		"descripcion": "Nisi occaecat ea consequat aliqua laborum irure dolor nulla laboris sunt. Nisi veniam nisi magna occaecat. Ut amet culpa in nulla nisi tempor sit elit non ut et eiusmod tempor. Pariatur et officia cillum aliquip deserunt veniam excepteur aliqua. Ullamco cillum enim mollit excepteur tempor esse. Pariatur consectetur esse deserunt incididunt aliquip eiusmod enim aute.\r\n",
 		"horarios": [
@@ -882,7 +885,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c44f83dc610dfa50a"
 		],
 		"departamento": "MONTGOMERY STREET",
@@ -909,7 +912,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c329b7e1adfc28870",
 			"5bff1b9ce615320a77e580ab"
 		],
@@ -943,7 +946,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "GLENDALE COURT",
 		"descripcion": "Ex ipsum adipisicing eiusmod anim adipisicing. Laboris laborum elit in quis consequat esse labore cupidatat et occaecat sunt magna anim. Et sunt excepteur sunt irure irure nisi laborum velit do dolore culpa. Lorem nostrud adipisicing eu eiusmod est et nulla elit commodo duis minim voluptate sint sint. Ex tempor ea culpa voluptate Lorem proident ex consequat.\r\n",
 		"horarios": [
@@ -968,7 +971,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "KENT AVENUE",
 		"descripcion": "Sit incididunt eiusmod Lorem esse adipisicing culpa velit. Ad amet occaecat incididunt quis et ea. Cupidatat ad velit exercitation deserunt.\r\n",
 		"horarios": [
@@ -999,7 +1002,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "TECH PLACE",
 		"descripcion": "Officia excepteur ullamco adipisicing non laboris cillum Lorem veniam dolore eiusmod ipsum culpa excepteur reprehenderit. Officia sunt eiusmod ea et tempor laboris magna laborum Lorem aliqua magna nostrud consectetur et. Elit incididunt laboris qui exercitation tempor deserunt elit dolore.\r\n",
 		"horarios": [
@@ -1061,7 +1064,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c8e923c840e7efa81"
 		],
 		"departamento": "STOCKTON STREET",
@@ -1094,7 +1097,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "LYME AVENUE",
 		"descripcion": "Lorem excepteur anim enim labore laborum anim consectetur Lorem eiusmod do anim anim occaecat consequat. Proident tempor nulla nisi eiusmod officia Lorem officia ut occaecat ad enim dolor. Eiusmod nostrud dolor reprehenderit voluptate est qui.\r\n",
 		"horarios": [
@@ -1131,7 +1134,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "LINCOLN ROAD",
 		"descripcion": "Lorem officia anim laborum nulla non enim dolore deserunt. Nisi nostrud ea ad ullamco excepteur laborum culpa dolore ullamco veniam. Culpa ea aliqua irure dolor nostrud laboris anim laborum laborum Lorem culpa adipisicing velit.\r\n",
 		"horarios": [
@@ -1174,7 +1177,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "HART STREET",
 		"descripcion": "Officia duis aliquip nulla nisi pariatur ut. Ipsum proident magna proident occaecat in cillum reprehenderit aliquip qui tempor sunt. Laboris nulla dolor laborum in ullamco excepteur qui.\r\n",
 		"horarios": [
@@ -1211,7 +1214,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "THORNTON STREET",
 		"descripcion": "Lorem in velit cillum quis et culpa et cupidatat non aliqua laboris magna. Amet anim proident labore consectetur deserunt cupidatat cillum quis pariatur reprehenderit adipisicing. Duis anim enim ex ea reprehenderit nulla elit occaecat. Voluptate consequat consectetur irure voluptate.\r\n",
 		"horarios": [
@@ -1254,7 +1257,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "EATON COURT",
 		"descripcion": "Aliqua sit dolore pariatur veniam ea consectetur deserunt fugiat. Sit incididunt sunt tempor nulla quis culpa ut aliqua adipisicing nostrud qui dolor. Incididunt nostrud velit voluptate esse incididunt non. Ut voluptate sint consectetur laborum velit officia ex culpa non. Cillum exercitation anim magna esse veniam magna eu. Tempor enim tempor ullamco ex ipsum nostrud. Sunt in proident ullamco ipsum ea.\r\n",
 		"horarios": [
@@ -1291,7 +1294,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c97d56481dcc75f58"
 		],
 		"departamento": "WALKER COURT",
@@ -1324,7 +1327,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "NORFOLK STREET",
 		"descripcion": "Magna aute ipsum irure anim sint eiusmod proident voluptate pariatur tempor. Ex ad id reprehenderit laboris elit aute aliquip et. Laboris enim laborum excepteur sint proident. Fugiat ut id fugiat voluptate qui id dolore labore nulla duis cillum incididunt proident officia. Exercitation dolor officia sint enim enim et enim est. Incididunt labore labore consectetur non cupidatat aliquip cupidatat non.\r\n",
 		"horarios": [
@@ -1361,7 +1364,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c0b2b5a4371cf05f8",
 			"5bff1b9c842bca830ef0d873"
 		],
@@ -1389,7 +1392,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "CAMERON COURT",
 		"descripcion": "Id nisi cupidatat labore minim duis voluptate officia labore quis officia. Enim qui laborum eiusmod magna duis aute commodo quis voluptate adipisicing elit aute. Non veniam ipsum quis sunt culpa sint tempor minim voluptate in ullamco. Veniam quis ut culpa deserunt nisi mollit cupidatat pariatur veniam irure non est nostrud. Commodo ad velit in voluptate ad consectetur anim eu. Labore laboris amet ad laboris irure elit proident dolore dolor incididunt ut proident incididunt officia.\r\n",
 		"horarios": [
@@ -1420,7 +1423,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "LLOYD COURT",
 		"descripcion": "Pariatur veniam irure aliqua mollit voluptate qui duis sint. Anim sint et ex labore. Voluptate labore labore fugiat sint ea cupidatat velit consectetur quis occaecat deserunt ex tempor commodo.\r\n",
 		"horarios": [
@@ -1482,7 +1485,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "AMITY STREET",
 		"descripcion": "Veniam elit ipsum nisi pariatur nulla voluptate occaecat. Reprehenderit ad ullamco incididunt anim id. Ut dolore irure sint ullamco amet occaecat mollit minim incididunt enim ex irure culpa. Qui consectetur in deserunt quis. Id fugiat exercitation commodo reprehenderit laborum aute excepteur dolor.\r\n",
 		"horarios": [
@@ -1519,7 +1522,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "FLATLANDS AVENUE",
 		"descripcion": "Aliqua ullamco ex ea sunt proident ullamco commodo aliqua qui. Aliqua ut minim cupidatat do reprehenderit Lorem labore fugiat. Esse ipsum cillum aliqua est. Anim cupidatat exercitation fugiat dolor veniam. Enim minim enim elit ut cillum excepteur officia irure ea Lorem.\r\n",
 		"horarios": [
@@ -1556,7 +1559,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "LAWRENCE AVENUE",
 		"descripcion": "Deserunt minim fugiat reprehenderit quis ea esse mollit enim elit sit duis fugiat esse excepteur. Pariatur ullamco aute cupidatat occaecat. Cillum velit exercitation laboris cillum fugiat aliquip aute eu anim adipisicing Lorem laborum velit. Enim qui consectetur dolor in consequat pariatur ullamco occaecat velit mollit qui aute fugiat. Laborum culpa in et nulla. Sit esse fugiat consequat qui occaecat nulla magna tempor mollit cillum laboris est. Dolore dolore est aliquip consequat nulla occaecat culpa quis reprehenderit duis irure tempor Lorem.\r\n",
 		"horarios": [
@@ -1593,7 +1596,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "JOHNSON STREET",
 		"descripcion": "Ipsum veniam laborum incididunt dolore do aute eiusmod sint deserunt ipsum labore. Nisi eiusmod cillum cillum amet. Ad est Lorem anim ex. Dolor pariatur id anim voluptate consectetur officia. Minim sint dolor pariatur quis ullamco enim.\r\n",
 		"horarios": [
@@ -1630,7 +1633,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c268fcbada7edb730"
 		],
 		"departamento": "HERZL STREET",
@@ -1669,7 +1672,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "BUFFALO AVENUE",
 		"descripcion": "Labore qui deserunt eu voluptate laboris commodo magna pariatur ad mollit nisi ut sint. Aliqua laboris aute exercitation anim sit qui ut et. In cillum adipisicing cupidatat ipsum dolore sint reprehenderit non adipisicing adipisicing aliqua. Fugiat deserunt laboris laboris sit esse culpa ad laboris.\r\n",
 		"horarios": [
@@ -1706,7 +1709,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9c24ade34f3ac564b3",
 			"5bff1b9c153ea6a47f5deb47"
 		],
@@ -1752,7 +1755,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "WILLOUGHBY STREET",
 		"descripcion": "Aliquip ullamco do elit qui do excepteur occaecat consectetur. Voluptate in non deserunt eiusmod ad elit proident voluptate cillum. Esse esse non mollit et aliquip dolor irure proident amet ea labore sit. Laborum adipisicing culpa nulla non.\r\n",
 		"horarios": [
@@ -1789,7 +1792,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "ALABAMA AVENUE",
 		"descripcion": "Reprehenderit aliqua fugiat elit deserunt id veniam. Aute Lorem pariatur non ea laborum do sunt enim eu ut officia aliquip in sunt. Ipsum nulla nisi id excepteur ut deserunt sunt aliquip reprehenderit exercitation sunt sint. Esse aliqua sunt ipsum anim velit velit. Culpa deserunt voluptate commodo ut.\r\n",
 		"horarios": [
@@ -1832,7 +1835,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "SUTTER AVENUE",
 		"descripcion": "Dolor sit tempor consectetur officia sit cupidatat Lorem velit. Consectetur laborum deserunt tempor voluptate consequat elit in. Aute deserunt veniam irure velit enim deserunt dolore ex. Nulla quis laboris deserunt nisi sunt adipisicing. Minim culpa enim ex ullamco id adipisicing consectetur eu. Anim dolore sit enim quis ex elit Lorem duis reprehenderit cillum culpa duis. Aliqua adipisicing excepteur officia adipisicing mollit veniam aute commodo aute adipisicing ut et.\r\n",
 		"horarios": [
@@ -1875,7 +1878,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "NEWEL STREET",
 		"descripcion": "Minim dolore cillum nisi ad minim ex aute voluptate laborum excepteur cillum voluptate cupidatat ad. Do anim incididunt officia nisi amet magna commodo dolore cillum et amet amet ad nisi. Nulla veniam amet do in. Ut eu eiusmod veniam sunt adipisicing. Tempor reprehenderit dolor Lorem aliqua Lorem tempor aliquip aliqua duis labore. Do cupidatat duis ad laboris sunt duis.\r\n",
 		"horarios": [
@@ -1912,7 +1915,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9ce89fa138948db4cc",
 			"5bff1b9d0754e6271ff38f45"
 		],
@@ -1940,7 +1943,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "MONTAUK COURT",
 		"descripcion": "Laboris sit consectetur velit ad aute id velit fugiat. Aliquip officia voluptate ipsum et est do ipsum irure eiusmod exercitation id. Consequat non aliqua non voluptate tempor culpa irure ad eu amet sunt. Amet et excepteur deserunt sit nostrud laboris officia sint do dolore. Non sit ut nulla commodo magna laborum ex elit ipsum nostrud minim. Ex do adipisicing minim duis consequat irure labore consequat ullamco laborum quis. Exercitation elit nisi consequat cillum qui incididunt esse duis ut sit magna.\r\n",
 		"horarios": [
@@ -1977,7 +1980,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9dd274f54989485e1e",
 			"5bff1b9de00a4a2de94c3907"
 		],
@@ -2005,7 +2008,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "JAY STREET",
 		"descripcion": "Esse est sint est aliquip. Deserunt ipsum cupidatat tempor culpa dolor officia sint nulla aliquip id duis esse elit. Velit sint velit laborum consequat. Culpa labore laboris proident sit veniam do ipsum tempor. Eu laborum nostrud qui ad ipsum est mollit nisi duis. Lorem minim aliquip est veniam excepteur do laborum elit culpa culpa.\r\n",
 		"horarios": [
@@ -2048,7 +2051,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9de32b48e31fb9a227",
 			"5bff1b9d82cbced132a6e244"
 
@@ -2083,7 +2086,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "CEDAR STREET",
 		"descripcion": "Eu minim in ex nisi. Officia et proident esse ullamco pariatur pariatur non sit dolor commodo sit voluptate exercitation. Aute reprehenderit aliquip ex sint fugiat. Nulla deserunt commodo et laborum commodo proident duis ex. Nostrud ad minim excepteur excepteur pariatur dolor.\r\n",
 		"horarios": [
@@ -2120,7 +2123,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9da6b37ccdd98d46f5",
 			"5bff1b9d506fc45e8e5beac0"
 		],
@@ -2154,7 +2157,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "NEWKIRK PLACEZ",
 		"descripcion": "Est ullamco cupidatat voluptate ea officia ipsum eiusmod officia id. Consequat esse amet consequat exercitation. Laborum excepteur proident esse est velit ut magna minim amet. Sint labore sunt nulla dolor esse minim ullamco eu elit occaecat labore sunt.\r\n",
 		"horarios": [
@@ -2197,7 +2200,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9d478464076adc90f3"
 		],
 		"departamento": "HEYWARD STREET",
@@ -2230,7 +2233,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9d95588915fecc0838"
 		],
 		"departamento": "HARRISON AVENUE",
@@ -2263,7 +2266,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		
+		"prerrequisito":[],
 		"departamento": "PINEAPPLE STREET",
 		"descripcion": "Nulla mollit irure anim ad excepteur nisi labore ea fugiat laborum. In nulla dolor sint non eiusmod non ea consequat sint. Culpa duis et consequat commodo aute do do adipisicing culpa reprehenderit dolore fugiat occaecat pariatur. Proident adipisicing consequat cupidatat ex incididunt dolor eu in culpa qui pariatur id. Non ipsum nulla adipisicing nostrud fugiat commodo duis aliqua. Pariatur deserunt consectetur deserunt reprehenderit Lorem culpa.\r\n",
 		"horarios": [
@@ -2300,7 +2303,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "FOSTER AVENUE",
 		"descripcion": "Aliqua exercitation id consequat incididunt pariatur esse in consectetur exercitation sunt officia ad sunt Lorem. Anim commodo eu ullamco pariatur ullamco et anim. Ea ad excepteur ipsum fugiat. Laboris veniam mollit Lorem fugiat qui nostrud amet nisi et duis laborum ipsum. Exercitation eiusmod enim dolor tempor.\r\n",
 		"horarios": [
@@ -2343,7 +2346,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"prerequisite":[
+		"prerrequisito":[
 			"5bff1b9da23c962c7fb6e8c9",
 			"5bff1b9d04259c3893d12b97"
 		],
@@ -2383,7 +2386,7 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		
+		"prerrequisito":[],
 		"departamento": "BEEKMAN PLACE",
 		"descripcion": "Enim minim qui aute nostrud nisi mollit laboris velit laboris pariatur Lorem laboris anim. Sint deserunt velit veniam officia. Enim occaecat anim esse veniam nisi.\r\n",
 		"horarios": [
@@ -2426,7 +2429,7 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		
+		"prerrequisito":[],
 		"departamento": "ELDERT LANE",
 		"descripcion": "Culpa nulla excepteur veniam proident in velit aute nostrud pariatur sunt adipisicing eiusmod aliquip duis. Labore mollit id magna eiusmod ea reprehenderit adipisicing proident occaecat est consectetur sunt exercitation. Qui non ut tempor voluptate. Occaecat est laboris aliqua ad sit eiusmod labore deserunt magna proident consectetur sint. Cupidatat dolor deserunt culpa enim culpa mollit duis.\r\n",
 		"horarios": [
