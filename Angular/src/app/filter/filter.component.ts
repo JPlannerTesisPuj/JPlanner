@@ -64,7 +64,7 @@ export class FilterComponent implements OnInit {
     this.dropdownListWeek = [
       'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'
     ];
-    this.creditsComparatorOptions = { 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre" };
+    this.creditsComparatorOptions = {0:"Cualquiera", 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre"};
 
     //Opciones de configruacion del dropdwn
     this.dropdownSettings = {
@@ -483,6 +483,7 @@ getSelectedCredits(){
  * Inicia el dropdown de horas desde
  */
   initHoursFrom() {
+    this.hoursFrom.push("Ninguno");
     for (let i = 7; i <= 21; ++i) {
       this.hoursFrom.push(i + ':00');
     }
@@ -493,6 +494,9 @@ getSelectedCredits(){
    */
   onChangeFromHour(item: any) {
     var hour = document.getElementById('hourTo');
+    if(item == "Ninguno"){
+      hour.style.display = 'none';
+    }else
     hour.style.display = 'inline-block'
     this.changeHoursTo(item);
   }
@@ -501,12 +505,21 @@ getSelectedCredits(){
   onChangeFromCredit(item: any) {
     var credit1 = document.getElementById('credit-input-1');
     var credit2 = document.getElementById('credit-input-2');
-    if (item.key != 4) {
+    if(item.key == 0){
+      credit1.style.display = 'none'
+      credit2.style.display = 'none'
+      
+    }
+    else {if (item.key != 4) {
       credit1.style.display = 'none'
       credit2.style.display = 'inline-block'
-    } else if (item.key == 4) {
+      this.creditValue2 = '2';
+      } else if (item.key == 4) {
       credit1.style.display = 'inline-block'
       credit2.style.display = 'inline-block'
+      this.creditValue = '1';
+      this.creditValue2 = '2';
+      }
     }
   }
   onCleanCredit(){
