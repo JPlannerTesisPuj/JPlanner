@@ -313,6 +313,7 @@ getClassSizeOption() {
  * Crea el objeto filtro que se le enviara al servicio read-json-files
  */
 searchClasses() {
+
   let gradeToSend = this.gradeFilter;
   let modeToSend = this.selectedTeachingMode;
   let idToSend = this.searchedFilterId;
@@ -399,6 +400,38 @@ let classSizeToSend = this.getClassSizeOption();
   if(!this.isAdvancedSearch)
     this.restartAdvFilter(data);
   this.data.changeMessage(data);
+}
+CleanAll(){
+  this.selectedOptionFrom = "";
+  this.selectedOptionTo = "";
+  this.creditsComparator = '';
+  this.onCleanCredit();
+  
+  
+  this.selectedItemsWeek = [];
+  this.searchBox = "";
+  this.selectedItemsSearch = [];
+  
+
+  this.defaultTeachingMode = 'Cualquiera';
+  this.openStateCheckbox = {
+    id: "open-state-checkbox",
+    name: 'Abierta',
+    isChecked: false,
+  }
+  this.closedStateCheckbox = {
+    id: 'closed-state-checkbox',
+    name: 'Cerrada',
+    isChecked: false,
+  }
+    this.selectedTeachingMode = this.defaultTeachingMode;
+    this.sizeComparator = this.defaultTeachingMode;
+    this.year = this.defaultTeachingMode;
+    this.gradeFilter = this.defaultTeachingMode;
+    
+  this.searchedFilterId = '';
+  this.searchedFilterNumber = '';
+  this.searchedFilterCode = '';
 }
 
 /**
@@ -489,7 +522,18 @@ getSelectedCredits(){
       }
     }
   }
-
+  onCleanCredit(){
+    var credit1 = document.getElementById('credit-input-1');
+    var credit2 = document.getElementById('credit-input-2');
+    var sizeInput1 = document.getElementById('class-size-input-1');
+    var sizeInput2 = document.getElementById('class-size-input-2');
+    
+      credit1.style.display = 'none'
+      credit2.style.display = 'none'
+      sizeInput1.style.display = 'none'
+      sizeInput2.style.display = 'none'
+      
+  }
   /**
    * @param item El item que se selecciono en el dropdown de horas desde
    * Llena dinamicamente el arreglo de horas hasta para que siempre comienze desde la siguiente hora a la seleccionada

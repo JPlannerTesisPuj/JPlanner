@@ -1,0 +1,66 @@
+[
+    {
+        "carrera": "Matemáticas",
+        "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJNb3J0eSBTbWl0aCI6ImJsYSJ9.5dNAujcmM-kYGgNwkhKV7QyLx23fI5qEKFXhY2BWleU",
+        "nombre_estudiante": "Morty Smith",
+        "semestre": "7",
+        "asignaturas_aprobadas": [
+            "5bff1b9ccf825bceba9c9bb3",
+            "5bff1b9c1fe9f0e4cc65e781",
+            "5bff1b9c1121038084ca5341",
+            "5bff1b9cb3fa5c00bfd15fa2",
+            "5bff1b9c9388773f800e1dd9",
+            "5bff1b9ce90b7d9001abceda",
+            "5bff1b9c8acb87ec6d0423a7",
+            "5bff1b9cae1a1077dd031af3",
+            "5bff1b9cd7c0330c6b5b1499",
+            "5bff1b9c7b5ba5922c536665",
+            "5bff1b9cbc5d2cb09c1f1040",
+            "5bff1b9c800def454afeb053",
+            "5bff1b9cc856f64969b103cc",
+            "5bff1b9c1e199aa36aaead25",
+            "5bff1b9caffbea441e99f051",
+            "5bff1b9c881b2a7c9def727e",
+            "5bff1b9c515db1cfe7301443",
+            "5bff1b9cf4613221e5230197",
+            "5bff1b9cc05cec589d3b29ff",
+            "5bff1b9ca5011b298abd2916"
+        ]
+    },
+    {
+        "carrera": "Ingeniería de Sistemas",
+        "credenciales": "eyJ0eXAiOiJKV1QidiQM0LCJhbGciOiJIUzI1NiJ9.eyJNMAin4b3J0eSBaCI6ImJsYSJ9.5dNA54MneukYGgNwkhKV7QyLx23fI5qEKFXhY2",
+        "nombre_estudiante": "Rick Sánchez",
+        "semestre": "2",
+        "asignaturas_aprobadas": [
+            "5bff1b9cc76e5509207e6407",
+            "5bff1b9c92fdb32cb33301ee",
+            "5bff1b9c5cba41b4b27162cf",
+            "5bff1b9cbbe3b7900efa164b",
+            "5bff1b9c819bad33aca8fb20",
+            "5bff1b9c2079b7e5830e021a"
+            ]
+    },
+    {
+        "carrera": "Arquitectura",
+        "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzIHDN741NiJ9.eJ0eSBTbWl0aCI6ImJsYKi40iSJ9.5dNM-kYGgNwkhKV7QyLx23fKD8ncIXhY2BWleU",
+        "nombre_estudiante": "Destri Hernández",
+        "semestre": "5",
+        "asignaturas_aprobadas": [
+            "5bff1b9c09e156e7b67420c3",
+            "5bff1b9c0b2b5a4371cf05f8",
+            "5bff1b9c842bca830ef0d873",
+            "5bff1b9cbaaa31813c0d2f65",
+            "5bff1b9ccd6a1c30c9399ea2",
+            "5bff1b9c165238db8e1cb638",
+            "5bff1b9c35633317e081334f",
+            "5bff1b9c13c40ca0884221f0",
+            "5bff1b9cd754feb8b5fcd609",
+            "5bff1b9c268fcbada7edb730",
+            "5bff1b9cc4c5f14dace48bd5",
+            "5bff1b9c24ade34f3ac564b3",
+            "5bff1b9c153ea6a47f5deb47",
+            "5bff1b9c7fadeefc91e72771"
+            ]
+    }
+]
