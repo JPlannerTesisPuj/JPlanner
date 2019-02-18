@@ -64,7 +64,7 @@ export class FilterComponent implements OnInit {
     this.dropdownListWeek = [
       'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'
     ];
-    this.creditsComparatorOptions = { 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre" };
+    this.creditsComparatorOptions = {0:"Cualquiera", 1: "Mayor a", 2: "Menor a", 3: "Igual a", 4: "Entre"};
 
     //Opciones de configruacion del dropdwn
     this.dropdownSettings = {
@@ -313,6 +313,7 @@ getClassSizeOption() {
  * Crea el objeto filtro que se le enviara al servicio read-json-files
  */
 searchClasses() {
+
   let gradeToSend = this.gradeFilter;
   let modeToSend = this.selectedTeachingMode;
   let idToSend = this.searchedFilterId;
@@ -400,6 +401,38 @@ let classSizeToSend = this.getClassSizeOption();
     this.restartAdvFilter(data);
   this.data.changeMessage(data);
 }
+CleanAll(){
+  this.selectedOptionFrom = "";
+  this.selectedOptionTo = "";
+  this.creditsComparator = '';
+  this.onCleanCredit();
+  
+  
+  this.selectedItemsWeek = [];
+  this.searchBox = "";
+  this.selectedItemsSearch = [];
+  
+
+  this.defaultTeachingMode = 'Cualquiera';
+  this.openStateCheckbox = {
+    id: "open-state-checkbox",
+    name: 'Abierta',
+    isChecked: false,
+  }
+  this.closedStateCheckbox = {
+    id: 'closed-state-checkbox',
+    name: 'Cerrada',
+    isChecked: false,
+  }
+    this.selectedTeachingMode = this.defaultTeachingMode;
+    this.sizeComparator = this.defaultTeachingMode;
+    this.year = this.defaultTeachingMode;
+    this.gradeFilter = this.defaultTeachingMode;
+    
+  this.searchedFilterId = '';
+  this.searchedFilterNumber = '';
+  this.searchedFilterCode = '';
+}
 
 /**
  * @param data Es el objeto con todos los parametros del filtro
@@ -450,6 +483,7 @@ getSelectedCredits(){
  * Inicia el dropdown de horas desde
  */
   initHoursFrom() {
+    this.hoursFrom.push("Ninguno");
     for (let i = 7; i <= 21; ++i) {
       this.hoursFrom.push(i + ':00');
     }
@@ -460,6 +494,9 @@ getSelectedCredits(){
    */
   onChangeFromHour(item: any) {
     var hour = document.getElementById('hourTo');
+    if(item == "Ninguno"){
+      hour.style.display = 'none';
+    }else
     hour.style.display = 'inline-block'
     this.changeHoursTo(item);
   }
@@ -468,15 +505,35 @@ getSelectedCredits(){
   onChangeFromCredit(item: any) {
     var credit1 = document.getElementById('credit-input-1');
     var credit2 = document.getElementById('credit-input-2');
-    if (item.key != 4) {
+    if(item.key == 0){
+      credit1.style.display = 'none'
+      credit2.style.display = 'none'
+      
+    }
+    else {if (item.key != 4) {
       credit1.style.display = 'none'
       credit2.style.display = 'inline-block'
-    } else if (item.key == 4) {
+      this.creditValue2 = '2';
+      } else if (item.key == 4) {
       credit1.style.display = 'inline-block'
       credit2.style.display = 'inline-block'
+      this.creditValue = '1';
+      this.creditValue2 = '2';
+      }
     }
   }
-
+  onCleanCredit(){
+    var credit1 = document.getElementById('credit-input-1');
+    var credit2 = document.getElementById('credit-input-2');
+    var sizeInput1 = document.getElementById('class-size-input-1');
+    var sizeInput2 = document.getElementById('class-size-input-2');
+    
+      credit1.style.display = 'none'
+      credit2.style.display = 'none'
+      sizeInput1.style.display = 'none'
+      sizeInput2.style.display = 'none'
+      
+  }
   /**
    * @param item El item que se selecciono en el dropdown de horas desde
    * Llena dinamicamente el arreglo de horas hasta para que siempre comienze desde la siguiente hora a la seleccionada
