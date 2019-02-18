@@ -27,7 +27,7 @@ export class DisplayClassesComponent implements OnInit {
   ngOnInit() {
     //Supscripción a los mensajes
     this.data.currentMessage.subscribe(message => {
-      //Reinicio arreglo y mensaje de eror
+      //Reinicio arreglo y mensaje de error
       this.classes = [];
       this.error = "";
       this.filter = message;
