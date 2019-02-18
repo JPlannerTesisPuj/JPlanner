@@ -18,7 +18,7 @@ export class Subject {
     public grado: string;
     
     public departamento: string;
-    public prerrequisite: string[];
+    public prerrequisito: string[];
     public descripcion: string;
     public horarios: Horary[];
     public ciclo_lectivo: string;
@@ -37,7 +37,7 @@ export class Subject {
         private nGrado: string,
         
         private nDepartamento: string,
-        public nPrerrequisite: string[],
+        public nPrerrequisito: string[],
         private nDescripcion: string,
         private nHorarios: Horary[],
         private nCiclo_lectivo: string
@@ -55,7 +55,7 @@ export class Subject {
         this.grado = nGrado;
        
         this.departamento = nDepartamento;
-        this.prerrequisite = nPrerrequisite;
+        this.prerrequisito = nPrerrequisito;
         this.descripcion = nDescripcion;
         this.horarios = nHorarios;
         this.ciclo_lectivo = nCiclo_lectivo;
