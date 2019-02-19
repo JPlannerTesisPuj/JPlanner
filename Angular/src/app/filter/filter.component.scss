@@ -1,80 +1,86 @@
-.sub-menu-container{
-    button{
-        width:50%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+.fil-sub-menu-container {
+  button {
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
-#basic-search,#adv-filters{
-    >div{
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #e6e6e6;
-    }
+#fil-basic-search,
+#fil-adv-filters {
+  > div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6;
+  }
 }
 
-#basic-search{
-    .dropdown-specific-field{
-        .dropdown-list{
-            margin-bottom:10px;
-        }
+#fil-basic-search {
+  .fil-dropdown-specific-field {
+    .fil-dropdown-list {
+      margin-bottom: 10px;
     }
-#week-hours{
+  }
+  #fil-week-hours {
     width: 100%;
 
-label[for="week-hours"]{
-    display: block;
-}
-.hour-dropdown{
-    float:left;
-    padding: 10px;
-        &#hourTo {
-            display: none;
-        }
-}
-}
-}
-    
-.credits,#class-size{
-    display: inline-block;
-    .credit-dropdown{
-        min-height: 35px;
-        margin-bottom: 10px;
-        margin-top: 10px;
+    label[for="fil-week-hours"] {
+      display: block;
     }
-    .input-number{
-        min-height: 35px;
-        text-align: center;
-        display: none;
-        &:invalid {
-            border-color: red;
-          }
+    .fil-hour-dropdown {
+      float: left;
+      padding: 10px;
     }
+    #fil-hourTo {
+      display: none;
+    }
+  }
 }
 
-.search-container{
-   input {
-        padding: 3px;
+.fil-credits,
+#fil-class-size {
+  display: inline-block;
+  .fil-credit-dropdown {
+    min-height: 35px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .fil-input-number {
+    min-height: 35px;
+    text-align: center;
+    display: none;
+    &:invalid {
+      border-color: red;
     }
+  }
 }
 
-#adv-filters {
-    &.hidden{
-    display:none;
-    }
-    div{
-        margin-bottom: 10px;
+.fil-search-container {
+  input {
+    padding: 3px;
+  }
+}
 
-        select {
-            height: 35px;
-            line-height: 35px;
-            border-radius: 4px;
-        }
-    }
+#fil-adv-filters {
+  &.hidden {
+    display: none;
+  }
+  div {
+    margin-bottom: 10px;
 
-   .filter-btn{
-        margin-left: auto;
+    select {
+      height: 35px;
+      line-height: 35px;
+      border-radius: 4px;
     }
+  }
+}
 
+.fil-btn {
+  margin-left: auto;
+  height: 40px;
+  margin: 5px;
+  margin-top: 10px;
+  font-size: 12px;
+  min-width: 25%;
 }
