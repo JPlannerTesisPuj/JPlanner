@@ -6,7 +6,7 @@ import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
-import {HammerGestureConfig} from '@angular/platform-browser';
+import { HammerGestureConfig } from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 /**
@@ -41,11 +41,13 @@ const colors: any = {
 export class CalendarComponent implements OnInit {
 
   private view: CalendarView = CalendarView.Week;
-  private calendarView = CalendarView; // Enum
+  /** @var calendarView Enum */
+  private calendarView = CalendarView;
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
   private verticalMenuIndex: number = 0;
   /**
+   * @var
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
    * start: fecha de inicio de la materia, incluye la hora en que inicia la clase y el día de la semana en que se tomará.
    * end: fecha de fin de la materia, incluye la hora en que finaliza la clase y el día de la semana en que se tomará.
@@ -54,25 +56,10 @@ export class CalendarComponent implements OnInit {
    */
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
-
-  
-
-   //Captura el evento swipe cuando este se realice en el calendar: left o right
-  onSwipe(evt) {
-    const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
-    if (verticalSwipeMove == 'right') {
-      //Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actal mostrado.
-      this.viewDate = subDays(this.viewDate,1);
-    }
-    else if (verticalSwipeMove == 'left') {
-      //Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actal mostrado.
-      this.viewDate = addDays(this.viewDate,1);
-    }
-}
-
-
-
-  //Se añade un evento personalizado a cada uno de las materias del calendario
+  /**
+   * @var
+   * Variable que contiene un evento personalizado a cada uno de las materias del calendario
+   */
   private actions: CalendarEventAction[] = [
     {
       label: '<i class="material-icons remove-icon"> clear </i>',
@@ -85,18 +72,33 @@ export class CalendarComponent implements OnInit {
   constructor(public dialog: MatDialog, private data: DataService, private readJSONFileService: ReadJsonFileService) { }
 
   ngOnInit() {
-
     /**
      * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
      * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
      */
-    let filter;
+    let filter: any;
     this.data.currentMessage.subscribe(message => {
       filter = message;
       if (filter['type'] == 'filter') {
         this.verticalMenuIndex = 1;
       }
     });
+  }
+
+  /**
+   * Captura el evento swipe cuando este se realice en el calendar: left o right
+   * 
+   * @param evt Evento de movimiento
+   */
+  onSwipe(evt: any) {
+    const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left') : '';
+    if (verticalSwipeMove == 'right') {
+      // Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actal mostrado.
+      this.viewDate = subDays(this.viewDate, 1);
+    } else if (verticalSwipeMove == 'left') {
+      // Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actal mostrado.
+      this.viewDate = addDays(this.viewDate, 1);
+    }
   }
 
   /**
@@ -141,32 +143,32 @@ export class CalendarComponent implements OnInit {
     let subjectToDisplay: Subject = event.previousContainer.data[event.previousIndex];
 
     // Mira si la clase no ha sido agregada al horario
-    if (!this.calendarClasses.some(myClass => myClass._id === subjectToDisplay._id)) {
+    if (!this.calendarClasses.some(myClass => myClass._id == subjectToDisplay._id)) {
       let isOverlapped: boolean = false;
       let newClasses: CalendarEvent[];
-      let classOverlapped = null;
-      let arrayOverlapped;
-      newClasses = Object.assign([],this.classes);
+      let classOverlapped: CalendarEvent = null;
+      let arrayOverlapped: any;
+      newClasses = Object.assign([], this.classes);
 
       for (let horary of subjectToDisplay.horarios) {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
         let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
         arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
-        classOverlapped = arrayOverlapped["classOverlapped"]
-        isOverlapped = arrayOverlapped["isOverLapped"];
+        classOverlapped = arrayOverlapped['classOverlapped']
+        isOverlapped = arrayOverlapped['isOverLapped'];
 
         // Si la clase no se cruza con ninguna materia la guarda en un arreglo auxiliar de clases
-        if(isOverlapped) {
+        if (isOverlapped) {
           // Resuelve la promesa y si el valor es positivo intercambia las materias
-            this.displaySelectingOptions(subjectToDisplay,classOverlapped).then(
-              (value) => {
-                if(value){
-                  this.exchangeClasses(subjectToDisplay,classOverlapped);
-                }
+          this.displaySelectingOptions(subjectToDisplay, classOverlapped).then(
+            (value) => {
+              if (value) {
+                this.exchangeClasses(subjectToDisplay, classOverlapped);
               }
-            );
-            break;
-         } else {
+            }
+          );
+          break;
+        } else {
           newClasses.push({
             start: startHour,
             end: endHour,
@@ -196,16 +198,16 @@ export class CalendarComponent implements OnInit {
    * Retorna un objeto con un booleano que dice si las materias se curzan o no y la clase que esta isncrita en el horario que impide inscribir la nueva
    */
   private checkOverlappingClasses(startHour: Date, endHour: Date) {
-    let overlapped =null;
+    let overlapped: CalendarEvent = null;
 
-    return{
-      "isOverLapped": 
-      this.classes.some(function (myClass) {
-      overlapped = myClass;
-      return  areRangesOverlapping(startHour, endHour, myClass.start, myClass.end);
-    }),
-    "classOverlapped": overlapped,
-  };
+    return {
+      'isOverLapped':
+        this.classes.some(function (myClass) {
+          overlapped = myClass;
+          return areRangesOverlapping(startHour, endHour, myClass.start, myClass.end);
+        }),
+      'classOverlapped': overlapped,
+    };
   }
 
   /**
@@ -249,8 +251,7 @@ export class CalendarComponent implements OnInit {
       let dialogRef = this.dialog.open(ClassModalComponent, {
         data: { class: subjectToShowthis }
       });
-    }
-    else if (action === 'Removed') {
+    } else if (action === 'Removed') {
       this.removeClass(event.id);
     }
   }
@@ -261,7 +262,7 @@ export class CalendarComponent implements OnInit {
    * 
    * Se remueva la materia del horario
    */
-  private removeClass(id) {
+  private removeClass(id: string | number) {
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
@@ -274,20 +275,18 @@ export class CalendarComponent implements OnInit {
    * 
    * @param tryingSubject Materia que se esta intentando inscribir
    * @param registeredSubject Materia que esta actualmente registrada
-   * Crea el dialogo y retorna una promesa con el valor seleccionado por el usuario en el dialogo
+   * @returns Crea el diálogo y retorna una promesa con el valor seleccionado por el usuario en el diálogo
    */
-  async  displaySelectingOptions(tryingSubject,registeredSubject){
+  private async displaySelectingOptions(tryingSubject: Subject, registeredSubject: CalendarEvent) {
     const dialogRef = this.dialog.open(OverlapClassConfirmationDialog, {
       data: {
-        "tryToAddClass" : tryingSubject,
-        "addedClass": registeredSubject,
+        'tryToAddClass': tryingSubject,
+        'addedClass': registeredSubject,
       }
     });
-    
+
     return await (dialogRef.afterClosed().toPromise());
-
   }
-
 
   /**
    * 
@@ -295,13 +294,15 @@ export class CalendarComponent implements OnInit {
    * @param oldClass Clase que sera removida
    * Remueve la calse vieja y agrega la clase nueva
    */
-  private  exchangeClasses(newClass,oldClass){
+  private exchangeClasses(newClass: Subject, oldClass: CalendarEvent) {
     this.removeClass(oldClass.id);
     let newClasses: CalendarEvent[];
-    newClasses = Object.assign([],this.classes);
+    newClasses = Object.assign([], this.classes);
+
     for (let horary of newClass.horarios) {
       let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
       let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+
       newClasses.push({
         start: startHour,
         end: endHour,
@@ -320,16 +321,22 @@ export class CalendarComponent implements OnInit {
 
 
 
-//Componente con el dialogo de confirmación
+/**
+ * Componente con el dialogo de confirmación
+ */
 @Component({
   selector: 'overlap-class-confirmation-dialog',
-  templateUrl: 'operlap-class-confirmation-dialog.html',
+  templateUrl: 'overlap-class-confirmation-dialog.html',
 })
+
 export class OverlapClassConfirmationDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   private titleCaseWord(word: string) {
-    if (!word) return word;
+    if (!word){
+      return word;
+    }
+
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 }

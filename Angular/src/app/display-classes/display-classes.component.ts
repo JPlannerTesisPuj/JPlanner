@@ -15,24 +15,24 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class DisplayClassesComponent implements OnInit {
 
   // Lista externa con la que la lista de clases estará relacionada
-  @Input() calendarList;
+  @Input() calendarList: any;
 
   // Lista que tiene la información de las materias que se quieren visualizar
-  private classes;
-  private filter;
-  private error;
+  private classes: Subject[];
+  private filter: any;
+  private error: string;
   // Se pide la dependencia de ReadJsonFileService
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
   ngOnInit() {
     //Supscripción a los mensajes
     this.data.currentMessage.subscribe(message => {
-      //Reinicio arreglo y mensaje de eror
+      //Reinicio arreglo y mensaje de error
       this.classes = [];
-      this.error = "";
+      this.error = '';
       this.filter = message;
-      if (this.filter['type'] === 'filter'){
-        this.readJSONFileService.filter('classes',this.filter).subscribe(classes => {
+      if (this.filter['type'] === 'filter') {
+        this.readJSONFileService.filter('classes', this.filter).subscribe(classes => {
           //Pinta en el buscador las clases encontradas
           this.classes = classes;
         });
@@ -45,6 +45,4 @@ export class DisplayClassesComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     }
   }
-
 }
-

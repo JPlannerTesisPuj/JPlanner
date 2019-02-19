@@ -1,96 +1,69 @@
-.menu-container {
-    .mat-tab-group {
-        flex-direction: row;
-    }
-    .mat-tab-header {
-        border-bottom: none;
-    }
-    .mat-tab-header-pagination {
-        display: none !important;
-    }
-    .mat-tab-labels {
-        flex-direction: column;
-    }
-    .mat-ink-bar {
-        display: none;
-    }
-    .mat-tab-body-wrapper {
-        flex: 1 1 auto;
-    }
-    .mat-tab-body-content {
-        padding: 20px;
-    }
-    .mat-tab-body.mat-tab-body-active {
-        overflow-y: hidden;
-    }
-    .mat-tab-label {
-        min-width: 48px;
-        padding: 0;
-    }
-    .mat-tab-label-active {
-        border-right: 2px solid #3f51b5;
-    }
-}
-
-.sub-menu-container {
-    .mat-tab-group {
-        flex-direction: column;
-    }
-    .mat-tab-header {
-        border-bottom: 1px solid rgba(0,0,0,.12);
-    }
-    .mat-tab-labels {
-        flex-direction: initial;
-    }
-    .mat-ink-bar {
-        display: initial;
-    }
-    .mat-tab-body-wrapper {
-        flex: initial;
-    }
-    .mat-tab-body-content {
-        padding: 20px 0;
-    }
-    .mat-tab-label {
-        padding: 0 24px;
-    }
-    .mat-tab-label-active {
-        border-right: none;
-    }
+.cal-menu-container {
+  .mat-tab-group {
+    flex-direction: row;
+  }
+  .mat-tab-header {
+    border-bottom: none;
+  }
+  .mat-tab-header-pagination {
+    display: none !important;
+  }
+  .mat-tab-labels {
+    flex-direction: column;
+  }
+  .mat-ink-bar {
+    display: none;
+  }
+  .mat-tab-body-wrapper {
+    flex: 1 1 auto;
+  }
+  .mat-tab-body-content {
+    padding: 20px;
+  }
+  .mat-tab-body.mat-tab-body-active {
+    overflow-y: hidden;
+  }
+  .mat-tab-label {
+    min-width: 48px;
+    padding: 0;
+  }
+  .mat-tab-label-active {
+    border-right: 2px solid #3f51b5;
+  }
 }
 
 .cal-week-view .cal-time-events .cal-event {
-    width: calc(100% - 12px);
+  width: calc(100% - 12px);
 }
 
 .cal-day-view {
-    margin-right: 5px;
+  margin-right: 5px;
 
-    .cal-hour-rows {
-        overflow-x: inherit;
-    }
+  .cal-hour-rows {
+    overflow-x: inherit;
+  }
 }
 
 .cal-day-view .cal-event-container {
-    width: calc(100% - 70px) !important;
+  width: calc(100% - 70px) !important;
 }
 .cal-display-sm {
-    display: none;
-    @media (max-width: 768px) {
-        display: block;
-    }
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
 }
 
-.remove-icon{
-    color:red;
+.remove-icon {
+  color: red;
 }
 
-.confirm-dialog{
-    .displayed-data-dailog{
-        text-transform: capitalize;
-        font-weight: bold;
-    }
-    .dialog-btn{
-        margin-right: 10px;
-    }
+.ovr-confirm-dialog {
+  .ovr-displayed-data-dailog {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  .ovr-dialog-btn {
+    margin-right: 10px;
+  }
 }

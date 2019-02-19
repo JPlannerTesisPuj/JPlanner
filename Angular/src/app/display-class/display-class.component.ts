@@ -17,10 +17,9 @@ export class DisplayClassComponent implements OnInit {
 
   ngOnInit() { }
 
-  openDialog(subject) {
-    let dialogRef = this.dialog.open(ClassModalComponent, {
+  private openDialog(subject: Subject) {
+    let dialogRef: any = this.dialog.open(ClassModalComponent, {
       data: { class: subject }
     });
   }
-
 }

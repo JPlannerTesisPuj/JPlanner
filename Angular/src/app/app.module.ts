@@ -9,7 +9,7 @@ import { DisplayClassesComponent } from './display-classes/display-classes.compo
 import { DisplayClassComponent } from './display-class/display-class.component';
 
 // Librerías de Angular Material
-import { 
+import {
   MatDialogModule,
   MatTabsModule
  } from '@angular/material';

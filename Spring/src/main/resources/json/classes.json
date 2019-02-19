@@ -10,13 +10,17 @@
 		"cuposDisponibles": 0,
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
-		"grado": "Pregrado",
-		"salon": "17-15",
+		"grado": "Pregrado",		
 		"departamento": "BANNER AVENUE",
+		"prerrequisito":[
+			"5bff1b9c1fe9f0e4cc65e781",
+			"5bff1b9c1121038084ca5341"
+		],
 		"descripcion": "Do veniam sit consequat adipisicing reprehenderit amet ullamco veniam excepteur amet ipsum aute consectetur. Eu fugiat voluptate nostrud eiusmod voluptate ipsum ad culpa laboris enim est et cillum. Duis eiusmod et duis velit est id reprehenderit ea commodo ea. Ullamco voluptate cupidatat in ad voluptate reprehenderit adipisicing labore reprehenderit occaecat laboris ea nisi non.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "17-15",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			}
@@ -37,20 +41,25 @@
 		"grado": "Maestria",
 		"salon": "7-65",
 		"departamento": "EMPIRE BOULEVARD",
+		"prerrequisito":[
+		],
 		"descripcion": "Enim adipisicing sit sit adipisicing sint. Aliqua laborum mollit veniam dolore aute consectetur. Velit proident veniam commodo adipisicing ut deserunt amet deserunt.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "7-65",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Sabado",
+				"salon": "7-66",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Domingo",
+				"salon": "7-69",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			}
@@ -69,12 +78,15 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "9-188",
+		"prerrequisito":[
+			"5bff1b9cb3fa5c00bfd15fa2"
+		],
 		"departamento": "DUNNE PLACE",
 		"descripcion": "Non irure sit reprehenderit laboris est incididunt irure nisi veniam amet veniam aliquip mollit. Id ullamco nulla excepteur dolore tempor. Ex ex reprehenderit cillum labore voluptate enim pariatur cillum Lorem consectetur commodo sint magna cupidatat. Deserunt tempor incididunt aute do elit veniam officia qui dolor cupidatat est nisi nostrud ea. Aute occaecat do in aliqua. Magna eu do commodo aute consequat occaecat ipsum elit veniam ut quis quis ea magna. Minim deserunt enim qui magna proident non magna ad cillum ea irure mollit dolore.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "9-188",
 				"horaInicio": 64800,
 				"horaFin": 79200
 			}
@@ -93,27 +105,31 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "11-213",
+		"prerrequisito":[],
 		"departamento": "ELM AVENUE",
 		"descripcion": "Ad eu tempor quis esse anim consectetur et nulla nostrud. Sint sunt pariatur aute proident dolor magna eu nulla sint ex do. Non ex cillum in enim est laborum incididunt amet consectetur qui exercitation ad.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "11-213",
 				"horaInicio": 64800,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Sabado",
+				"salon": "11-215",
 				"horaInicio": 61200,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Domingo",
+				"salon": "11-220",
 				"horaInicio": 32400,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Martes",
+				"salon": "11-216",
 				"horaInicio": 32400,
 				"horaFin": 43200
 			}
@@ -132,22 +148,28 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "20-441",
+		"prerrequisito":[
+			"5bff1b9ce90b7d9001abceda",
+			"5bff1b9c8acb87ec6d0423a7"
+		],
 		"departamento": "DEWITT AVENUE",
 		"descripcion": "Reprehenderit reprehenderit laborum non ullamco amet eiusmod irure duis ex proident laboris ex magna sit. Duis fugiat aliquip excepteur est magna culpa mollit consectetur tempor. Deserunt mollit dolor sint voluptate sint ut nisi. Ut irure ipsum nostrud ullamco aliquip pariatur commodo id est incididunt veniam. Lorem non non culpa nostrud Lorem Lorem quis labore qui. Enim laborum non sit laboris aute incididunt laboris ea.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "20-441",
 				"horaInicio": 54000,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Martes",
+				"salon": "20-341",
 				"horaInicio": 32400,
 				"horaFin": 43200
 			},
 			{
 				"dia": "Domingo",
+				"salon": "20-541",
 				"horaInicio": 32400,
 				"horaFin": 43200
 			}
@@ -166,22 +188,29 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "1-78",
+		"prerrequisito":[
+			"5bff1b9cae1a1077dd031af3",
+			"5bff1b9cd7c0330c6b5b1499"
+		],
+		
 		"departamento": "BUTLER PLACE",
 		"descripcion": "Aliqua aliqua Lorem velit aliquip occaecat nisi cupidatat. Est amet sint occaecat magna laboris elit aliqua cupidatat. Eiusmod adipisicing non culpa consectetur. Aliquip laborum laborum sit duis aute dolor laborum in. Esse proident velit eu ullamco tempor mollit aliqua ut nisi. Fugiat duis Lorem consequat id qui aute aute mollit nulla ad proident commodo quis.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "1-78",
 				"horaInicio": 61200,
 				"horaFin": 75600
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "1-68",
 				"horaInicio": 50400,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Viernes",
+				"salon": "1-98",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			}
@@ -200,12 +229,13 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "5-285",
+		"prerrequisito":[],
 		"departamento": "BOWNE STREET",
 		"descripcion": "Quis ea tempor irure ullamco ut officia laboris fugiat. Consectetur tempor amet quis minim nostrud voluptate est nostrud ad. Nisi duis quis quis in minim tempor amet Lorem aliqua qui excepteur aliquip laboris nisi. Adipisicing exercitation nulla commodo sit exercitation minim officia pariatur officia amet ea incididunt minim. Do dolor ullamco deserunt mollit occaecat fugiat elit.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "5-285",
 				"horaInicio": 50400,
 				"horaFin": 64800
 			}
@@ -224,17 +254,19 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "4-366",
+		"prerrequisito":[],
 		"departamento": "MORTON STREET",
 		"descripcion": "Ex elit cupidatat aliqua ad incididunt dolore do aute. Occaecat commodo incididunt amet aute in sunt. Dolore ut officia voluptate ad.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "4-366",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Martes",
+				"salon": "4-456",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			}
@@ -253,12 +285,15 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "13-175",
+		"prerrequisito":[
+			"5bff1b9c7b5ba5922c536665"
+		],
 		"departamento": "OCEAN AVENUE",
 		"descripcion": "Ad sunt eiusmod proident nisi in esse ea. Eiusmod est dolor et voluptate sint dolor veniam. Nulla ea labore laborum adipisicing sunt. Amet ex aute quis pariatur sint exercitation pariatur incididunt aliqua duis commodo consectetur duis esse. Consectetur sunt eu laboris consectetur eiusmod commodo sint cupidatat dolor. Eu sunt sint mollit dolore commodo consequat in voluptate cillum dolor esse. Quis ipsum proident eu nulla non pariatur nisi laborum labore mollit cupidatat nostrud Lorem aute.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "13-175",
 				"horaInicio": 57600,
 				"horaFin": 68400
 			}
@@ -277,17 +312,19 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "1-500",
+		"prerrequisito":[],
 		"departamento": "DEGRAW STREET",
 		"descripcion": "Officia voluptate sint do mollit duis eu. Id incididunt sit fugiat mollit reprehenderit sunt qui in labore laboris exercitation. Duis sit irure occaecat fugiat quis ad proident voluptate veniam id ut nostrud culpa. Fugiat velit et magna aute do. Duis do mollit sunt nulla duis voluptate officia occaecat labore duis. Nostrud commodo irure sunt elit laborum ex duis sunt. Ea do consequat adipisicing adipisicing nostrud.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "1-500",
 				"horaInicio": 28800,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Sabado",
+				"salon": "1-550",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			}
@@ -306,22 +343,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "9-379",
+		"prerrequisito":[],
 		"departamento": "HILL STREET",
 		"descripcion": "Culpa amet incididunt amet sint veniam dolor ad. Reprehenderit ut enim excepteur excepteur consectetur proident excepteur est cillum Lorem ad. Aute qui consequat veniam excepteur adipisicing est Lorem enim sunt enim sint. Aliquip nulla non nulla voluptate sunt.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "9-379",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			},
 			{
 				"dia": "Domingo",
+				"salon": "9-369",
 				"horaInicio": 36000,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Sabado",
+				"salon": "9-329",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			}
@@ -340,12 +380,16 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "13-173",
+		"prerrequisito":[
+			"5bff1b9cc856f64969b103cc",
+			"5bff1b9c1e199aa36aaead25"
+		],
 		"departamento": "SARATOGA AVENUE",
 		"descripcion": "Qui sunt mollit consequat sint ut qui eiusmod. Ex quis incididunt aute excepteur est labore ipsum irure. Enim aute incididunt labore sint ea duis proident. Officia enim aliquip aliqua ad aliqua consectetur id labore velit id cillum fugiat enim in. Tempor est anim in est aliquip et.\r\n",
 		"horarios": [
 			{
 				"dia": "Domingo",
+				"salon": "13-173",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			}
@@ -364,22 +408,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "9-210",
+		"prerrequisito":[],
 		"departamento": "WORTMAN AVENUE",
 		"descripcion": "Est excepteur tempor ex Lorem officia non minim fugiat magna pariatur ullamco qui proident. Consectetur veniam officia sint eu Lorem id culpa fugiat reprehenderit adipisicing aute sit eu in. Occaecat aliquip dolor exercitation sint labore. Ullamco quis labore elit fugiat laboris amet aute. Qui voluptate laboris qui elit ex est elit Lorem incididunt esse eiusmod. Duis adipisicing non deserunt dolore labore nulla exercitation adipisicing amet amet nostrud anim.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "9-210",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Sabado",
+				"salon": "9-510",
 				"horaInicio": 50400,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "9-240",
 				"horaInicio": 57600,
 				"horaFin": 72000
 			}
@@ -398,12 +445,15 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "2-327",
+		"prerrequisito":[
+			"5bff1b9caffbea441e99f051"
+		],
 		"departamento": "HANSON PLACE",
 		"descripcion": "Laboris ipsum deserunt nulla do ea reprehenderit voluptate et laboris et. Labore fugiat in veniam adipisicing eu mollit ipsum laborum et culpa elit irure elit. Pariatur sit laboris labore laborum laborum. Magna laborum exercitation eiusmod esse. Ullamco ex id nisi qui eiusmod occaecat. Laborum magna ad commodo voluptate nulla ad irure exercitation occaecat ipsum labore incididunt ullamco.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "2-327",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			}
@@ -422,22 +472,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "14-206",
+		"prerrequisito":[],
 		"departamento": "JEROME AVENUE",
 		"descripcion": "Et cupidatat culpa ex mollit et minim laboris esse esse eiusmod culpa anim sunt dolor. Nostrud nostrud nulla ut amet eu id aliquip. Enim tempor sunt elit magna sint exercitation id quis duis enim nulla.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "14-206",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "14-506",
 				"horaInicio": 64800,
 				"horaFin": 75600
 			},
 			{
 				"dia": "Sabado",
+				"salon": "14-316",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			}
@@ -456,17 +509,22 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "10-413",
+		"prerrequisito":[
+			"5bff1b9c515db1cfe7301443",
+			"5bff1b9cf4613221e5230197"
+		],
 		"departamento": "BILLS PLACE",
 		"descripcion": "Cupidatat incididunt esse pariatur proident non quis. Cupidatat sunt amet velit cillum consequat laboris velit amet culpa anim. Nostrud nulla pariatur tempor aliquip irure id esse.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "10-413",
 				"horaInicio": 61200,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Jueves",
+				"salon": "10-523",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			}
@@ -485,17 +543,21 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "11-410",
+		"prerrequisito":[
+			"5bff1b9cf4613221e5230197"
+		],
 		"departamento": "GRANITE STREET",
 		"descripcion": "Irure officia do duis qui non. Nostrud adipisicing minim dolore nostrud officia anim duis aliqua consectetur magna. Lorem quis veniam ad dolor duis. Fugiat deserunt consectetur sint proident eiusmod ut nulla. Irure nisi magna qui sunt consequat laborum.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "11-410",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Viernes",
+				"salon": "11-620",
 				"horaInicio": 28800,
 				"horaFin": 39600
 			}
@@ -514,17 +576,19 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "8-55",
+		"prerrequisito":[],
 		"departamento": "CHAPEL STREET",
 		"descripcion": "Non Lorem officia velit in cupidatat eu ullamco velit minim magna minim consequat nostrud. Mollit amet ut dolore dolor aliquip consectetur amet mollit aliqua occaecat enim consectetur commodo quis. Dolor ad in enim ullamco minim culpa esse irure cupidatat irure.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "8-55",
 				"horaInicio": 64800,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Lunes",
+				"salon": "2-55",
 				"horaInicio": 36000,
 				"horaFin": 46800
 			}
@@ -543,22 +607,26 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
+		"prerrequisito":[],
 		"salon": "4-391",
 		"departamento": "POLY PLACE",
 		"descripcion": "Duis enim fugiat deserunt ex consectetur nisi anim. Velit dolore magna reprehenderit exercitation eu esse. Eiusmod voluptate dolor duis incididunt ut. Voluptate eu fugiat velit ea elit reprehenderit id et in ad. Pariatur nostrud labore ullamco in qui excepteur magna.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "4-391",
 				"horaInicio": 61200,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Viernes",
+				"salon": "4-691",
 				"horaInicio": 50400,
 				"horaFin": 61200
 			},
 			{
 				"dia": "Jueves",
+				"salon": "4-371",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			}
@@ -577,17 +645,22 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "12-89",
+		"prerrequisito":[
+			"5bff1b9cc76e5509207e6407",
+			"5bff1b9c92fdb32cb33301ee"
+		],
 		"departamento": "ADLER PLACE",
 		"descripcion": "Ad id aliquip consectetur duis exercitation. Nulla excepteur velit in et amet. Veniam laborum officia sit veniam veniam duis velit laboris eiusmod amet non exercitation ad. Enim minim Lorem occaecat eiusmod. Deserunt veniam proident magna irure tempor excepteur magna. Amet esse qui consectetur eiusmod consectetur id qui do deserunt.\r\n",
 		"horarios": [
 			{
 				"dia": "Domingo",
+				"salon": "12-89",
 				"horaInicio": 46800,
 				"horaFin": 61200
 			},
 			{
 				"dia": "Sabado",
+				"salon": "10-89",
 				"horaInicio": 43200,
 				"horaFin": 54000
 			}
@@ -606,17 +679,19 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "9-330",
+		"prerrequisito":[],
 		"departamento": "WOLF PLACE",
 		"descripcion": "Culpa enim nostrud ex nulla deserunt aute qui. Ullamco cillum nulla aute est nisi deserunt qui minim aute. Sunt ex reprehenderit voluptate cupidatat esse aliqua. Amet amet amet commodo consectetur laboris magna pariatur labore. Velit eu culpa exercitation in velit excepteur duis Lorem. Tempor fugiat ea ea dolor exercitation veniam. Lorem minim est occaecat aliquip consequat irure eiusmod velit ea in aliqua nostrud pariatur ipsum.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "9-330",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			},
 			{
 				"dia": "Lunes",
+				"salon": "9-120",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			}
@@ -635,22 +710,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "6-275",
+		"prerrequisito":[],
 		"departamento": "BLAKE COURT",
 		"descripcion": "Est do do proident incididunt veniam. Aute Lorem mollit aliquip do amet sunt ut veniam consectetur in elit labore. Ea irure cupidatat nostrud nostrud ad ex. Dolor excepteur laboris aliquip pariatur duis duis eu eu qui qui.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "6-275",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			},
 			{
 				"dia": "Martes",
+				"salon": "2-275",
 				"horaInicio": 64800,
 				"horaFin": 79200
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "6-335",
 				"horaInicio": 46800,
 				"horaFin": 54000
 			}
@@ -669,22 +747,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "3-3",
+		"prerrequisito":[],
 		"departamento": "RADDE PLACE",
 		"descripcion": "Enim duis aliqua dolor magna non aute laboris voluptate. Aliquip et culpa et Lorem Lorem. Incididunt dolore adipisicing officia qui amet eu esse excepteur minim officia enim do dolor. Ad qui commodo ut consequat magna et consequat reprehenderit nostrud excepteur eiusmod. Commodo Lorem labore ipsum anim reprehenderit mollit excepteur do labore voluptate deserunt eu.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "3-24",
 				"horaInicio": 57600,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Sabado",
+				"salon": "3-303",
 				"horaInicio": 54000,
 				"horaFin": 61200
 			},
 			{
 				"dia": "Martes",
+				"salon": "3-55",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			}
@@ -703,17 +784,21 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "16-186",
+		"prerrequisito":[
+			"5bff1b9c819bad33aca8fb20"
+		],
 		"departamento": "LOCUST AVENUE",
 		"descripcion": "Nulla incididunt nisi laboris proident quis sunt dolore magna enim. Dolor nisi ullamco laborum ut nisi ad ullamco sint tempor elit. Cupidatat Lorem tempor ad ullamco ullamco duis Lorem voluptate voluptate. Ea proident duis sit exercitation aliqua nisi laborum in irure. Quis officia fugiat laboris reprehenderit pariatur pariatur velit eu deserunt. Cupidatat tempor velit veniam dolor id exercitation cillum id in anim. Ea est aliquip nulla ullamco ea irure tempor laborum.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "16-186",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "16-145",
 				"horaInicio": 36000,
 				"horaFin": 43200
 			}
@@ -732,27 +817,31 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "5-122",
+		"prerrequisito":[],
 		"departamento": "BOWERY STREET",
 		"descripcion": "Exercitation do occaecat dolore labore pariatur ullamco et aliqua exercitation ea eu in Lorem. Aliqua dolor in ad mollit incididunt officia do proident et elit nulla exercitation. In mollit do labore veniam ut nulla aute voluptate laborum aliqua ad eu ea. Mollit aute minim quis proident ut incididunt laborum duis in enim. Duis eiusmod reprehenderit laboris deserunt sit. Veniam elit velit commodo dolor ea cupidatat pariatur dolor cupidatat id quis nostrud anim. Ullamco laboris sunt laborum eu amet occaecat velit ex et pariatur.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "5-122",
 				"horaInicio": 64800,
 				"horaFin": 75600
 			},
 			{
 				"dia": "Viernes",
+				"salon": "5-123",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Martes",
+				"salon": "5-222",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Jueves",
+				"salon": "5-321",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			}
@@ -771,12 +860,13 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "3-213",
+		"prerrequisito":[],
 		"departamento": "STRATFORD ROAD",
 		"descripcion": "Nisi occaecat ea consequat aliqua laborum irure dolor nulla laboris sunt. Nisi veniam nisi magna occaecat. Ut amet culpa in nulla nisi tempor sit elit non ut et eiusmod tempor. Pariatur et officia cillum aliquip deserunt veniam excepteur aliqua. Ullamco cillum enim mollit excepteur tempor esse. Pariatur consectetur esse deserunt incididunt aliquip eiusmod enim aute.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "3-213",
 				"horaInicio": 57600,
 				"horaFin": 72000
 			}
@@ -795,12 +885,15 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "15-211",
+		"prerrequisito":[
+			"5bff1b9c44f83dc610dfa50a"
+		],
 		"departamento": "MONTGOMERY STREET",
 		"descripcion": "Ad incididunt esse fugiat proident nulla anim anim dolore Lorem sunt et. Occaecat velit tempor id qui cillum. Ex occaecat nostrud laboris in incididunt veniam excepteur nostrud enim quis duis laborum. Eiusmod dolor sit officia magna ea adipisicing duis. Ullamco irure voluptate aute veniam. Commodo culpa qui deserunt laborum irure. Deserunt culpa exercitation occaecat ut esse culpa aute anim.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "15-211",
 				"horaInicio": 54000,
 				"horaFin": 61200
 			}
@@ -819,17 +912,22 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "18-376",
+		"prerrequisito":[
+			"5bff1b9c329b7e1adfc28870",
+			"5bff1b9ce615320a77e580ab"
+		],
 		"departamento": "WYTHE PLACE",
 		"descripcion": "Irure excepteur amet laboris proident enim cupidatat irure est enim non dolore dolore. Proident Lorem aliqua exercitation dolore pariatur. Aliquip commodo commodo adipisicing labore in aliquip sunt aute excepteur labore proident quis. Dolore est exercitation voluptate mollit sit eu et quis. Qui et irure id excepteur est sint non tempor minim qui duis id. Veniam voluptate adipisicing nulla est.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "18-376",
 				"horaInicio": 50400,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "15-376",
 				"horaInicio": 43200,
 				"horaFin": 54000
 			}
@@ -848,12 +946,13 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "9-273",
+		"prerrequisito":[],
 		"departamento": "GLENDALE COURT",
 		"descripcion": "Ex ipsum adipisicing eiusmod anim adipisicing. Laboris laborum elit in quis consequat esse labore cupidatat et occaecat sunt magna anim. Et sunt excepteur sunt irure irure nisi laborum velit do dolore culpa. Lorem nostrud adipisicing eu eiusmod est et nulla elit commodo duis minim voluptate sint sint. Ex tempor ea culpa voluptate Lorem proident ex consequat.\r\n",
 		"horarios": [
 			{
 				"dia": "Domingo",
+				"salon": "9-273",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			}
@@ -872,17 +971,19 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "20-199",
+		"prerrequisito":[],
 		"departamento": "KENT AVENUE",
 		"descripcion": "Sit incididunt eiusmod Lorem esse adipisicing culpa velit. Ad amet occaecat incididunt quis et ea. Cupidatat ad velit exercitation deserunt.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "20-199",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Domingo",
+				"salon": "20-569",
 				"horaInicio": 61200,
 				"horaFin": 75600
 			}
@@ -901,12 +1002,13 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "2-457",
+		"prerrequisito":[],
 		"departamento": "TECH PLACE",
 		"descripcion": "Officia excepteur ullamco adipisicing non laboris cillum Lorem veniam dolore eiusmod ipsum culpa excepteur reprehenderit. Officia sunt eiusmod ea et tempor laboris magna laborum Lorem aliqua magna nostrud consectetur et. Elit incididunt laboris qui exercitation tempor deserunt elit dolore.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "2-457",
 				"horaInicio": 32400,
 				"horaFin": 43200
 			}
@@ -925,22 +1027,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "10-143",
+		
 		"departamento": "ALTON PLACE",
 		"descripcion": "Labore minim adipisicing voluptate labore commodo Lorem officia cupidatat Lorem quis irure. Non id nulla eu sint anim officia quis consectetur proident pariatur ad officia ullamco. Qui dolor culpa labore non dolor. Esse magna commodo cupidatat deserunt proident eu pariatur adipisicing sunt tempor. Dolor quis irure elit duis ipsum culpa.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "10-143",
 				"horaInicio": 43200,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "10-144",
 				"horaInicio": 39600,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Jueves",
+				"salon": "10-163",
 				"horaInicio": 46800,
 				"horaFin": 54000
 			}
@@ -959,17 +1064,21 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "16-397",
+		"prerrequisito":[
+			"5bff1b9c8e923c840e7efa81"
+		],
 		"departamento": "STOCKTON STREET",
 		"descripcion": "Fugiat non laborum aute aliquip veniam eiusmod exercitation adipisicing exercitation et. Deserunt exercitation enim minim incididunt et est. Culpa mollit voluptate amet magna ea exercitation do. Laboris proident labore pariatur velit est ut ad ipsum consequat ut ipsum id. Incididunt laborum aute exercitation incididunt magna excepteur aliqua veniam ea laborum aute.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "16-397",
 				"horaInicio": 28800,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Sabado",
+				"salon": "16-497",
 				"horaInicio": 25200,
 				"horaFin": 36000
 			}
@@ -988,22 +1097,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "7-118",
+		"prerrequisito":[],
 		"departamento": "LYME AVENUE",
 		"descripcion": "Lorem excepteur anim enim labore laborum anim consectetur Lorem eiusmod do anim anim occaecat consequat. Proident tempor nulla nisi eiusmod officia Lorem officia ut occaecat ad enim dolor. Eiusmod nostrud dolor reprehenderit voluptate est qui.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "7-118",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "7-119",
 				"horaInicio": 54000,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Lunes",
+				"salon": "5-118",
 				"horaInicio": 50400,
 				"horaFin": 57600
 			}
@@ -1022,27 +1134,31 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "14-451",
+		"prerrequisito":[],
 		"departamento": "LINCOLN ROAD",
 		"descripcion": "Lorem officia anim laborum nulla non enim dolore deserunt. Nisi nostrud ea ad ullamco excepteur laborum culpa dolore ullamco veniam. Culpa ea aliqua irure dolor nostrud laboris anim laborum laborum Lorem culpa adipisicing velit.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "14-451",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			},
 			{
 				"dia": "Lunes",
+				"salon": "14-450",
 				"horaInicio": 46800,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Martes",
+				"salon": "10-451",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "14-322",
 				"horaInicio": 39600,
 				"horaFin": 50400
 			}
@@ -1061,22 +1177,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "6-358",
+		"prerrequisito":[],
 		"departamento": "HART STREET",
 		"descripcion": "Officia duis aliquip nulla nisi pariatur ut. Ipsum proident magna proident occaecat in cillum reprehenderit aliquip qui tempor sunt. Laboris nulla dolor laborum in ullamco excepteur qui.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "6-358",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "6-352",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Domingo",
+				"salon": "6-450",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			}
@@ -1095,27 +1214,31 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "4-177",
+		"prerrequisito":[],
 		"departamento": "THORNTON STREET",
 		"descripcion": "Lorem in velit cillum quis et culpa et cupidatat non aliqua laboris magna. Amet anim proident labore consectetur deserunt cupidatat cillum quis pariatur reprehenderit adipisicing. Duis anim enim ex ea reprehenderit nulla elit occaecat. Voluptate consequat consectetur irure voluptate.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "4-177",
 				"horaInicio": 54000,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Lunes",
+				"salon": "5-177",
 				"horaInicio": 54000,
 				"horaFin": 61200
 			},
 			{
 				"dia": "Domingo",
+				"salon": "4-178",
 				"horaInicio": 46800,
 				"horaFin": 61200
 			},
 			{
 				"dia": "Viernes",
+				"salon": "4-237",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			}
@@ -1134,22 +1257,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "15-245",
+		"prerrequisito":[],
 		"departamento": "EATON COURT",
 		"descripcion": "Aliqua sit dolore pariatur veniam ea consectetur deserunt fugiat. Sit incididunt sunt tempor nulla quis culpa ut aliqua adipisicing nostrud qui dolor. Incididunt nostrud velit voluptate esse incididunt non. Ut voluptate sint consectetur laborum velit officia ex culpa non. Cillum exercitation anim magna esse veniam magna eu. Tempor enim tempor ullamco ex ipsum nostrud. Sunt in proident ullamco ipsum ea.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "15-245",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Sabado",
+				"salon": "15-243",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Lunes",
+				"salon": "15-145",
 				"horaInicio": 64800,
 				"horaFin": 72000
 			}
@@ -1168,17 +1294,21 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "6-318",
+		"prerrequisito":[
+			"5bff1b9c97d56481dcc75f58"
+		],
 		"departamento": "WALKER COURT",
 		"descripcion": "Dolore elit labore minim ad anim eiusmod dolor elit ipsum Lorem. Ullamco nulla elit culpa exercitation elit ut. Irure ullamco occaecat voluptate minim. Nulla proident amet laborum nostrud consectetur. Sint adipisicing labore officia proident fugiat dolor laborum quis anim tempor incididunt. Consectetur tempor velit ut amet laborum reprehenderit culpa.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "6-318",
 				"horaInicio": 39600,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "6-315",
 				"horaInicio": 39600,
 				"horaFin": 50400
 			}
@@ -1197,22 +1327,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "1-76",
+		"prerrequisito":[],
 		"departamento": "NORFOLK STREET",
 		"descripcion": "Magna aute ipsum irure anim sint eiusmod proident voluptate pariatur tempor. Ex ad id reprehenderit laboris elit aute aliquip et. Laboris enim laborum excepteur sint proident. Fugiat ut id fugiat voluptate qui id dolore labore nulla duis cillum incididunt proident officia. Exercitation dolor officia sint enim enim et enim est. Incididunt labore labore consectetur non cupidatat aliquip cupidatat non.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "1-76",
 				"horaInicio": 61200,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Domingo",
+				"salon": "2-76",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Viernes",
+				"salon": "1-66",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			}
@@ -1231,12 +1364,16 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "4-29",
+		"prerrequisito":[
+			"5bff1b9c0b2b5a4371cf05f8",
+			"5bff1b9c842bca830ef0d873"
+		],
 		"departamento": "MILLER AVENUE",
 		"descripcion": "Voluptate nisi do enim culpa officia dolore. Consequat ex dolor cillum commodo cillum sint. Magna non ex proident et laboris labore amet laboris. Aliquip commodo eiusmod cillum quis sunt amet aliquip minim tempor laboris tempor. Dolor eu commodo aliqua ea laborum commodo. Do ea sit irure enim deserunt deserunt.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "4-29",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			}
@@ -1255,17 +1392,19 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "18-205",
+		"prerrequisito":[],
 		"departamento": "CAMERON COURT",
 		"descripcion": "Id nisi cupidatat labore minim duis voluptate officia labore quis officia. Enim qui laborum eiusmod magna duis aute commodo quis voluptate adipisicing elit aute. Non veniam ipsum quis sunt culpa sint tempor minim voluptate in ullamco. Veniam quis ut culpa deserunt nisi mollit cupidatat pariatur veniam irure non est nostrud. Commodo ad velit in voluptate ad consectetur anim eu. Labore laboris amet ad laboris irure elit proident dolore dolor incididunt ut proident incididunt officia.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "18-205",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Viernes",
+				"salon": "18-206",
 				"horaInicio": 28800,
 				"horaFin": 39600
 			}
@@ -1284,12 +1423,13 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "10-377",
+		"prerrequisito":[],
 		"departamento": "LLOYD COURT",
 		"descripcion": "Pariatur veniam irure aliqua mollit voluptate qui duis sint. Anim sint et ex labore. Voluptate labore labore fugiat sint ea cupidatat velit consectetur quis occaecat deserunt ex tempor commodo.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "10-377",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			}
@@ -1308,22 +1448,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "6-237",
+		
 		"departamento": "RIDGECREST TERRACE",
 		"descripcion": "Commodo tempor culpa ea pariatur sint sit nisi est dolore deserunt ullamco aliqua ipsum. Incididunt sunt officia ex fugiat. Elit sint incididunt voluptate nulla cillum proident commodo elit.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "6-237",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Sabado",
+				"salon": "6-235",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "6-137",
 				"horaInicio": 46800,
 				"horaFin": 57600
 			}
@@ -1342,22 +1485,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "1-265",
+		"prerrequisito":[],
 		"departamento": "AMITY STREET",
 		"descripcion": "Veniam elit ipsum nisi pariatur nulla voluptate occaecat. Reprehenderit ad ullamco incididunt anim id. Ut dolore irure sint ullamco amet occaecat mollit minim incididunt enim ex irure culpa. Qui consectetur in deserunt quis. Id fugiat exercitation commodo reprehenderit laborum aute excepteur dolor.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "1-265",
 				"horaInicio": 32400,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Lunes",
+				"salon": "2-265",
 				"horaInicio": 39600,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "1-244",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			}
@@ -1376,22 +1522,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "11-85",
+		"prerrequisito":[],
 		"departamento": "FLATLANDS AVENUE",
 		"descripcion": "Aliqua ullamco ex ea sunt proident ullamco commodo aliqua qui. Aliqua ut minim cupidatat do reprehenderit Lorem labore fugiat. Esse ipsum cillum aliqua est. Anim cupidatat exercitation fugiat dolor veniam. Enim minim enim elit ut cillum excepteur officia irure ea Lorem.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "11-85",
 				"horaInicio": 46800,
 				"horaFin": 54000
 			},
 			{
 				"dia": "Domingo",
+				"salon": "11-86",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Sabado",
+				"salon": "11-80",
 				"horaInicio": 39600,
 				"horaFin": 54000
 			}
@@ -1410,22 +1559,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "13-275",
+		"prerrequisito":[],
 		"departamento": "LAWRENCE AVENUE",
 		"descripcion": "Deserunt minim fugiat reprehenderit quis ea esse mollit enim elit sit duis fugiat esse excepteur. Pariatur ullamco aute cupidatat occaecat. Cillum velit exercitation laboris cillum fugiat aliquip aute eu anim adipisicing Lorem laborum velit. Enim qui consectetur dolor in consequat pariatur ullamco occaecat velit mollit qui aute fugiat. Laborum culpa in et nulla. Sit esse fugiat consequat qui occaecat nulla magna tempor mollit cillum laboris est. Dolore dolore est aliquip consequat nulla occaecat culpa quis reprehenderit duis irure tempor Lorem.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "13-275",
 				"horaInicio": 61200,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Lunes",
+				"salon": "13-270",
 				"horaInicio": 46800,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Jueves",
+				"salon": "13-175",
 				"horaInicio": 25200,
 				"horaFin": 36000
 			}
@@ -1444,22 +1596,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "6-286",
+		"prerrequisito":[],
 		"departamento": "JOHNSON STREET",
 		"descripcion": "Ipsum veniam laborum incididunt dolore do aute eiusmod sint deserunt ipsum labore. Nisi eiusmod cillum cillum amet. Ad est Lorem anim ex. Dolor pariatur id anim voluptate consectetur officia. Minim sint dolor pariatur quis ullamco enim.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "6-286",
 				"horaInicio": 50400,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Martes",
+				"salon": "6-285",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "6-246",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			}
@@ -1478,22 +1633,27 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "8-488",
+		"prerrequisito":[
+			"5bff1b9c268fcbada7edb730"
+		],
 		"departamento": "HERZL STREET",
 		"descripcion": "Aliqua aliquip quis elit quis. Ex ea tempor officia aliqua esse magna ipsum consequat. Dolor sint magna et sint mollit ex qui nostrud mollit ullamco qui culpa laborum culpa.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "8-488",
 				"horaInicio": 50400,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Lunes",
+				"salon": "8-558",
 				"horaInicio": 61200,
 				"horaFin": 75600
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "8-318",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			}
@@ -1512,22 +1672,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "16-110",
+		"prerrequisito":[],
 		"departamento": "BUFFALO AVENUE",
 		"descripcion": "Labore qui deserunt eu voluptate laboris commodo magna pariatur ad mollit nisi ut sint. Aliqua laboris aute exercitation anim sit qui ut et. In cillum adipisicing cupidatat ipsum dolore sint reprehenderit non adipisicing adipisicing aliqua. Fugiat deserunt laboris laboris sit esse culpa ad laboris.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "16-110",
 				"horaInicio": 36000,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Jueves",
+				"salon": "14-110",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Martes",
+				"salon": "16-115",
 				"horaInicio": 32400,
 				"horaFin": 43200
 			}
@@ -1546,27 +1709,34 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "5-174",
+		"prerrequisito":[
+			"5bff1b9c24ade34f3ac564b3",
+			"5bff1b9c153ea6a47f5deb47"
+		],
 		"departamento": "JEFFERSON STREET",
 		"descripcion": "Culpa laborum ea nisi amet culpa consectetur veniam occaecat nostrud magna. Est ut sunt velit sunt excepteur aliquip. Do minim aliquip nostrud exercitation. Elit Lorem ex dolor fugiat tempor est cillum incididunt excepteur velit. Dolore quis fugiat deserunt deserunt qui nisi ut eu tempor excepteur aliquip esse enim. Sint proident fugiat anim reprehenderit officia in non ut dolore quis.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "5-174",
 				"horaInicio": 57600,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "5-175",
 				"horaInicio": 61200,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Viernes",
+				"salon": "5-154",
 				"horaInicio": 50400,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Jueves",
+				"salon": "7-174",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			}
@@ -1585,22 +1755,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "18-209",
+		"prerrequisito":[],
 		"departamento": "WILLOUGHBY STREET",
 		"descripcion": "Aliquip ullamco do elit qui do excepteur occaecat consectetur. Voluptate in non deserunt eiusmod ad elit proident voluptate cillum. Esse esse non mollit et aliquip dolor irure proident amet ea labore sit. Laborum adipisicing culpa nulla non.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "18-209",
 				"horaInicio": 54000,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Martes",
+				"salon": "18-210",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			},
 			{
 				"dia": "Lunes",
+				"salon": "18-201",
 				"horaInicio": 25200,
 				"horaFin": 36000
 			}
@@ -1619,27 +1792,31 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "1-497",
+		"prerrequisito":[],
 		"departamento": "ALABAMA AVENUE",
 		"descripcion": "Reprehenderit aliqua fugiat elit deserunt id veniam. Aute Lorem pariatur non ea laborum do sunt enim eu ut officia aliquip in sunt. Ipsum nulla nisi id excepteur ut deserunt sunt aliquip reprehenderit exercitation sunt sint. Esse aliqua sunt ipsum anim velit velit. Culpa deserunt voluptate commodo ut.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "1-497",
 				"horaInicio": 54000,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Lunes",
+				"salon": "1-397",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			},
 			{
 				"dia": "Viernes",
+				"salon": "1-440",
 				"horaInicio": 43200,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Sabado",
+				"salon": "1-503",
 				"horaInicio": 61200,
 				"horaFin": 68400
 			}
@@ -1658,27 +1835,31 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "13-123",
+		"prerrequisito":[],
 		"departamento": "SUTTER AVENUE",
 		"descripcion": "Dolor sit tempor consectetur officia sit cupidatat Lorem velit. Consectetur laborum deserunt tempor voluptate consequat elit in. Aute deserunt veniam irure velit enim deserunt dolore ex. Nulla quis laboris deserunt nisi sunt adipisicing. Minim culpa enim ex ullamco id adipisicing consectetur eu. Anim dolore sit enim quis ex elit Lorem duis reprehenderit cillum culpa duis. Aliqua adipisicing excepteur officia adipisicing mollit veniam aute commodo aute adipisicing ut et.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "13-123",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Martes",
+				"salon": "11-123",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Domingo",
+				"salon": "13-120",
 				"horaInicio": 36000,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Sabado",
+				"salon": "11-123",
 				"horaInicio": 43200,
 				"horaFin": 50400
 			}
@@ -1697,22 +1878,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "20-469",
+		"prerrequisito":[],
 		"departamento": "NEWEL STREET",
 		"descripcion": "Minim dolore cillum nisi ad minim ex aute voluptate laborum excepteur cillum voluptate cupidatat ad. Do anim incididunt officia nisi amet magna commodo dolore cillum et amet amet ad nisi. Nulla veniam amet do in. Ut eu eiusmod veniam sunt adipisicing. Tempor reprehenderit dolor Lorem aliqua Lorem tempor aliquip aliqua duis labore. Do cupidatat duis ad laboris sunt duis.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "20-469",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "20-455",
 				"horaInicio": 64800,
 				"horaFin": 79200
 			},
 			{
 				"dia": "Viernes",
+				"salon": "10-469",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			}
@@ -1731,12 +1915,16 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "16-159",
+		"prerrequisito":[
+			"5bff1b9ce89fa138948db4cc",
+			"5bff1b9d0754e6271ff38f45"
+		],
 		"departamento": "CONCORD STREET",
 		"descripcion": "Est mollit enim in sit nostrud. Ea ex excepteur in elit. Adipisicing non labore eu duis anim. Veniam excepteur ipsum pariatur pariatur ut mollit voluptate laboris officia.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "16-159",
 				"horaInicio": 32400,
 				"horaFin": 46800
 			}
@@ -1755,22 +1943,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "1-120",
+		"prerrequisito":[],
 		"departamento": "MONTAUK COURT",
 		"descripcion": "Laboris sit consectetur velit ad aute id velit fugiat. Aliquip officia voluptate ipsum et est do ipsum irure eiusmod exercitation id. Consequat non aliqua non voluptate tempor culpa irure ad eu amet sunt. Amet et excepteur deserunt sit nostrud laboris officia sint do dolore. Non sit ut nulla commodo magna laborum ex elit ipsum nostrud minim. Ex do adipisicing minim duis consequat irure labore consequat ullamco laborum quis. Exercitation elit nisi consequat cillum qui incididunt esse duis ut sit magna.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "1-120",
 				"horaInicio": 46800,
 				"horaFin": 54000
 			},
 			{
 				"dia": "Martes",
+				"salon": "1-125",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			},
 			{
 				"dia": "Sabado",
+				"salon": "1-220",
 				"horaInicio": 46800,
 				"horaFin": 57600
 			}
@@ -1789,12 +1980,16 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "15-446",
+		"prerrequisito":[
+			"5bff1b9dd274f54989485e1e",
+			"5bff1b9de00a4a2de94c3907"
+		],
 		"departamento": "MCKIBBEN STREET",
 		"descripcion": "Lorem pariatur minim irure labore qui est eiusmod magna eiusmod. Nisi deserunt sunt aliquip enim in duis. Deserunt irure veniam laboris duis ex minim ea esse laborum exercitation. Sint ad cupidatat ut sint fugiat. Qui exercitation magna occaecat sit fugiat do nulla sint velit quis sit aliquip non.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "15-446",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			}
@@ -1813,27 +2008,31 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "4-279",
+		"prerrequisito":[],
 		"departamento": "JAY STREET",
 		"descripcion": "Esse est sint est aliquip. Deserunt ipsum cupidatat tempor culpa dolor officia sint nulla aliquip id duis esse elit. Velit sint velit laborum consequat. Culpa labore laboris proident sit veniam do ipsum tempor. Eu laborum nostrud qui ad ipsum est mollit nisi duis. Lorem minim aliquip est veniam excepteur do laborum elit culpa culpa.\r\n",
 		"horarios": [
 			{
 				"dia": "Martes",
+				"salon": "4-279",
 				"horaInicio": 36000,
 				"horaFin": 43200
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "3-279",
 				"horaInicio": 54000,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Viernes",
+				"salon": "4-270",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Lunes",
+				"salon": "4-250",
 				"horaInicio": 36000,
 				"horaFin": 46800
 			}
@@ -1852,17 +2051,23 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "15-220",
+		"prerrequisito":[
+			"5bff1b9de32b48e31fb9a227",
+			"5bff1b9d82cbced132a6e244"
+
+		],
 		"departamento": "WHITTY LANE",
 		"descripcion": "Dolor nulla elit sint fugiat consectetur. Esse reprehenderit aute aute duis. Dolor irure excepteur aliqua nostrud incididunt consequat aute cillum eu ipsum consectetur.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "15-220",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "10-220",
 				"horaInicio": 61200,
 				"horaFin": 72000
 			}
@@ -1881,22 +2086,25 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "18-88",
+		"prerrequisito":[],
 		"departamento": "CEDAR STREET",
 		"descripcion": "Eu minim in ex nisi. Officia et proident esse ullamco pariatur pariatur non sit dolor commodo sit voluptate exercitation. Aute reprehenderit aliquip ex sint fugiat. Nulla deserunt commodo et laborum commodo proident duis ex. Nostrud ad minim excepteur excepteur pariatur dolor.\r\n",
 		"horarios": [
 			{
 				"dia": "Miercoles",
+				"salon": "18-88",
 				"horaInicio": 64800,
 				"horaFin": 79200
 			},
 			{
 				"dia": "Jueves",
+				"salon": "18-80",
 				"horaInicio": 64800,
 				"horaFin": 79200
 			},
 			{
 				"dia": "Viernes",
+				"salon": "18-68",
 				"horaInicio": 25200,
 				"horaFin": 36000
 			}
@@ -1915,17 +2123,22 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "20-187",
+		"prerrequisito":[
+			"5bff1b9da6b37ccdd98d46f5",
+			"5bff1b9d506fc45e8e5beac0"
+		],
 		"departamento": "BARLOW DRIVE",
 		"descripcion": "Ipsum ex amet proident pariatur nostrud aliquip amet anim incididunt anim nostrud irure deserunt. Ea et consectetur consectetur magna eu. Velit ad ex excepteur pariatur aute laboris qui tempor sit elit deserunt minim. Duis aute eiusmod amet esse esse duis eu deserunt et cupidatat. Quis excepteur irure et nulla anim nisi mollit sunt ex.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "20-187",
 				"horaInicio": 36000,
 				"horaFin": 46800
 			},
 			{
 				"dia": "Viernes",
+				"salon": "20-230",
 				"horaInicio": 54000,
 				"horaFin": 68400
 			}
@@ -1944,27 +2157,31 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "5-465",
+		"prerrequisito":[],
 		"departamento": "NEWKIRK PLACEZ",
 		"descripcion": "Est ullamco cupidatat voluptate ea officia ipsum eiusmod officia id. Consequat esse amet consequat exercitation. Laborum excepteur proident esse est velit ut magna minim amet. Sint labore sunt nulla dolor esse minim ullamco eu elit occaecat labore sunt.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "5-465",
 				"horaInicio": 28800,
 				"horaFin": 36000
 			},
 			{
 				"dia": "Domingo",
+				"salon": "5-365",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "5-505",
 				"horaInicio": 39600,
 				"horaFin": 50400
 			},
 			{
 				"dia": "Jueves",
+				"salon": "2-465",
 				"horaInicio": 28800,
 				"horaFin": 43200
 			}
@@ -1983,17 +2200,21 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Pregrado",
-		"salon": "9-127",
+		"prerrequisito":[
+			"5bff1b9d478464076adc90f3"
+		],
 		"departamento": "HEYWARD STREET",
 		"descripcion": "Duis voluptate incididunt ex dolor occaecat velit sit. Et velit do ut ut sit nulla laboris nisi ullamco sint mollit proident. Consequat do quis esse veniam culpa. Laboris labore consequat velit fugiat aliqua enim adipisicing qui sunt. Voluptate Lorem pariatur occaecat cupidatat reprehenderit magna sit aliquip ex.\r\n",
 		"horarios": [
 			{
 				"dia": "Viernes",
+				"salon": "9-127",
 				"horaInicio": 64800,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Domingo",
+				"salon": "9-125",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			}
@@ -2012,17 +2233,21 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "11-496",
+		"prerrequisito":[
+			"5bff1b9d95588915fecc0838"
+		],
 		"departamento": "HARRISON AVENUE",
 		"descripcion": "Irure magna eiusmod mollit reprehenderit ullamco labore qui officia adipisicing sint aliqua excepteur excepteur. Ipsum pariatur incididunt qui Lorem eiusmod sint. Minim ullamco nostrud incididunt dolore sint qui proident elit ipsum amet deserunt ipsum. Do aliqua amet laboris dolore ad. Tempor laboris nostrud sit ex pariatur ullamco quis et ullamco.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "11-496",
 				"horaInicio": 32400,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Viernes",
+				"salon": "11-493",
 				"horaInicio": 64800,
 				"horaFin": 79200
 			}
@@ -2041,22 +2266,25 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "abierta",
 		"grado": "Pregrado",
-		"salon": "9-447",
+		"prerrequisito":[],
 		"departamento": "PINEAPPLE STREET",
 		"descripcion": "Nulla mollit irure anim ad excepteur nisi labore ea fugiat laborum. In nulla dolor sint non eiusmod non ea consequat sint. Culpa duis et consequat commodo aute do do adipisicing culpa reprehenderit dolore fugiat occaecat pariatur. Proident adipisicing consequat cupidatat ex incididunt dolor eu in culpa qui pariatur id. Non ipsum nulla adipisicing nostrud fugiat commodo duis aliqua. Pariatur deserunt consectetur deserunt reprehenderit Lorem culpa.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "9-447",
 				"horaInicio": 61200,
 				"horaFin": 68400
 			},
 			{
 				"dia": "Jueves",
+				"salon": "9-443",
 				"horaInicio": 32400,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "9-507",
 				"horaInicio": 64800,
 				"horaFin": 79200
 			}
@@ -2075,27 +2303,31 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Postgrado",
-		"salon": "8-316",
+		"prerrequisito":[],
 		"departamento": "FOSTER AVENUE",
 		"descripcion": "Aliqua exercitation id consequat incididunt pariatur esse in consectetur exercitation sunt officia ad sunt Lorem. Anim commodo eu ullamco pariatur ullamco et anim. Ea ad excepteur ipsum fugiat. Laboris veniam mollit Lorem fugiat qui nostrud amet nisi et duis laborum ipsum. Exercitation eiusmod enim dolor tempor.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "8-316",
 				"horaInicio": 57600,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Jueves",
+				"salon": "8-310",
 				"horaInicio": 50400,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "8-340",
 				"horaInicio": 54000,
 				"horaFin": 64800
 			},
 			{
 				"dia": "Viernes",
+				"salon": "8-216",
 				"horaInicio": 50400,
 				"horaFin": 57600
 			}
@@ -2114,22 +2346,28 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Maestria",
-		"salon": "15-491",
+		"prerrequisito":[
+			"5bff1b9da23c962c7fb6e8c9",
+			"5bff1b9d04259c3893d12b97"
+		],
 		"departamento": "IRVINGTON PLACE",
 		"descripcion": "Cillum elit ea eiusmod nulla excepteur veniam eiusmod sint nisi elit Lorem aliqua eiusmod elit. Labore duis cillum sint amet. Eu qui reprehenderit est do nostrud dolor ullamco sit do in. Occaecat id consequat excepteur aute eu incididunt veniam. Mollit esse reprehenderit adipisicing anim aliquip fugiat elit reprehenderit consequat. Laboris pariatur occaecat mollit magna est sint magna Lorem consequat voluptate pariatur labore magna exercitation. Tempor irure sit do nostrud occaecat tempor non excepteur non et tempor nulla.\r\n",
 		"horarios": [
 			{
 				"dia": "Jueves",
+				"salon": "15-491",
 				"horaInicio": 61200,
 				"horaFin": 75600
 			},
 			{
 				"dia": "Viernes",
+				"salon": "15-492",
 				"horaInicio": 46800,
 				"horaFin": 61200
 			},
 			{
 				"dia": "Sabado",
+				"salon": "15-592",
 				"horaInicio": 61200,
 				"horaFin": 72000
 			}
@@ -2148,27 +2386,31 @@
 		"modoEnsenanza": "Presencial",
 		"estado": "abierta",
 		"grado": "Postgrado",
-		"salon": "2-355",
+		"prerrequisito":[],
 		"departamento": "BEEKMAN PLACE",
 		"descripcion": "Enim minim qui aute nostrud nisi mollit laboris velit laboris pariatur Lorem laboris anim. Sint deserunt velit veniam officia. Enim occaecat anim esse veniam nisi.\r\n",
 		"horarios": [
 			{
 				"dia": "Sabado",
+				"salon": "2-355",
 				"horaInicio": 25200,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Viernes",
+				"salon": "2-354",
 				"horaInicio": 28800,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Domingo",
+				"salon": "2-255",
 				"horaInicio": 28800,
 				"horaFin": 39600
 			},
 			{
 				"dia": "Martes",
+				"salon": "2-405",
 				"horaInicio": 46800,
 				"horaFin": 61200
 			}
@@ -2187,27 +2429,31 @@
 		"modoEnsenanza": "Virtual",
 		"estado": "cerrada",
 		"grado": "Maestria",
-		"salon": "14-469",
+		"prerrequisito":[],
 		"departamento": "ELDERT LANE",
 		"descripcion": "Culpa nulla excepteur veniam proident in velit aute nostrud pariatur sunt adipisicing eiusmod aliquip duis. Labore mollit id magna eiusmod ea reprehenderit adipisicing proident occaecat est consectetur sunt exercitation. Qui non ut tempor voluptate. Occaecat est laboris aliqua ad sit eiusmod labore deserunt magna proident consectetur sint. Cupidatat dolor deserunt culpa enim culpa mollit duis.\r\n",
 		"horarios": [
 			{
 				"dia": "Lunes",
+				"salon": "14-469",
 				"horaInicio": 43200,
 				"horaFin": 57600
 			},
 			{
 				"dia": "Domingo",
+				"salon": "11-469",
 				"horaInicio": 61200,
 				"horaFin": 75600
 			},
 			{
 				"dia": "Martes",
+				"salon": "14-468",
 				"horaInicio": 64800,
 				"horaFin": 72000
 			},
 			{
 				"dia": "Miercoles",
+				"salon": "14-459",
 				"horaInicio": 25200,
 				"horaFin": 32400
 			}
