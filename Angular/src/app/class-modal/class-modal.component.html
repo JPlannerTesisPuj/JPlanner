@@ -11,8 +11,16 @@
   <b>Modo enseñanza: </b><span>{{ subject.modoEnsenanza }}</span><br />
   <b>Estado: </b><span>{{ subject.estado }}</span><br />
   <b>Grado: </b><span>{{ subject.grado }}</span><br />
-  <b>Salon: </b><span>{{ subject.salon }}</span><br />
+  
   <b>Departamento: </b><span>{{ subject.departamento }}</span><br />
+  <div>
+  <b>Prerrequisito: </b>
+  <ul>
+    <li *ngFor="let prerrequisito of subject.prerrequisito">
+      {{ subject.prerrequisito }}
+    </li>
+  </ul>
+</div>
   <b>Ciclo Lectivo: </b><span>{{ subject.ciclo_lectivo }}</span><br />
   <b>Descripción: </b><span>{{ subject.descripcion }}</span><br />
   <div>
@@ -21,6 +29,7 @@
       <li *ngFor="let h of subject.horarios">
         {{ h.dia }}
         <ul>
+          <li>{{h.salon}}</li>
           <li>{{ msToHMS( h.horaInicio) }}</li>
           <li>{{ msToHMS( h.horaFin) }}</li>
         </ul>
