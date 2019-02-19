@@ -31,32 +31,48 @@ public class JSONFileRestService {
 
 	// Variable para armar un JSON con un error
 	Map<String, Object> errorResponse;
-	
+
 	// Servicio para filtros de clases
 	@RequestMapping(value = "files/read/json/{fileName}/class-filter/{days}/{hoursFrom}/{hoursTo}/"
 			+ "{creditComparator}/{creditValueOne}/{creditValueTwo}/{searchValue}/{searchParams}/{teachingMode}/{classState}/"
 			+ "{classID}/{classNumber}/{classCode}/{classSizeOpOne}/{classSizeOperator}/{classSizeOpTwo}/"
-			+ "{schoolarYear}/{grade}"
-			, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+			+ "{schoolarYear}/{grade}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
+	/**
+	 * 
+	 * @param fileName Nombre del archivo
+	 * @param days Días que se incluyen
+	 * @param hoursFrom Hora inicial
+	 * @param hoursTo Hora final
+	 * @param creditComparator Especifica el comparador de créditos
+	 * @param creditValueOne Valor crédito inicial
+	 * @param creditValueTwo Valor crédito final
+	 * @param searchValue Texto a buscar
+	 * @param searchParams En qué campos va a buscar el texto
+	 * @param teachingMode Método de enseñanza
+	 * @param classState Estado de la clase, abierta o cerrada
+	 * @param classID ID de la clase
+	 * @param classNumber Número de la clase
+	 * @param classCode Código de la clase
+	 * @param classSizeOpOne Límite de cupos inferior
+	 * @param classSizeOperator Especifica el comparador de cupos
+	 * @param classSizeOpTwo Límite de cupos superior
+	 * @param schoolarYear Año lectivo
+	 * @param grade Si es pregrado, posgrado o maestría
+	 * @return Objeto JSON con las materias filtradas
+	 * @throws JsonProcessingException
+	 */
 	ResponseEntity<String> getJSONClassFilter(@PathVariable("fileName") String fileName,
-			@PathVariable("days") String days,
-			@PathVariable("hoursFrom") String hoursFrom,
-			@PathVariable("hoursTo") String hoursTo,
-			@PathVariable("creditComparator") String creditComparator,
+			@PathVariable("days") String days, @PathVariable("hoursFrom") String hoursFrom,
+			@PathVariable("hoursTo") String hoursTo, @PathVariable("creditComparator") String creditComparator,
 			@PathVariable("creditValueOne") String creditValueOne,
-			@PathVariable("creditValueTwo") String creditValueTwo,
-			@PathVariable("searchValue") String searchValue,
-			@PathVariable("searchParams") String searchParams,
-			@PathVariable("teachingMode") String teachingMode,
-			@PathVariable("classState") String classState,
-			@PathVariable("classID") String classID,
-			@PathVariable("classNumber") String classNumber,
-			@PathVariable("classCode") String classCode, 
+			@PathVariable("creditValueTwo") String creditValueTwo, @PathVariable("searchValue") String searchValue,
+			@PathVariable("searchParams") String searchParams, @PathVariable("teachingMode") String teachingMode,
+			@PathVariable("classState") String classState, @PathVariable("classID") String classID,
+			@PathVariable("classNumber") String classNumber, @PathVariable("classCode") String classCode,
 			@PathVariable("classSizeOpOne") String classSizeOpOne,
 			@PathVariable("classSizeOperator") Integer classSizeOperator,
-			@PathVariable("classSizeOpTwo") String classSizeOpTwo, 
-			@PathVariable("schoolarYear") String schoolarYear,
+			@PathVariable("classSizeOpTwo") String classSizeOpTwo, @PathVariable("schoolarYear") String schoolarYear,
 			@PathVariable("grade") String grade) throws JsonProcessingException {
 		// Se obtiene la información del archivo
 		InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
@@ -88,80 +104,80 @@ public class JSONFileRestService {
 			}
 			// Filtro
 			String filter_state = "", filter_mode = "", filter_id = "", filter_number = "", filter_cupos = "",
-					filter_code = "", filter_schoolYear = "", filter_grade = "",filter_days_hours ="",
-					filter_credits = "" , filter_search = "" ;
-			
+					filter_code = "", filter_schoolYear = "", filter_grade = "", filter_days_hours = "",
+					filter_credits = "", filter_search = "";
+
 			// Se calcula el numero maximo de horarios de una materia
 			ArrayList<Integer> maxNumber = JsonPath.read(JSONFileBuilder.toString(), "$..horarios.length()");
 			int horaryMax = (Collections.max(maxNumber));
 			String[] arrayDays = days.split("-");
-						// Se itera sobre los dias que vienen en la peticion
+			// Se itera sobre los dias que vienen en la peticion
 			filter_days_hours += "(";
+			
 			for (int i = 0; i < arrayDays.length; ++i) {
 				// Se itera sobre el numero maximo de horarios para crear la query
 				for (int j = 0; j < horaryMax; ++j) {
-					filter_days_hours += "@.horarios[" + j + "].dia=='" + arrayDays[i] + "'" +
-					"&& (@.horarios[" + j+ "].horaInicio >=" + hoursFrom + "&& @.horarios[" + j + "].horaFin <=" + hoursTo + ")"+"||";
+					filter_days_hours += "@.horarios[" + j + "].dia=='" + arrayDays[i] + "'" + "&& (@.horarios[" + j
+							+ "].horaInicio >=" + hoursFrom + "&& @.horarios[" + j + "].horaFin <=" + hoursTo + ")"
+							+ "||";
 
 				}
 			}
-			
-			filter_days_hours =filter_days_hours.substring(0, filter_days_hours.length() - 2);
-			filter_days_hours +=")";
-			
-			switch(Integer.parseInt(creditComparator)) {
-				case 0: {
-					filter_credits = "";
-					break;
-				}
-				case 1: {
-					filter_credits = ">=" + creditValueTwo;
-					break;
-				}
-				case 2: {
-					filter_credits = "<=" + creditValueTwo;
-					break;
-				}
-				case 3: {
-					filter_credits = "==" + creditValueTwo;
-					break;
-				}
-				case 4: {
-					filter_credits = ">=" + creditValueOne + " && @.creditos <= " + creditValueTwo;
-					break;
-				}
-	
-				default:
-					break;
-				
+
+			filter_days_hours = filter_days_hours.substring(0, filter_days_hours.length() - 2);
+			filter_days_hours += ")";
+
+			switch (Integer.parseInt(creditComparator)) {
+			case 0: {
+				filter_credits = "";
+				break;
 			}
-			
-			if(!searchParams.equals("none") && !searchValue.equals("none")) {
+			case 1: {
+				filter_credits = ">=" + creditValueTwo;
+				break;
+			}
+			case 2: {
+				filter_credits = "<=" + creditValueTwo;
+				break;
+			}
+			case 3: {
+				filter_credits = "==" + creditValueTwo;
+				break;
+			}
+			case 4: {
+				filter_credits = ">=" + creditValueOne + " && @.creditos <= " + creditValueTwo;
+				break;
+			}
+
+			default:
+				break;
+
+			}
+
+			if (!searchParams.equals("none") && !searchValue.equals("none")) {
 				String[] arraydropdownInfo = searchParams.split("-");
 
 				filter_search += "(";
 				for (int i = 0; i < arraydropdownInfo.length; ++i) {
-					// Se itera sobre las opciones escogidas de la búsqueda específica	
-					if(arraydropdownInfo[i].equals("Nombre de Asignatura")) {
+					// Se itera sobre las opciones escogidas de la búsqueda específica
+					if (arraydropdownInfo[i].equals("Nombre de Asignatura")) {
 						filter_search += "@.nombre =~ /.*^.*" + searchValue + ".*$/i || ";
 					}
-					if(arraydropdownInfo[i].equals("Profesor")) {
+					if (arraydropdownInfo[i].equals("Profesor")) {
 						filter_search += "@.profesor =~ /.*^.*" + searchValue + ".*$/i || ";
 					}
-					
-					if(arraydropdownInfo[i].equals("Departamento")) {
+
+					if (arraydropdownInfo[i].equals("Departamento")) {
 						filter_search += "@.departamento =~ /.*^.*" + searchValue + ".*$/i || ";
 					}
 				}
-				
+
 				filter_search = filter_search.substring(0, filter_search.length() - 4);
 				filter_search += ")";
-			}else {
+			} else {
 				filter_search = "@.departamento && @.profesor && @.nombre";
 			}
-			
-			
-			
+
 			if (!teachingMode.equals("none")) {
 				if (teachingMode.equals("virtual")) {
 					filter_mode = "=='Virtual'";
@@ -224,17 +240,16 @@ public class JSONFileRestService {
 			default:
 				break;
 			}
-			
-			String baseFilter = "$..[?("+filter_days_hours +" &&  "+filter_search+ " && @.creditos "+filter_credits
-					+ " && @.estado" + filter_state +" && @.modoEnsenanza " + filter_mode + " && @._id "
-					+ filter_id + "&& @.numeroClase " + filter_number + " && @.codigo " + filter_code
+
+			String baseFilter = "$..[?(" + filter_days_hours + " &&  " + filter_search + " && @.creditos "
+					+ filter_credits + " && @.estado" + filter_state + " && @.modoEnsenanza " + filter_mode
+					+ " && @._id " + filter_id + "&& @.numeroClase " + filter_number + " && @.codigo " + filter_code
 					+ " && @.cuposDisponibles " + filter_cupos + " && @.ciclo_lectivo " + filter_schoolYear
 					+ " && @.grado " + filter_grade + ")]";
 
-			
 			ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
 			String filteredJSON = new ObjectMapper().writeValueAsString(classes);
-				
+
 			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -255,10 +270,16 @@ public class JSONFileRestService {
 		// Retorna un String en forma de JSON con un error 400
 		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@RequestMapping(value = "tokenauth/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	ResponseEntity<String> getJSONFile(@PathVariable("token") String token) throws JsonProcessingException {
+	/**
+	 * 
+	 * @param token Token del usuario a validar
+	 * @return Objeto JSON con la información del usuario al cual pertenece el token
+	 * @throws JsonProcessingException
+	 */
+	ResponseEntity<String> getTokenAuth(@PathVariable("token") String token) throws JsonProcessingException {
 
 		// Se obtiene la información del archivo
 		InputStream in = getClass().getResourceAsStream("/json/" + "users_pensum" + ".json");
@@ -289,14 +310,13 @@ public class JSONFileRestService {
 			while ((inputStringLine = streamReader.readLine()) != null) {
 				JSONFileBuilder.append(inputStringLine);
 			}
-			
-			// Se crea el filtro para buscar el token en users_pensum.json
-			String baseFilter = "$..[?(@.credenciales == " + "'"+ token + "')]";
 
-			
+			// Se crea el filtro para buscar el token en users_pensum.json
+			String baseFilter = "$..[?(@.credenciales == " + "'" + token + "')]";
+
 			ArrayList<Object> user = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
 			String filteredJSON = new ObjectMapper().writeValueAsString(user);
-			
+
 			// Retorna el archivo JSON leído
 			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
 
@@ -318,9 +338,5 @@ public class JSONFileRestService {
 
 		// Retorna un String en forma de JSON con un error 400
 		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
-
 	}
-	
-	  	
-
 }

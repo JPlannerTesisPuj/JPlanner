@@ -3,7 +3,6 @@
  * Clase que tiene la información de un usuario.
  */
 export class User {
-
     public asignaturas_aprobadas: [];
     public carrera: string;
     public credenciales: string;
