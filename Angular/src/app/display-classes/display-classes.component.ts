@@ -21,6 +21,7 @@ export class DisplayClassesComponent implements OnInit {
   private classes: Subject[];
   private filter: any;
   private error: string;
+  private numberClasses: any;
   // Se pide la dependencia de ReadJsonFileService
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
@@ -35,6 +36,7 @@ export class DisplayClassesComponent implements OnInit {
         this.readJSONFileService.filter('classes', this.filter).subscribe(classes => {
           //Pinta en el buscador las clases encontradas
           this.classes = classes;
+          this.numberClasses = this.classes.length;
         });
       }
     });

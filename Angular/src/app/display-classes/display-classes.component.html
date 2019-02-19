@@ -1,5 +1,10 @@
 <h2>Clases</h2>
+<div>
+  <h5 style="font-size: 15px">Número de clases encontradas en la busqueda: <u>{{this.numberClasses}} </u> </h5>
 
+  
+</div>
+<br>
 <div
   class="dis-found-classes"
   cdkDropList
@@ -12,5 +17,6 @@
   <div *ngFor="let class of classes" cdkDrag>
     <app-display-class [subject]="class"></app-display-class>
   </div>
+  
 </div>
 
