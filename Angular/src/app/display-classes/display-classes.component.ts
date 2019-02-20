@@ -21,10 +21,16 @@ export class DisplayClassesComponent implements OnInit {
   private classes: Subject[];
   private filter: any;
   private error: string;
+
+  //Booleano para mostrar o esconder el loader  
+  private showLoader: boolean;
+
   // Se pide la dependencia de ReadJsonFileService
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
   ngOnInit() {
+    this.showLoader = false;
+
     //Supscripción a los mensajes
     this.data.currentMessage.subscribe(message => {
       //Reinicio arreglo y mensaje de error
@@ -32,10 +38,23 @@ export class DisplayClassesComponent implements OnInit {
       this.error = '';
       this.filter = message;
       if (this.filter['type'] === 'filter') {
-        this.readJSONFileService.filter('classes', this.filter).subscribe(classes => {
-          //Pinta en el buscador las clases encontradas
-          this.classes = classes;
-        });
+        //Inicializa el loader cuando una busqueda es realizada
+        this.showLoader = true;
+        this.readJSONFileService.filter('classes', this.filter).subscribe(
+          classes => {
+            //Pinta en el buscador las clases encontradas
+            this.classes = classes;
+          },
+          //Maneja un error en el observable (Por ejemplo si el servicio esta caido)
+          error => {
+            this.error = 'Se ha producido un error, intentelo nuevamente';
+            this.showLoader = false;
+          },
+          //Esconde el loader cuando el observable finaliza
+          () => {
+            this.showLoader = false;
+          }
+        );
       }
     });
   }
