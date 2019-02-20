@@ -93,10 +93,10 @@ export class CalendarComponent implements OnInit {
   onSwipe(evt: any) {
     const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left') : '';
     if (verticalSwipeMove == 'right') {
-      // Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actal mostrado.
+      // Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actual mostrado.
       this.viewDate = subDays(this.viewDate, 1);
     } else if (verticalSwipeMove == 'left') {
-      // Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actal mostrado.
+      // Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actual mostrado.
       this.viewDate = addDays(this.viewDate, 1);
     }
   }
@@ -134,7 +134,7 @@ export class CalendarComponent implements OnInit {
 
   /**
    * Reacciona al evento de soltar un elemento dentro del Horario, tomando la información de la materia
-   * que se desea agregar al calenario y guardándola en un arreglo que contiene la información de todas las materias
+   * que se desea agregar al calendario y guardándola en un arreglo que contiene la información de todas las materias
    * del horario.
    * 
    * @param event Evento de soltar una materia en el Horario
@@ -149,44 +149,56 @@ export class CalendarComponent implements OnInit {
       let classOverlapped: CalendarEvent = null;
       let arrayOverlapped: any;
       newClasses = Object.assign([], this.classes);
-
+      let arrayClassesOverlapped: CalendarEvent[] = [];
       for (let horary of subjectToDisplay.horarios) {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
         let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
         arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
-        classOverlapped = arrayOverlapped['classOverlapped']
-        isOverlapped = arrayOverlapped['isOverLapped'];
+        classOverlapped = arrayOverlapped["classOverlapped"]
+        isOverlapped = arrayOverlapped["isOverLapped"];
+        if (isOverlapped && !arrayClassesOverlapped.some((subject) => subject.id == classOverlapped.id)) {
+          arrayClassesOverlapped.push(classOverlapped);
 
-        // Si la clase no se cruza con ninguna materia la guarda en un arreglo auxiliar de clases
-        if (isOverlapped) {
-          // Resuelve la promesa y si el valor es positivo intercambia las materias
-          this.displaySelectingOptions(subjectToDisplay, classOverlapped).then(
-            (value) => {
-              if (value) {
-                this.exchangeClasses(subjectToDisplay, classOverlapped);
-              }
-            }
-          );
-          break;
-        } else {
-          newClasses.push({
-            start: startHour,
-            end: endHour,
-            color: colors.black,
-            title: subjectToDisplay.nombre,
-            id: subjectToDisplay._id,
-            actions: this.actions
-          });
         }
       }
-
-      // Si ninguna materia se cruzó entonces iguala el arreglo de las clases al arreglo de las nuevas clases
-      if (!isOverlapped) {
-        this.classes = newClasses;
-        this.calendarClasses.push(subjectToDisplay);
-        this.refresh.next();
-      }
+      if (arrayClassesOverlapped.length == 0) {
+        this.addClass(newClasses,subjectToDisplay);
+      } else {
+        this.displaySelectingOptions(subjectToDisplay, arrayClassesOverlapped).then(
+          //Respuesta del usuario al formulario
+          (userResponse) => {
+            if (userResponse) {
+              this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
+            }
+          }
+        );
     }
+  }
+}
+
+ /**
+   * 
+   * @param newClasses Arreglo auxiliar en el cual se almacenan las clases
+   * @param subjectToDisplay Nueva clase que se agregara
+   * El metodo agrega una materia nueva al calendario
+   */
+  addClass(newClasses : CalendarEvent[],subjectToDisplay : Subject){
+    for (let horary of subjectToDisplay.horarios) {
+      let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
+      let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+
+      newClasses.push({
+        start: startHour,
+        end: endHour,
+        color: colors.black,
+        title: subjectToDisplay.nombre,
+        id: subjectToDisplay._id,
+        actions: this.actions
+      });
+    }
+    this.classes = newClasses;
+      this.calendarClasses.push(subjectToDisplay);
+      this.refresh.next();
   }
 
   /**
@@ -277,11 +289,16 @@ export class CalendarComponent implements OnInit {
    * @param registeredSubject Materia que esta actualmente registrada
    * @returns Crea el diálogo y retorna una promesa con el valor seleccionado por el usuario en el diálogo
    */
-  private async displaySelectingOptions(tryingSubject: Subject, registeredSubject: CalendarEvent) {
+  private async displaySelectingOptions(tryingSubject: Subject, registeredSubjects: CalendarEvent[]) {
+    let removedClassesTitles: string = "";
+    for (let registeredSubject of registeredSubjects) {
+      removedClassesTitles += registeredSubject["title"] + " ,";
+    }
+    removedClassesTitles = removedClassesTitles.slice(0, -1);
     const dialogRef = this.dialog.open(OverlapClassConfirmationDialog, {
       data: {
         'tryToAddClass': tryingSubject,
-        'addedClass': registeredSubject,
+        'addedClasses': removedClassesTitles,
       }
     });
 
@@ -294,28 +311,15 @@ export class CalendarComponent implements OnInit {
    * @param oldClass Clase que sera removida
    * Remueve la calse vieja y agrega la clase nueva
    */
-  private exchangeClasses(newClass: Subject, oldClass: CalendarEvent) {
-    this.removeClass(oldClass.id);
+  private exchangeClasses(newClass: Subject, oldClass: CalendarEvent[]) {
+    for (let oldClasses of oldClass) {
+      this.removeClass(oldClasses.id);
+    }
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([], this.classes);
 
-    for (let horary of newClass.horarios) {
-      let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
-      let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
-
-      newClasses.push({
-        start: startHour,
-        end: endHour,
-        color: colors.black,
-        title: newClass.nombre,
-        id: newClass._id,
-        actions: this.actions
-      });
-    }
-
-    this.classes = newClasses;
-    this.calendarClasses.push(newClass);
-    this.refresh.next();
+    this.addClass(newClasses,newClass);
+    
   }
 }
 
