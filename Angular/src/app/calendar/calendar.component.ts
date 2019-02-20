@@ -292,9 +292,9 @@ export class CalendarComponent implements OnInit {
   private async displaySelectingOptions(tryingSubject: Subject, registeredSubjects: CalendarEvent[]) {
     let removedClassesTitles: string = '';
     for (let registeredSubject of registeredSubjects) {
-      removedClassesTitles += registeredSubject['title'] + ' ,';
+      removedClassesTitles += registeredSubject['title'] + ', ';
     }
-    removedClassesTitles = removedClassesTitles.slice(0, -1);
+    removedClassesTitles = removedClassesTitles.slice(0, -2);
     const dialogRef = this.dialog.open(OverlapClassConfirmationDialog, {
       data: {
         'tryToAddClass': tryingSubject,
