@@ -154,8 +154,8 @@ export class CalendarComponent implements OnInit {
         let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
         let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
         arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
-        classOverlapped = arrayOverlapped["classOverlapped"]
-        isOverlapped = arrayOverlapped["isOverLapped"];
+        classOverlapped = arrayOverlapped['classOverlapped']
+        isOverlapped = arrayOverlapped['isOverLapped'];
         if (isOverlapped && !arrayClassesOverlapped.some((subject) => subject.id == classOverlapped.id)) {
           arrayClassesOverlapped.push(classOverlapped);
 
@@ -290,9 +290,9 @@ export class CalendarComponent implements OnInit {
    * @returns Crea el diálogo y retorna una promesa con el valor seleccionado por el usuario en el diálogo
    */
   private async displaySelectingOptions(tryingSubject: Subject, registeredSubjects: CalendarEvent[]) {
-    let removedClassesTitles: string = "";
+    let removedClassesTitles: string = '';
     for (let registeredSubject of registeredSubjects) {
-      removedClassesTitles += registeredSubject["title"] + " ,";
+      removedClassesTitles += registeredSubject['title'] + ' ,';
     }
     removedClassesTitles = removedClassesTitles.slice(0, -1);
     const dialogRef = this.dialog.open(OverlapClassConfirmationDialog, {
