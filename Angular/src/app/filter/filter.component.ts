@@ -42,6 +42,7 @@ export class FilterComponent implements OnInit {
   private sizeComparator: any;
   private sizeValue1: number;
   private sizeValue2: number;
+  private yearActualCycle;
 
   // Mensaje con los datos de los filtros
   private filterMsj: any;
@@ -172,8 +173,8 @@ export class FilterComponent implements OnInit {
       actualCycle = 3;
     }
 
-    let yearActualCycle = fullYear + '-' + actualCycle
-    this.dropdownSchoolYear.push(yearActualCycle);
+    this.yearActualCycle = fullYear + '-' + actualCycle
+    this.dropdownSchoolYear.push(this.yearActualCycle);
     let yearMajor1Cycle = this.yearMajor(fullYear, actualCycle);
     this.dropdownSchoolYear.push(yearMajor1Cycle);
     let yearMajor2Cycle = this.yearMajor(+yearMajor1Cycle.split('-')[0], +yearMajor1Cycle.split('-')[1]);
@@ -349,7 +350,7 @@ export class FilterComponent implements OnInit {
       modeToSend = 'none';
     }
     if (this.year === 'Cualquiera') {
-      yearToSend = 'none';
+      yearToSend = this.yearActualCycle;
     }
     if (this.gradeFilter === 'Cualquiera') {
       gradeToSend = 'none';
@@ -469,14 +470,14 @@ export class FilterComponent implements OnInit {
    */
   private restartAdvFilter(data) {
     data['teachingMode'] = 'none';
-    data['state'] = 'both';
+    data['state'] = 'open';
     data['class-ID'] = 'none';
     data['class-number'] = 'none';
     data['class-size']['comp'] = 0;
     data['class-size']['firstOp'] = 'none';
     data['class-size']['secondOp'] = 'none';
     data['class-code'] = 'none';
-    data['scholar-year'] = 'none';
+    data['scholar-year'] = this.yearActualCycle;
     data['grade'] = 'none';
   }
 
