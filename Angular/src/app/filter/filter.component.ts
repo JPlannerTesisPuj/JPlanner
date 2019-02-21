@@ -245,7 +245,7 @@ export class FilterComponent implements OnInit {
     if (this.openStateCheckbox.isChecked == this.closedStateCheckbox.isChecked) {
       selectedStates = 'both';
     }
-    if (!this.openStateCheckbox.isChecked == !this.closedStateCheckbox.isChecked){
+    if (!this.openStateCheckbox.isChecked && !this.closedStateCheckbox.isChecked){
       selectedStates = 'open';
     }
     return selectedStates;
