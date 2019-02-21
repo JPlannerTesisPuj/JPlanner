@@ -45,6 +45,8 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView;
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
+
+
   private verticalMenuIndex: number = 0;
   /**
    * @var
@@ -55,6 +57,7 @@ export class CalendarComponent implements OnInit {
    * title: es el título de la clase que aparecerá en el bloque del horario de la materia
    */
   private classes: CalendarEvent[] = [];
+
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
   /**
    * @var
@@ -69,10 +72,42 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
+  /**
+   * @var
+   * Arreglo de alternativas de horario en donde se almancenan las clases que se utilizan en el calendario
+   */
+  private alternativeClasses : Array <CalendarEvent[]> = new Array<CalendarEvent[]>();
+  /**
+   * @var
+   * Alternativa de horario actual seleccionada
+   */
+  private currentAlternative : number;
+  /**
+   * Número de alternativas configurable
+   */
+  private numberOfAlternatives : number;
+
+  private alternativeIterationArray : number[] = [];
+  /**
+   * Arreglo que almacena los titulos de cada alternativa
+   */
+  private alternativeTitles : String[] = [];
+  /**
+   * Arreglo donde se almacenan las calses de las alternativas que se usan en la logica interna
+   */
+  private alternativeCalendarClasses: Array<Subject[]> = new Array<Subject[]>();
+
+
   constructor(public dialog: MatDialog, private data: DataService, private readJSONFileService: ReadJsonFileService) { }
 
   ngOnInit() {
-    /**
+    //Inicializa el numero de alternativas, el arreglo de titulos y la alterativa escogida por defecto
+    this.numberOfAlternatives = 6;
+    this.initTitles();
+    this.onItemChange(0);
+  
+    this
+        /**
      * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
      * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
      */
@@ -196,8 +231,10 @@ export class CalendarComponent implements OnInit {
         actions: this.actions
       });
     }
-    this.classes = newClasses;
+      this.classes = newClasses;
+      this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
       this.calendarClasses.push(subjectToDisplay);
+      this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
       this.refresh.next();
   }
 
@@ -280,6 +317,8 @@ export class CalendarComponent implements OnInit {
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
     this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
+    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
+    this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
 
@@ -321,6 +360,30 @@ export class CalendarComponent implements OnInit {
     this.addClass(newClasses,newClass);
     
   }
+
+  /**
+   * Reacciona al cambio entre los radio buttons de las alternativas
+   */
+  private onItemChange(alternativeValue){
+    this.currentAlternative = alternativeValue;
+       if(this.alternativeClasses[this.currentAlternative] === undefined){
+      this.alternativeClasses[this.currentAlternative] = new Array<CalendarEvent>();
+      this.alternativeCalendarClasses[this.currentAlternative]= new Array<Subject>();
+    }
+    this.classes = this.alternativeClasses[this.currentAlternative];    
+    this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
+  }
+  /**
+   * Inicializa los titulos de las alternativas segun la configuración de la variable numberOfAlternatives
+   */
+  private initTitles(){
+    for(let i=1 ; i<=this.numberOfAlternatives;i++){
+      this.alternativeTitles[i-1] = 'Alternativa ' + i;
+      this.alternativeIterationArray[i-1] = i-1;
+    }
+    
+  }
+  
 }
 
 
