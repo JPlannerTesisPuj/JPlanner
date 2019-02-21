@@ -17,6 +17,26 @@
     [Nombre variable]-[Porcentaje de opacidad]
 */
 
+/**
+    Las variables definidas a continuación son para facilitar la modificación
+    de las propiedades de los elementos comunes que contengan color, espeacios o
+    tipografías. Para utilizar las variables definidas a continuación se debe
+    hacer de la siguiente manera:
+*/
+
+/// @group variables
+/// @name variables
+/// @example scss
+/// .element {
+///     color: $dark-blue;
+/// }
+///    
+/// @example scss
+/// .element {
+///     background-color: $black-10
+/// }
+///
+
 // -- COLORES PRIMARIOS -- //
 
 // Blanco
