@@ -1,0 +1,63 @@
+/* Customize the label (the cal-radio-container) */
+.cal-radio-container {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 24px;
+    height: 24px;
+  
+    input[type=radio]{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        
+        &:checked ~ .atom-radio-btn{
+            background-color: white;
+            border-color: #f8cd00;
+
+            &:after{
+                content:'';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%) translateX(-50%);
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background:#f8cd00 ;
+            }
+        }
+    }
+  
+
+  /* Create a custom radio button */
+    .atom-radio-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        background-color: white;
+        border: solid 2px #2c5697;
+        border-radius: 50%;
+       
+    }
+
+    &:hover{
+        input[type=radio]:not(:checked)~ .atom-radio-btn{
+            background-color: #d4dce9;
+            border-color: #2c5697;
+            &:after{
+                display:none;
+            }
+        } 
+    }
+
+    
+}
