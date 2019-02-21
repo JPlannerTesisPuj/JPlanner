@@ -282,15 +282,15 @@ public class JSONFileRestService {
 	ResponseEntity<String> getTokenAuth(@PathVariable("token") String token) throws JsonProcessingException {
 
 		// Se obtiene la información del archivo
-		InputStream in = getClass().getResourceAsStream("/json/" + "users_pensum" + ".json");
+		InputStream in = getClass().getResourceAsStream("/json/" + "users" + ".json");
 
 		// Si no existe el archivo se crea un JSON que contiene especificando el error
 		if (in == null) {
 			errorResponse = new HashMap<>();
 			errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
 			errorResponse.put("error", "Error al abrir el archivo");
-			errorResponse.put("message", "No se ha encontrado el archivo " + "users_pensum" + ".json para leer");
-			errorResponse.put("path", "tokenauth/" + "users_pensum");
+			errorResponse.put("message", "No se ha encontrado el archivo " + "users" + ".json para leer");
+			errorResponse.put("path", "tokenauth/" + "users");
 
 			// Convierte el Mapa con la especificación del error en un String en forma de
 			// JSON
