@@ -1,0 +1,209 @@
+* {
+    font-family: $font-secondary;
+    font-size: 16px;
+    color: $black;
+}
+
+/**
+    Los estilos definidos a continuación son para facilitar la modificación
+    de las propiedades de los elementos comunes. Para utilizar los estilos
+    definidos a continuación se debe hacer de la siguiente manera:
+*/
+
+/// @group fonts
+/// @name font-styles
+/// @example scss
+/// .element {
+///     @include font-styles('h2');
+/// }
+///    
+/// @example scss
+/// .element {
+///     @include font-styles('subject-box');
+/// }
+///
+
+@mixin font-styles($type) {
+    $font: '';
+    $font-weight: 0;
+    $font-style: initial;
+    $text-decoration: none;
+    $size: 0;
+    $size-xs: 0;
+    $line-height: 0;
+    $line-height-xs: 0;
+    $color: $black;
+    $space: 0;
+
+    @if $type == 'h1' {
+        $font: $font-main;
+        $font-weight: 900;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 44px;
+        $size-xs: 40px;
+        $line-height: 56px;
+        $line-height-xs: 52px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'h2' {
+        $font: $font-main;
+        $font-weight: 900;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 36px;
+        $size-xs: 32px;
+        $line-height: 48px;
+        $line-height-xs: 40px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'h3' {
+        $font: $font-main;
+        $font-weight: 900;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 32px;
+        $size-xs: 28px;
+        $line-height: 40px;
+        $line-height-xs: 36px;
+        $color: $black;
+        $space: 0;
+    }  @else if $type == 'h4' {
+        $font: $font-main;
+        $font-weight: 900;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 36px;
+        $size-xs: 32px;
+        $line-height: 48px;
+        $line-height-xs: 40px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'h5' {
+        $font: $font-main;
+        $font-weight: 900;
+        $font-style: italic;
+        $text-decoration: none;
+        $size: 24px;
+        $size-xs: 20px;
+        $line-height: 32px;
+        $line-height-xs: 28px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'h6' {
+        $font: $font-main;
+        $font-weight: 900;
+        $font-style: italic;
+        $text-decoration: none;
+        $size: 22px;
+        $size-xs: 18px;
+        $line-height: 28px;
+        $line-height-xs: 24px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'p' {
+        $font: $font-secondary;
+        $font-weight: 500;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 16px;
+        $line-height: 24px;
+        $color: $black-70;
+        $space: 0;
+    } @else if $type == 'button' {
+        $font: $font-secondary;
+        $font-weight: 900;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 16px;
+        $line-height: 24px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'hours' {
+        $font: $font-secondary;
+        $font-weight: 500;
+        $font-style: italic;
+        $text-decoration: none;
+        $size: 12px;
+        $line-height: 24px;
+        $color: $black-50;
+        $space: 0;
+    } @else if $type == 'hint' {
+        $font: $font-secondary;
+        $font-weight: 500;
+        $font-style: italic;
+        $text-decoration: none;
+        $size: 14px;
+        $line-height: 24px;
+        $color: $black-50;
+        $space: 0;
+    } @else if $type == 'subject-box' {
+        $font: $font-secondary;
+        $font-weight: 500;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 18px;
+        $line-height: 24px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'link' {
+        $font: $font-secondary;
+        $font-weight: 500;
+        $font-style: initial;
+        $text-decoration: underline;
+        $size: 18px;
+        $line-height: 24px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'label' {
+        $font: $font-secondary;
+        $font-weight: 500;
+        $font-style: italic;
+        $text-decoration: none;
+        $size: 14px;
+        $line-height: 24px;
+        $color: $black-50;
+        $space: 0;
+    } @else if $type == 'label-bold' {
+        $font: $font-secondary;
+        $font-weight: 900;
+        $font-style: initial;
+        $text-decoration: none;
+        $size: 14px;
+        $line-height: 24px;
+        $color: $black;
+        $space: 0;
+    } @else if $type == 'button-sm' {
+        $font: $font-secondary;
+        $font-weight: 900;
+        $font-style: italic;
+        $text-decoration: none;
+        $size: 12px;
+        $line-height: 24px;
+        $color: $black;
+        $space: 0;
+    }
+
+    margin: 0;
+    padding: 0;
+    color: $color;
+    font-family: $font;
+    font-size: $size;
+    font-weight: $font-weight;
+    font-style: $font-style;
+    text-decoration: $text-decoration;
+    line-height: $line-height;
+    letter-spacing: $space;
+
+    @if $size-xs != 0 {
+        @media (max-width: 768px) {
+            font-size: $size-xs;
+        }
+    }
+
+    @if $line-height-xs != 0 {
+        @media (max-width: 768px) {
+            line-height: $line-height-xs;
+        }
+    }
+}
