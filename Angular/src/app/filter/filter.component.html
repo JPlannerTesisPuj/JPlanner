@@ -30,7 +30,7 @@
 
   <div id="fil-credit-selector" class="fil-credits col-12 grid-noGutter">
     <label for="fil-credit-selector" class="col-12"><strong>Número de Creditos</strong></label>
-    <input required="requireda" id="fil-credit-input-1" class="fil-input-number col-12" type="text" maxlength="2"
+    <input required="requireda" id="fil-credit-input-1" class="fil-input-number col-12 atom-input-field" type="text" maxlength="2"
       pattern="\d{1,2}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue"
       [value]="creditValue" (ngModelChange)="onChangeInputCreditOne($event)" />
     <select id="fil-creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)"
@@ -40,7 +40,7 @@
         {{comparator.value}}
       </option>
     </select>
-    <input required="required" id="fil-credit-input-2" class="fil-input-number col-12" type="text" maxlength="2"
+    <input required="required" id="fil-credit-input-2" class="fil-input-number col-12 atom-input-field" type="text" maxlength="2"
       pattern="\d{1,2}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="creditValue2"
       [value]="creditValue2" (ngModelChange)="onChangeInputCreditTwo($event)" />
   </div>
@@ -49,7 +49,7 @@
   <div id="fil-search-fields" class="col-12 grid-noGutter">
     <label for="fil-search-fields" class="col-12"><strong>Búsqueda de Texto</strong></label>
     <div class="fil-search-container col-12">
-      <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12" id="fil-searchBox"
+      <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field" id="fil-searchBox"
         placeholder="Buscar..">
       <div class="error-msg" id="fil-error-searchBox"></div>
     </div>
@@ -85,19 +85,19 @@
 
   <div id="fil-id-filter" class="col-12 grid-noGutter">
     <label for="fil-id-filter" class="col-12"><strong>ID</strong></label>
-    <input type="text" [(ngModel)]="searchedFilterId" class="col-12" />
+    <input type="text" [(ngModel)]="searchedFilterId" class="col-12 atom-input-field" />
   </div>
 
 
   <div id="fil-number-filter" class="col-12 grid-noGutter">
     <label for="fil-number-filter" class="col-12"><strong>Número de Clase</strong></label>
-    <input type="number" [(ngModel)]="searchedFilterNumber" class="col-12" />
+    <input type="number" [(ngModel)]="searchedFilterNumber" class="col-12 atom-input-field" />
   </div>
 
 
   <div id="fil-code-filter" class="col-12 grid-noGutter">
     <label for="fil-code-filter" class="col-12"><strong>Codigo de Clase</strong></label>
-    <input type="number" [(ngModel)]="searchedFilterCode" class="col-12" />
+    <input type="number" [(ngModel)]="searchedFilterCode" class="col-12 atom-input-field" />
   </div>
 
   <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
@@ -122,7 +122,7 @@
 
   <div id="fil-class-size" class="col-12 grid-noGutter">
     <label for="fil-class-size"><strong>Cupos Disponibles</strong></label>
-    <input id="fil-class-size-input-1" class="fil-input-number col-12" required="required" type="text" maxlength="2"
+    <input id="fil-class-size-input-1" class="fil-input-number col-12 atom-input-field" required="required" type="text" maxlength="2"
       pattern="\d{1,2}" [(ngModel)]="sizeValue1" [value]="sizeValue1"
       oninput="this.value=this.value.replace(/[^0-9]/g,'');" (ngModelChange)="onChangeInputSizeOne($event)" />
     <select id="fil-sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)"
@@ -132,7 +132,7 @@
         {{comparator.value}}
       </option>
     </select>
-    <input id="fil-class-size-input-2" class="fil-input-number col-12" required="required" type="text" maxlength="2"
+    <input id="fil-class-size-input-2" class="fil-input-number col-12 atom-input-field" required="required" type="text" maxlength="2"
       pattern="\d{1,2}" [(ngModel)]="sizeValue2" [value]="sizeValue2"
       oninput="this.value=this.value.replace(/[^0-9]/g,'');" (ngModelChange)="onChangeInputSizeTwo($event)" />
   </div>

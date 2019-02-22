@@ -1,0 +1,129 @@
+/**
+    El número seguido después del nombre de la variable
+    es el color resultante después de aplicar ese número como
+    porcentaje de opacidad. Se maneja valores fijos sin aplicar
+    opacidad debido a que un color con un porcentaje de opacidad
+    se verá diferente según el color que tenga de fondo. La variable
+    que no tenga un número de opacidad significa que su porcentaje
+    de opacidad es 100%;
+    
+    Por ejemplo:
+    Un objeto de color azul #0000ff con opacidad del 50% se verá
+    diferente cuando haya un fondo blanco detrás de él que cuando
+    haya un fonde amarillo detrás de él.
+
+    Todos los porcentajes de opacidad manejados son sobre fondo blanco.
+
+    [Nombre variable]-[Porcentaje de opacidad]
+*/
+
+/**
+    Las variables definidas a continuación son para facilitar la modificación
+    de las propiedades de los elementos comunes que contengan color, espeacios o
+    tipografías. Para utilizar las variables definidas a continuación se debe
+    hacer de la siguiente manera:
+*/
+
+/// @group variables
+/// @name variables
+/// @example scss
+/// .element {
+///     color: $dark-blue;
+/// }
+///    
+/// @example scss
+/// .element {
+///     background-color: $black-10
+/// }
+///
+
+// -- COLORES PRIMARIOS -- //
+
+// Blanco
+$white: #ffffff;
+
+// Azul oscuro: 
+$dark-blue: #2c5697;
+$dark-blue-90: #4066a1;
+$dark-blue-80: #5677ab;
+$dark-blue-70: #6a88b5;
+$dark-blue-60: #8099c0;
+$dark-blue-50: #94a9ca;
+$dark-blue-40: #aabbd5;
+$dark-blue-30: #becbdf;
+$dark-blue-20: #d4dce9;
+$dark-blue-10: #e8edf4;
+
+// Amarillo
+$yellow: #f8cd00;
+$yellow-90: #f8d118;
+$yellow-80: #f9d632;
+$yellow-70: #fadb4b;
+$yellow-60: #fae065;
+$yellow-50: #fbe57e;
+$yellow-40: #fcea98;
+$yellow-30: #fcefb1;
+$yellow-20: #fdf4cb;
+$yellow-10: #fef9e4;
+
+// Negro
+$black: #000000;
+$black-90: #181818;
+$black-80: #323232;
+$black-70: #4b4b4b;
+$black-60: #656565;
+$black-50: #7e7e7e;
+$black-40: #989898;
+$black-30: #b1b1b1;
+$black-20: #cbcbcb;
+$black-10: #e4e4e4;
+
+// Azul claro: 
+$light-blue: #008ca4;
+$light-blue-90: #1897ac;
+$light-blue-80: #32a2b6;
+$light-blue-70: #4baebf;
+$light-blue-60: #65b9c8;
+$light-blue-50: #7ec5d1;
+$light-blue-40: #98d0da;
+$light-blue-30: #b1dbe3;
+$light-blue-20: #cbe7ec;
+$light-blue-10: #e4f2f5;
+
+// -- COLORES SECUNDARIOS -- //
+
+// Rojo: 
+$red: #ec660c;
+$red-90: #ed7423;
+$red-80: #ef843c;
+$red-70: #f19354;
+$red-60: #f3a26c;
+$red-50: #f5b184;
+$red-40: #f7c19d;
+$red-30: #f9d1b5;
+$red-20: #fbdfcd;
+$red-10: #fceee5;
+
+// Verde: 
+$green: #50ac31;
+$green-90: #61b445;
+$green-80: #72bc5a;
+$green-70: #83c46e;
+$green-60: #95cd83;
+$green-50: #a6d597;
+$green-40: #b8ddac;
+$green-30: #c9e5c0;
+$green-20: #dbeed5;
+$green-10: #ecf6e9;
+
+// -- ESPACIOS -- //
+// Espacios entre elementos
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+// -- TIPOGRAFÍA -- //
+$font-main: 'Arial';
+$font-secondary: 'Helvetica';

@@ -1,0 +1,21 @@
+.atom-input-field{
+    border: solid 1px $dark-blue;
+    border-radius: $space-xs;
+    padding-left: $space-md;
+    font-family: $font-secondary;
+    font-size: 14px;
+    height:$space-xl;
+
+    &:hover:not(:active):not(:focus):not(:disabled){
+        border-color:$yellow;
+    }
+    &:active,&:focus{
+        border-color:$light-blue-90;
+        outline: none;
+    }
+    &:disabled{
+        border-color:$black-70;       
+    }
+   
+
+}

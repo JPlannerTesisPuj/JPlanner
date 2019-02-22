@@ -8,6 +8,7 @@
   [cdkDropListConnectedTo]="calendarList"
   (cdkDropListDropped)="dropInside($event)">
   {{this.error}}
+  <div *ngIf="showLoader" class="dispclass-loader"></div>
   <!-- Se recorre la lista de materias y se crea un app-display-class por cada materia -->
   <div *ngFor="let class of classes" cdkDrag>
     <app-display-class [subject]="class"></app-display-class>

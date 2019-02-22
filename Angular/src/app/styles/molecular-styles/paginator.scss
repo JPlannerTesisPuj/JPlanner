@@ -9,8 +9,7 @@
     .cal-alt-radio-group {
         text-align: right;
         .cal-radio-container{
-            margin-right:8px;
-            margin-left:8px;
+            margin: $space-xs;
             &:last-child{
                 margin-right: 0;
             }
