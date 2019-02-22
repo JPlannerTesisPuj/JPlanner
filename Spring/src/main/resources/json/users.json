@@ -1,23 +1,29 @@
 [
     {
         "carrera": "Matemáticas",
+        "GID": "00020109410",
         "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJNb3J0eSBTbWl0aCI6ImJsYSJ9.5dNAujcmM-kYGgNwkhKV7QyLx23fI5qEKFXhY2BWleU",
         "nombre_estudiante": "Morty Smith",
-        "semestre": "7"
+        "semestre": "7",
+        "numeroCreditosAprobados": 130
        
     },
     {
         "carrera": "Ingeniería de Sistemas",
+        "GID": "00020209410",
         "credenciales": "eyJ0eXAiOiJKV1QidiQM0LCJhbGciOiJIUzI1NiJ9.eyJNMAin4b3J0eSBaCI6ImJsYSJ9.5dNA54MneukYGgNwkhKV7QyLx23fI5qEKFXhY2",
         "nombre_estudiante": "Rick Sánchez",
-        "semestre": "2"
+        "semestre": "2",
+        "numeroCreditosAprobados": 40
         
     },
     {
         "carrera": "Arquitectura",
+        "GID": "00020109620",
         "credenciales": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzIHDN741NiJ9.eJ0eSBTbWl0aCI6ImJsYKi40iSJ9.5dNM-kYGgNwkhKV7QyLx23fKD8ncIXhY2BWleU",
         "nombre_estudiante": "Destri Hernández",
-        "semestre": "5"
+        "semestre": "5",
+        "numeroCreditosAprobados": 100
         
     }
 ]
