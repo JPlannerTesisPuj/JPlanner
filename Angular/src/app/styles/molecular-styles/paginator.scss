@@ -1,0 +1,18 @@
+.cal-alternatives-paginator{
+    .cal-alt-title-div{
+        text-align: center;
+        label{
+            font-weight: bold;
+            padding-right: 10px;
+        }
+    }
+    .cal-alt-radio-group {
+        text-align: right;
+        .cal-radio-container{
+            margin: $space-xs;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+}

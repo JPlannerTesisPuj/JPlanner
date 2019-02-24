@@ -60,7 +60,7 @@
       <strong>Búsqueda de Texto</strong>
     </label>
     <div class="fil-search-container col-12">
-      <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12" id="fil-searchBox" placeholder="Buscar..">
+      <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field" id="fil-searchBox" placeholder="Buscar..">
       <div class="error-msg" id="fil-error-searchBox"></div>
     </div>
 
@@ -101,7 +101,7 @@
     <label for="fil-id-filter" class="col-12">
       <strong>ID</strong>
     </label>
-    <input type="text" [(ngModel)]="searchedFilterId" class="col-12" />
+    <input type="text" [(ngModel)]="searchedFilterId" class="col-12 atom-input-field" />
   </div>
 
 
@@ -109,7 +109,7 @@
     <label for="fil-number-filter" class="col-12">
       <strong>Número de Clase</strong>
     </label>
-    <input type="number" [(ngModel)]="searchedFilterNumber" class="col-12" />
+    <input type="number" [(ngModel)]="searchedFilterNumber" class="col-12 atom-input-field" />
   </div>
 
 
@@ -117,7 +117,7 @@
     <label for="fil-code-filter" class="col-12">
       <strong>Codigo de Clase</strong>
     </label>
-    <input type="number" [(ngModel)]="searchedFilterCode" class="col-12" />
+    <input type="number" [(ngModel)]="searchedFilterCode" class="col-12 atom-input-field" />
   </div>
 
   <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
@@ -163,7 +163,7 @@
       <option [disabled]="value.disabled" *ngFor="let value of sizeValue2">
         {{value.value}}
       </option>
-    </select>  
+    </select>
   </div>
 
 </div>
