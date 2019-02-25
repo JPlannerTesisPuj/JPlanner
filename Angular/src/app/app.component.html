@@ -1,14 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <body>
-  <div style="text-align:center; margin-top :10px;">
-    <h4>
-      {{ title }}!
-    </h4>
-    <h5>{{ name }}</h5>
-    <img width="100" alt="JPlanner Logo" src="/assets/web/logo.1.png">
+  <div class="header">
+      <img width="30px" alt="JPlanner Logo" src="/assets/web/logo.1.png">
+      <a>JPlanner</a>
   </div>
 
-  <app-calendar class="grid-noGutter"></app-calendar>
+  <app-calendar style="margin-top :10px;" class="grid-noGutter"></app-calendar>
   <router-outlet></router-outlet>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
