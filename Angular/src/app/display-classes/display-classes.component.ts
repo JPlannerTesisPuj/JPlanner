@@ -42,19 +42,13 @@ export class DisplayClassesComponent implements OnInit {
       this.error = '';
       this.filter = message;
       if (this.filter['type'] === 'filter') {
-
-        this.readJSONFileService.filter('classes', this.filter).subscribe(classes => {
-          //Pinta en el buscador las clases encontradas
-          this.classes = classes;
-          this.numberClasses = this.classes.length;
-        });
-
         //Inicializa el loader cuando una busqueda es realizada
         this.showLoader = true;
         this.readJSONFileService.filter('classes', this.filter).subscribe(
           classes => {
             //Pinta en el buscador las clases encontradas
             this.classes = classes;
+            this.numberClasses = this.classes.length;
           },
           //Maneja un error en el observable (Por ejemplo si el servicio esta caido)
           error => {

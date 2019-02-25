@@ -1,12 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <body>
-  <div style="text-align:center; margin-top :10px;">
-    <h4>
-      {{ title }}!
-    </h4>
-    <h5>{{ name }}</h5>
-    <img width="100" alt="JPlanner Logo" src="/assets/web/logo.1.png">
-  </div>
+  <header class="cmp-header">
+      <img width="30px" alt="JPlanner Logo" src="/assets/web/logo.1.png">
+      <a>JPlanner</a>
+      <div class="cmp-header-right">
+        <a>{{ name }}</a>
+      </div>
+  </header>
 
   <app-calendar class="grid-noGutter"></app-calendar>
   <router-outlet></router-outlet>

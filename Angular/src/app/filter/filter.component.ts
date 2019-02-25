@@ -22,8 +22,12 @@ export class FilterComponent implements OnInit {
   private creditsComparatorOptions: any = {};
   private creditsComparator: any;
   private searchBox: string;
-  private creditValue: number;
-  private creditValue2: number;
+  private creditValue1: any[];
+  private selectedCreditValue1: number;
+  private creditValue2: any[];
+  private selectedCreditValue2: number = 1;
+  private shouldDisplayCreditValue1: boolean = false;
+  private shouldDisplayCreditValue2: boolean = false;
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
@@ -40,8 +44,13 @@ export class FilterComponent implements OnInit {
   private dropdownGrades: any;
   private sizeComparatorOptions: any;
   private sizeComparator: any;
-  private sizeValue1: number;
-  private sizeValue2: number;
+  private sizeValue1: any [] = [];
+  private sizeValue2: any []= [];
+  private selectedSizeValue1: number = 2;
+  private selectedSizeValue2: number = 1;
+  private shouldDisplaySizeValue1: boolean = false;
+  private shouldDisplaySizeValue2: boolean = false;
+
   private yearActualCycle;
 
   // Mensaje con los datos de los filtros
@@ -54,8 +63,8 @@ export class FilterComponent implements OnInit {
   ngOnInit() {
     this.isAdvancedSearch = false;
     this.creditsComparator = '';
-    this.creditValue = 1;
-    this.creditValue2 = 2;
+    this.creditValue1 = [];
+    this.creditValue2 = [];
     this.defaultTeachingMode = 'Cualquiera';
     this.selectedTeachingMode = this.defaultTeachingMode;
     this.sizeComparator = this.defaultTeachingMode;
@@ -64,8 +73,6 @@ export class FilterComponent implements OnInit {
     this.searchedFilterId = '';
     this.searchedFilterNumber = '';
     this.searchedFilterCode = '';
-    this.sizeValue1 = 1;
-    this.sizeValue2 = 1;
     this.dropdownSchoolYear = [];
     this.dropdownListSearch = [
       'Nombre de Asignatura',
@@ -127,7 +134,7 @@ export class FilterComponent implements OnInit {
     };
 
     // Subscripción para recbir mensajes
-    this.initHoursFrom();
+    this.initDropDowns();
     this.data.currentMessage.subscribe(message => this.filterMsj = message);
     this.schoolYear();
 
@@ -146,6 +153,8 @@ export class FilterComponent implements OnInit {
       }
     ];
   }
+
+
 
   /**
    * Llena dinámicamente el arreglo del dropdown con los ciclos lectivos.
@@ -253,50 +262,43 @@ export class FilterComponent implements OnInit {
 
   /**
    * Actualiza la visualizacion de los inputs de cupos disponibles para cuando se necesita 1 o 2
-   * @param event Valor del dropdown de cupos disponibles
+   * @param value Valor del dropdown de cupos disponibles
    */
-  private onChangeFromClassSize(event: any) {
-    let inputsize1 = document.getElementById('fil-class-size-input-1');
-    let inputsize2 = document.getElementById('fil-class-size-input-2');
-
-    if (event === this.defaultTeachingMode) {
-      inputsize1.style.display = 'none';
-      inputsize2.style.display = 'none';
-    } else if (event.key != 4) {
-      inputsize1.style.display = 'none';
-      inputsize2.style.display = 'inline-block';
-    } else if (event.key == 4) {
-      inputsize1.style.display = 'inline-block';
-      inputsize2.style.display = 'inline-block';
-      this.sizeValue2 = this.sizeValue1 + 1;
-    }
-  }
-
-  /**
-   * Valida el valor del primer input para el filtro de cupos, y cambia dinámicamente el segundo de ser necesario
-   * @param event Texto que se esta ingresando en el primer input del filtro de cupos
-   */
-  private onChangeInputSizeOne(event: any) {
-    if (event != '') {
-      if (this.sizeValue1 >= this.sizeValue2) {
-        this.sizeValue2 = +this.sizeValue1 + 1;
+  private onChangeFromClassSize(value: any) {
+    this.sizeValue2[0].disabled = false;
+    this.sizeValue1[this.sizeValue1.length-1].disabled = false;
+    if (value === this.defaultTeachingMode) {
+      this.shouldDisplaySizeValue1 = false;
+      this.shouldDisplaySizeValue2 = false;
+    } else if (value.key != 4) {
+      this.shouldDisplaySizeValue1 = false;
+      this.shouldDisplaySizeValue2 = true;
+      if(value.key==2){
+        this.selectedSizeValue2=2;
+        this.sizeValue2[0].disabled = true;
       }
+    } else if (value.key == 4) {
+      this.shouldDisplaySizeValue1 = true;
+      this.shouldDisplaySizeValue2 = true;
+      this.selectedSizeValue1 = 1;
+      this.selectedSizeValue2 = 2;
+      this.sizeValue1[this.sizeValue1.length-1].disabled = true;
     }
   }
+
 
   /**
    * Valida el valor del segundo input para el filtro de cupos, y cambia dinámicamente el primero de ser necesario
-   * @param event Texto que se esta ingresando en el segundo input del filtro de cupos
+   * @param value numero que se esta ingresando en el primer input del filtro de cupos
    */
-  private onChangeInputSizeTwo(event: any) {
-    if (event != '') {
-      if (this.sizeValue2 <= this.sizeValue1 && event > 0) {
-        this.sizeValue1 = (this.sizeValue2) - 1;
-      }
-      if (event <= 0) {
-        this.sizeValue2 = 1;
-      }
-    }
+  private onChangeSizeOne(value: number) {
+    this.sizeValue2 = [];
+    for(let i = Number(value)+1; i <=100; i ++){
+      this.sizeValue2.push({
+        "value":i,
+        "disabled":false,
+      })
+    } 
   }
 
   /**
@@ -318,16 +320,16 @@ export class FilterComponent implements OnInit {
     } else {
       if (this.sizeComparator.key == 1) {
         creditFilterValues['firstOp'] = 'none';
-        creditFilterValues['secondOp'] = this.sizeValue2 + '';
+        creditFilterValues['secondOp'] = this.selectedSizeValue2;
       } else if (this.sizeComparator.key == 2) {
         creditFilterValues['firstOp'] = 'none';
-        creditFilterValues['secondOp'] = this.sizeValue2 + '';
+        creditFilterValues['secondOp'] = this.selectedSizeValue2;
       } else if (this.sizeComparator.key == 3) {
         creditFilterValues['firstOp'] = 'none';
-        creditFilterValues['secondOp'] = this.sizeValue2 + '';
+        creditFilterValues['secondOp'] = this.selectedSizeValue2;
       } else if (this.sizeComparator.key == 4) {
-        creditFilterValues['firstOp'] = this.sizeValue1 + '';
-        creditFilterValues['secondOp'] = this.sizeValue2 + '';
+        creditFilterValues['firstOp'] = this.selectedSizeValue1;
+        creditFilterValues['secondOp'] = this.selectedSizeValue2;
       }
       creditFilterValues['comp'] = this.sizeComparator.key;
     }
@@ -354,6 +356,9 @@ export class FilterComponent implements OnInit {
     }
     if (this.year === 'Cualquiera') {
       yearToSend = this.yearActualCycle;
+      if(this.isAdvancedSearch){
+        yearToSend='none';
+      }
     }
     if (this.gradeFilter === 'Cualquiera') {
       gradeToSend = 'none';
@@ -434,11 +439,17 @@ export class FilterComponent implements OnInit {
   }
 
   private CleanAll() {
+    this.sizeComparator = this.defaultTeachingMode;
+    this.creditsComparator = this.defaultTeachingMode;
+    this.shouldDisplayCreditValue1 = this.shouldDisplayCreditValue2 = this.shouldDisplaySizeValue1 = this.shouldDisplaySizeValue2 = false;
+    this.selectedCreditValue1 = 1;
+    this.selectedCreditValue2 = 1;
+    this.selectedSizeValue1 = 1;
+    this.selectedSizeValue2 = 1;
     this.selectedOptionFrom = '';
     this.selectedOptionTo = '';
     this.creditsComparator = '';
-    this.onCleanCredit();
-
+    
     this.selectedItemsWeek = [];
     this.searchBox = '';
     this.selectedItemsSearch = [];
@@ -499,11 +510,11 @@ export class FilterComponent implements OnInit {
       creditValue1 = -1;
       creditValue2 = -1;
     } else if (this.creditsComparator.key == 4) {
-      creditValue1 = Number(this.creditValue);
-      creditValue2 = Number(this.creditValue2);
+      creditValue1 = Number(this.selectedCreditValue1); 
+      creditValue2 = Number(this.selectedCreditValue2);
     } else {
       creditValue1 = null;
-      creditValue2 = Number(this.creditValue2);
+      creditValue2 = Number(this.selectedCreditValue2);
     }
 
     return {
@@ -514,12 +525,32 @@ export class FilterComponent implements OnInit {
   }
 
   /**
-   * Inicia el dropdown de horas desde
+   * Inicia el dropdown de horas desde y de creditos1
    */
-  private initHoursFrom() {
+  private initDropDowns() {
     this.hoursFrom.push('Ninguno');
     for (let i = 7; i <= 21; ++i) {
       this.hoursFrom.push(i + ':00');
+    }
+    for(let i = 1;i<=20;i++){
+      this.creditValue2.push({
+        "value":i,
+        "disabled":false,
+      });
+      this.creditValue1.push({
+        "value":i,
+        "disabled":false,
+      });
+    }
+    for(let i= 1; i<=100;i++){
+      this.sizeValue2.push({
+        "value":i,
+        "disabled":false,
+      });
+      this.sizeValue1.push({
+        "value":i,
+        "disabled":false,
+      });
     }
   }
 
@@ -544,40 +575,29 @@ export class FilterComponent implements OnInit {
    * @param item índice de la opción seleccionada
    */
   private onChangeFromCredit(item: any) {
-    let credit1 = document.getElementById('fil-credit-input-1');
-    let credit2 = document.getElementById('fil-credit-input-2');
-
+    this.creditValue2[0].disabled = false;
+    this.creditValue1[this.creditValue1.length-1].disabled = false;
     if (item.key == 0) {
-      credit1.style.display = 'none';
-      credit2.style.display = 'none';
+      this.shouldDisplayCreditValue1 = false;
+      this.shouldDisplayCreditValue2 = false;
     } else {
       if (item.key != 4) {
-        credit1.style.display = 'none';
-        credit2.style.display = 'inline-block';
-        this.creditValue2 = 2;
+        this.shouldDisplayCreditValue1 = false;
+        this.shouldDisplayCreditValue2 = true;
+        if(item.key ==2){
+          this.selectedCreditValue2=2;
+          this.creditValue2[0].disabled = true;
+        }
       } else if (item.key == 4) {
-        credit1.style.display = 'inline-block';
-        credit2.style.display = 'inline-block';
-        this.creditValue = 1;
-        this.creditValue2 = 2;
+        this.shouldDisplayCreditValue1 = true;
+        this.shouldDisplayCreditValue2 = true;
+        this.selectedCreditValue1 = 1;
+        this.selectedCreditValue2 = 2;
+        this.creditValue1[this.creditValue1.length-1].disabled = true;
       }
     }
   }
 
-  /**
-   * Esconde los campos de los créditos
-   */
-  private onCleanCredit() {
-    let credit1 = document.getElementById('fil-credit-input-1');
-    let credit2 = document.getElementById('fil-credit-input-2');
-    let sizeInput1 = document.getElementById('fil-class-size-input-1');
-    let sizeInput2 = document.getElementById('fil-class-size-input-2');
-
-    credit1.style.display = 'none';
-    credit2.style.display = 'none';
-    sizeInput1.style.display = 'none';
-    sizeInput2.style.display = 'none';
-  }
 
   /**
    * @param item El item que se selecciono en el dropdown de horas desde
@@ -598,41 +618,19 @@ export class FilterComponent implements OnInit {
   /**
    * Cambia el valor del número de créditos de menor valor cuando se cambia el valor del mayor número de créditos
    * 
-   * @param item valor de créditos que se recibe
+   * @param value valor de créditos que se recibe
    */
-  private onChangeInputCreditOne(item: any) {
-    if (item != '') {
-      if (item >= 19) {
-        this.creditValue = 19;
-      }
-      if (this.creditValue + 1 > 19) {
-        if (this.creditValue >= this.creditValue2) {
-          this.creditValue2 = +this.creditValue + 1;
-        }
-      }
-    }
+  private onChangeCreditValue1(value: number) {
+   this.creditValue2 = [];
+   let from = Number(value)+1;
+   for(let i = from; i <= 20 ; ++i){
+     this.creditValue2.push({
+       "value":i,
+       "disabled":false,
+     })
+   }
   }
-
-  /**
-   * Cambia el valor del número de créditos de mayor valor cuando se cambia el valor del menor número de créditos
-   * 
-   * @param item valor de créditos que se recibe
-   */
-  private onChangeInputCreditTwo(item: any) {
-    if (item != '') {
-      if (item <= 0) {
-        this.creditValue2 = 2;
-      }
-      if (item >= 21) {
-        this.creditValue2 = 20;
-      }
-      if (this.creditValue - 1 > 0) {
-        if (this.creditValue2 <= this.creditValue) {
-          this.creditValue = (this.creditValue2) - 1;
-        }
-      }
-    }
-  }
+  
 
   /**
    * @param event El botón de busqueda oprimido (Básica o Avanzada)
