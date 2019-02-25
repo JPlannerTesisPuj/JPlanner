@@ -1,0 +1,22 @@
+.cmp-header {
+    overflow: hidden;
+    background-color: $dark-blue-90;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.cmp-header a {
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 25px;
+  border-radius: 4px;
+  padding-left: 15px;
+}
+
+.cmp-header-right {
+  float: right;
+}
