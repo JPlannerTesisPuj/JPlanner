@@ -17,13 +17,13 @@
     <label for='fil-week-hours'>
       <strong>Franja Horaria</strong>
     </label>
-    <select id="fil-hourFrom" class="fil-hour-dropdown col-6" [(ngModel)]="selectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
+    <select id="fil-hourFrom" class="fil-hour-dropdown col-6 atom-dropdown" [(ngModel)]="selectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
       <option value="" disabled selected>Hora inicial</option>
       <option *ngFor="let hour of hoursFrom">
         {{hour}}
       </option>
     </select>
-    <select id="fil-hourTo" [(ngModel)]="selectedOptionTo" class="fil-hour-dropdown col-6" data-push-left="off-2">
+    <select id="fil-hourTo" [(ngModel)]="selectedOptionTo" class="fil-hour-dropdown col-6 atom-dropdown" data-push-left="off-2">
       <option value="" disabled selected>Hora final</option>
       <option *ngFor="let hour of hoursTo">
         {{hour}}
@@ -35,19 +35,19 @@
     <label for="fil-credit-selector" class="col-12">
       <strong>Número de Creditos</strong>
     </label>
-    <select [hidden]="!shouldDisplayCreditValue1" class="col-6" [(ngModel)]="selectedCreditValue1" (ngModelChange)="onChangeCreditValue1($event)">
+    <select [hidden]="!shouldDisplayCreditValue1" class="col-6 atom-dropdown" [(ngModel)]="selectedCreditValue1" (ngModelChange)="onChangeCreditValue1($event)">
       <option [disabled]="value.disabled" *ngFor="let value of creditValue1">
         {{value.value}}
       </option>
     </select>
-    <select id="fil-creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="fil-credit-dropdown col-12">
+    <select id="fil-creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="fil-credit-dropdown col-12 atom-dropdown">
       <option value="" disabled selected>Filtrar Por Creditos</option>
       <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
         {{comparator.value}}
       </option>
     </select>
 
-    <select [hidden]="!shouldDisplayCreditValue2" class="col-6" [(ngModel)]="selectedCreditValue2">
+    <select [hidden]="!shouldDisplayCreditValue2" class="col-6 atom-dropdown" [(ngModel)]="selectedCreditValue2">
       <option [disabled]="value.disabled" *ngFor="let value of creditValue2">
         {{value.value}}
       </option>
@@ -78,7 +78,7 @@
     <label for="fil-teaching-mode" class="col-12">
       <strong>Modo de Enseñanza:</strong>
     </label>
-    <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-12">
+    <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-12 atom-dropdown">
       <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
     </select>
@@ -124,7 +124,7 @@
     <label for="fil-schoolyear-filter" class="col-12">
       <strong>Ciclo Lectivo</strong>
     </label>
-    <select [(ngModel)]="year" class="col-12">
+    <select [(ngModel)]="year" class="col-12 atom-dropdown">
       <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let schoolyear of dropdownSchoolYear">
         {{schoolyear}}
@@ -136,7 +136,7 @@
     <label for="fil-garde-filter" class="col-12">
       <strong>Grado</strong>
     </label>
-    <select [(ngModel)]="gradeFilter" class="col-12">
+    <select [(ngModel)]="gradeFilter" class="col-12 atom-dropdown">
       <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let grade of dropdownGrades" [ngValue]="grade.value">
         {{grade.name}}
@@ -148,18 +148,18 @@
     <label for="fil-class-size">
       <strong>Cupos Disponibles</strong>
     </label>
-    <select [hidden]="!shouldDisplaySizeValue1" class="col-6" [(ngModel)]="selectedSizeValue1" (ngModelChange)="onChangeSizeOne($event)">
+    <select [hidden]="!shouldDisplaySizeValue1" class="col-6 atom-dropdown" [(ngModel)]="selectedSizeValue1" (ngModelChange)="onChangeSizeOne($event)">
       <option [disabled]="value.disabled" *ngFor="let value of sizeValue1">
         {{value.value}}
       </option>
     </select>
-    <select id="fil-sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)" class="fil-fdropdown fil-credit-dropdown col-12">
+    <select id="fil-sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)" class="fil-fdropdown fil-credit-dropdown col-12 atom-dropdown">
       <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let comparator of sizeComparatorOptions | keyvalue" [ngValue]="comparator">
         {{comparator.value}}
       </option>
     </select>
-    <select [hidden]="!shouldDisplaySizeValue2" class="col-6" [(ngModel)]="selectedSizeValue2">
+    <select [hidden]="!shouldDisplaySizeValue2" class="col-6 atom-dropdown" [(ngModel)]="selectedSizeValue2">
       <option [disabled]="value.disabled" *ngFor="let value of sizeValue2">
         {{value.value}}
       </option>
