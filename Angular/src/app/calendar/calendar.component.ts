@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTitleFormatter, CalendarEventTimesChangedEvent } from 'angular-calendar';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek } from 'date-fns';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS, fromEvent } from 'rxjs';
@@ -62,15 +62,18 @@ export class CalendarBlock {
   public id: string;
   public startHour: Date;
   public endHour: Date;
+  public parentID: string;
 
   constructor(
     private nID: string,
     private nStartHour: Date,
     private nEndHour: Date,
+    private nParentID: string
   ) {
     this.id = nID;
     this.startHour = nStartHour;
     this.endHour = nEndHour;
+    this.parentID = nParentID;
   }
 }
 //--------------------------------------------------------------------------------
@@ -462,6 +465,7 @@ export class CalendarComponent implements OnInit {
   ) {
 
     let firstBlockDate: Date = segment.date;
+    let blockParentID: string = '';
 
     if (firstBlockDate > this.startSchoolYear) {
       while (firstBlockDate > this.startSchoolYear) {
@@ -476,14 +480,15 @@ export class CalendarComponent implements OnInit {
       }
     }
 
-    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, undefined, 'block_' + this.blockID, 'Bloqueo ' + this.blockID);
+    blockParentID = 'block_' + this.blockID;
+    const dragToSelectEvent: CalendarEvent = this.createOrUpdateBlockCalendarEvent(firstBlockDate, undefined, blockParentID, 'Bloqueo ' + this.blockID, blockParentID);
 
     for (let weekToAddBlock = this.startSchoolYear, contWeeks = 1; weekToAddBlock < subDays(this.endSchoolYear, 7); weekToAddBlock = addDays(weekToAddBlock, 7), contWeeks++) {
       let blockIDWeek: string = dragToSelectEvent.id + '__' + this.blockID + '__' + contWeeks;
       let startDayOnWeek: Date = addDays(dragToSelectEvent.start, contWeeks * 7);
       let endDayOnWeek: Date = addHours(startDayOnWeek, 1);
 
-      this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockID);
+      this.createOrUpdateBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockID, blockParentID);
     }
 
     this.blockID++;
@@ -524,7 +529,7 @@ export class CalendarComponent implements OnInit {
           dragToSelectEvent.start = newEnd;
         }
 
-        let contDays = 1;
+        let contDays = 0;
         let contDaysEnd = daysDiff;
         let deleteFromIndex = -1;
         let deleteToIndex = -6;
@@ -532,7 +537,7 @@ export class CalendarComponent implements OnInit {
 
         if (daysDiff < 0) {
           contDays = daysDiff;
-          contDaysEnd = -1;
+          contDaysEnd = 0;
           deleteFromIndex = 1;
           deleteToIndex = 6;
         }
@@ -576,12 +581,14 @@ export class CalendarComponent implements OnInit {
             startDay > startOfView && startDay < endOfView &&
             endDay > startOfView && endDay < endOfView) {
 
+            this.createOrUpdateBlockCalendarEvent(startDay, endDay, blockID, 'Bloqueo ' + (this.blockID - 1), blockParentID);
+
             for (let weekToAddBlock = this.startSchoolYear, contWeeks = 1; weekToAddBlock < subDays(this.endSchoolYear, 7); weekToAddBlock = addDays(weekToAddBlock, 7), contWeeks++) {
               let blockIDWeek: string = blockID + '__' + contWeeks;
               let startDayOnWeek: Date = addDays(startDay, contWeeks * 7);
               let endDayOnWeek: Date = addDays(endDay, contWeeks * 7);
 
-              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + (this.blockID - 1));
+              this.createOrUpdateBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + (this.blockID - 1), blockParentID);
             }
 
             // for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock < this.endSchoolYear; weekToAddBlock = addDays(weekToAddBlock, 7, contWeeks++)) {
@@ -590,9 +597,11 @@ export class CalendarComponent implements OnInit {
             //   let endDay: Date = addDays(dragToSelectEvent.end, contDays);
             // }
 
-            this.createBlockCalendarEvent(startDay, endDay, blockID, 'Bloqueo ' + (this.blockID - 1));
 
           } else {
+
+            // console.log(this.calendarBlocks.filter(myBlock => myBlock.parentID == blockParentID));
+
             // Se edita el bloqueo del arreglo de bloqueos
             blockIndexToEdit = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockID);
             if (blockIndexToEdit != -1) {
@@ -635,34 +644,49 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  private createBlockCalendarEvent(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string) {
-    let newBlock: CalendarEvent = {
-      start: startDate,
-      end: endDate,
-      color: colors.red,
-      title: blockTitle,
-      id: blockIdentifier,
-      actions: this.actions,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      meta: {
-        tmpEvent: false
-      }
-    };
+  private createOrUpdateBlockCalendarEvent(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string, blockParentID: string) {
 
-    this.classes = [...this.classes, newBlock];
-    console.log(newBlock.id);
+    let blockIndexToAdd: number;
 
-    this.calendarBlocks.push(
-      new CalendarBlock(
-        newBlock.id + '',
-        newBlock.start,
-        newBlock.end
-      )
-    );
+    let newBlock: CalendarEvent = null;
+    // console.log('DELETE: ' + blockID);
+
+    blockIndexToAdd = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdentifier);
+    let aux: number = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdentifier);
+    // console.log(this.calendarBlocks);
+    // console.log(blockIdentifier);
+    // console.log('CALENDAR ' + blockIndexToDelete);
+    if (blockIndexToAdd == -1) {
+      console.log(aux);
+      newBlock = {
+        start: startDate,
+        end: endDate,
+        color: colors.red,
+        title: blockTitle,
+        id: blockIdentifier,
+        actions: this.actions,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+        meta: {
+          tmpEvent: false
+        }
+      };
+
+      this.classes = [...this.classes, newBlock];
+      // console.log('BLOCK ID: ' + newBlock.id);
+
+      this.calendarBlocks.push(
+        new CalendarBlock(
+          newBlock.id + '',
+          newBlock.start,
+          newBlock.end,
+          blockParentID
+        )
+      );
+    }
 
     return newBlock;
   }
@@ -673,33 +697,48 @@ export class CalendarComponent implements OnInit {
   }
 
   private deleteBlocksNotInRage(fromDay: number, toDay: number, fromDate: Date, toDate: Date, blockID: string) {
-    const startOfView = startOfWeek(this.viewDate);
-    const endOfView = endOfWeek(this.viewDate);
+    let startOfView = startOfWeek(this.startSchoolYear);
+    let endOfView = endOfWeek(this.startSchoolYear);
     let startDay: Date;
     let endDay: Date;
 
     for (let contDays = -6; contDays <= 6; contDays++) {
-      let blockIDToDelete: string = blockID + '__' + contDays;
+      let blockDayIDToDelete: string = blockID + '__' + contDays;
+      // startOfView = startOfWeek(this.startSchoolYear);
+      // endOfView = endOfWeek(this.startSchoolYear);
       startDay = addDays(fromDate, contDays);
       endDay = addDays(toDate, contDays);
 
       if ((contDays < fromDay || contDays > toDay) && contDays != 0 &&
         startDay > startOfView && startDay < endOfView &&
         endDay > startOfView && endDay < endOfView) {
-        let blockIndexToDelete: number;
 
-        blockIndexToDelete = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIDToDelete);
-        // console.log('CALENDAR ' + blockIndexToDelete);
-        if (blockIndexToDelete != -1) {
-          this.calendarBlocks.splice(blockIndexToDelete, 1);
-        }
+        for (let i = 0; i < 18; ++i) {
+          startDay = addWeeks(startDay, i);
+          endDay = addWeeks(endDay, i);
+          let blockWeeklyIDToDelete = blockDayIDToDelete + '__' + (i + 1)
 
-        blockIndexToDelete = this.classes.findIndex(myBlock => myBlock.id == blockIDToDelete);
-        // console.log('CLASS ' + blockIndexToDelete);
-        if (blockIndexToDelete != -1) {
-          this.classes.splice(blockIndexToDelete, 1);
+          this.deleteBlockByID(blockWeeklyIDToDelete);
         }
+        this.deleteBlockByID(blockDayIDToDelete);
       }
+    }
+  }
+
+  private deleteBlockByID(blockIdToDelete: string) {
+    let blockIndexToDelete: number;
+    // console.log('DELETE: ' + blockID);
+
+    blockIndexToDelete = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdToDelete);
+    // console.log('CALENDAR ' + blockIndexToDelete);
+    if (blockIndexToDelete != -1) {
+      this.calendarBlocks.splice(blockIndexToDelete, 1);
+    }
+
+    blockIndexToDelete = this.classes.findIndex(myBlock => myBlock.id == blockIdToDelete);
+    // console.log('CLASS ' + blockIndexToDelete);
+    if (blockIndexToDelete != -1) {
+      this.classes.splice(blockIndexToDelete, 1);
     }
   }
 
