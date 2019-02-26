@@ -1,11 +1,7 @@
-@import './display-class/display-class.component';
-@import './display-classes/display-classes.component'; 
-@import './filter/filter.component'; 
-@import './app.component';
-@import './calendar/calendar.component';
-@import './class-modal/class-modal.component';
+// Configuración básica
+@import './styles/atomic-styles/variables.scss';
 
-//Atoms
+// Atoms
 @import './styles/atomic-styles/buttons.scss';
 @import './styles/atomic-styles/checkboxes.scss';
 @import './styles/atomic-styles/dropdowns.scss';
@@ -13,9 +9,18 @@
 @import './styles/atomic-styles/menu-buttons.scss';
 @import './styles/atomic-styles/radio-buttons.scss';
 
+//Molecules
+@import './styles/molecular-styles/paginator.scss';
+// Componentes
+@import './display-class/display-class.component';
+@import './display-classes/display-classes.component'; 
+@import './filter/filter.component'; 
+@import './app.component';
+@import './calendar/calendar.component';
+@import './class-modal/class-modal.component';
+
 
 // This library is used to style the Calendar View provided by angular-calendar.
 // Maybe, if we stick with this component, we should create the styles for the calendar.
 @import "../../../node_modules/angular-calendar/css/angular-calendar.css";
 @import "../../../node_modules/gridlex/dist/gridlex.css";
-

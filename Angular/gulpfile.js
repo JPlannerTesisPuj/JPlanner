@@ -11,7 +11,8 @@ var sassFiles = [
     './src/app/filter/filter.component.scss',
     'src/app/app.component.scss',
     './src/app/calendar/calendar.component.scss',
-    './src/app/styles/atomic-styles/*'
+    './src/app/styles/atomic-styles/*',
+    './src/app/styles/molecular-styles/*',
 ]
 
 gulp.task('css', function(){
