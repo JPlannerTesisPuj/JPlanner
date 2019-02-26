@@ -121,6 +121,8 @@
     <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
       Next
     </button>
+    <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+    <label for="editBlockOption">Editar bloqueo seleccionado únicamente</label>
   </div>
   <div
     cdkDropList
