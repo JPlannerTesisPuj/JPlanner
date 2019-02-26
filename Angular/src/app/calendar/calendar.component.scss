@@ -24,12 +24,61 @@
     overflow-y: hidden;
   }
   .mat-tab-label {
-    min-width: 48px;
+    
+    min-height: 56px;
+    padding-top: 2px;
+    border: solid 2px #2c5697;
+    min-width: 56px;
     padding: 0;
+    color: #2c5697;
+
+    &:hover{
+      min-height: 56px;
+      min-width: 56px;
+      border: solid 2px #2c5697;
+      background-color: #d4dce9;
+      color:white;
+    }
   }
+  
   .mat-tab-label-active {
-    border-right: 2px solid #3f51b5;
+     padding-top: 2px;
+    min-width: 56px;
+    min-height: 56px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.16);
+    border: solid 2px #f8cd00;
+    background-color: #fcea98;
+    color: white;
   }
+ /* .mat-tab.label:hover{
+    min-width: 56px;
+  min-height: 56px;
+  border: solid 2px #2c5697;
+  background-color: #d4dce9;
+  color:white;
+  }*/
+  .mat-tab.label-disabled{
+    padding-top: 2px;
+    min-width: 56px;
+    min-height: 56px;
+  border: solid 2px #d4dce9;
+  color: "#d4dce9"
+
+  }
+  /*.Rectangulo {
+   width: 56px;
+    height: 56px;
+    padding-top: 2px;
+    border: solid 2px #2c5697;
+  }
+  .Rectangulo-active{
+    padding-top: 2px;
+    width: 56px;
+    height: 56px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.16);
+    border: solid 2px #f8cd00;
+    background-color: #fcea98;
+  }*/
 }
 
 .cal-week-view .cal-time-events .cal-event {
