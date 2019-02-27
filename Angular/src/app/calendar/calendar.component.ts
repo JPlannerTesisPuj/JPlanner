@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTitleFormatter, CalendarEventTimesChangedEvent } from 'angular-calendar';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks } from 'date-fns';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS, fromEvent } from 'rxjs';
@@ -12,6 +12,7 @@ import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.ser
 import { DayViewHourSegment } from 'calendar-utils';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { forEach } from '@angular/router/src/utils/collection';
+import { CalendarBlock } from '../shared/model/CalendarBlock';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -36,15 +37,34 @@ const colors: any = {
   }
 };
 
-//--------------------------------------------------------------------------------
+/**
+ * Mide qué tan cercano está un número de otro. Se usa para saber cuántas casillas a la izquierda o derecha
+ * el mouse se ha desplazado.
+ * 
+ * @param amount Posición actual del mouse en X respecto a la casilla a la cual se está evaluando
+ * @param precision Ancho de la casilla desde la cual es está evaluando
+ * @returns Número de casillas a la izquierda (número negativo) o derecha (número positivo) que el cursor ha recorrido
+ */
 function floorToNearest(amount: number, precision: number) {
   return Math.floor(amount / precision) * precision;
 }
 
+/**
+ * Mide qué tan cercano está un número de otro. Se usa para saber cuántas casillas a hacia arriba o abajo
+ * el mouse se ha desplazado.
+ * 
+ * @param amount Posición actual del mouse en Y respecto a la casilla a la cual se está evaluando
+ * @param precision Número de minutos que representa la casiila
+ * 
+ * @returns Número de minutos hacia arriba (número negativo) o hacia abajo (número positivo) que el cursor ha recorrido
+ */
 function ceilToNearest(amount: number, precision: number) {
   return Math.ceil(amount / precision * 2) * precision;
 }
 
+/**
+ * Clase que permite el uso de Tooltips en el calendario
+ */
 export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   weekTooltip(event: CalendarEvent, title: string) {
     if (!event.meta.tmpEvent) {
@@ -58,27 +78,6 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
     }
   }
 }
-
-export class CalendarBlock {
-  public id: string;
-  public startHour: Date;
-  public endHour: Date;
-  public parentID: string;
-
-  constructor(
-    private nID: string,
-    private nStartHour: Date,
-    private nEndHour: Date,
-    private nParentID: string
-  ) {
-    this.id = nID;
-    this.startHour = nStartHour;
-    this.endHour = nEndHour;
-    this.parentID = nParentID;
-  }
-}
-
-//--------------------------------------------------------------------------------
 
 @Component({
   selector: 'app-calendar',
@@ -110,11 +109,11 @@ export class CalendarComponent implements OnInit {
   private calendarBlocks: CalendarBlock[] = [];
   private verticalMenuIndex: number = 0;
   private dragToCreateActive = false;
-  private blockID: number = 0;
+  private blockIdCount: number = 0;
   /** @var startSchoolYear Fecha de inicio del ciclo lectivo */
   private startSchoolYear: Date = new Date('2019-1-20 00:00:00');
   /** @var endSchoolYear Fecha de fin del ciclo lectivo */
-  private endSchoolYear: Date = new Date('2019-6-1 00:00:00');
+  private endSchoolYear: Date = endOfWeek(new Date('2019-6-1 00:00:00'));
   /**
    * @var
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -399,6 +398,7 @@ export class CalendarComponent implements OnInit {
     } else if (action === 'Removed') {
       this.removeClass(event.id);
     } else if (action === 'BlockRemoved'){
+      // Verifica si se debe eliminar sólo el bloqueo seleccionado o todo el grupo de bloqueos
       if(this.editBlockOption) {
         this.deleteBlockByID(event.id + '');
       } else {
@@ -408,8 +408,6 @@ export class CalendarComponent implements OnInit {
         blocksToDelete.forEach(myBlock => this.deleteBlockByID(myBlock.id));
       }
       this.refresh.next();
-    } else if (action === 'DropResize') {
-      console.log('DROP')
     }
   }
 
@@ -477,9 +475,11 @@ export class CalendarComponent implements OnInit {
     if (this.alternativeClasses[this.currentAlternative] === undefined) {
       this.alternativeClasses[this.currentAlternative] = new Array<CalendarEvent>();
       this.alternativeCalendarClasses[this.currentAlternative] = new Array<Subject>();
+      this.alternativeCalendarBlocks[this.currentAlternative] = new Array<CalendarBlock>();
     }
     this.classes = this.alternativeClasses[this.currentAlternative];
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
+    this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
   }
   /**
    * Inicializa los titulos de las alternativas segun la configuración de la variable numberOfAlternatives
@@ -495,35 +495,48 @@ export class CalendarComponent implements OnInit {
   // CREAR BLOQUEO
   // ---------------------------------------------------------------------------------------------
 
-  private startDragToCreate(
+  /**
+   * Evento que responde cuando se mantiene presionado el click del mouse en el calendario. Crea un bloqueo
+   * en el día y la hora seleccionada y lo replica para todos los días con el mismo nombre en todas las semanas
+   * del ciclo lectivo.
+   * 
+   * @param segment 
+   * @param mouseDownEvent 
+   * @param segmentElement 
+   */
+  private startDragToCreateBlock(
     segment: DayViewHourSegment,
     mouseDownEvent: MouseEvent,
     segmentElement: HTMLElement
   ) {
 
+    // Fecha donde fue seleccionado crear el bloqueo
     let firstBlockDate: Date = segment.date;
+    // Variable que representa el ID general de un grupo de bloqueos
     let blockParentID: string = '';
 
+    // Se coge el día que fue seleccionado para crear el bloqueo y se lo ubica en la primera semana del ciclo lectivo
     if (firstBlockDate > this.startSchoolYear) {
       while (firstBlockDate > this.startSchoolYear) {
-        firstBlockDate = subDays(firstBlockDate, 7);
+        firstBlockDate = subWeeks(firstBlockDate, 1);
       }
       if (firstBlockDate < this.startSchoolYear) {
-        firstBlockDate = addDays(firstBlockDate, 7);
+        firstBlockDate = addWeeks(firstBlockDate, 1);
       }
     } else if (firstBlockDate < this.startSchoolYear) {
       while (firstBlockDate < this.startSchoolYear) {
-        firstBlockDate = addDays(firstBlockDate, 7);
+        firstBlockDate = addWeeks(firstBlockDate, 1);
       }
     }
 
-    blockParentID = 'block_' + this.blockID;
-    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, undefined, blockParentID + '__0__0', 'Bloqueo ' + this.blockID, blockParentID);
+    blockParentID = 'block_' + this.blockIdCount;
+    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, undefined, blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID);
 
-    this.blockID++;
+    this.blockIdCount++;
+    // Se toma la posición del cuadro que fue seleccionado para agregar el bloqueo
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
-
+    // Se toma como base la primera semana del ciclo lectivo para agregar los bloqueos
     const startOfView = startOfWeek(firstBlockDate);
     const endOfView = endOfWeek(firstBlockDate);
 
@@ -537,6 +550,8 @@ export class CalendarComponent implements OnInit {
         takeUntil(fromEvent(document, 'mouseup'))
       )
       .subscribe((mouseMoveEvent: MouseEvent) => {
+
+        // Toma los minutos que el mouse se ha desplazado hacia arriba o hacia abajo
         let minutesDiff = ceilToNearest(
           mouseMoveEvent.clientY - segmentPosition.top,
           60
@@ -544,47 +559,36 @@ export class CalendarComponent implements OnInit {
         if(minutesDiff == 0 || minutesDiff == -0) {
           minutesDiff = 60;
         }
-        //console.log(mouseMoveEvent.clientY - segmentPosition.top);
+        // Toma los días que el mouse se ha desplazado hacia la izquierda o derecha
         const daysDiff =
           floorToNearest(
             mouseMoveEvent.clientX - segmentPosition.left,
             segmentPosition.width
           ) / segmentPosition.width;
-        // console.log(minutesDiff);
 
-
+        // Calcula la nueva hora de inicio y de fin del bloqueo
         let newEnd = addMinutes(firstBlockDate, minutesDiff);
         let newStart = firstBlockDate;
-        // console.log(newEnd)
-        if (newEnd > firstBlockDate && newEnd < endOfView) {
-          // dragToSelectEvent.end = newEnd;
-        } else if (newEnd < firstBlockDate && newEnd > startOfView) {
+
+        if (newEnd < firstBlockDate && newEnd > startOfView) {
           newStart = newEnd;
           newEnd = firstBlockDate;
-          // dragToSelectEvent.end = firstBlockDate;
-          // dragToSelectEvent.start = newEnd;
         }
 
+        // Contadores para agregar el bloqueo en otros días en el calendario, por defecto agrega a la derecha
         let contDays = 0;
         let contDaysEnd = daysDiff;
+        // Contadores para eliminar los bloqueos fuera de rango, por defecto elimina a la izquierda
         let deleteFromIndex = -1;
         let deleteToIndex = -6;
-        let blockIndexToEdit: number;
 
+        // Cambia el valor de los contadores para agregar a la izquierda y eliminar a la derecha
         if (daysDiff < 0) {
           contDays = daysDiff;
           contDaysEnd = 0;
           deleteFromIndex = 1;
           deleteToIndex = 6;
         }
-
-        // this.deleteBlocksNotInRage(
-        //   contDays,
-        //   contDaysEnd,
-        //   dragToSelectEvent.start,
-        //   dragToSelectEvent.end,
-        //   blockParentID
-        // );
 
         this.deleteBlocksNotInRage(
           contDays,
@@ -594,41 +598,46 @@ export class CalendarComponent implements OnInit {
           blockParentID
         );
 
+        // Agrega los bloqueos hacia los lados
         for (; contDays <= contDaysEnd; contDays++) {
-          // let blockID: string = dragToSelectEvent.id + '__' + contDays + '__0';
-          // let startDay: Date = addDays(dragToSelectEvent.start, contDays);
-          // let endDay: Date = addDays(dragToSelectEvent.end, contDays);
-
           let startDay: Date = addDays(newStart, contDays);
           let endDay: Date = addDays(newEnd, contDays);
 
-
-          for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock < subDays(this.endSchoolYear, 7); weekToAddBlock = addDays(weekToAddBlock, 7), contWeeks++) {
+          // Agrega los bloqueos de los días en todas las semanas
+          for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
+            /**
+             * @var blockIDWeek 
+             * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
+             */
             let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
             let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
             let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
 
+            // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
             if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
               startDay > startOfView && startDay < endOfView &&
               endDay > startOfView && endDay < endOfView) {
-              // console.log(blockIDWeek);
-              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + (this.blockID - 1), blockParentID);
+              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID);
             } else {
               this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
             }
           }
         }
 
+        // ACtualiza el bloqueo principal
         this.updateBlockCalendarEvent(dragToSelectEvent.id + '', newStart, newEnd);
-        // if (this.checkBlockOverlapped(dragToSelectEvent.id + '', dragToSelectEvent.start, dragToSelectEvent.end)) {
-        //   blockIndexToEdit = this.calendarBlocks.findIndex(myBlock => myBlock.id == dragToSelectEvent.id);
-        //   this.calendarBlocks[blockIndexToEdit].endHour = dragToSelectEvent.end;
-        // }
-
         this.refreshCal();
       });
   }
 
+  /**
+   * 
+   * @param startDate 
+   * @param endDate 
+   * @param blockIdentifier 
+   * @param blockTitle 
+   * @param blockParentID 
+   */
   private createBlockCalendarEvent(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string, blockParentID: string) {
 
     let blockIndexToAdd: number;
@@ -650,8 +659,7 @@ export class CalendarComponent implements OnInit {
         start: startDate,
         end: endDate,
         color: colors.red,
-        // title: blockTitle,
-        title: blockIdentifier,
+        title: blockTitle,
         id: blockIdentifier,
         actions: this.actionsBlock,
         draggable: true,
@@ -730,7 +738,7 @@ export class CalendarComponent implements OnInit {
         startDay > startOfView && startDay < endOfView &&
         endDay > startOfView && endDay < endOfView) {
 
-        for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock < subDays(this.endSchoolYear, 7); weekToAddBlock = addDays(weekToAddBlock, 7), contWeeks++) {
+        for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
           startDay = addWeeks(startDay, contWeeks);
           endDay = addWeeks(endDay, contWeeks);
           let blockWeeklyIDToDelete = blockID + '__' + contDays + '__' + contWeeks;
@@ -766,11 +774,7 @@ export class CalendarComponent implements OnInit {
     newStart,
     newEnd
   }: CalendarEventTimesChangedEvent): void {
-    console.log(newStart);
-    // event.start = newStart;
-    // event.end = newEnd;
     this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
-    // this.handleEvent('DropResize', event);
     this.refresh.next();
   }
 
