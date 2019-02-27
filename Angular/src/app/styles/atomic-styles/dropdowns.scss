@@ -1,5 +1,5 @@
 .atom-dropdown{
-    border: solid 1px $dark-blue;
+    border: solid 1px $black-30;
     border-radius: $space-xs;
     padding-left: $space-md;
     font-family: $font-secondary;
@@ -7,20 +7,20 @@
     height:$space-xl;
   
     &:hover:not(:active):not(:focus):not(:disabled){
-        border-color:$yellow;
+        border-color:$dark-blue;
     }
     &:active,&:focus{
         border-color:$light-blue-90;
         outline: none;
     }
     &:disabled{
-        border-color:$black-70;       
+        border-color:$black-20;       
     }
   }
 
 .atom-dropdown option{
     &:hover:not(:disabled){
-        background-color:$yellow-60;
+        background-color:$light-blue-90;
     }
     &:disabled{
         background-color: $black-20;       
