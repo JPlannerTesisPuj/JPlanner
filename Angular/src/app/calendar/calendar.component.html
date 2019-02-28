@@ -32,6 +32,15 @@
         </i>
       </ng-template>
       <h2>Carrito de compras</h2>
+      <div *ngFor="let class of inCalendar" cdkDrag>
+
+      
+      <li>
+        {{this.inCalendar}}
+      </li>
+    
+    <app-display-class [subject]="class"></app-display-class>
+  </div>
 
     </mat-tab>
   </mat-tab-group>
