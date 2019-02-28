@@ -220,7 +220,7 @@ export class CalendarComponent implements OnInit {
    * El metodo agrega una materia nueva al calendario
    */
   addClass(newClasses : CalendarEvent[],subjectToDisplay : Subject){
-    let cont:number = 0;
+    
 
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
@@ -238,13 +238,19 @@ export class CalendarComponent implements OnInit {
       this.classes = newClasses;
       this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
       this.calendarClasses.push(subjectToDisplay);
+      
       this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
       this.refresh.next();
-      //cont++;
-      //this.inCalendar[cont] = this.calendarClasses[cont].nombre;
-      this.inCalendar[0] = this.calendarClasses[0].nombre;
+      
+      
+      
+      
+      
+      
+      
       
   }
+ 
 
 
   /**
