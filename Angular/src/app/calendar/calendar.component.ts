@@ -397,9 +397,9 @@ export class CalendarComponent implements OnInit {
       });
     } else if (action === 'Removed') {
       this.removeClass(event.id);
-    } else if (action === 'BlockRemoved'){
+    } else if (action === 'BlockRemoved') {
       // Verifica si se debe eliminar sólo el bloqueo seleccionado o todo el grupo de bloqueos
-      if(this.editBlockOption) {
+      if (this.editBlockOption) {
         this.deleteBlockByID(event.id + '');
       } else {
         const parentID: string = this.calendarBlocks.find(myBlock => myBlock.id == event.id + '').parentID;
@@ -556,7 +556,7 @@ export class CalendarComponent implements OnInit {
           mouseMoveEvent.clientY - segmentPosition.top,
           60
         );
-        if(minutesDiff == 0 || minutesDiff == -0) {
+        if (minutesDiff == 0 || minutesDiff == -0) {
           minutesDiff = 60;
         }
         // Toma los días que el mouse se ha desplazado hacia la izquierda o derecha
@@ -631,29 +631,28 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
+   * Crea un bloqueo en el calendario
    * 
-   * @param startDate 
-   * @param endDate 
-   * @param blockIdentifier 
-   * @param blockTitle 
-   * @param blockParentID 
+   * @param startDate Fecha de inicio del bloqueo
+   * @param endDate Fecha de fin del bloqueo
+   * @param blockIdentifier ID del bloqueo
+   * @param blockTitle Título del bloqueo
+   * @param blockParentID ID que representa el grupo al cual pertenece el bloqueo
+   * @returns CalendarEvent Retorna un nuevo evento en el calendario.
    */
   private createBlockCalendarEvent(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string, blockParentID: string) {
-
     let blockIndexToAdd: number;
-
     let newBlock: CalendarEvent = null;
-    // console.log('DELETE: ' + blockID);
 
+    // Busca si el bloqueo ya existe
     blockIndexToAdd = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdentifier);
 
+    // Si no hay fecha final entonces la hora final será una hora después de la hora final
     if (endDate == undefined) {
       endDate = addHours(startDate, 1);
     }
-    // console.log(this.calendarBlocks);
-    // console.log(blockIdentifier);
-    // console.log('CALENDAR ' + blockIndexToDelete);
 
+    // Si el bloqueo no existe o no se cruza con ninguna vlase u otro bloqueo entonces lo crea
     if (blockIndexToAdd == -1 && !this.checkOverlappingClasses(startDate, endDate).isOverLapped) {
       newBlock = {
         start: startDate,
@@ -673,8 +672,6 @@ export class CalendarComponent implements OnInit {
       };
 
       this.classes = [...this.classes, newBlock];
-      // console.log('BLOCK ID: ' + newBlock.id);
-
       this.calendarBlocks.push(
         new CalendarBlock(
           newBlock.id + '',
@@ -690,10 +687,25 @@ export class CalendarComponent implements OnInit {
     return newBlock;
   }
 
+  /**
+   * Mira si el bloqueo se cruza con alguna clase u otros bloqueos que no sea él mismo
+   * 
+   * @param blockID ID del bloqueo
+   * @param startDay Fecha de inicio del bloqueo
+   * @param endDay Fecha final del bloqueo
+   * @returns boolean
+   */
   private checkBlockOverlapped(blockID: string, startDay: Date, endDay: Date) {
     return this.classes.some(myClass => areRangesOverlapping(startDay, endDay, myClass.start, myClass.end) && myClass.id != blockID);
   }
 
+  /**
+   * Actualiza el bloqueo en el calendario y en el arreglo de bloqueos
+   * 
+   * @param blockID ID del bloqueo
+   * @param startDay Fecha de inicio del bloqueo
+   * @param endDay Fecha final del bloqueo
+   */
   private updateBlockCalendarEvent(blockID: string, startDay: Date, endDay: Date) {
     let blockIndexToEdit: number;
 
@@ -704,8 +716,6 @@ export class CalendarComponent implements OnInit {
       this.calendarBlocks[blockIndexToEdit].endHour = endDay;
     }
 
-    // Se edita el bloqueo del horario actual
-    // console.log('ID:' + blockID);
     blockIndexToEdit = this.classes.findIndex(myBlock => myBlock.id == blockID);
     if (blockIndexToEdit != -1 && !this.checkBlockOverlapped(blockID, startDay, endDay)) {
       this.classes[blockIndexToEdit].start = startDay;
@@ -713,24 +723,31 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  /**
+   * Actualiza la vista del calendario
+   */
   private refreshCal() {
     this.classes = [...this.classes];
-    // console.log(this.classes);
     this.changeDetectorRef.detectChanges();
   }
 
+  /**
+   * Elimina los bloqueos en todas las semanas del ciclo lectivo en un rango de días específicos
+   * 
+   * @param fromDay Día inicial
+   * @param toDay Día final
+   * @param fromDate Fecha inicial
+   * @param toDate Fecha final
+   * @param blockID 
+   */
   private deleteBlocksNotInRage(fromDay: number, toDay: number, fromDate: Date, toDate: Date, blockID: string) {
     let startOfView = startOfWeek(this.startSchoolYear);
     let endOfView = endOfWeek(this.startSchoolYear);
     let startDay: Date;
     let endDay: Date;
 
-    // console.log(blockID);
-
     for (let contDays = -6; contDays <= 6; contDays++) {
       let blockDayIDToDelete: string = blockID + '__' + contDays;
-      // startOfView = startOfWeek(this.startSchoolYear);
-      // endOfView = endOfWeek(this.startSchoolYear);
       startDay = addDays(fromDate, contDays);
       endDay = addDays(toDate, contDays);
 
@@ -739,36 +756,40 @@ export class CalendarComponent implements OnInit {
         endDay > startOfView && endDay < endOfView) {
 
         for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
-          startDay = addWeeks(startDay, contWeeks);
-          endDay = addWeeks(endDay, contWeeks);
           let blockWeeklyIDToDelete = blockID + '__' + contDays + '__' + contWeeks;
-
           this.deleteBlockByID(blockWeeklyIDToDelete);
         }
       }
     }
   }
 
+  /**
+   * Elimina un bloqueo por su ID
+   * 
+   * @param blockIdToDelete ID del bloqueo a eliminar
+   */
   private deleteBlockByID(blockIdToDelete: string) {
     let blockIndexToDelete: number;
-    // console.log('DELETE: ' + blockIdToDelete);
-
     blockIndexToDelete = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdToDelete);
-    // console.log('CALENDAR ' + blockIndexToDelete);
+
     if (blockIndexToDelete != -1) {
       this.calendarBlocks.splice(blockIndexToDelete, 1);
     }
 
     blockIndexToDelete = this.classes.findIndex(myBlock => myBlock.id == blockIdToDelete);
-    // console.log('CLASS ' + blockIndexToDelete);
     if (blockIndexToDelete != -1) {
       this.classes.splice(blockIndexToDelete, 1);
     }
 
-    this.alternativeClasses[this.currentAlternative] =  Object.assign([], this.classes);
+    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarBlocks = Object.assign([], this.calendarBlocks);
   }
 
+  /**
+   * Actualiza un bloqueo al ser redimensionado o movido
+   * 
+   * @param event Bloqueo a actualizar
+   */
   private eventTimesChanged({
     event,
     newStart,
@@ -777,7 +798,6 @@ export class CalendarComponent implements OnInit {
     this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
     this.refresh.next();
   }
-
 }
 
 /**
