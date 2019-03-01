@@ -101,6 +101,8 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
 
 export class CalendarComponent implements OnInit {
 
+  locale: string = 'es';
+
   private view: CalendarView = CalendarView.Week;
   /** @var calendarView Enum */
   private calendarView = CalendarView;
@@ -550,14 +552,15 @@ export class CalendarComponent implements OnInit {
         takeUntil(fromEvent(document, 'mouseup'))
       )
       .subscribe((mouseMoveEvent: MouseEvent) => {
-
+        let segmentMinutes = 70;
+        
         // Toma los minutos que el mouse se ha desplazado hacia arriba o hacia abajo
         let minutesDiff = ceilToNearest(
           mouseMoveEvent.clientY - segmentPosition.top,
-          60
+          segmentMinutes
         );
         if (minutesDiff == 0 || minutesDiff == -0) {
-          minutesDiff = 60;
+          minutesDiff = segmentMinutes;
         }
         // Toma los días que el mouse se ha desplazado hacia la izquierda o derecha
         const daysDiff =
@@ -567,7 +570,7 @@ export class CalendarComponent implements OnInit {
           ) / segmentPosition.width;
 
         // Calcula la nueva hora de inicio y de fin del bloqueo
-        let newEnd = addMinutes(firstBlockDate, minutesDiff);
+        let newEnd = addHours(firstBlockDate, minutesDiff/segmentMinutes);
         let newStart = firstBlockDate;
 
         if (newEnd < firstBlockDate && newEnd > startOfView) {
