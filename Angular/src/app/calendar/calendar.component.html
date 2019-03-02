@@ -41,6 +41,16 @@
 
       </ng-template>
       <h2>Carrito de compras</h2>
+      <div > 
+      
+      
+      <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
+      <div *ngFor="let class of calendarClasses" >
+        <app-display-class [subject]="class"></app-display-class>
+      </div>
+      
+    </div>
+      <button class="fil-btn" disabled="true">Inscribir</button>
 
     </mat-tab>
   </mat-tab-group>

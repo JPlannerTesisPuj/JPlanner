@@ -45,6 +45,8 @@ export class CalendarComponent implements OnInit {
   private calendarView = CalendarView;
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
+  private inCalendar: string[] = [];
+  private pru: string;
 
 
   private verticalMenuIndex: number = 0;
@@ -218,6 +220,8 @@ export class CalendarComponent implements OnInit {
    * El metodo agrega una materia nueva al calendario
    */
   addClass(newClasses : CalendarEvent[],subjectToDisplay : Subject){
+    
+
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
       let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
@@ -234,9 +238,20 @@ export class CalendarComponent implements OnInit {
       this.classes = newClasses;
       this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
       this.calendarClasses.push(subjectToDisplay);
+      
       this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
       this.refresh.next();
+      
+      
+      
+      
+      
+      
+      
+      
   }
+ 
+
 
   /**
    * Mira si la materia nueva que se agregará al horario se cruza con las otras materias

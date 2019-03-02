@@ -35,3 +35,34 @@ color: "#d4dce9"
 
 }
 
+.atom-buttons{
+    
+    background-color: $yellow;
+    border-radius: $space-xs;
+    font-family: $font-main;
+    font-size: 14px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: $white;
+    width: 100px;
+    height:$space-xl;
+    border-style: none;
+
+    &:hover{    
+        background-color: $yellow-20;
+    }
+    &:active{
+        background-color: $yellow-50;
+    }
+    &:disabled{
+        border: solid 1px $yellow;  
+    }
+    &:focus{
+        outline: none;
+    }
+
+}
