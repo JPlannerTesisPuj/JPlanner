@@ -30,8 +30,8 @@
         {{ h.dia }}
         <ul>
           <li>{{h.salon}}</li>
-          <li>{{ msToHMS( h.horaInicio) }}</li>
-          <li>{{ msToHMS( h.horaFin) }}</li>
+          <li>{{ textToDate( h.horaInicio) | date:'EEEE, MMMM d, y, H:mm:ss':locale }}</li>
+          <li>{{ textToDate( h.horaFin) | date:'EEEE, MMMM d, y, H:mm:ss':locale }}</li>
         </ul>
       </li>
     </ul>

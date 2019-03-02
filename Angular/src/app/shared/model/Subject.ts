@@ -4,9 +4,8 @@ import { Horary } from './Horary';
  * Clase que tiene la información de una materia de la universidad
  */
 export class Subject {
-    public _id: string;
     public numeroClase: string;
-    public codigo: string;
+    public idCurso: string;
     public nombre: string;
     public profesor: string;
     public creditos: number;
@@ -15,16 +14,16 @@ export class Subject {
     public modoEnsenanza: string;
     public estado: string;
     public grado: string;
-    public departamento: string;
-    public prerrequisito: string[];
+    public unidadAcademica: string;
+    public cicloLectivo: string;
+    public puedeVerMateria: boolean;
+    public tieneCorrequisito: boolean;
     public descripcion: string;
     public horarios: Horary[];
-    public ciclo_lectivo: string;
 
     constructor(
-        private nId: string,
         private nNumeroClase: string,
-        private nCodigo: string,
+        private nIdCurso: string,
         private nNombre: string,
         private nProfesor: string,
         private nCreditos: number,
@@ -33,15 +32,15 @@ export class Subject {
         private nModoEnsenanza: string,
         private nEstado: string,
         private nGrado: string,
-        private nDepartamento: string,
-        public nPrerrequisito: string[],
+        private nUnidadAcademica: string,
+        private nCicloLectivo: string,
+        private nPuedeVerMateria: boolean,
+        private nTieneCorrequisito: boolean,
         private nDescripcion: string,
-        private nHorarios: Horary[],
-        private nCiclo_lectivo: string
+        private nHorarios: Horary[]
     ) {
-        this._id = nId;
         this.numeroClase = nNumeroClase;
-        this.codigo = nCodigo;
+        this.idCurso = nIdCurso;
         this.nombre = nNombre;
         this.profesor = nProfesor;
         this.creditos = nCreditos;
@@ -50,11 +49,12 @@ export class Subject {
         this.modoEnsenanza = nModoEnsenanza;
         this.estado = nEstado;
         this.grado = nGrado;
-        this.departamento = nDepartamento;
-        this.prerrequisito = nPrerrequisito;
+        this.unidadAcademica = nUnidadAcademica;
+        this.cicloLectivo = nCicloLectivo;
+        this.puedeVerMateria = nPuedeVerMateria;
+        this.tieneCorrequisito = nTieneCorrequisito;
         this.descripcion = nDescripcion;
         this.horarios = nHorarios;
-        this.ciclo_lectivo = nCiclo_lectivo;
     }
 
 }

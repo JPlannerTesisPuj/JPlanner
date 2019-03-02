@@ -21,8 +21,8 @@ export class ClassModalComponent implements OnInit {
    * @param ms Milisegundos
    * @returns Hora en texto
    */
-  private msToHMS(ms: number): string {
-    return (ms / 3600) + ':00';
+  private textToDate(dateText: string): Date {
+    return new Date(dateText);
   }
 
 
