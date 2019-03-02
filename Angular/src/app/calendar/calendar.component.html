@@ -8,18 +8,24 @@
   -->
   <mat-tab-group [(selectedIndex)]="verticalMenuIndex">
     <mat-tab>
+        
       <ng-template mat-tab-label>
-        <i class="material-icons">
+      
+        <i class="material-icons" >
           search
         </i>
+      
       </ng-template>
+    
         <app-filter></app-filter>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
+          
         <i class="material-icons">
-          bar_chart
+          view_list
         </i>
+      
       </ng-template>
 
       <app-display-classes [calendarList]="calendarList"></app-display-classes>
@@ -27,9 +33,12 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <i class="material-icons">
+          
+        <i class="material-icons" >
           shopping_cart
         </i>
+        
+
       </ng-template>
       <h2>Carrito de compras</h2>
       <div > 
