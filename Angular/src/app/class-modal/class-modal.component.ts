@@ -21,7 +21,7 @@ export class ClassModalComponent implements OnInit {
    * @param ms Milisegundos
    * @returns Hora en texto
    */
-  private textToDate(dateText: string): Date {
+  private textToDate(dateText: string | number): Date {
     return new Date(dateText);
   }
 

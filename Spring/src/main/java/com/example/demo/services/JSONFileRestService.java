@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class JSONFileRestService {
 		case "Sabado":
 			return 6;
 		case "Domingo":
-			return 0;
+			return 7;
 
 		default:
 			return 0;
@@ -152,37 +153,37 @@ public class JSONFileRestService {
 			// de 3 clases por
 			// semana y todas las clases se repiten en el mismo horario cada semana
 
-			filter_days_hours += "(";
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd H:mm:ss");
-			Calendar dateFrom = Calendar.getInstance();
-			Calendar dateTo = Calendar.getInstance();
-			int hourFrom = Integer.parseInt(hoursFrom) / 3600;
-			int hourTo = Integer.parseInt(hoursTo) / 3600;
+			// Fecha 2019-01-20 0:00:00 en milisegundos
+			BigInteger inicioCicloLectivoMilis = new BigInteger("1547960400000");
+			// Hora inicial y final en milisegundos
+			BigInteger hourFromMilis = new BigInteger(hoursFrom);
+			hourFromMilis = hourFromMilis.multiply(new BigInteger("1000"));
+			BigInteger hourToMilis = new BigInteger(hoursTo);
+			hourToMilis = hourToMilis.multiply(new BigInteger("1000"));
 
-			// Se toma los días en los que se seleccionó buscar
+			filter_days_hours += "(";
+
 			for (String day : arrayDays) {
 				int dayNumber = getDayNumber(day);
 
-				// Se toma la hora de inicio y se compara hasta que la hora de inicio sea una hora menor a la de fin
-				for (int hourCountFrom = hourFrom; hourCountFrom < hourTo; ++hourCountFrom) {
-					dateFrom.setTime(sdf.parse("2019-1-20 " + hourCountFrom + ":00:00"));
-					dateFrom.add(Calendar.DATE, dayNumber);
-					String dateFromText = sdf.format(dateFrom.getTime());
+				// Fecha inicial con horas en milisegundos
+				BigInteger dayFromInMilis = new BigInteger((dayNumber * 24) + "");
+				dayFromInMilis = dayFromInMilis.multiply(new BigInteger("3600000"));
+				dayFromInMilis = dayFromInMilis.add(hourFromMilis);
+				dayFromInMilis = dayFromInMilis.add(inicioCicloLectivoMilis);
 
-					// Se toma la hora de fin iniciando en la hora de inicio más una hora y se compara hasta la hora de fin
-					for (int hourCountTo = (hourCountFrom + 1); hourCountTo <= hourTo; ++hourCountTo) {
-						dateTo.setTime(sdf.parse("2019-1-20 " + hourCountTo + ":00:00"));
-						dateTo.add(Calendar.DATE, dayNumber);
-						String dateToText = sdf.format(dateTo.getTime());
+				// Fecha final con horas en milisegundos
+				BigInteger dayToInMilis = new BigInteger((dayNumber * 24) + "");
+				dayToInMilis = dayToInMilis.multiply(new BigInteger("3600000"));
+				dayToInMilis = dayToInMilis.add(hourToMilis);
+				dayToInMilis = dayToInMilis.add(inicioCicloLectivoMilis);
 
-						for (int j = 0; j < horaryMax; ++j) {
-							filter_days_hours += "(" +
-									"@.horarios[" + j + "].horaInicio == '" + dateFromText + "'"
-									+ "&& @.horarios[" + j + "].horaFin == '" + dateToText + "')"
-									+ "||";
-						}
-
-					}
+				// Busca en los primeros tres días porque en el JSON generado se da máximo una
+				// clase
+				// tres veces por semana
+				for (int diaHorario = 0; diaHorario < 3; ++diaHorario) {
+					filter_days_hours += "(@.horarios[" + diaHorario + "].horaInicio >= " + dayFromInMilis.toString()
+							+ " && @.horarios[" + diaHorario + "].horaFin <= " + dayToInMilis.toString() + ")" + "||";
 				}
 			}
 
@@ -304,6 +305,11 @@ public class JSONFileRestService {
 					+ filter_credits + " && @.estado " + filter_state + " && @.modoEnsenanza " + filter_mode
 					+ " && @.idCurso " + filter_id + "&& @.numeroClase " + filter_number + " && @.cuposDisponibles "
 					+ filter_cupos + " && @.cicloLectivo " + filter_schoolYear + " && @.grado " + filter_grade + ")]";
+
+//			String baseFilter = "$..[?(" + filter_search + " && @.creditos " + filter_credits + " && @.estado "
+//					+ filter_state + " && @.modoEnsenanza " + filter_mode + " && @.idCurso " + filter_id
+//					+ "&& @.numeroClase " + filter_number + " && @.cuposDisponibles " + filter_cupos
+//					+ " && @.cicloLectivo " + filter_schoolYear + " && @.grado " + filter_grade + ")]";
 
 			ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
 			String filteredJSON = new ObjectMapper().writeValueAsString(classes);

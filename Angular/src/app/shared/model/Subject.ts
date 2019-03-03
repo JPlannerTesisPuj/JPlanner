@@ -17,7 +17,6 @@ export class Subject {
     public unidadAcademica: string;
     public cicloLectivo: string;
     public puedeVerMateria: boolean;
-    public tieneCorrequisito: boolean;
     public descripcion: string;
     public horarios: Horary[];
 
@@ -52,7 +51,6 @@ export class Subject {
         this.unidadAcademica = nUnidadAcademica;
         this.cicloLectivo = nCicloLectivo;
         this.puedeVerMateria = nPuedeVerMateria;
-        this.tieneCorrequisito = nTieneCorrequisito;
         this.descripcion = nDescripcion;
         this.horarios = nHorarios;
     }
