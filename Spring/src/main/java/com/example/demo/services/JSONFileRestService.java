@@ -162,33 +162,40 @@ public class JSONFileRestService {
 			hourToMilis = hourToMilis.multiply(new BigInteger("1000"));
 
 			filter_days_hours += "(";
+			
+			if (dayComparator) {
+				filter_days_hours += "(";
+				for (int diaHorario = 0; diaHorario < 3; ++diaHorario) {
+					filter_days_hours += "(";
+					for (String day : arrayDays) {
+						int dayNumber = getDayNumber(day);
+						filter_days_hours += "@.horarios[" + diaHorario + "].dia==" + dayNumber + "||";
+					}
+					filter_days_hours = filter_days_hours.substring(0, filter_days_hours.length() - 2);
+					filter_days_hours += ")&&";
+				}
+				filter_days_hours = filter_days_hours.substring(0, filter_days_hours.length() - 2);
+				filter_days_hours += ")&&(";
+			}
 
 			for (String day : arrayDays) {
 				int dayNumber = getDayNumber(day);
 
-				// Fecha inicial con horas en milisegundos
-				BigInteger dayFromInMilis = new BigInteger((dayNumber * 24) + "");
-				dayFromInMilis = dayFromInMilis.multiply(new BigInteger("3600000"));
-				dayFromInMilis = dayFromInMilis.add(hourFromMilis);
-				dayFromInMilis = dayFromInMilis.add(inicioCicloLectivoMilis);
-
-				// Fecha final con horas en milisegundos
-				BigInteger dayToInMilis = new BigInteger((dayNumber * 24) + "");
-				dayToInMilis = dayToInMilis.multiply(new BigInteger("3600000"));
-				dayToInMilis = dayToInMilis.add(hourToMilis);
-				dayToInMilis = dayToInMilis.add(inicioCicloLectivoMilis);
-
 				// Busca en los primeros tres días porque en el JSON generado se da máximo una
 				// clase
-				// tres veces por semana
+				// tres veces por seman
 				for (int diaHorario = 0; diaHorario < 3; ++diaHorario) {
-					filter_days_hours += "(@.horarios[" + diaHorario + "].horaInicio >= " + dayFromInMilis.toString()
-							+ " && @.horarios[" + diaHorario + "].horaFin <= " + dayToInMilis.toString() + ")" + "||";
+					filter_days_hours += "(@.horarios[" + diaHorario + "].dia==" + dayNumber + " && (@.horarios["
+							+ diaHorario + "].horaNumeroInicio >= " + hoursFrom + " && @.horarios[" + diaHorario
+							+ "].horaNumeroFin <= " + hoursTo + "))" + "||";
 				}
 			}
 
 			filter_days_hours = filter_days_hours.substring(0, filter_days_hours.length() - 2);
 			filter_days_hours += ")";
+			if (dayComparator) {
+				filter_days_hours += ")";
+			}
 
 			switch (Integer.parseInt(creditComparator)) {
 			case 0: {
