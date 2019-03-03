@@ -27,7 +27,6 @@
     <b>Horario: </b>
     <ul>
       <li *ngFor="let h of subject.horarios">
-        {{ h.dia }}
         <ul>
           <li>{{ h.salon }}</li>
           <li>{{ textToDate( h.horaInicio) | date:'EEEE, MMMM d, y, H:mm:ss':locale }}</li>
