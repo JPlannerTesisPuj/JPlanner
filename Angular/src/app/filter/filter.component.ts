@@ -28,7 +28,7 @@ export class FilterComponent implements OnInit {
   private selectedCreditValue2: number = 1;
   private shouldDisplayCreditValue1: boolean = false;
   private shouldDisplayCreditValue2: boolean = false;
-  private dayComparator: boolean = false;
+  private dayComparator: number = 0;
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
@@ -419,7 +419,7 @@ export class FilterComponent implements OnInit {
     let data = {
       'type': 'filter',
       'days': days,
-      'dayComparator': this.dayComparator ? 1 : 0,
+      'dayComparator': this.dayComparator,
       'hours': hours,
       'searchBox': searchFields,
       'credits': creditsToSend,
