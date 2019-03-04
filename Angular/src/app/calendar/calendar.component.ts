@@ -99,7 +99,9 @@ export class CalendarComponent implements OnInit {
    */
   private alternativeCalendarClasses: Array<Subject[]> = new Array<Subject[]>();
 
+  private overLappedInCellByAlternative : any ;
 
+  private sholudDisplayDialog: any ;
   constructor(public dialog: MatDialog, private data: DataService, private readJSONFileService: ReadJsonFileService) { }
 
   ngOnInit() {
@@ -107,8 +109,10 @@ export class CalendarComponent implements OnInit {
     this.numberOfAlternatives = 6;
     this.initTitles();
     this.onItemChange(0);
+    this.overLappedInCellByAlternative = new Array(this.numberOfAlternatives);
+    this.sholudDisplayDialog = new Array(this.numberOfAlternatives);
+    this.sholudDisplayDialog.fill(false);
   
-    this
         /**
      * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
      * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
@@ -202,7 +206,12 @@ export class CalendarComponent implements OnInit {
         this.addClass(newClasses,subjectToDisplay);
       } else {
         //Si ya hay dos materias sobrepuestas
-        if (this.getOverLapped(newClasses, subjectToDisplay).size == 2) {
+        this.getOverLapped(newClasses,subjectToDisplay);
+        if(this.overLappedInCellByAlternative[this.currentAlternative].size >= 1){
+          this.sholudDisplayDialog[this.currentAlternative] = true;
+        }
+        if (this.overLappedInCellByAlternative[this.currentAlternative].size==2) {
+          this.overLappedInCellByAlternative[this.currentAlternative].add(subjectToDisplay.numeroClase);
           this.displaySelectingOptions(subjectToDisplay, arrayClassesOverlapped).then(
             //Respuesta del usuario al formulario
             (userResponse) => {
@@ -217,20 +226,20 @@ export class CalendarComponent implements OnInit {
   }
 }
 
-private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject):Set<any>{
-  let overLappedInCell = new Set();
+private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject){
+  if(this.overLappedInCellByAlternative[this.currentAlternative] === undefined ){
+    this.overLappedInCellByAlternative[this.currentAlternative] = new Set();
+  }
   for(let theClass of newClasses){
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = new Date(horary.horaInicio);
       let endHour: Date = new Date(horary.horaFin);
-      if(theClass.start >= startHour || theClass.end <= endHour){
-        overLappedInCell.add(theClass.id);
+      if(theClass.start >= startHour && theClass.end <= endHour){
+        this.overLappedInCellByAlternative[this.currentAlternative].add(theClass.id);
         break;
       }
     }
   }
-  return overLappedInCell;
-
 }
  /**
    * 

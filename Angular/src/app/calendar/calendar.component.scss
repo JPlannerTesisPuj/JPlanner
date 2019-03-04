@@ -97,3 +97,18 @@
     margin-right: 10px;
   }
 }
+
+.cal-conflict-msj{
+  span{
+    font-size: 18px;
+    font-family: $font-secondary;
+    font-weight: bold;
+  }
+  i{
+    color:red;
+    position: relative;
+    top: 3px;
+    left: 5px;
+    font-size: 20px;
+  }
+}
