@@ -30,8 +30,10 @@
       [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
     </ng-multiselect-dropdown>
     <div id="fil-day-comparator-state" class="col-12 grid-noGutter">
-      <input id="fil-day-comparator" type="checkbox" [(ngModel)]="dayComparator" class="col-1" />
-      <label class="col-10">Buscar solamente en los días seleccionados</label>
+      <input class="col-1" type="radio" name="fil-day-comparator" value="true" id="selected-days" [(ngModel)]="dayComparator">
+      <label class="col-4">Buscar solamente en los días seleccionados</label>
+      <input class="col-1" type="radio" name="fil-day-comparator" value="false" id="all-days" [(ngModel)]="dayComparator">
+      <label class="col-4">Buscar en cualquiera de estos días</label>
     </div>
   </div>
 
