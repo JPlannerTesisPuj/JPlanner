@@ -16,6 +16,7 @@ import { User } from '../model/User';
 export class ReadJsonFileService {
   // URL base a donde se harán las peticiones
   private baseUrl: string = 'http://localhost:8080/';
+  private userToken: User = null;
 
   // Se pide la dependencia de HTTP para poder realizar peticiones
   constructor(private http: HttpClient) { }
@@ -46,25 +47,31 @@ export class ReadJsonFileService {
       days = 'Lunes-Martes-Miercoles-Jueves-Viernes-Sabado-Domingo';
     }
 
-    const url: string = this.baseUrl + 'files/read/json/' + fileName + '/class-filter/'
-      + days
-      + '/' + filter['hours']['from']
-      + '/' + filter['hours']['to']
-      + '/' + filter['credits']['creditComparator']
-      + '/' + filter['credits']['creditValue1']
-      + '/' + filter['credits']['creditValue2']
-      + '/' + filter['searchBox']['searched']
-      + '/' + filter['searchBox']['params']
-      + '/' + filter['teachingMode']
-      + '/' + filter['state']
-      + '/' + filter['class-ID']
-      + '/' + filter['class-number']
-      + '/' + filter['class-code']
-      + '/' + classSizePieces
-      + '/' + filter['scholar-year']
-      + '/' + filter['grade'];
+    if (this.userToken != null) {
+      const url: string = this.baseUrl + 'files/read/json/class-filter/'
+        + days
+        + '/' + filter['dayComparator']
+        + '/' + filter['hours']['from']
+        + '/' + filter['hours']['to']
+        + '/' + filter['credits']['creditComparator']
+        + '/' + filter['credits']['creditValue1']
+        + '/' + filter['credits']['creditValue2']
+        + '/' + filter['searchBox']['searched']
+        + '/' + filter['searchBox']['params']
+        + '/' + filter['teachingMode']
+        + '/' + filter['state']
+        + '/' + filter['class-ID']
+        + '/' + filter['class-number']
+        + '/' + classSizePieces
+        + '/' + filter['scholar-year']
+        + '/' + filter['grade']
+        + '/' + this.userToken.GID;
 
-    return (this.http.get<Subject[]>(url, { withCredentials: true }));
+      return (this.http.get<Subject[]>(url, { withCredentials: true }));
+    }
+
+    return null;
+
   }
 
   /**
@@ -74,5 +81,14 @@ export class ReadJsonFileService {
    */
   public filterToken(token: string): Observable<User[]> {
     return (this.http.get<User[]>(this.baseUrl + 'tokenauth/' + token, { withCredentials: true }));
+  }
+
+  /**
+   * Guarda al usuario que ingresó a la aplicación
+   * 
+   * @param user Usuario que ingresó a la aplicación
+   */
+  public setUSer(user: User) {
+    this.userToken = user;
   }
 }
