@@ -28,7 +28,7 @@ export class FilterComponent implements OnInit {
   private selectedCreditValue2: number = 1;
   private shouldDisplayCreditValue1: boolean = false;
   private shouldDisplayCreditValue2: boolean = false;
-  private dayComparator: number = 0;
+  private dayComparator: string = '0';
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
