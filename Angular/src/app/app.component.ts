@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
       } else {
         this.userAuthenticaded = user;
         this.name = 'Bienvenido, ' + this.userAuthenticaded[0].nombre_estudiante;
+        this.readJSONFileService.setUSer(this.userAuthenticaded[0]);
       }
     });
   }
