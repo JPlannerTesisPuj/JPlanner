@@ -180,7 +180,7 @@ export class CalendarComponent implements OnInit {
     let subjectToDisplay: Subject = event.previousContainer.data[event.previousIndex];
 
     // Mira si la clase no ha sido agregada al horario
-    if (!this.calendarClasses.some(myClass => myClass._id == subjectToDisplay._id)) {
+    if (!this.calendarClasses.some(myClass => myClass.numeroClase == subjectToDisplay.numeroClase)) {
       let isOverlapped: boolean = false;
       let newClasses: CalendarEvent[];
       let classOverlapped: CalendarEvent = null;
@@ -188,31 +188,50 @@ export class CalendarComponent implements OnInit {
       newClasses = Object.assign([], this.classes);
       let arrayClassesOverlapped: CalendarEvent[] = [];
       for (let horary of subjectToDisplay.horarios) {
-        let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
-        let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+        let startHour: Date = new Date(horary.horaInicio);
+        let endHour: Date = new Date(horary.horaFin);
         arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
         classOverlapped = arrayOverlapped['classOverlapped']
         isOverlapped = arrayOverlapped['isOverLapped'];
         if (isOverlapped && !arrayClassesOverlapped.some((subject) => subject.id == classOverlapped.id)) {
           arrayClassesOverlapped.push(classOverlapped);
-
+         
         }
       }
       if (arrayClassesOverlapped.length == 0) {
         this.addClass(newClasses,subjectToDisplay);
       } else {
-        this.displaySelectingOptions(subjectToDisplay, arrayClassesOverlapped).then(
-          //Respuesta del usuario al formulario
-          (userResponse) => {
-            if (userResponse) {
-              this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
+        //Si ya hay dos materias sobrepuestas
+        if (this.getOverLapped(newClasses, subjectToDisplay).size == 2) {
+          this.displaySelectingOptions(subjectToDisplay, arrayClassesOverlapped).then(
+            //Respuesta del usuario al formulario
+            (userResponse) => {
+              if (userResponse) {
+                //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
+              }
             }
-          }
-        );
+          );
+        }
+        this.addClass(newClasses, subjectToDisplay);
     }
   }
 }
 
+private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject):Set<any>{
+  let overLappedInCell = new Set();
+  for(let theClass of newClasses){
+    for (let horary of subjectToDisplay.horarios) {
+      let startHour: Date = new Date(horary.horaInicio);
+      let endHour: Date = new Date(horary.horaFin);
+      if(theClass.start >= startHour || theClass.end <= endHour){
+        overLappedInCell.add(theClass.id);
+        break;
+      }
+    }
+  }
+  return overLappedInCell;
+
+}
  /**
    * 
    * @param newClasses Arreglo auxiliar en el cual se almacenan las clases
@@ -223,15 +242,15 @@ export class CalendarComponent implements OnInit {
     
 
     for (let horary of subjectToDisplay.horarios) {
-      let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
-      let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+      let startHour: Date = new Date(horary.horaInicio);
+        let endHour: Date = new Date(horary.horaFin);
 
       newClasses.push({
         start: startHour,
         end: endHour,
         color: colors.black,
         title: subjectToDisplay.nombre,
-        id: subjectToDisplay._id,
+        id: subjectToDisplay.numeroClase,
         actions: this.actions
       });
     }
@@ -241,14 +260,6 @@ export class CalendarComponent implements OnInit {
       
       this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
       this.refresh.next();
-      
-      
-      
-      
-      
-      
-      
-      
   }
  
 
@@ -311,7 +322,7 @@ export class CalendarComponent implements OnInit {
 
     //
     if (action === 'Clicked') {
-      let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
+      let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass.numeroClase === event.id);
       let dialogRef = this.dialog.open(ClassModalComponent, {
         data: { class: subjectToShowthis }
       });
@@ -331,7 +342,7 @@ export class CalendarComponent implements OnInit {
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
-    this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
+    this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();

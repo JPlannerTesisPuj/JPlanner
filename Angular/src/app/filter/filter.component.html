@@ -4,20 +4,45 @@
   <button id="adv-search" (click)='clickedTab($event)'>Avanzada</button>
 </div>
 <div class="grid-noGutter" id="fil-basic-search">
+
+  <div id="fil-search-fields" class="col-12 grid-noGutter">
+    <label for="fil-search-fields" class="col-12">
+      <strong>Búsqueda de Texto</strong>
+    </label>
+    <div class="fil-search-container col-12">
+      <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field" id="fil-searchBox"
+        placeholder="Buscar..">
+      <div class="error-msg" id="fil-error-searchBox"></div>
+    </div>
+
+    <div class="fil-search-container col-12">
+      <ng-multiselect-dropdown class="col-12 dropdown-specific-field" [placeholder]="'Búscar en Campo Específico'"
+        [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">
+      </ng-multiselect-dropdown>
+    </div>
+  </div>
+
   <div id="fil-week-days" class="col-12 grid-noGutter">
     <label class="col-12" for="fil-week-days">
       <strong>Dias de la Semana </strong>
     </label>
-    <ng-multiselect-dropdown class="col-12" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek" [(ngModel)]="selectedItemsWeek"
-      [settings]="dropdownSettings">
+    <ng-multiselect-dropdown class="col-12" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
+      [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
     </ng-multiselect-dropdown>
+    <div id="fil-day-comparator-state" class="col-12 grid-noGutter">
+      <input class="col-1" type="radio" name="fil-day-comparator" value="true" id="selected-days" [(ngModel)]="dayComparator">
+      <label class="col-4">Buscar solamente en los días seleccionados</label>
+      <input class="col-1" type="radio" name="fil-day-comparator" value="false" id="all-days" [(ngModel)]="dayComparator">
+      <label class="col-4">Buscar en cualquiera de estos días</label>
+    </div>
   </div>
 
   <div id="fil-week-hours">
     <label for='fil-week-hours'>
       <strong>Franja Horaria</strong>
     </label>
-    <select id="fil-hourFrom" class="fil-hour-dropdown col-6" [(ngModel)]="selectedOptionFrom" (ngModelChange)="onChangeFromHour($event)">
+    <select id="fil-hourFrom" class="fil-hour-dropdown col-6" [(ngModel)]="selectedOptionFrom"
+      (ngModelChange)="onChangeFromHour($event)">
       <option value="" disabled selected>Hora inicial</option>
       <option *ngFor="let hour of hoursFrom">
         {{hour}}
@@ -35,12 +60,14 @@
     <label for="fil-credit-selector" class="col-12">
       <strong>Número de Creditos</strong>
     </label>
-    <select [hidden]="!shouldDisplayCreditValue1" class="col-6" [(ngModel)]="selectedCreditValue1" (ngModelChange)="onChangeCreditValue1($event)">
+    <select [hidden]="!shouldDisplayCreditValue1" class="col-6" [(ngModel)]="selectedCreditValue1"
+      (ngModelChange)="onChangeCreditValue1($event)">
       <option [disabled]="value.disabled" *ngFor="let value of creditValue1">
         {{value.value}}
       </option>
     </select>
-    <select id="fil-creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)" class="fil-credit-dropdown col-12">
+    <select id="fil-creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)"
+      class="fil-credit-dropdown col-12">
       <option value="" disabled selected>Filtrar Por Creditos</option>
       <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
         {{comparator.value}}
@@ -54,70 +81,22 @@
     </select>
   </div>
 
-
-  <div id="fil-search-fields" class="col-12 grid-noGutter">
-    <label for="fil-search-fields" class="col-12">
-      <strong>Búsqueda de Texto</strong>
-    </label>
-    <div class="fil-search-container col-12">
-      <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field" id="fil-searchBox" placeholder="Buscar..">
-      <div class="error-msg" id="fil-error-searchBox"></div>
-    </div>
-
-    <div class="fil-search-container col-12">
-      <ng-multiselect-dropdown class="col-12 dropdown-specific-field" [placeholder]="'Búscar en Campo Específico'" [data]="dropdownListSearch"
-        [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">
-      </ng-multiselect-dropdown>
-    </div>
-  </div>
-
 </div>
 
 <div id="fil-adv-filters" class="grid-noGutter hidden">
-  <div id="fil-teaching-mode" class="col-12 grid-noGutter">
-    <label for="fil-teaching-mode" class="col-12">
-      <strong>Modo de Enseñanza:</strong>
-    </label>
-    <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-12">
-      <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
-      <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
-    </select>
-  </div>
-
-
-
-  <div id="fil-class-state" class="col-12 grid-noGutter">
-    <label for="fil-class-state" class="col-12">
-      <strong>Estado</strong>
-    </label>
-    <input id="{{openStateCheckbox.id}}" type="checkbox" [(ngModel)]="openStateCheckbox.isChecked" class="col-1" />
-    <label class="col-5">{{openStateCheckbox.name}}</label>
-    <input id="{{closedStateCheckbox.id}}}" type="checkbox" [(ngModel)]="closedStateCheckbox.isChecked" class="col-1" />
-    <label class="col-5">{{closedStateCheckbox.name}}</label>
-  </div>
-
 
   <div id="fil-id-filter" class="col-12 grid-noGutter">
     <label for="fil-id-filter" class="col-12">
-      <strong>ID</strong>
+      <strong>ID Curso</strong>
     </label>
     <input type="text" [(ngModel)]="searchedFilterId" class="col-12 atom-input-field" />
   </div>
-
 
   <div id="fil-number-filter" class="col-12 grid-noGutter">
     <label for="fil-number-filter" class="col-12">
       <strong>Número de Clase</strong>
     </label>
     <input type="number" [(ngModel)]="searchedFilterNumber" class="col-12 atom-input-field" />
-  </div>
-
-
-  <div id="fil-code-filter" class="col-12 grid-noGutter">
-    <label for="fil-code-filter" class="col-12">
-      <strong>Codigo de Clase</strong>
-    </label>
-    <input type="number" [(ngModel)]="searchedFilterCode" class="col-12 atom-input-field" />
   </div>
 
   <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
@@ -130,6 +109,16 @@
         {{schoolyear}}
       </option>
     </select>
+  </div>
+
+  <div id="fil-class-state" class="col-12 grid-noGutter">
+    <label for="fil-class-state" class="col-12">
+      <strong>Estado</strong>
+    </label>
+    <input id="{{openStateCheckbox.id}}" type="checkbox" [(ngModel)]="openStateCheckbox.isChecked" class="col-1" />
+    <label class="col-5">{{openStateCheckbox.name}}</label>
+    <input id="{{closedStateCheckbox.id}}" type="checkbox" [(ngModel)]="closedStateCheckbox.isChecked" class="col-1" />
+    <label class="col-5">{{closedStateCheckbox.name}}</label>
   </div>
 
   <div id="fil-grade-filter" class="col-12 grid-noGutter">
@@ -148,12 +137,14 @@
     <label for="fil-class-size">
       <strong>Cupos Disponibles</strong>
     </label>
-    <select [hidden]="!shouldDisplaySizeValue1" class="col-6" [(ngModel)]="selectedSizeValue1" (ngModelChange)="onChangeSizeOne($event)">
+    <select [hidden]="!shouldDisplaySizeValue1" class="col-6" [(ngModel)]="selectedSizeValue1"
+      (ngModelChange)="onChangeSizeOne($event)">
       <option [disabled]="value.disabled" *ngFor="let value of sizeValue1">
         {{value.value}}
       </option>
     </select>
-    <select id="fil-sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)" class="fil-fdropdown fil-credit-dropdown col-12">
+    <select id="fil-sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)"
+      class="fil-fdropdown fil-credit-dropdown col-12">
       <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
       <option *ngFor="let comparator of sizeComparatorOptions | keyvalue" [ngValue]="comparator">
         {{comparator.value}}
@@ -163,6 +154,16 @@
       <option [disabled]="value.disabled" *ngFor="let value of sizeValue2">
         {{value.value}}
       </option>
+    </select>
+  </div>
+
+  <div id="fil-teaching-mode" class="col-12 grid-noGutter">
+    <label for="fil-teaching-mode" class="col-12">
+      <strong>Modo de Enseñanza:</strong>
+    </label>
+    <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-12">
+      <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
+      <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
     </select>
   </div>
 

@@ -28,6 +28,7 @@ export class FilterComponent implements OnInit {
   private selectedCreditValue2: number = 1;
   private shouldDisplayCreditValue1: boolean = false;
   private shouldDisplayCreditValue2: boolean = false;
+  private dayComparator: boolean = false;
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
@@ -357,7 +358,7 @@ export class FilterComponent implements OnInit {
     if (this.year === 'Cualquiera') {
       yearToSend = this.yearActualCycle;
       if(this.isAdvancedSearch){
-        yearToSend='none';
+        yearToSend = 'none';
       }
     }
     if (this.gradeFilter === 'Cualquiera') {
@@ -418,6 +419,7 @@ export class FilterComponent implements OnInit {
     let data = {
       'type': 'filter',
       'days': days,
+      'dayComparator': this.dayComparator ? 1 : 0,
       'hours': hours,
       'searchBox': searchFields,
       'credits': creditsToSend,
@@ -426,7 +428,6 @@ export class FilterComponent implements OnInit {
       'class-ID': idToSend,
       'class-number': numberToSend,
       'class-size': classSizeToSend,
-      'class-code': codeToSend,
       'scholar-year': yearToSend,
       'grade': gradeToSend
     }
