@@ -47,9 +47,10 @@ color: "#d4dce9"
   text-align: center;
   color: $light-blue;
   width: 100px;
-  height:$space-xl;
+  height: 40px;
   border: solid 1px $light-blue;
-
+  background-color: $white;
+  
   &:hover{    
     border: solid 1px $light-blue-50;
     color: $light-blue-50
@@ -81,16 +82,18 @@ color: "#d4dce9"
   text-decoration: underline;
   color: $black-20;
   width: 180px;
-  height: $space-xl;
+  height: 40px;
   border: solid 1px $black-30;
 
   &:hover{    
     border: solid 1px $black;
+    color: $black
   }
   &:active{
     box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px $black-50;
     background-color: $white;
+    color: $black-50;
   }
   &:disabled{
     border: solid 1px $black-30;
@@ -114,7 +117,8 @@ color: "#d4dce9"
   text-align: center;
   color: $white;
   width: 100px;
-  height: $space-xl;
+  height: 40px;
+  border-style: none;
 
   &:hover{    
     background-color: $light-blue-50;
