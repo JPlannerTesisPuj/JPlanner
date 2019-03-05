@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
    * Genera un random index
    */
   generateToken() {
-    const tokenIndex = Math.floor((Math.random() * this.tokenArray.length) + 1);
+    const tokenIndex = Math.floor((Math.random() * this.tokenArray.length));
     this.userToken = this.tokenArray[tokenIndex];
   }
 }

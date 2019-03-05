@@ -9,6 +9,8 @@ import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
+import { IterableDiffers } from '@angular/core';
+import { Input } from '@angular/core';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -100,18 +102,35 @@ export class CalendarComponent implements OnInit {
   private alternativeCalendarClasses: Array<Subject[]> = new Array<Subject[]>();
 
   private overLappedInCellByAlternative : any ;
-
+  @Input() overLappedIds:any = [];
+  differ: any;
   private sholudDisplayDialog: any ;
-  constructor(public dialog: MatDialog, private data: DataService, private readJSONFileService: ReadJsonFileService) { }
+  constructor(differs: IterableDiffers,public dialog: MatDialog, private data: DataService, private readJSONFileService: ReadJsonFileService) {
+    this.differ = differs.find([]).create(null);
+   }
+   ngDoCheck() {
+    const change = this.differ.diff(this.overLappedIds);
+    if (change) {
+      console.log(change.length);
+      console.log(this.overLappedIds);
+      if(change.length >1){
+        this.sholudDisplayDialog[this.currentAlternative] = true;
+      }else if( change.length == 0 || change.length == 1 ){
+        this.sholudDisplayDialog[this.currentAlternative] = false;
+        this.overLappedIds.clear();
+      }
+    }
+   }
 
   ngOnInit() {
     //Inicializa el numero de alternativas, el arreglo de titulos y la alterativa escogida por defecto
     this.numberOfAlternatives = 6;
-    this.initTitles();
-    this.onItemChange(0);
     this.overLappedInCellByAlternative = new Array(this.numberOfAlternatives);
+    this.overLappedInCellByAlternative.fill(new Set());
     this.sholudDisplayDialog = new Array(this.numberOfAlternatives);
     this.sholudDisplayDialog.fill(false);
+    this.initTitles();
+    this.onItemChange(0);
   
         /**
      * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
@@ -185,34 +204,19 @@ export class CalendarComponent implements OnInit {
 
     // Mira si la clase no ha sido agregada al horario
     if (!this.calendarClasses.some(myClass => myClass.numeroClase == subjectToDisplay.numeroClase)) {
-      let isOverlapped: boolean = false;
       let newClasses: CalendarEvent[];
-      let classOverlapped: CalendarEvent = null;
-      let arrayOverlapped: any;
       newClasses = Object.assign([], this.classes);
-      let arrayClassesOverlapped: CalendarEvent[] = [];
       for (let horary of subjectToDisplay.horarios) {
         let startHour: Date = new Date(horary.horaInicio);
         let endHour: Date = new Date(horary.horaFin);
-        arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
-        classOverlapped = arrayOverlapped['classOverlapped']
-        isOverlapped = arrayOverlapped['isOverLapped'];
-        if (isOverlapped && !arrayClassesOverlapped.some((subject) => subject.id == classOverlapped.id)) {
-          arrayClassesOverlapped.push(classOverlapped);
-         
-        }
       }
-      if (arrayClassesOverlapped.length == 0) {
+      let overLappedInAdded = this.getOverLapped(newClasses,subjectToDisplay).size;
+      if (this.overLappedIds.length == 0) {
         this.addClass(newClasses,subjectToDisplay);
       } else {
-        //Si ya hay dos materias sobrepuestas
-        this.getOverLapped(newClasses,subjectToDisplay);
-        if(this.overLappedInCellByAlternative[this.currentAlternative].size >= 1){
-          this.sholudDisplayDialog[this.currentAlternative] = true;
-        }
-        if (this.overLappedInCellByAlternative[this.currentAlternative].size==2) {
-          this.overLappedInCellByAlternative[this.currentAlternative].add(subjectToDisplay.numeroClase);
-          this.displaySelectingOptions(subjectToDisplay, arrayClassesOverlapped).then(
+          // Si hay dos materias en la casilla en la que se intenta meter la nueva materia muestre el popup
+          if (overLappedInAdded==3) {
+          this.displaySelectingOptions(subjectToDisplay, ["remplaza con la lista"]).then(
             //Respuesta del usuario al formulario
             (userResponse) => {
               if (userResponse) {
@@ -227,19 +231,21 @@ export class CalendarComponent implements OnInit {
 }
 
 private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject){
-  if(this.overLappedInCellByAlternative[this.currentAlternative] === undefined ){
-    this.overLappedInCellByAlternative[this.currentAlternative] = new Set();
-  }
+  let overLappedInSubject = new Set();
   for(let theClass of newClasses){
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = new Date(horary.horaInicio);
       let endHour: Date = new Date(horary.horaFin);
-      if(theClass.start >= startHour && theClass.end <= endHour){
-        this.overLappedInCellByAlternative[this.currentAlternative].add(theClass.id);
+     if(areRangesOverlapping(startHour,endHour,theClass.start,theClass.end)){
+        this.overLappedIds.add(subjectToDisplay.numeroClase);
+        this.overLappedIds.add(theClass.id);
+        overLappedInSubject.add(theClass.id);
+        overLappedInSubject.add(subjectToDisplay.numeroClase);
         break;
       }
     }
   }
+  return overLappedInSubject;
 }
  /**
    * 
@@ -272,27 +278,6 @@ private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject){
   }
  
 
-
-  /**
-   * Mira si la materia nueva que se agregará al horario se cruza con las otras materias
-   * 
-   * @param startHour Hora de inicio
-   * @param endHour Hora de fin
-   * 
-   * Retorna un objeto con un booleano que dice si las materias se curzan o no y la clase que esta isncrita en el horario que impide inscribir la nueva
-   */
-  private checkOverlappingClasses(startHour: Date, endHour: Date) {
-    let overlapped: CalendarEvent = null;
-
-    return {
-      'isOverLapped':
-        this.classes.some(function (myClass) {
-          overlapped = myClass;
-          return areRangesOverlapping(startHour, endHour, myClass.start, myClass.end);
-        }),
-      'classOverlapped': overlapped,
-    };
-  }
 
   /**
    * Toma el nombre de un día de la semana y retorna el número equivalente al día de la semana.
@@ -355,6 +340,9 @@ private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject){
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
+
+      //Remueve tambien de los ids sobrepuestos si es el caso
+      this.overLappedIds.delete(id);
   }
 
   /**
@@ -363,7 +351,7 @@ private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject){
    * @param registeredSubject Materia que esta actualmente registrada
    * @returns Crea el diálogo y retorna una promesa con el valor seleccionado por el usuario en el diálogo
    */
-  private async displaySelectingOptions(tryingSubject: Subject, registeredSubjects: CalendarEvent[]) {
+  private async displaySelectingOptions(tryingSubject: Subject, registeredSubjects: any[]) {
     let removedClassesTitles: string = '';
     for (let registeredSubject of registeredSubjects) {
       removedClassesTitles += registeredSubject['title'] + ', ';
@@ -407,6 +395,7 @@ private getOverLapped(newClasses : CalendarEvent[],subjectToDisplay : Subject){
     }
     this.classes = this.alternativeClasses[this.currentAlternative];    
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
+    this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
   }
   /**
    * Inicializa los titulos de las alternativas segun la configuración de la variable numberOfAlternatives
