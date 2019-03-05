@@ -120,9 +120,11 @@ color: "#d4dce9"
 
   &:hover{    
     background-color: $light-blue-50;
+    border: solid 1px $light-blue-50;
   }
   &:active{
     background-color: $light-blue-20;
+    border: solid 1px $light-blue-20;
   }
   &:disabled{
     border: solid 1px $black-50;
