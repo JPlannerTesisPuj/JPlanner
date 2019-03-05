@@ -49,7 +49,10 @@ color: "#d4dce9"
   border: solid 1px $light-blue;
   background-color: $white;
   padding: 8px 24px 8px 24px;
-  
+  i{
+    vertical-align: middle;
+    margin-left: 8px;
+  }
   &:hover{    
     border: solid 1px $light-blue-50;
     color: $light-blue-50
@@ -119,6 +122,10 @@ color: "#d4dce9"
   border: solid 1px $light-blue;
   padding: 8px 24px 8px 24px;
 
+  i{
+    vertical-align: middle;
+    margin-left: 8px;
+  }
   &:hover{    
     background-color: $light-blue-50;
     border: solid 1px $light-blue-50;
