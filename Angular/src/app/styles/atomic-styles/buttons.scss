@@ -36,33 +36,110 @@ color: "#d4dce9"
 }
 
 .atom-buttons{
-    
-    background-color: $yellow;
-    border-radius: $space-xs;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 900;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: $white;
-    width: 100px;
-    height:$space-xl;
-    border-style: none;
+  border-radius: $space-xs;
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-align: center;
+  color: $light-blue;
+  border: solid 1px $light-blue;
+  background-color: $white;
+  padding: 8px 24px 8px 24px;
+  i{
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  &:hover{    
+    border: solid 1px $light-blue-50;
+    color: $light-blue-50
+  }
+  &:active{
+    border: solid 1px $light-blue-20;
+    color: $light-blue-20
+  }
+  &:disabled{
+    border: solid 1px $black-50;
+    color: $black-50;  
+  }
+  &:focus{
+      outline: none;
+  }
 
-    &:hover{    
-        background-color: $yellow-20;
-    }
-    &:active{
-        background-color: $yellow-50;
-    }
-    &:disabled{
-        border: solid 1px $yellow;  
-    }
-    &:focus{
-        outline: none;
-    }
+}
 
+.atom-buttons-secondary{
+  background-color: $white;
+  font-family: $font-secondary;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: underline;
+  color: $black-20;
+  border: solid 1px $black-30;
+  padding: 8px 24px 8px 24px;
+
+  &:hover{    
+    border: solid 1px $black;
+    color: $black
+  }
+  &:active{
+    box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px $black-50;
+    background-color: $white;
+    color: $black-50;
+  }
+  &:disabled{
+    border: solid 1px $black-30;
+    background-color: $black-50;
+    color: $black-20; 
+  }
+  &:focus{
+      outline: none;
+  }
+}
+
+.atom-buttons-primary{
+  border-radius: $space-xs;
+  background-color: $light-blue;
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-align: center;
+  color: $white;
+  border-style: none;
+  border: solid 1px $light-blue;
+  padding: 8px 24px 8px 24px;
+
+  i{
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  &:hover{    
+    background-color: $light-blue-50;
+    border: solid 1px $light-blue-50;
+  }
+  &:active{
+    background-color: $light-blue-20;
+    border: solid 1px $light-blue-20;
+  }
+  &:disabled{
+    border: solid 1px $black-50;
+    background-color: $white; 
+    color: $black-50;
+  }
+  &:focus{
+      outline: none;
+  }
 }

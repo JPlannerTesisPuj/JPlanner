@@ -151,17 +151,12 @@ public class JSONFileRestService {
 			// horarios de
 			// las materias teniendo en cuenta que el JSON de clases generado no tiene más
 			// de 3 clases por
-			// semana y todas las clases se repiten en el mismo horario cada semana
-
-			// Fecha 2019-01-20 0:00:00 en milisegundos
-			BigInteger inicioCicloLectivoMilis = new BigInteger("1547960400000");
-			// Hora inicial y final en milisegundos
-			BigInteger hourFromMilis = new BigInteger(hoursFrom);
-			hourFromMilis = hourFromMilis.multiply(new BigInteger("1000"));
-			BigInteger hourToMilis = new BigInteger(hoursTo);
-			hourToMilis = hourToMilis.multiply(new BigInteger("1000"));
+			// semana y todas las clases se repiten en el mismo horario cada semana;
 
 			filter_days_hours += "(";
+			
+			int hourFromNumber = Integer.parseInt(hoursFrom) / 3600;
+			int hourToNumber = Integer.parseInt(hoursTo) / 3600;
 			
 			if (dayComparator) {
 				filter_days_hours += "(";
@@ -186,8 +181,8 @@ public class JSONFileRestService {
 				// tres veces por seman
 				for (int diaHorario = 0; diaHorario < 3; ++diaHorario) {
 					filter_days_hours += "(@.horarios[" + diaHorario + "].dia==" + dayNumber + " && (@.horarios["
-							+ diaHorario + "].horaNumeroInicio >= " + hoursFrom + " && @.horarios[" + diaHorario
-							+ "].horaNumeroFin <= " + hoursTo + "))" + "||";
+							+ diaHorario + "].horaNumeroInicio >= " + hourFromNumber + " && @.horarios[" + diaHorario
+							+ "].horaNumeroFin <= " + hourToNumber + "))" + "||";
 				}
 			}
 
@@ -196,7 +191,7 @@ public class JSONFileRestService {
 			if (dayComparator) {
 				filter_days_hours += ")";
 			}
-
+			
 			switch (Integer.parseInt(creditComparator)) {
 			case 0: {
 				filter_credits = "";
