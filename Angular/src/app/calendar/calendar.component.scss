@@ -96,6 +96,12 @@
   .ovr-dialog-btn {
     margin-right: 10px;
   }
+
+  &__subjects {
+    &-list {
+      list-style: none;
+    }
+  }
 }
 
 .cal-conflict-msj{
