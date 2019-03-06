@@ -16,10 +16,14 @@
         </li>
       </ul>
     </div>
+  
+    <div *ngIf="conflictExists" class= "cal-conflict-msj">
+      <span>¡Debe dejar máximo dos materias en un mismo horario para eliminar el conflicto!</span>
+      <i class="material-icons">warning</i>
+    </div>
 
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button class="ovr-dialog-btn" mat-button [mat-dialog-close]="data.subjectsToChoose">Eliminar clases seleccionadas</button>
-    <button class="ovr-dialog-btn" mat-button [mat-dialog-close]="data.subjectsToChoose" (click)="doNotDeleteSubjects(data.subjectsToChoose)">Cancelar</button>
+    <button class="ovr-dialog-btn" mat-button (click)="verifyOverlappedSubjects()">Eliminar clases seleccionadas</button>
   </mat-dialog-actions> 
 </div>
