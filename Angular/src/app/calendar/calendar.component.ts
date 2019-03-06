@@ -4,7 +4,7 @@ import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMo
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS } from 'rxjs';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
@@ -440,7 +440,7 @@ export class CalendarComponent implements OnInit {
     let removedClassesTitles: string = '';
 
     for (let registeredSubject of registeredSubjects) {
-      if(registeredSubject.classNumber != tryingSubject.numeroClase){
+      if (registeredSubject.classNumber != tryingSubject.numeroClase) {
         removedClassesTitles += registeredSubject['title'] + ', ';
       }
     }
@@ -451,7 +451,8 @@ export class CalendarComponent implements OnInit {
         'tryToAddClass': tryingSubject,
         'addedClasses': removedClassesTitles,
         'subjectsToChoose': registeredSubjects
-      }
+      },
+      disableClose: true
     });
 
     return await (dialogRef.afterClosed().toPromise());
@@ -509,7 +510,12 @@ export class CalendarComponent implements OnInit {
 })
 
 export class OverlapClassConfirmationDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(
+    public dialogRef: MatDialogRef<any>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  private conflictExists: boolean = false;
 
   private titleCaseWord(word: string) {
     if (!word) {
@@ -523,5 +529,22 @@ export class OverlapClassConfirmationDialog {
     subjectsToDelete.forEach(subject => {
       subject.toDelete = false;
     });
+  }
+
+  private verifyOverlappedSubjects() {
+    let contSubjectsToLeave: number = 0;
+
+    this.data.subjectsToChoose.forEach(subject => {
+      if (!subject.toDelete) {
+        contSubjectsToLeave++;
+      }
+    });
+
+    if (contSubjectsToLeave > 2) {
+      this.conflictExists = true;
+    } else {
+      this.conflictExists = true;
+      this.dialogRef.close(this.data.subjectsToChoose);
+    }
   }
 }
