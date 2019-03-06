@@ -666,7 +666,6 @@ export class FilterComponent implements AfterViewInit {
       
       b = document.createElement("DIV");
       b.setAttribute("class", "select-items select-hide");
-      b.setAttribute("ng-model", "selectedOptionFrom");
       for (j = 1; j < selElmnt.length; j++) {
         
         c = document.createElement("DIV");
@@ -689,7 +688,6 @@ export class FilterComponent implements AfterViewInit {
               }
             }
             h.click();
-            this.onChangeFromHour(s.options[i].innerHTML);
         });
         
         b.appendChild(c);
