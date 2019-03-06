@@ -10,6 +10,7 @@ import { User } from './shared/model/User';
 export class AppComponent implements OnInit {
   title = 'Welcome to Jplanner';
 
+  private showOptions: boolean = false;
   private userToken: string;
   private userAuthenticaded: User[];
   private name: string;
@@ -48,5 +49,7 @@ export class AppComponent implements OnInit {
     const tokenIndex = Math.floor((Math.random() * 5) + 1);
     this.userToken = this.tokenArray[tokenIndex];
   }
+
+  
 }
 
