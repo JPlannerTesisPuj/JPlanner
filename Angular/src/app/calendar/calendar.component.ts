@@ -234,11 +234,38 @@ export class CalendarComponent implements OnInit {
         this.addClass(newClasses, subjectToDisplay);
       } else {
         // Si hay dos materias en la casilla en la que se intenta meter la nueva materia muestre el popup
-        if (overLappedInAdded.size == 3) {
-          this.displaySelectingOptions(subjectToDisplay, ["Aca saca los 3 ids del set overLappedInAdded"]).then(
+        if (overLappedInAdded.size >= 3) {
+          let overlappedSubjectsInfo: Object[] = [];
+
+          // Se busca la información de cada materia en el arreglo de materias que se muestran en el calendario
+          // NOTA: Si se quiere eliminar bloqueos también se debe hacer la búsqueda en this.classes no en this.calendarClases
+          overLappedInAdded.forEach(overlappedClassNumber => {
+            let className: string = '';
+            let classInfo: Subject = this.calendarClasses.find(myClass => myClass.numeroClase == overlappedClassNumber);
+
+            // Se guarda el Nombre y el Número de Clase para mostrarlos en el modal
+            if (classInfo != undefined) {
+              className = classInfo.nombre;
+            } else {
+              className = subjectToDisplay.nombre;
+            }
+            overlappedSubjectsInfo.push({
+              classNumber: overlappedClassNumber,
+              title: className,
+              toDelete: false
+            });
+          });
+
+          this.displaySelectingOptions(subjectToDisplay, overlappedSubjectsInfo).then(
             //Respuesta del usuario al formulario
             (userResponse) => {
               if (userResponse) {
+                // Mira cuáles clases del horario el usuario desea eliminar
+                userResponse.forEach(subjectOverlapped => {
+                  if (subjectOverlapped.toDelete) {
+                    this.removeClass(subjectOverlapped.classNumber);
+                  }
+                });
                 //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
               }
             }
@@ -256,7 +283,7 @@ export class CalendarComponent implements OnInit {
    * Retorna un arreglo con los ids de clases que tienen conflicto con la materia que se inscribira y almacena los ids de las clases en la variable
    * global overLappedIds
    */
-  private getOverLapped(newClasses: CalendarEvent[], subjectToDisplay: Subject) : Set<string | number>{
+  private getOverLapped(newClasses: CalendarEvent[], subjectToDisplay: Subject): Set<string | number> {
     let overLappedInSubject = new Set();
     for (let theClass of newClasses) {
       for (let horary of subjectToDisplay.horarios) {
@@ -411,14 +438,19 @@ export class CalendarComponent implements OnInit {
    */
   private async displaySelectingOptions(tryingSubject: Subject, registeredSubjects: any[]) {
     let removedClassesTitles: string = '';
+
     for (let registeredSubject of registeredSubjects) {
-      removedClassesTitles += registeredSubject['title'] + ', ';
+      if(registeredSubject.classNumber != tryingSubject.numeroClase){
+        removedClassesTitles += registeredSubject['title'] + ', ';
+      }
     }
     removedClassesTitles = removedClassesTitles.slice(0, -2);
+
     const dialogRef = this.dialog.open(OverlapClassConfirmationDialog, {
       data: {
         'tryToAddClass': tryingSubject,
         'addedClasses': removedClassesTitles,
+        'subjectsToChoose': registeredSubjects
       }
     });
 
@@ -468,8 +500,6 @@ export class CalendarComponent implements OnInit {
 
 }
 
-
-
 /**
  * Componente con el dialogo de confirmación
  */
@@ -487,5 +517,11 @@ export class OverlapClassConfirmationDialog {
     }
 
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
+  private doNotDeleteSubjects(subjectsToDelete: any[]) {
+    subjectsToDelete.forEach(subject => {
+      subject.toDelete = false;
+    });
   }
 }
