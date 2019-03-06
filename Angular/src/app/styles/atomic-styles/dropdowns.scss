@@ -1,83 +1,58 @@
-.atom-dropdown{
-    border: solid 1px $black-30;
-    border-radius: $space-xs;
-    padding-left: $space-md;
-    font-family: $font-secondary;
+/*the container must be positioned relative:*/
+.atom-dropdown {
+    position: relative;
+    font-family: 'Helvetica';
     font-style: italic;
     font-size: 16px;
-    height:$space-xl;
-
-    //Rounded corners
+  }
+  
+  .custom-select select {
+    display: none; /*hide original SELECT element:*/
+  }
+  
+  .select-selected {
+    background-color: $white;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    overflow: hidden;
+  }
+  
+  /*style the items (options), including the selected item:*/
+  .select-items div,.select-selected {
+    color: $black;
+    padding: 8px 16px;
+    border: 1PX solid $black;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+    padding-left: 12px;
+    
+    /* Bordes circulares */
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-
-    -webkit-appearance: button;
-    -webkit-border-radius: 2px;
-    -webkit-user-select: none;
-    -webkit-padding-end: 20px;
-    -webkit-padding-start: 2px;
-    background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient($white, $white 40%, $white);
-    background-position: 98.5% center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 300px;
-
-    margin: 4px;
-
-    padding: 0px;
-    padding-left: 12px;
-    border-bottom:1px solid $black-20;
-
   }
-
-.atom-dropdown select {
-    display: none; /*hide original SELECT element:*/
-}
-
- .atom-dropdown-option {
-
-    border-bottom:1px solid $black-20;
-    
-    &:hover{
-        box-shadow: 0 0 10px 100px $light-blue inset;
-        color: $white;
-    }
-    
-}
-
-.select-selected {
-    background-color: $white;
-}
-
-/*style the items (options), including the selected item:*/
-.select-items div,.select-selected {
-    color: #ffffff;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-    cursor: pointer;
-    user-select: none;
-}
-
-/*style items (options):*/
-    .select-items {
+  
+  /*style items (options):*/
+  .select-items {
     position: absolute;
     background-color: $white;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 99;
-}
-
-/*hide the items when the select box is closed:*/
-.select-hide {
+    
+    /* Bordes circulares */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  
+  /*hide the items when the select box is closed:*/
+  .select-hide {
     display: none;
-}
-
-.select-items div:hover, .same-as-selected {
+  }
+  
+  .select-items div:hover, .same-as-selected {
     background-color: $light-blue;
     color: $white;
-}
+  }

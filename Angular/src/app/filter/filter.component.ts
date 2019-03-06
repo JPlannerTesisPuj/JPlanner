@@ -651,4 +651,5 @@ export class FilterComponent implements OnInit {
       this.isAdvancedSearch = true;
     }
   }
+  
 }
