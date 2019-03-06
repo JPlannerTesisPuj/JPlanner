@@ -1,15 +1,24 @@
-/*the container must be positioned relative:*/
-.atom-dropdown {
+  /*the container must be positioned relative:*/
+  .atom-dropdown {
     position: relative;
     font-family: 'Helvetica';
     font-style: italic;
     font-size: 16px;
+    margin: 4px;
   }
   
-  .custom-select select {
+  .atom-dropdown select {
     display: none; /*hide original SELECT element:*/
   }
-  
+
+  .atom-dropdown div:hover {
+    border-color: $light-blue;
+  }
+
+  .atom-dropdown div:active {
+    border-color: $dark-blue;
+  }
+
   .select-selected {
     background-color: $white;
     background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
@@ -25,6 +34,7 @@
     cursor: pointer;
     user-select: none;
     padding-left: 12px;
+    padding-top: 4px;
     
     /* Bordes circulares */
     -webkit-border-radius: 5px;
@@ -40,11 +50,6 @@
     left: 0;
     right: 0;
     z-index: 99;
-    
-    /* Bordes circulares */
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
   }
   
   /*hide the items when the select box is closed:*/
