@@ -1,7 +1,7 @@
 <h2>Búsqueda</h2>
 <div class="fil-sub-menu-container grid-noGutter">
-  <button id="basic-search" (click)='clickedTab($event)'>Básica</button>
-  <button id="adv-search" (click)='clickedTab($event)'>Avanzada</button>
+  <button id="basic-search" class="atom-buttons-secondary" (click)='clickedTab($event)'>Básica</button>
+  <button id="adv-search" class="atom-buttons-secondary" (click)='clickedTab($event)'>Avanzada</button>
 </div>
 <div class="grid-noGutter" id="fil-basic-search">
 
@@ -168,5 +168,5 @@
   </div>
 
 </div>
-<button class="atom-buttons" (click)="searchClasses()">Buscar</button>
+<button class="atom-buttons-primary" (click)="searchClasses()">Buscar</button>
 <button class="atom-buttons" (click)="CleanAll()">Limpiar</button>
