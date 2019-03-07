@@ -1,23 +1,28 @@
 .atom-input-field{
-    border: solid 1px $dark-blue;
+    border: solid 1px $black-40;
     border-radius: $space-xs;
     padding-left: $space-md;
     font-family: $font-secondary;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     height:$space-xl;
     margin-left: auto;
     margin-right: auto;
 
+    margin-top: 6px;
+    flex-basis: 91.66667%;
+    max-width: 93.66667%;
+
     &:hover:not(:active):not(:focus):not(:disabled){
-        border-color:$yellow;
+        border-color:$light-blue-90;
     }
     &:active,&:focus{
-        border-color:$light-blue-90;
+        border-color:$dark-blue;
         outline: none;
     }
     &:disabled{
-        border-color:$black-70;       
+        border-color:$black-30;    
+        background-color:$black-30;
     }
    
 
