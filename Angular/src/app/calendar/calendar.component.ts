@@ -50,6 +50,7 @@ export class CalendarComponent implements OnInit {
 
 
   private verticalMenuIndex: number = 0;
+  private horizontalMenuIndex: number =0;
   /**
    * @var
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
