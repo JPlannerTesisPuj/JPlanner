@@ -82,7 +82,6 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: CalendarEventTitleFormatter,
