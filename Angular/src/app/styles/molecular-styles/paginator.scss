@@ -29,4 +29,19 @@
             }
         }
     }
+
+    .cal-alt-number-credits {
+        text-align: right;
+        font-family: $font-secondary;
+        font-size: 20px;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.2;
+        letter-spacing: normal;
+        color: $black;
+        .number-credits {
+            font-weight: bold;
+        }
+    }
 }
