@@ -4,8 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,48 +37,77 @@ public class JSONFileRestService {
 	// Variable para armar un JSON con un error
 	Map<String, Object> errorResponse;
 
+	/**
+	 * Devuelve el número de un día en la semana dado su nombre
+	 * 
+	 * @param day Nombre del día
+	 * @return Día del número en la semana
+	 */
+	private int getDayNumber(String day) {
+		switch (day) {
+		case "Lunes":
+			return 1;
+		case "Martes":
+			return 2;
+		case "Miercoles":
+			return 3;
+		case "Jueves":
+			return 4;
+		case "Viernes":
+			return 5;
+		case "Sabado":
+			return 6;
+		case "Domingo":
+			return 7;
+
+		default:
+			return 0;
+		}
+	}
+
 	// Servicio para filtros de clases
-	@RequestMapping(value = "files/read/json/{fileName}/class-filter/{days}/{hoursFrom}/{hoursTo}/"
+	@RequestMapping(value = "files/read/json/class-filter/{days}/{dayComparator}/{hoursFrom}/{hoursTo}/"
 			+ "{creditComparator}/{creditValueOne}/{creditValueTwo}/{searchValue}/{searchParams}/{teachingMode}/{classState}/"
-			+ "{classID}/{classNumber}/{classCode}/{classSizeOpOne}/{classSizeOperator}/{classSizeOpTwo}/"
-			+ "{schoolarYear}/{grade}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+			+ "{classNumber}/{classID}/{classSizeOpOne}/{classSizeOperator}/{classSizeOpTwo}/"
+			+ "{schoolarYear}/{grade}/{idStudent}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	/**
 	 * 
-	 * @param fileName Nombre del archivo
-	 * @param days Días que se incluyen
-	 * @param hoursFrom Hora inicial
-	 * @param hoursTo Hora final
-	 * @param creditComparator Especifica el comparador de créditos
-	 * @param creditValueOne Valor crédito inicial
-	 * @param creditValueTwo Valor crédito final
-	 * @param searchValue Texto a buscar
-	 * @param searchParams En qué campos va a buscar el texto
-	 * @param teachingMode Método de enseñanza
-	 * @param classState Estado de la clase, abierta o cerrada
-	 * @param classID ID de la clase
-	 * @param classNumber Número de la clase
-	 * @param classCode Código de la clase
-	 * @param classSizeOpOne Límite de cupos inferior
+	 * @param days              Días que se incluyen
+	 * @param hoursFrom         Hora inicial
+	 * @param hoursTo           Hora final
+	 * @param creditComparator  Especifica el comparador de créditos
+	 * @param creditValueOne    Valor crédito inicial
+	 * @param creditValueTwo    Valor crédito final
+	 * @param searchValue       Texto a buscar
+	 * @param searchParams      En qué campos va a buscar el texto
+	 * @param teachingMode      Método de enseñanza
+	 * @param classState        Estado de la clase, abierta o cerrada
+	 * @param classID           ID de la clase
+	 * @param classNumber       Número de la clase
+	 * @param classCode         Código de la clase
+	 * @param classSizeOpOne    Límite de cupos inferior
 	 * @param classSizeOperator Especifica el comparador de cupos
-	 * @param classSizeOpTwo Límite de cupos superior
-	 * @param schoolarYear Año lectivo
-	 * @param grade Si es pregrado, posgrado o maestría
+	 * @param classSizeOpTwo    Límite de cupos superior
+	 * @param schoolarYear      Año lectivo
+	 * @param grade             Si es pregrado, posgrado o maestría
 	 * @return Objeto JSON con las materias filtradas
 	 * @throws JsonProcessingException
 	 */
-	ResponseEntity<String> getJSONClassFilter(@PathVariable("fileName") String fileName,
-			@PathVariable("days") String days, @PathVariable("hoursFrom") String hoursFrom,
+	ResponseEntity<String> getJSONClassFilter(@PathVariable("days") String days,
+			@PathVariable("hoursFrom") String hoursFrom, @PathVariable("dayComparator") boolean dayComparator,
 			@PathVariable("hoursTo") String hoursTo, @PathVariable("creditComparator") String creditComparator,
 			@PathVariable("creditValueOne") String creditValueOne,
 			@PathVariable("creditValueTwo") String creditValueTwo, @PathVariable("searchValue") String searchValue,
 			@PathVariable("searchParams") String searchParams, @PathVariable("teachingMode") String teachingMode,
-			@PathVariable("classState") String classState, @PathVariable("classID") String classID,
-			@PathVariable("classNumber") String classNumber, @PathVariable("classCode") String classCode,
-			@PathVariable("classSizeOpOne") String classSizeOpOne,
+			@PathVariable("classState") String classState, @PathVariable("classNumber") String classNumber,
+			@PathVariable("classID") String classID, @PathVariable("classSizeOpOne") String classSizeOpOne,
 			@PathVariable("classSizeOperator") Integer classSizeOperator,
 			@PathVariable("classSizeOpTwo") String classSizeOpTwo, @PathVariable("schoolarYear") String schoolarYear,
-			@PathVariable("grade") String grade) throws JsonProcessingException {
+			@PathVariable("grade") String grade, @PathVariable("idStudent") String idStudent)
+			throws JsonProcessingException, ParseException {
+
+		String fileName = "classes";
 		// Se obtiene la información del archivo
 		InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
 
@@ -104,29 +138,60 @@ public class JSONFileRestService {
 			}
 			// Filtro
 			String filter_state = "", filter_mode = "", filter_id = "", filter_number = "", filter_cupos = "",
-					filter_code = "", filter_schoolYear = "", filter_grade = "", filter_days_hours = "",
-					filter_credits = "", filter_search = "";
+					filter_schoolYear = "", filter_grade = "", filter_days_hours = "", filter_credits = "",
+					filter_search = "";
 
 			// Se calcula el numero maximo de horarios de una materia
 			ArrayList<Integer> maxNumber = JsonPath.read(JSONFileBuilder.toString(), "$..horarios.length()");
 			int horaryMax = (Collections.max(maxNumber));
 			String[] arrayDays = days.split("-");
 			// Se itera sobre los dias que vienen en la peticion
+
+			// Para esta consulta sólo se utilizarán las fechas de la primera semana de los
+			// horarios de
+			// las materias teniendo en cuenta que el JSON de clases generado no tiene más
+			// de 3 clases por
+			// semana y todas las clases se repiten en el mismo horario cada semana;
+
 			filter_days_hours += "(";
 			
-			for (int i = 0; i < arrayDays.length; ++i) {
-				// Se itera sobre el numero maximo de horarios para crear la query
-				for (int j = 0; j < horaryMax; ++j) {
-					filter_days_hours += "@.horarios[" + j + "].dia=='" + arrayDays[i] + "'" + "&& (@.horarios[" + j
-							+ "].horaInicio >=" + hoursFrom + "&& @.horarios[" + j + "].horaFin <=" + hoursTo + ")"
-							+ "||";
+			int hourFromNumber = Integer.parseInt(hoursFrom) / 3600;
+			int hourToNumber = Integer.parseInt(hoursTo) / 3600;
+			
+			if (dayComparator) {
+				filter_days_hours += "(";
+				for (int diaHorario = 0; diaHorario < 3; ++diaHorario) {
+					filter_days_hours += "(";
+					for (String day : arrayDays) {
+						int dayNumber = getDayNumber(day);
+						filter_days_hours += "@.horarios[" + diaHorario + "].dia==" + dayNumber + "||";
+					}
+					filter_days_hours = filter_days_hours.substring(0, filter_days_hours.length() - 2);
+					filter_days_hours += ")&&";
+				}
+				filter_days_hours = filter_days_hours.substring(0, filter_days_hours.length() - 2);
+				filter_days_hours += ")&&(";
+			}
 
+			for (String day : arrayDays) {
+				int dayNumber = getDayNumber(day);
+
+				// Busca en los primeros tres días porque en el JSON generado se da máximo una
+				// clase
+				// tres veces por seman
+				for (int diaHorario = 0; diaHorario < 3; ++diaHorario) {
+					filter_days_hours += "(@.horarios[" + diaHorario + "].dia==" + dayNumber + " && (@.horarios["
+							+ diaHorario + "].horaNumeroInicio >= " + hourFromNumber + " && @.horarios[" + diaHorario
+							+ "].horaNumeroFin <= " + hourToNumber + "))" + "||";
 				}
 			}
 
 			filter_days_hours = filter_days_hours.substring(0, filter_days_hours.length() - 2);
 			filter_days_hours += ")";
-
+			if (dayComparator) {
+				filter_days_hours += ")";
+			}
+			
 			switch (Integer.parseInt(creditComparator)) {
 			case 0: {
 				filter_credits = "";
@@ -167,15 +232,15 @@ public class JSONFileRestService {
 						filter_search += "@.profesor =~ /.*^.*" + searchValue + ".*$/i || ";
 					}
 
-					if (arraydropdownInfo[i].equals("Departamento")) {
-						filter_search += "@.departamento =~ /.*^.*" + searchValue + ".*$/i || ";
+					if (arraydropdownInfo[i].equals("Unidad Academica")) {
+						filter_search += "@.unidadAcademica =~ /.*^.*" + searchValue + ".*$/i || ";
 					}
 				}
 
 				filter_search = filter_search.substring(0, filter_search.length() - 4);
 				filter_search += ")";
 			} else {
-				filter_search = "@.departamento && @.profesor && @.nombre";
+				filter_search = "@.unidadAcademica && @.profesor && @.nombre";
 			}
 
 			if (!teachingMode.equals("none")) {
@@ -198,9 +263,6 @@ public class JSONFileRestService {
 			}
 			if (!classNumber.equals("none")) {
 				filter_number = "=='" + classNumber + "'";
-			}
-			if (!classCode.equals("none")) {
-				filter_code = "=='" + classCode + "'";
 			}
 			if (!schoolarYear.equals("none")) {
 				filter_schoolYear = "=='" + schoolarYear + "'";
@@ -241,11 +303,15 @@ public class JSONFileRestService {
 				break;
 			}
 
-			String baseFilter = "$..[?(" + filter_days_hours + " &&  " + filter_search + " && @.creditos "
-					+ filter_credits + " && @.estado" + filter_state + " && @.modoEnsenanza " + filter_mode
-					+ " && @._id " + filter_id + "&& @.numeroClase " + filter_number + " && @.codigo " + filter_code
-					+ " && @.cuposDisponibles " + filter_cupos + " && @.ciclo_lectivo " + filter_schoolYear
-					+ " && @.grado " + filter_grade + ")]";
+			String baseFilter = "$..[?(" + filter_days_hours + " && " + filter_search + " && @.creditos "
+					+ filter_credits + " && @.estado " + filter_state + " && @.modoEnsenanza " + filter_mode
+					+ " && @.idCurso " + filter_id + "&& @.numeroClase " + filter_number + " && @.cuposDisponibles "
+					+ filter_cupos + " && @.cicloLectivo " + filter_schoolYear + " && @.grado " + filter_grade + ")]";
+
+//			String baseFilter = "$..[?(" + filter_search + " && @.creditos " + filter_credits + " && @.estado "
+//					+ filter_state + " && @.modoEnsenanza " + filter_mode + " && @.idCurso " + filter_id
+//					+ "&& @.numeroClase " + filter_number + " && @.cuposDisponibles " + filter_cupos
+//					+ " && @.cicloLectivo " + filter_schoolYear + " && @.grado " + filter_grade + ")]";
 
 			ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
 			String filteredJSON = new ObjectMapper().writeValueAsString(classes);

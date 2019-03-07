@@ -101,7 +101,7 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
 
 export class CalendarComponent implements OnInit {
 
-  locale: string = 'es';
+  private locale: string = 'es';
 
   private view: CalendarView = CalendarView.Week;
   /** @var calendarView Enum */
@@ -109,6 +109,10 @@ export class CalendarComponent implements OnInit {
   private viewDate: Date = new Date();
   private calendarClasses: Subject[] = [];
   private calendarBlocks: CalendarBlock[] = [];
+  private inCalendar: string[] = [];
+  private pru: string;
+
+
   private verticalMenuIndex: number = 0;
   private dragToCreateActive = false;
   private blockIdCount: number = 0;
@@ -272,7 +276,7 @@ export class CalendarComponent implements OnInit {
     let subjectToDisplay: Subject = event.previousContainer.data[event.previousIndex];
 
     // Mira si la clase no ha sido agregada al horario
-    if (!this.calendarClasses.some(myClass => myClass._id == subjectToDisplay._id)) {
+    if (!this.calendarClasses.some(myClass => myClass.numeroClase == subjectToDisplay.numeroClase)) {
       let isOverlapped: boolean = false;
       let newClasses: CalendarEvent[];
       let classOverlapped: CalendarEvent = null;
@@ -280,8 +284,8 @@ export class CalendarComponent implements OnInit {
       newClasses = Object.assign([], this.classes);
       let arrayClassesOverlapped: CalendarEvent[] = [];
       for (let horary of subjectToDisplay.horarios) {
-        let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
-        let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+        let startHour: Date = new Date(horary.horaInicio);
+        let endHour: Date = new Date(horary.horaFin);
         arrayOverlapped = this.checkOverlappingClasses(startHour, endHour);
         classOverlapped = arrayOverlapped['classOverlapped']
         isOverlapped = arrayOverlapped['isOverLapped'];
@@ -313,15 +317,15 @@ export class CalendarComponent implements OnInit {
     */
   addClass(newClasses: CalendarEvent[], subjectToDisplay: Subject) {
     for (let horary of subjectToDisplay.horarios) {
-      let startHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaInicio / 3600);
-      let endHour: Date = addHours(this.getDayInWeek(this.getDayNumberByName(horary.dia)), horary.horaFin / 3600);
+      let startHour: Date = new Date(horary.horaInicio);
+        let endHour: Date = new Date(horary.horaFin);
 
       newClasses.push({
         start: startHour,
         end: endHour,
         color: colors.black,
         title: subjectToDisplay.nombre,
-        id: subjectToDisplay._id,
+        id: subjectToDisplay.numeroClase,
         actions: this.actions,
         meta: {
           tmpEvent: false
@@ -334,6 +338,8 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
+ 
+
 
   /**
    * Mira si la materia nueva que se agregará al horario se cruza con las otras materias
@@ -392,7 +398,7 @@ export class CalendarComponent implements OnInit {
   private handleEvent(action: string, event: CalendarEvent): void {
 
     if (action === 'Clicked') {
-      let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
+      let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass.numeroClase === event.id);
       let dialogRef = this.dialog.open(ClassModalComponent, {
         data: { class: subjectToShowthis }
       });
@@ -423,8 +429,8 @@ export class CalendarComponent implements OnInit {
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
-    this.calendarClasses = this.calendarClasses.filter(subject => subject._id != id);
-    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
+    this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
+    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
