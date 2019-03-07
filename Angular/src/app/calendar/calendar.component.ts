@@ -391,7 +391,6 @@ export class CalendarComponent implements OnInit {
    */
   private handleEvent(action: string, event: CalendarEvent): void {
 
-    // console.log(action);
     if (action === 'Clicked') {
       let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass._id === event.id);
       let dialogRef = this.dialog.open(ClassModalComponent, {
@@ -479,6 +478,7 @@ export class CalendarComponent implements OnInit {
       this.alternativeCalendarClasses[this.currentAlternative] = new Array<Subject>();
       this.alternativeCalendarBlocks[this.currentAlternative] = new Array<CalendarBlock>();
     }
+
     this.classes = this.alternativeClasses[this.currentAlternative];
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
     this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
@@ -684,7 +684,7 @@ export class CalendarComponent implements OnInit {
         )
       );
       this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
-      this.alternativeCalendarBlocks = Object.assign([], this.calendarBlocks);
+      this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
     }
 
     return newBlock;
@@ -785,7 +785,7 @@ export class CalendarComponent implements OnInit {
     }
 
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
-    this.alternativeCalendarBlocks = Object.assign([], this.calendarBlocks);
+    this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
   }
 
   /**
