@@ -20,7 +20,7 @@ import { ClassModalComponent } from './class-modal/class-modal.component';
 import { FilterComponent } from './filter/filter.component';
 
 // Librerías necesarias para mostrar el calendario
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -29,7 +29,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { DataService } from './shared/data.service';
 import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/calendar.component';
+import localeEs from '@angular/common/locales/es';
 
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
