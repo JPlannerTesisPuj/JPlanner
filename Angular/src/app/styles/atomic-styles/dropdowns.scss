@@ -1,0 +1,28 @@
+.atom-custom-margin .multiselect-dropdown {
+    margin: 0px;
+ }
+
+ .atom-dropdown{
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 99% 0;
+    height: 30px;
+    overflow: hidden;
+    padding-left: 4px;
+    width: 200px;
+    font-size: 16px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    &:hover:not(:active):not(:focus):not(:disabled){
+        border-color:$light-blue-90;
+    }
+    &:active,&:focus{
+        border-color:$dark-blue;
+        outline: none;
+    }
+    &:disabled{
+        border-color:$black-30;    
+        background-color:$black-30;
+    }
+ }
