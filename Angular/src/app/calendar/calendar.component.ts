@@ -515,9 +515,10 @@ export class CalendarComponent implements OnInit {
     segmentElement: HTMLElement
   ) {
 
+    // Mira si el evento es desde un computador o desde un celular
     let eventMove: string = 'mousemove';
     let eventEnd: string = 'mouseup';
-    
+
     if(mouseTouchDownEvent.type == 'touchstart') {
       eventMove = 'touchmove';
       eventEnd = 'touchend';
@@ -576,11 +577,11 @@ export class CalendarComponent implements OnInit {
         }),
         takeUntil(fromEvent(document, eventEnd))
       )
-      .subscribe((mouseTouchMoveEvent: MouseEvent | any) => {
+      .subscribe((mouseTouchMoveEvent: MouseEvent | TouchEvent) => {
 
         let clientX: number = 0;
         let clientY: number = 0;
-        if(mouseTouchMoveEvent.type == 'touchmove') {
+        if(mouseTouchMoveEvent instanceof TouchEvent) {
           clientX = mouseTouchMoveEvent.changedTouches[0].clientX;
           clientY = mouseTouchMoveEvent.changedTouches[0].clientY;
         } else {
