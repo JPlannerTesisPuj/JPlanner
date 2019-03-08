@@ -98,3 +98,140 @@
   }
 }
 
+.cal-hour-segment {
+  cursor: cell;
+}
+
+// Estilos calendario
+.cal-display-lg {
+  .cal-week-view {
+    font-family: $font-secondary;
+
+    .cal-time {
+      text-align: right;
+      width: 50px;
+      cursor: default;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .cal-day-headers {
+      border: none;
+
+      .cal-header {
+        padding-top: 24px;
+
+        &:first-child {
+          border-left: none;
+        }
+        &:not(:last-child) {
+          border-right: none;
+        }
+
+        br {
+          height: $space-sm;
+        }
+
+        b {
+          text-transform: capitalize;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: $space-xl;
+        }
+
+        span {
+          text-transform: capitalize;
+          font-weight: 500;
+          font-size: 14px;
+          font-style: italic;
+          line-height: $space-xl;
+          color: $black-40;
+        }
+      }
+
+      .cal-weekend {
+        span {
+          color: $black-40;
+        }
+      }
+
+      .cal-today {
+        background-color: $white;
+      }
+    }
+
+    .cal-hour-odd {
+      background-color: $white;
+    }
+
+    .cal-time-events {
+      border: none;
+
+      .cal-time-label-column {
+        .cal-hour {
+          &-segment,
+          &-start {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+
+    .cal-day-columns {
+      .cal-day-column {
+        border-left: none;
+        border-top: thin dashed $black-10;
+
+        .cal-hour {
+          .cal-hour-segment {
+            border-left: thin dashed $black-10;
+
+            &:last-child {
+              border-bottom: thin dashed $black-10;
+            }
+          }
+        }
+
+        &:last-child {
+          border-right: thin dashed $black-10;
+        }
+      }
+    }
+  }
+}
+
+.cal-display-sm {
+  font-family: $font-secondary;
+
+  .cal-hour-rows {
+    border: none;
+  }
+
+  .cal-day-text {
+    border-top: 1px solid $black-20;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 18px;
+    padding-top: $space-xl;
+    padding-bottom: $space-xl;
+  }
+
+  .cal-day-view {
+    margin-right: 0;
+
+    .cal-time {
+      padding-top: $space-sm;
+      padding-right: $space-sm;
+      font-size: 12px;
+      font-style: italic;
+      float: right;
+      text-align: right;
+      font-weight: 500;
+    }
+
+    .cal-hour {
+      background-color: $white;
+      border-top: 1px solid $black-20;
+    }
+  }
+}
