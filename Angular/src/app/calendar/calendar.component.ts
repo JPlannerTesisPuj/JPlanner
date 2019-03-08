@@ -202,8 +202,6 @@ export class CalendarComponent implements OnInit {
     this.numberOfAlternatives = 6;
     this.initTitles();
     this.onItemChange(0);
-
-    this
     /**
  * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
  * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
@@ -317,7 +315,7 @@ export class CalendarComponent implements OnInit {
   addClass(newClasses: CalendarEvent[], subjectToDisplay: Subject) {
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = new Date(horary.horaInicio);
-        let endHour: Date = new Date(horary.horaFin);
+      let endHour: Date = new Date(horary.horaFin);
 
       newClasses.push({
         start: startHour,
@@ -337,7 +335,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
- 
+
 
 
   /**
@@ -508,14 +506,22 @@ export class CalendarComponent implements OnInit {
    * del ciclo lectivo.
    * 
    * @param segment 
-   * @param mouseDownEvent 
+   * @param mouseTouchDownEvent 
    * @param segmentElement 
    */
   private startDragToCreateBlock(
     segment: DayViewHourSegment,
-    mouseDownEvent: MouseEvent,
+    mouseTouchDownEvent: MouseEvent | TouchEvent,
     segmentElement: HTMLElement
   ) {
+
+    let eventMove: string = 'mousemove';
+    let eventEnd: string = 'mouseup';
+    
+    if(mouseTouchDownEvent.type == 'touchstart') {
+      eventMove = 'touchmove';
+      eventEnd = 'touchend';
+    }
 
     // Fecha donde fue seleccionado crear el bloqueo
     let firstBlockDate: Date = segment.date;
@@ -537,7 +543,21 @@ export class CalendarComponent implements OnInit {
     }
 
     blockParentID = 'block_' + this.blockIdCount;
-    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, undefined, blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID);
+    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, addHours(firstBlockDate, 1), blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID);
+
+    // Agrega los bloqueos de los días en todas las semanas
+    for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
+      /**
+       * @var blockIDWeek 
+       * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
+       */
+      let blockIDWeek: string = blockParentID + '__0__' + contWeeks;
+      let startDayOnWeek: Date = addWeeks(firstBlockDate, contWeeks);
+      let endDayOnWeek: Date = addWeeks(addHours(firstBlockDate, 1), contWeeks);
+
+      // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
+      this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID);
+    }
 
     this.blockIdCount++;
     // Se toma la posición del cuadro que fue seleccionado para agregar el bloqueo
@@ -547,21 +567,32 @@ export class CalendarComponent implements OnInit {
     const startOfView = startOfWeek(firstBlockDate);
     const endOfView = endOfWeek(firstBlockDate);
 
-    fromEvent(document, 'mousemove')
+    fromEvent(document, eventMove)
       .pipe(
         finalize(() => {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
           this.refreshCal();
         }),
-        takeUntil(fromEvent(document, 'mouseup'))
+        takeUntil(fromEvent(document, eventEnd))
       )
-      .subscribe((mouseMoveEvent: MouseEvent) => {
+      .subscribe((mouseTouchMoveEvent: MouseEvent | any) => {
+
+        let clientX: number = 0;
+        let clientY: number = 0;
+        if(mouseTouchMoveEvent.type == 'touchmove') {
+          clientX = mouseTouchMoveEvent.changedTouches[0].clientX;
+          clientY = mouseTouchMoveEvent.changedTouches[0].clientY;
+        } else {
+          clientX = mouseTouchMoveEvent.clientX;
+          clientY = mouseTouchMoveEvent.clientY;
+        }
+
         let segmentMinutes = 70;
-        
+
         // Toma los minutos que el mouse se ha desplazado hacia arriba o hacia abajo
         let minutesDiff = ceilToNearest(
-          mouseMoveEvent.clientY - segmentPosition.top,
+          clientY - segmentPosition.top,
           segmentMinutes
         );
         if (minutesDiff == 0 || minutesDiff == -0) {
@@ -570,12 +601,12 @@ export class CalendarComponent implements OnInit {
         // Toma los días que el mouse se ha desplazado hacia la izquierda o derecha
         const daysDiff =
           floorToNearest(
-            mouseMoveEvent.clientX - segmentPosition.left,
+            clientX - segmentPosition.left,
             segmentPosition.width
           ) / segmentPosition.width;
 
         // Calcula la nueva hora de inicio y de fin del bloqueo
-        let newEnd = addHours(firstBlockDate, minutesDiff/segmentMinutes);
+        let newEnd = addHours(firstBlockDate, minutesDiff / segmentMinutes);
         let newStart = firstBlockDate;
 
         if (newEnd < firstBlockDate && newEnd > startOfView) {

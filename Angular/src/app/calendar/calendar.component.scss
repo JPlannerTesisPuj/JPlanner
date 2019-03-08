@@ -219,6 +219,10 @@
   .cal-day-view {
     margin-right: 0;
 
+    .cal-hour-segment {
+      border: none;
+    }
+
     .cal-time {
       padding-top: $space-sm;
       padding-right: $space-sm;
@@ -232,6 +236,7 @@
     .cal-hour {
       background-color: $white;
       border-top: 1px solid $black-20;
+      max-height: 35px;
     }
   }
 }
