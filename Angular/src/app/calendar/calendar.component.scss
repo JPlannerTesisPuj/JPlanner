@@ -96,8 +96,28 @@
   .ovr-dialog-btn {
     margin-right: 10px;
   }
+
+  &__subjects {
+    &-list {
+      list-style: none;
+    }
+  }
 }
 
+.cal-conflict-msj{
+  span{
+    font-size: 18px;
+    font-family: $font-secondary;
+    font-weight: bold;
+  }
+  i{
+    color:red;
+    position: relative;
+    top: 3px;
+    left: 5px;
+    font-size: 20px;
+  }
+}
 .cal-hour-segment {
   cursor: cell;
 }
