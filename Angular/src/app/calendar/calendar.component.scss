@@ -255,3 +255,65 @@
     }
   }
 }
+
+//Estilos de clases
+
+.cal-schedule-container{
+  .cdk-drop-list{
+    .cal-time-events{
+      div.cal-event{
+        width: 100%;
+        border-radius: 0;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        height:100%;
+        background: $dark-blue !important;
+        .cal-event-action,.remove-icon{
+          float:right;
+          font-size: 16px;
+          z-index: 50;
+          position: relative;
+          color:$yellow-90;
+        }
+        .cal-event-title{
+          .cal-class-title{
+            font-family: $font-secondary;
+            font-size: 12px;
+            text-transform: lowercase;
+            line-height: normal;
+            height: 100%;
+            position: relative;
+            font-style: italic;
+            color: $white;
+            display: inline-block;
+            width: 80%;
+            padding-top: 4px;
+            padding-left: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &::first-letter{
+              text-transform: capitalize;
+            }
+          }
+            .cal-class-size-alert{
+              font-style: italic;
+              font-size: 10px;
+              font-family: $font-secondary;
+              position: absolute;
+              bottom: 0;
+              text-align: right;
+              padding-right: 15px;
+              margin:0;
+              margin-bottom: 4px;
+              text-align: right;
+              width: 100%;
+              text-transform: capitalize;
+              color: $white;
+              line-height: normal;
+            }
+        }
+      }
+    }
+  }
+}

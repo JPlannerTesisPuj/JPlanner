@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
    */
   generateToken() {
     const tokenIndex = Math.floor((Math.random() * this.tokenArray.length));
+    console.log(tokenIndex);
     this.userToken = this.tokenArray[tokenIndex];
   }
 
