@@ -1,14 +1,29 @@
 <div class="ovr-confirm-dialog">
   <h2 mat-dialog-title>Conflicto</h2>
   <mat-dialog-content class="mat-typography">
-    <h3>Intenta inscribir <span class="ovr-displayed-data-dailog">{{titleCaseWord(data.tryToAddClass.nombre)}}</span> pero
-      se cruza con <span class="ovr-displayed-data-dailog">{{titleCaseWord(data.addedClasses)}}</span></h3>
+    <p>Intenta inscribir <span class="ovr-displayed-data-dailog">{{titleCaseWord(data.tryToAddClass.nombre)}}</span> pero
+      se cruza con <span class="ovr-displayed-data-dailog">{{titleCaseWord(data.addedClasses)}}</span></p>
+
+      <p>Seleccione las clases que desea descartar del horario para eliminar el conflicto:</p>
+
+    <div class="ovr-confirm-dialog__subjects">
+      <ul class="ovr-confirm-dialog__subjects-list">
+        <li *ngFor="let subject of data.subjectsToChoose; let i = index" class="ovr-confirm-dialog__options">
+          <input type="checkbox" name="{{ subject.title }}"
+                 id="{{ subject.classNumber }}" value="{{ subject.classNumber }}"
+                 class="ovr-confirm-dialog__options-item" [(ngModel)]="data.subjectsToChoose[i].toDelete">
+                 <label for="{{ subject.title }}">{{ subject.title }}</label>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="conflictExists" class= "cal-conflict-msj">
+      <span>¡Debe dejar máximo dos materias en un mismo horario para eliminar el conflicto!</span>
+      <i class="material-icons">warning</i>
+    </div>
 
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button class="ovr-dialog-btn" mat-button [mat-dialog-close]="true">Inscribir <span
-        class="ovr-displayed-data-dailog">{{titleCaseWord(data.tryToAddClass.nombre)}}</span> y eliminar <span
-        class="ovr-displayed-data-dailog">{{titleCaseWord(data.addedClasses)}}</span></button>
-    <button class="ovr-dialog-btn" mat-button [mat-dialog-close]="false">Cancelar</button>
+    <button class="ovr-dialog-btn" mat-button (click)="verifyOverlappedSubjects()">Eliminar clases seleccionadas</button>
   </mat-dialog-actions> 
 </div>
