@@ -1,11 +1,12 @@
 .dis-found-classes {
-    margin-left: 10px;
-    height: 67vh;
-    overflow-y: scroll;
+    overflow-y: auto;
+    max-height: calc(100vh - 172px);
+    padding-top: 12px;
 }
+
 //LOADER STYLES
 .dispclass-loader {
-    margin: 0 auto;
+    margin: 40px auto;
     position: relative;
     top: 15%;
     border: 16px solid #f3f3f3;

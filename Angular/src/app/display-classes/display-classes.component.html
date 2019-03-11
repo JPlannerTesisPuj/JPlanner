@@ -1,10 +1,3 @@
-<h2>Clases</h2>
-<div>
-  <h5 style="font-size: 15px">Número de clases encontradas en la busqueda: <u>{{this.numberClasses}} </u> </h5>
-
-  
-</div>
-<br>
 <div
   class="dis-found-classes"
   cdkDropList
@@ -15,8 +8,8 @@
   {{this.error}}
   <div *ngIf="showLoader" class="dispclass-loader"></div>
   <!-- Se recorre la lista de materias y se crea un app-display-class por cada materia -->
-  <div *ngFor="let class of classes" cdkDrag>
-    <app-display-class [subject]="class"></app-display-class>
+  <div *ngFor="let class of classes" class="grid-noGutter" cdkDrag>
+    <app-display-class [subject]="class" class="col-12"></app-display-class>
   </div>
   
 </div>

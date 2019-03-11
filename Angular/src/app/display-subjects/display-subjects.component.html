@@ -1,0 +1,31 @@
+<section class="dps-container">
+    <h2 class="dps-title">Resultados de búsqueda:
+        <u class="dps-title-cont">{{ subjects.size }}</u>
+    </h2>
+    <div *ngIf="showLoader" class="dispclass-loader"></div>
+    <article *ngIf="!showClasses">
+      <ul class="grid-noGutter dps-list">
+          <li
+            *ngFor="let subject of subjects | keyvalue"
+            class="col-6 dps-list-item subject-box"
+            (click)="showSubjectClasses(subject.value)">
+              <p class="subject-box-title">{{ subject.value[0].nombre }}</p>
+          </li>
+      </ul>
+    </article>
+    <article *ngIf="showClasses" class="dps-classes-container">
+      <header class="dps-classes-header">
+        <button class="atom-buttons-secondary dps-classes-btn" (click)='backToResults()'>
+          <i class="material-icons">
+            undo
+          </i>
+        </button>
+        <h3 class="dps-classes-subtitle">{{ subjectNameToShow }}</h3>
+      </header>
+      <app-display-classes 
+        *ngIf="showClasses"
+        [calendarList]="calendarList"
+        [classes]="classesToShow">
+      </app-display-classes>
+    </article>
+</section>
