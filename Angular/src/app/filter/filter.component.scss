@@ -60,6 +60,9 @@
 .fil-search-container {
   input {
     padding: 3px;
+    padding-left: 12px;
+    margin-left: 12px;
+    width: auto;
   }
 }
 
@@ -97,7 +100,6 @@
   }
 
   div{
-    margin-left: 12px;
     margin-bottom: 6px;
   }
 
