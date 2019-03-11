@@ -96,8 +96,28 @@
   .ovr-dialog-btn {
     margin-right: 10px;
   }
+
+  &__subjects {
+    &-list {
+      list-style: none;
+    }
+  }
 }
 
+.cal-conflict-msj{
+  span{
+    font-size: 18px;
+    font-family: $font-secondary;
+    font-weight: bold;
+  }
+  i{
+    color:red;
+    position: relative;
+    top: 3px;
+    left: 5px;
+    font-size: 20px;
+  }
+}
 .cal-hour-segment {
   cursor: cell;
 }
@@ -219,6 +239,10 @@
   .cal-day-view {
     margin-right: 0;
 
+    .cal-hour-segment {
+      border: none;
+    }
+
     .cal-time {
       padding-top: $space-sm;
       padding-right: $space-sm;
@@ -232,6 +256,7 @@
     .cal-hour {
       background-color: $white;
       border-top: 1px solid $black-20;
+      max-height: 35px;
     }
   }
 }
