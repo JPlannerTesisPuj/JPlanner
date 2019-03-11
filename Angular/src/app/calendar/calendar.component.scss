@@ -260,15 +260,33 @@
 
 .cal-schedule-container{
   .cdk-drop-list{
-    .cal-time-events{
+    [class|="cal-display"]{
+      .cal-block{
+        div.cal-event{
+          background-color: $black-40 !important;
+          border: solid 0.5px #6c6c6c !important;
+          .remove-icon{
+            color:$black;
+            font-weight: bold;
+          }
+          .cal-event-title{
+            font-size: 11px;
+            color:$black;
+            display: block;
+            height: 100%;
+            text-align: center;
+            margin-top: 6px;
+          }
+        }
+      }
       div.cal-event{
         width: 100%;
         border-radius: 0;
-        border: 0;
         padding: 0;
         margin: 0;
         height:100%;
         background: $dark-blue !important;
+        border: solid 0.1px;
         .cal-event-action,.remove-icon{
           float:right;
           font-size: 16px;
@@ -298,19 +316,21 @@
           }
             .cal-class-size-alert{
               font-style: italic;
-              font-size: 10px;
+              font-size: 9px;
               font-family: $font-secondary;
               position: absolute;
               bottom: 0;
               text-align: right;
               padding-right: 15px;
+              padding-left: 5px;
               margin:0;
               margin-bottom: 4px;
-              text-align: right;
               width: 100%;
               text-transform: capitalize;
               color: $white;
               line-height: normal;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
         }
       }

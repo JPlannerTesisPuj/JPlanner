@@ -807,7 +807,8 @@ export class CalendarComponent implements OnInit {
         },
         meta: {
           tmpEvent: false
-        }
+        },
+        cssClass: "cal-block"
       };
 
       this.classes = [...this.classes, newBlock];
