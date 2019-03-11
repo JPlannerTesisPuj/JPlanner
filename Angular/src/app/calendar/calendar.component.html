@@ -62,6 +62,7 @@
       <div class="cal-alt-title-div">
         <label for="cal-alt-title">Titulo:</label>
         <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
+        
       </div>
       <div class="cal-alt-radio-group">
         <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
@@ -70,6 +71,12 @@
         </label>
      </div>
   </div>
+
+      <div *ngIf ="sholudDisplayDialog[currentAlternative]" class= "cal-conflict-msj">
+      <span> ¡Conflicto!</span>
+      <i class="material-icons">warning</i>
+    </div>
+
   <!--
     Los pasos para personalizar el Calendario fueron tomados de aquí https://github.com/mattlewis92/angular-calendar#how-do-i-use-a-custom-template
     La diferencia entre esta plantilla y la plantilla por defecto es que en esta no se muestra la fecha del día, sólo el nombre.
@@ -182,3 +189,4 @@
   </div>
 
 </div>
+
