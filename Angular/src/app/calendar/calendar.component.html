@@ -63,6 +63,7 @@
       <div class="cal-alt-title-div">
         <label for="cal-alt-title">Titulo:</label>
         <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
+        
       </div>
       <div class="cal-alt-radio-group">
         <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
@@ -72,23 +73,74 @@
      </div>
   </div>
 
-  <!--
+
     Los pasos para personalizar el Calendario fueron tomados de aquí https://github.com/mattlewis92/angular-calendar#how-do-i-use-a-custom-template
     La diferencia entre esta plantilla y la plantilla por defecto es que en esta no se muestra la fecha del día, sólo el nombre.
   -->
-  <ng-template #customTemplateJPlanner let-days="days" let-locale="locale" let-dayHeaderClicked="dayHeaderClicked"
+
+  <!--INICIO PLANTILLAS PERSONALIZADAS -->
+  <!-- <ng-template #customDayTemplateJPlanner
+    let-days="days"
+    let-locale="locale"
+    let-dayHeaderClicked="dayHeaderClicked"
     let-eventDropped="eventDropped">
     <div class="cal-day-headers">
-      <div class="cal-header" *ngFor="let day of days; trackBy:trackByWeekDayHeaderDate" [class.cal-past]="day.isPast"
-        [class.cal-today]="day.isToday" [class.cal-future]="day.isFuture" [class.cal-weekend]="day.isWeekend" [ngClass]="day.cssClass"
-        (mwlClick)="dayHeaderClicked.emit({day: day})" mwlDroppable dragOverClass="cal-drag-over" (drop)="eventDropped.emit({event: $event.dropData.event, newStart: day.date})">
-        <b>{{ day.date | calendarDate:'weekViewColumnHeader':locale }}</b>
-        <br>
+      <div class="cal-header" *ngFor="let day of days; trackBy:trackByWeekDayHeaderDate"
+        [class.cal-past]="day.isPast"
+        [class.cal-today]="day.isToday"
+        [class.cal-future]="day.isFuture"
+        [class.cal-weekend]="day.isWeekend"
+        [ngClass]="day.cssClass"
+        (mwlClick)="dayHeaderClicked.emit({day: day})"
+        (drop)="eventDropped.emit({event: $event.dropData.event, newStart: day.date})"
+        mwlDroppable dragOverClass="cal-drag-over">
+          <b>{{ day.date | calendarDate:'weekViewColumnHeader':locale }}</b>
+          <br>
       </div>
     </div>
     <ng-template [ngTemplateOutlet]="customTemplate || defaultTemplate" [ngTemplateOutletContext]="{days: days, locale: locale, dayHeaderClicked: dayHeaderClicked, eventDropped: eventDropped}">
     </ng-template>
+  </ng-template> -->
+
+  <!-- <ng-template #customDayTemplateJPlanner-->
+
+  <ng-template #customWeekViewHourSegmentTemplateJplanner
+    let-segment="segment"
+    let-locale="locale"
+    let-segmentHeight="segmentHeight"
+    let-isTimeLabel="isTimeLabel">
+      <div
+        #segmentElement
+        class="cal-hour-segment"
+        [style.height.px]="segmentHeight"
+        [class.cal-hour-start]="segment.isStart"
+        [ngClass]="segment.cssClass"
+        (mousedown)="startDragToCreateBlock(segment, $event, segmentElement)">
+        <div class="cal-time" *ngIf="isTimeLabel">
+          {{ segment.date | date:'H:mm':locale }}
+        </div>
+      </div>
+
   </ng-template>
+
+  <ng-template #customDayViewHourSegmentTemplateJplanner
+    let-segment="segment"
+    let-locale="locale"
+    let-segmentHeight="segmentHeight"
+    let-isTimeLabel="isTimeLabel">
+      <div
+        #segmentElementDay
+        class="cal-hour-segment"
+        [style.height.px]="segmentHeight"
+        [class.cal-hour-start]="segment.isStart"
+        [ngClass]="segment.cssClass">
+        <div class="cal-time">
+          {{ segment.date | date:'H:mm':locale }}
+        </div>
+      </div>
+
+  </ng-template>
+  <!--FIN PLANTILLAS PERSONALIZADAS -->
 
   <br />
 
@@ -98,30 +150,47 @@
     * dayStartHour: de 0 a 7
     * dayEndHour: de 23 a 22
   -->
-  <div cdkDropList #calendarList="cdkDropList" (cdkDropListDropped)="dropClass($event)" class="grid-noGutter">
-    <mwl-calendar-week-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1"
-      [dayStartHour]="7" [dayEndHour]="22" [headerTemplate]="customTemplateJPlanner" (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)" class="sm-hidden col-12">
+  <!-- Este grupo de botones se usan para probar el cambio de días en la vista -->
+  <div class="btn-group">
+    <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+      Previous
+    </button>
+    <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+      Today
+    </button>
+    <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+      Next
+    </button>
+    <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+    <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
+  </div>
+
+  <div
+    cdkDropList
+    #calendarList="cdkDropList"
+    (cdkDropListDropped)="dropClass($event)"
+    class="grid-noGutter">
+    <mwl-calendar-week-view
+      [viewDate]="viewDate"
+      [events]="classes"
+      [refresh]="refresh"
+      [hourSegments]="1"
+      [dayStartHour]="7"
+      [dayEndHour]="22"
+      [locale]="locale"
+      [hourSegmentTemplate]="customWeekViewHourSegmentTemplateJplanner"
+      [hourSegmentHeight]="35"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)"
+      class="cal-display-lg sm-hidden col-12">
     </mwl-calendar-week-view>
+
     <div class="cal-display-sm col-12">
-      <!--
-        Este grupo de botones se usan para probar el cambio de días en la vista
-        <div class="btn-group">
-          <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-            Previous
-          </div>
-          <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-            Today
-          </div>
-          <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-            Next
-          </div>
-        </div>
-      -->
-      <div>
-        <b>{{ viewDate | calendarDate:'weekViewColumnHeader':locale }}</b>
+     
+      <div class="cal-day-text">
+        {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
       </div>
-      
+
     </div>
   </div>
 
@@ -197,3 +266,5 @@
 
   </mat-tab-group>
 </div>
+
+
