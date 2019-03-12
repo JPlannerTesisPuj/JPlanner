@@ -76,10 +76,14 @@
 
 .cal-day-view .cal-event-container {
   width: calc(100% - 70px) !important;
+  @media (max-width: $vp-mobile) {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
 }
 .cal-display-sm {
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: $vp-mobile) {
     display: block;
   }
 }
@@ -240,7 +244,7 @@
     margin-right: 0;
 
     .cal-hour-segment {
-      border: none;
+      border: none !important;
     }
 
     .cal-time {
@@ -251,6 +255,9 @@
       float: right;
       text-align: right;
       font-weight: 500;
+      @media (max-width: $vp-mobile){
+        position: relative;
+      }
     }
 
     .cal-hour {
@@ -281,6 +288,9 @@
             height: 100%;
             text-align: center;
             margin-top: 6px;
+            @media (max-width: $vp-mobile) {
+              padding: 6px 30px;
+            }
           }
         }
       }
@@ -292,12 +302,18 @@
         height:100%;
         background: $dark-blue !important;
         border: solid 0.1px;
+        @media (max-width: $vp-mobile) {
+          border:0;
+        }
         .cal-event-action,.remove-icon{
           float:right;
           font-size: 16px;
           z-index: 50;
           position: relative;
           color:$yellow-90;
+          @media (max-width: $vp-mobile) {
+            float:left;
+          }
         }
         .cal-event-title{
           .cal-class-title{
@@ -318,14 +334,21 @@
             &::first-letter{
               text-transform: capitalize;
             }
+            @media (max-width: $vp-mobile) {
+              padding:3px 10px 2px;
+            }
           }
             .cal-class-size-alert{
               font-style: italic;
-              font-size: 9px;
+              font-size: 11px;
               font-family: $font-secondary;
               position: absolute;
               bottom: 0;
               text-align: right;
+              @media (max-width: $vp-mobile) {
+                text-align: left;
+                padding: 5px 17px
+              }
               padding-right: 15px;
               padding-left: 5px;
               margin:0;

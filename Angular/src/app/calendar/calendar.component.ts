@@ -800,7 +800,7 @@ export class CalendarComponent implements OnInit {
         this.refreshCal();
       });
   }
-
+ 
   /**
    * Crea un bloqueo en el calendario
    * 
