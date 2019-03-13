@@ -286,3 +286,22 @@
   border: none;
 
 }
+
+
+//Estilos Carrito de Compras
+.cal-sc-title{
+
+}
+.cal-enroll-btn{
+  margin: 3px 0 auto;
+  margin-top: 10px;
+}
+.cal-shopping-cart{
+  .cal-shopping-item{
+    height:65px;
+    border-radius: 8px;
+    background-color: $dark-blue;
+    color:$white;
+    margin: 8px;
+  }
+}
