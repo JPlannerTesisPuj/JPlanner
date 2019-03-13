@@ -244,7 +244,8 @@
     margin-right: 0;
 
     .cal-hour-segment {
-      border: none !important;
+      border-bottom:thin solid #707070 !important;
+      position: relative;
     }
 
     .cal-time {
@@ -256,7 +257,7 @@
       text-align: right;
       font-weight: 500;
       @media (max-width: $vp-mobile){
-        position: relative;
+        color:#cbcbcb;
       }
     }
 
@@ -335,19 +336,19 @@
               text-transform: capitalize;
             }
             @media (max-width: $vp-mobile) {
-              padding:3px 10px 2px;
+              top: -2px;
             }
           }
             .cal-class-size-alert{
               font-style: italic;
-              font-size: 11px;
+              font-size: 9px;
               font-family: $font-secondary;
               position: absolute;
               bottom: 0;
               text-align: right;
               @media (max-width: $vp-mobile) {
                 text-align: left;
-                padding: 5px 17px
+                left:15px;
               }
               padding-right: 15px;
               padding-left: 5px;
