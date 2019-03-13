@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class UsuarioService {
+public class TablesServices {
 	
 	@Autowired
 	private UsuarioRepository repository;
