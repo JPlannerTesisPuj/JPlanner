@@ -90,21 +90,21 @@
   
     <div id="fil-id-filter" class="col-12 grid-noGutter">
       <label for="fil-id-filter" class="col-12">
-        <strong>ID Curso</strong>
+        <strong>ID Curso:</strong>
       </label>
       <input type="text" [(ngModel)]="searchedFilterId" class="col-11 atom-input-field" />
     </div>
   
     <div id="fil-number-filter" class="col-12 grid-noGutter">
       <label for="fil-number-filter" class="col-12">
-        <strong>Número de Clase</strong>
+        <strong>Número de Clase:</strong>
       </label>
       <input type="number" [(ngModel)]="searchedFilterNumber" class="col-11 atom-input-field" />
     </div>
   
     <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
       <label for="fil-schoolyear-filter" class="col-12">
-        <strong>Ciclo Lectivo</strong>
+        <strong>Ciclo Lectivo:</strong>
       </label>
       <select [(ngModel)]="year" class="col-4 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
@@ -116,7 +116,7 @@
   
     <div id="fil-class-state" class="col-12 grid-noGutter">
       <label for="fil-class-state" class="col-12">
-        <strong>Estado</strong>
+        <strong>Estado:</strong>
       </label>
       <input id="{{openStateCheckbox.id}}" type="checkbox" [(ngModel)]="openStateCheckbox.isChecked" class="col-1" />
       <label class="col-4">{{openStateCheckbox.name}}</label>
@@ -126,7 +126,7 @@
   
     <div id="fil-grade-filter" class="col-12 grid-noGutter">
       <label for="fil-garde-filter" class="col-12">
-        <strong>Grado</strong>
+        <strong>Grado:</strong>
       </label>
       <select [(ngModel)]="gradeFilter" class="col-4 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
@@ -138,7 +138,7 @@
   
     <div id="fil-class-size" class="col-12 grid-noGutter">
       <label for="fil-class-size">
-        <strong>Cupos Disponibles</strong>
+        <strong>Cupos Disponibles:</strong>
       </label>
       <select [hidden]="!shouldDisplaySizeValue1" class="col-6 atom-dropdown" [(ngModel)]="selectedSizeValue1"
         (ngModelChange)="onChangeSizeOne($event)">
