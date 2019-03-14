@@ -28,6 +28,7 @@
     }
     .fil-hour-dropdown {
       float: left;
+      padding-left: 12px;
       width: 150px;
     }
     #fil-hourTo {
@@ -43,7 +44,8 @@
     min-height: 35px;
     margin-bottom: 10px;
     margin-top: 10px;
-    width: 180px;
+    width: 200px;
+    padding-left: 12px;
   }
   .fil-input-number {
     min-height: 35px;
@@ -61,6 +63,7 @@
     padding-left: 12px;
     margin-left: 12px;
     width: 400px;
+    font-size: 15px;
   }
 }
 
@@ -75,6 +78,8 @@
       height: 35px;
       line-height: 35px;
       border-radius: 4px;
+      padding-left: 12px;
+      width: 60px;
     }
   }
 }
@@ -108,7 +113,8 @@
 
   select{
     margin: 12px;
-    width: auto;
+    width: 60px;
+    padding-left: 12px;
   }
 
 }

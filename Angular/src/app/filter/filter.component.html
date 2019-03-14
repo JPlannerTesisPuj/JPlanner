@@ -59,7 +59,7 @@
       </div>
     </div>
   
-    <div id="fil-credit-selector" class="fil-credits col-12 grid-noGutter">
+    <div id="fil-credit-selector" class="fil-credits col-12">
       <label for="fil-credit-selector" class="col-12">
         <strong>Créditos:</strong>
       </label>
@@ -106,7 +106,7 @@
       <label for="fil-schoolyear-filter" class="col-12">
         <strong>Ciclo Lectivo:</strong>
       </label>
-      <select [(ngModel)]="year" class="col-4 atom-dropdown">
+      <select [(ngModel)]="year" class="col-6 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let schoolyear of dropdownSchoolYear">
           {{schoolyear}}
@@ -128,7 +128,7 @@
       <label for="fil-garde-filter" class="col-12">
         <strong>Grado:</strong>
       </label>
-      <select [(ngModel)]="gradeFilter" class="col-4 atom-dropdown">
+      <select [(ngModel)]="gradeFilter" class="col-6 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let grade of dropdownGrades" [ngValue]="grade.value">
           {{grade.name}}
