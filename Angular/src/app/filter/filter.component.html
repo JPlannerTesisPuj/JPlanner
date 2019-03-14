@@ -164,7 +164,7 @@
       <label for="fil-teaching-mode" class="col-12">
         <strong>Modo de Enseñanza:</strong>
       </label>
-      <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-4 atom-dropdown">
+      <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-6 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
       </select>
