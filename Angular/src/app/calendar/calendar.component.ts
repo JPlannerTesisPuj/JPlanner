@@ -433,7 +433,7 @@ export class CalendarComponent implements OnInit {
         start: startHour,
         end: endHour,
         color: colors.black,
-        title: subjectToDisplay.nombre,
+        title: '<span class="cal-class-title">'+subjectToDisplay.nombre+'</span>'+'<p class="cal-class-size-alert">'+'Cupos Disponibles: '+subjectToDisplay.cuposDisponibles+'</p>',
         id: subjectToDisplay.numeroClase,
         actions: this.actions,
         meta: {
@@ -800,7 +800,7 @@ export class CalendarComponent implements OnInit {
         this.refreshCal();
       });
   }
-
+ 
   /**
    * Crea un bloqueo en el calendario
    * 
@@ -839,7 +839,8 @@ export class CalendarComponent implements OnInit {
         },
         meta: {
           tmpEvent: false
-        }
+        },
+        cssClass: "cal-block"
       };
 
       this.classes = [...this.classes, newBlock];
