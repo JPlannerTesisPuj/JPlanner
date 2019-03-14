@@ -12,7 +12,6 @@ public class Bloqueo {
 	    private int idBloqueo;	    
 	    private Long horaInicio;
 	    private Long horaFin;
-	    private String nombre;
 	    private Long parentId;
 
 	    @ManyToOne
@@ -20,13 +19,12 @@ public class Bloqueo {
 	    private Alternativa alternativa;
 
 	    
-		public Bloqueo(int idBloqueo, Long horaInicio, Long horaFin, String nombre, Long parentId,
+		public Bloqueo(int idBloqueo, Long horaInicio, Long horaFin, Long parentId,
 				Alternativa idAlternativa) {
 			super();
 			this.idBloqueo = idBloqueo;
 			this.horaInicio = horaInicio;
 			this.horaFin = horaFin;
-			this.nombre = nombre;
 			this.parentId = parentId;
 			this.alternativa = idAlternativa;
 		}
@@ -60,17 +58,6 @@ public class Bloqueo {
 		public void setHoraFin(Long horaFin) {
 			this.horaFin = horaFin;
 		}
-
-
-		public String getNombre() {
-			return nombre;
-		}
-
-
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
 
 		public Long getParentId() {
 			return parentId;

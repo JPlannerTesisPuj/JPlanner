@@ -19,7 +19,6 @@ public class Alternativa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAlternativa;
-	private String name;
 	
 	@ManyToOne
     @JoinColumn
@@ -32,9 +31,8 @@ public class Alternativa {
     private Set<Materia> materias = new HashSet<>();
 	
 	
-	 public Alternativa(int idAlternativa, String name, Bloqueo...bloqueos) {
+	 public Alternativa(int idAlternativa, Bloqueo...bloqueos) {
 		 this.idAlternativa = idAlternativa;
-		 this.name = name;
 		 this.bloqueos = Stream.of(bloqueos).collect(Collectors.toSet());
 		 this.bloqueos.forEach(x -> x.setAlternativa(this));
 		
@@ -49,17 +47,6 @@ public class Alternativa {
 	public void setIdAlternativa(int idAlternativa) {
 		this.idAlternativa = idAlternativa;
 	}
-
-
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 
 	public Usuario getPersona() {
 		return persona;
