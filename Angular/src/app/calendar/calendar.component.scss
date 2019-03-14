@@ -80,10 +80,14 @@
 
 .cal-day-view .cal-event-container {
   width: calc(100% - 70px) !important;
+  @media (max-width: $vp-mobile) {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
 }
 .cal-display-sm {
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: $vp-mobile) {
     display: block;
   }
 }
@@ -249,6 +253,11 @@
   .cal-day-view {
     margin-right: 0;
 
+    .cal-hour-segment {
+      border-bottom:thin solid #707070 !important;
+      position: relative;
+    }
+
     .cal-time {
       padding-top: $space-sm;
       padding-right: $space-sm;
@@ -257,11 +266,138 @@
       float: right;
       text-align: right;
       font-weight: 500;
+      @media (max-width: $vp-mobile){
+        color:#cbcbcb;
+      }
     }
 
     .cal-hour {
       background-color: $white;
       border-top: 1px solid $black-20;
+      max-height: 35px;
     }
   }
+}
+
+//Estilos de clases
+
+.cal-schedule-container{
+  .cdk-drop-list{
+    [class|="cal-display"]{
+      .cal-block{
+        div.cal-event{
+          background-color: $black-40 !important;
+          border: solid 0.5px #6c6c6c !important;
+          .remove-icon{
+            color:$black;
+            font-weight: bold;
+          }
+          .cal-event-title{
+            font-size: 11px;
+            color:$black;
+            display: block;
+            height: 100%;
+            text-align: center;
+            margin-top: 6px;
+            @media (max-width: $vp-mobile) {
+              padding: 6px 30px;
+            }
+          }
+        }
+      }
+      div.cal-event{
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        height:100%;
+        background: $dark-blue !important;
+        border: solid 0.1px;
+        @media (max-width: $vp-mobile) {
+          border:0;
+        }
+        .cal-event-action,.remove-icon{
+          float:right;
+          font-size: 16px;
+          z-index: 50;
+          position: relative;
+          color:$yellow-90;
+          @media (max-width: $vp-mobile) {
+            float:left;
+          }
+        }
+        .cal-event-title{
+          .cal-class-title{
+            font-family: $font-secondary;
+            font-size: 12px;
+            text-transform: lowercase;
+            line-height: normal;
+            height: 100%;
+            position: relative;
+            font-style: italic;
+            color: $white;
+            display: inline-block;
+            width: 80%;
+            padding-top: 4px;
+            padding-left: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &::first-letter{
+              text-transform: capitalize;
+            }
+            @media (max-width: $vp-mobile) {
+              top: -2px;
+            }
+          }
+            .cal-class-size-alert{
+              font-style: italic;
+              font-size: 9px;
+              font-family: $font-secondary;
+              position: absolute;
+              bottom: 0;
+              text-align: right;
+              @media (max-width: $vp-mobile) {
+                text-align: left;
+                left:15px;
+              }
+              padding-right: 15px;
+              padding-left: 5px;
+              margin:0;
+              margin-bottom: 4px;
+              width: 100%;
+              text-transform: capitalize;
+              color: $white;
+              line-height: normal;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+        }
+      }
+    }
+  }
+}
+.cal-buttons-weekend-right {
+
+  background: transparent;
+  background-image: url(https://www.shareicon.net/data/48x48/2015/09/13/100299_keyboard_512x512.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* put the height and width of your image here */
+  height: 40px;
+  width: 40px;
+  border: none;
+
+}
+
+.cal-buttons-weekend-left {
+
+  background: transparent;
+  background-image: url(https://www.shareicon.net/data/48x48/2015/09/13/100296_keyboard_512x512.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* put the height and width of your image here */
+  height: 40px;
+  width: 40px;
+  border: none;
+
 }
