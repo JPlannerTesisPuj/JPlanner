@@ -1,4 +1,6 @@
 .cal-menu-container {
+  margin-top: 51px;
+  
   .mat-tab-group {
     flex-direction: row;
   }
@@ -18,7 +20,7 @@
     flex: 1 1 auto;
   }
   .mat-tab-body-content {
-    padding: 20px;
+    border: 1px solid $black-20;
   }
   .mat-tab-body.mat-tab-body-active {
     overflow-y: hidden;
@@ -127,6 +129,12 @@
 }
 
 // Estilos calendario
+.cal-schedule-container {
+  .cal-view-container {
+    border-top: 1px solid $black-20;
+  }
+}
+
 .cal-display-lg {
   .cal-week-view {
     font-family: $font-secondary;
