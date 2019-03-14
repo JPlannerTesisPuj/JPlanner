@@ -40,12 +40,13 @@
         
 
       </ng-template>
-      <h2 class="cal-sc-title">Carrito de compras</h2>
+      <h2 class="cal-sc-title">Materias de {{alternativeTitles[currentAlternative]}}</h2>
+      <hr>
       <div > 
       
       
       <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
-      <div class="grid-2 cal-shopping-cart">
+      <div class="grid-2_sm-2_md-4 cal-shopping-cart">
         <div class="cal-shopping-item col" *ngFor="let class of calendarClasses">
           <i (click)="removeClass(class.numeroClase)" class="material-icons cal-sh-remove">cancel</i>
           <p class="cal-sh-title">{{titleCaseWord(class.nombre)}}</p>
