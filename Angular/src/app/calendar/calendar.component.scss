@@ -101,7 +101,6 @@
     min-height: 56px;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.16);
     border: solid 2px #f8cd00;
-    border-bottom: solid 2px #f8cd00;
     background-color: #fcea98;
     color: white;
   }
@@ -113,6 +112,9 @@
   border: solid 2px #d4dce9;
   color: "#d4dce9"
 
+  }
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background-color: #f8cd00;
   }
   
   
