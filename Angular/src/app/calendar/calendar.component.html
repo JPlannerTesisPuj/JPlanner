@@ -1,5 +1,5 @@
 
-<div class="cal-menu-container col-4_xs-12_sm-12_md-12_lg-4">
+<div class="cal-menu-container col-3_xs-12_sm-12_md-12_lg-3">
 
   <!--
     verticalMenuIndex es una variable numérica del componente que le indica al menú
@@ -56,7 +56,7 @@
   </mat-tab-group>
 </div>
 
-<div class="cal-schedule-container col-8_xs-12_sm-12_md-12_lg-8">
+<div class="cal-schedule-container col-9_xs-12_sm-12_md-12_lg-9">
 
   <div class= "cal-alternatives-paginator">
       <div class="cal-alt-title-div">
@@ -130,20 +130,6 @@
     * dayStartHour: de 0 a 7
     * dayEndHour: de 23 a 22
   -->
-  <!-- Este grupo de botones se usan para probar el cambio de días en la vista -->
-  <div class="btn-group">
-    <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-    </button>
-    <!--
-    <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-      Today
-    </button>
-    -->
-    <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-    </button>
-    <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-    <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
-  </div>
 
   <div
     cdkDropList
@@ -186,6 +172,21 @@
       </mwl-calendar-day-view>
     </div>
     </div>
+  </div>
+
+  <!-- Este grupo de botones se usan para probar el cambio de días en la vista -->
+  <div class="btn-group">
+    <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+    </button>
+    <!--
+    <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+      Today
+    </button>
+    -->
+    <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+    </button>
+    <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+    <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
   </div>
 
 </div>
