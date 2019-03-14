@@ -45,12 +45,18 @@
       
       
       <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
-      <div class="grid-2 grid-center cal-shopping-cart">
+      <div class="grid-2 cal-shopping-cart">
         <div class="cal-shopping-item col-5" *ngFor="let class of calendarClasses">
-          {{class.nombre}}
+          <i (click)="removeClass(class.numeroClase)" class="material-icons cal-sh-remove">cancel</i>
+          <p class="cal-sh-title">{{titleCaseWord(class.nombre)}}</p>
+          <p class="cal-sh-size">Cupos Disponibles: {{class.cuposDisponibles}}</p>
+          
         </div>
       </div>
-      <button class="grid-1 cal-enroll-btn atom-buttons-primary">Inscribir</button>
+      <button class="grid-1 cal-enroll-btn atom-buttons-primary">
+          Inscribir
+          <i class="material-icons">shopping_cart</i>
+      </button>
     </div>
      
 

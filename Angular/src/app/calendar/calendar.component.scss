@@ -293,7 +293,7 @@
 
 }
 .cal-enroll-btn{
-  margin: 3px 0 auto;
+  margin: 0 auto;
   margin-top: 10px;
 }
 .cal-shopping-cart{
@@ -301,7 +301,46 @@
     height:65px;
     border-radius: 8px;
     background-color: $dark-blue;
-    color:$white;
     margin: 8px;
+    position: relative;
+    padding-right: 4px;
+    .cal-sh-title{
+      font-size:16px;
+      font-family: $font-secondary;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color:$white;
+      width: 80%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 2px 0 0 0;
+    }
+    .cal-sh-size{
+      margin:0;
+      font-family: Helvetica;
+      font-size: 12px;
+      @media (max-width: $vp-mobile) {
+        font-size: 10px;
+      }
+      color: white;
+      font-style: italic;
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 4px;
+      right: 0;
+      margin-right: 8px;
+      margin-left: 8px;
+    }
+    .cal-sh-remove{
+      top: 2px;
+      color: white;
+      font-size: 22px;
+      position: absolute;
+      right: 6px;
+      &:hover{
+        cursor:pointer;
+      }
+    }
   }
 }
