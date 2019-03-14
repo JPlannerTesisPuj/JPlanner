@@ -69,6 +69,10 @@
 .cal-day-view {
   margin-right: 5px;
 
+  .cal-hour-segment.cal-hour-start {
+    border-bottom: thin solid #cbcbcb;
+  }
+
   .cal-hour-rows {
     overflow-x: inherit;
   }
