@@ -410,11 +410,13 @@
   margin-top: 10px;
 }
 .cal-shopping-cart{
+  margin:0;
   .cal-shopping-item{
     height:65px;
     border-radius: 8px;
     background-color: $dark-blue;
     margin: 8px;
+    max-width: calc(50%-16px);
     position: relative;
     padding-right: 4px;
     .cal-sh-title{
