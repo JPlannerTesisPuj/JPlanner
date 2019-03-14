@@ -176,18 +176,14 @@
   </div>
 
   <div class="btn-group">
-    <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-      Previous
-    </button>
-    <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-      Today
-    </button>
-    <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-      Next
-    </button>
-    <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-    <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
+    <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
+    <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
   </div>
+  
+  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
+  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
 
 </div>
 
