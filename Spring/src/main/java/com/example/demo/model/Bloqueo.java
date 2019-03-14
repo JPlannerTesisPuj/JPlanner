@@ -9,55 +9,56 @@ import javax.persistence.*;
 public class Bloqueo {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int idBloqueo;	    
-	    private Long horaInicio;
-	    private Long horaFin;
+	    private int idBlock;	    
+	    private Long startHour;
+	    private Long endHour;
 	    private Long parentId;
 
 	    @ManyToOne
 	    @JoinColumn
-	    private Alternativa alternativa;
+	    private Alternativa alternative;
 
 	    
-		public Bloqueo(int idBloqueo, Long horaInicio, Long horaFin, Long parentId,
-				Alternativa idAlternativa) {
+		public Bloqueo(int idBlock, Long startHour, Long endHour, Long parentId,
+				Alternativa idAlternative) {
 			super();
-			this.idBloqueo = idBloqueo;
-			this.horaInicio = horaInicio;
-			this.horaFin = horaFin;
+			this.idBlock = idBlock;
+			this.startHour = startHour;
+			this.endHour = endHour;
 			this.parentId = parentId;
-			this.alternativa = idAlternativa;
+			this.alternative = idAlternative;
 		}
 
 
-		public int getIdBloqueo() {
-			return idBloqueo;
+		public int getIdBlock() {
+			return idBlock;
 		}
 
 
-		public void setIdBloqueo(int idBloqueo) {
-			this.idBloqueo = idBloqueo;
+		public void setIdBlock(int idBlock) {
+			this.idBlock = idBlock;
 		}
 
 
-		public Long getHoraInicio() {
-			return horaInicio;
+		public Long getStartHour() {
+			return startHour;
 		}
 
 
-		public void setHoraInicio(Long horaInicio) {
-			this.horaInicio = horaInicio;
+		public void setStartHour(Long startHour) {
+			this.startHour = startHour;
 		}
 
 
-		public Long getHoraFin() {
-			return horaFin;
+		public Long getEndHour() {
+			return endHour;
 		}
 
 
-		public void setHoraFin(Long horaFin) {
-			this.horaFin = horaFin;
+		public void setEndHour(Long endHour) {
+			this.endHour = endHour;
 		}
+
 
 		public Long getParentId() {
 			return parentId;
@@ -69,22 +70,15 @@ public class Bloqueo {
 		}
 
 
-		public Alternativa getAlternativa() {
-			return alternativa;
+		public Alternativa getAlternative() {
+			return alternative;
 		}
 
 
-		public void setAlternativa(Alternativa alternativa) {
-			this.alternativa = alternativa;
+		public void setAlternative(Alternativa alternative) {
+			this.alternative = alternative;
 		}
-		
-		
 
-
-		
-
-
-	    
 
 }
 

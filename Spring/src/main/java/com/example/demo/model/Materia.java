@@ -8,50 +8,52 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Data
-@EqualsAndHashCode(exclude = "alternativas")
+@EqualsAndHashCode(exclude = "alternatives")
 
 @Entity
 public class Materia {
 		@Id
-	    private Long numeroClase;
-	    private String nombre;
+	    private Long classNumber;
+	    private String name;
 
 	    @ManyToMany(cascade = CascadeType.ALL)
 	    @JoinTable(name = "materia_alternativa",
-	        joinColumns = @JoinColumn(name = "numeroClase", referencedColumnName = "numeroClase"),
-	        inverseJoinColumns = @JoinColumn(name = "idAlternativa", referencedColumnName = "idAlternativa"))
-	    private Set<Alternativa> alternativas;
+	        joinColumns = @JoinColumn(name = "classNumber", referencedColumnName = "classNumber"),
+	        inverseJoinColumns = @JoinColumn(name = "idAlternative", referencedColumnName = "idAlternative"))
+	    private Set<Alternativa> alternatives;
 
-	    public Materia(Long numeroClase, String name, Alternativa... alternativas) {
-	        this.numeroClase = numeroClase;
-	    	this.nombre = name;
-	        this.alternativas = Stream.of(alternativas).collect(Collectors.toSet());
-	        this.alternativas.forEach(x -> x.getMaterias().add(this));
+	    public Materia(Long classNumber, String name, Alternativa... alternatives) {
+	        this.classNumber = classNumber;
+	    	this.name = name;
+	        this.alternatives = Stream.of(alternatives).collect(Collectors.toSet());
+	        this.alternatives.forEach(x -> x.getSubjects().add(this));
 	    }
 
-		public Long getNumeroClase() {
-			return numeroClase;
+		public Long getClassNumber() {
+			return classNumber;
 		}
 
-		public void setNumeroClase(Long numeroClase) {
-			this.numeroClase = numeroClase;
+		public void setClassNumber(Long classNumber) {
+			this.classNumber = classNumber;
 		}
 
-		public String getNombre() {
-			return nombre;
+		public String getName() {
+			return name;
 		}
 
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
+		public void setName(String name) {
+			this.name = name;
 		}
 
-		public Set<Alternativa> getAlternativas() {
-			return alternativas;
+		public Set<Alternativa> getAlternatives() {
+			return alternatives;
 		}
 
-		public void setAlternativas(Set<Alternativa> alternativas) {
-			this.alternativas = alternativas;
+		public void setAlternatives(Set<Alternativa> alternatives) {
+			this.alternatives = alternatives;
 		}
+
+		
 	    
 }
 

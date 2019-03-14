@@ -11,71 +11,75 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Data
-@EqualsAndHashCode(exclude = "bloqueos")
+@EqualsAndHashCode(exclude = "blocks")
 
 @Entity
 public class Alternativa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idAlternativa;
+	private int idAlternative;
 	
 	@ManyToOne
     @JoinColumn
-    private Usuario persona;
+    private Usuario person;
 	
-	@OneToMany(mappedBy = "alternativa", cascade = CascadeType.ALL)
-    private Set<Bloqueo> bloqueos;
+	@OneToMany(mappedBy = "alternative", cascade = CascadeType.ALL)
+    private Set<Bloqueo> blocks;
 	
-	@ManyToMany(mappedBy = "alternativas")
-    private Set<Materia> materias = new HashSet<>();
+	@ManyToMany(mappedBy = "alternatives")
+    private Set<Materia> subjects = new HashSet<>();
 	
 	
-	 public Alternativa(int idAlternativa, Bloqueo...bloqueos) {
-		 this.idAlternativa = idAlternativa;
-		 this.bloqueos = Stream.of(bloqueos).collect(Collectors.toSet());
-		 this.bloqueos.forEach(x -> x.setAlternativa(this));
+	 public Alternativa(int idAlternative, Bloqueo...blocks) {
+		 this.idAlternative = idAlternative;
+		 this.blocks = Stream.of(blocks).collect(Collectors.toSet());
+		 this.blocks.forEach(x -> x.setAlternative(this));
 		
 	 }
 
 
-	public int getIdAlternativa() {
-		return idAlternativa;
+	public int getIdAlternative() {
+		return idAlternative;
 	}
 
 
-	public void setIdAlternativa(int idAlternativa) {
-		this.idAlternativa = idAlternativa;
-	}
-
-	public Usuario getPersona() {
-		return persona;
+	public void setIdAlternative(int idAlternative) {
+		this.idAlternative = idAlternative;
 	}
 
 
-	public void setPersona(Usuario persona) {
-		this.persona = persona;
+	public Usuario getPerson() {
+		return person;
 	}
 
 
-	public Set<Bloqueo> getBloqueos() {
-		return bloqueos;
+	public void setPerson(Usuario person) {
+		this.person = person;
 	}
 
 
-	public void setBloqueos(Set<Bloqueo> bloqueos) {
-		this.bloqueos = bloqueos;
+	public Set<Bloqueo> getBlocks() {
+		return blocks;
 	}
 
 
-	public Set<Materia> getMaterias() {
-		return materias;
+	public void setBlocks(Set<Bloqueo> blocks) {
+		this.blocks = blocks;
 	}
 
 
-	public void setMaterias(Set<Materia> materias) {
-		this.materias = materias;
+	public Set<Materia> getSubjects() {
+		return subjects;
 	}
+
+
+	public void setSubjects(Set<Materia> subjects) {
+		this.subjects = subjects;
+	}
+
+
+	
 	 
      
 

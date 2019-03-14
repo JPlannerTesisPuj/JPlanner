@@ -15,40 +15,63 @@ import java.util.stream.Stream;
 @Entity
 public class Usuario {
 	@Id
-	private Long idPersona;
-	private String credenciales;
+	private Long idPerson;
+	private String credentials;
 	
-	@OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
-	private Set<Alternativa> alternativas;
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	private Set<Alternativa> alternatives;
 
 
 	
 	
-	public Usuario(Long idPersona, String credenciales, Alternativa...alternativas) {
-		this.idPersona = idPersona;
-		this.credenciales = credenciales;
-		this.alternativas = Stream.of(alternativas).collect(Collectors.toSet());
-	    this.alternativas.forEach(x -> x.setPersona(this));
-	}
-	
-	
-	public Long getIdPersona() {
-		return idPersona;
-	}
-	public void setIdPersona(Long idPersona) {
-		this.idPersona = idPersona;
-	}
-	public String getCredenciales() {
-		return credenciales;
-	}
-	public void setCredenciales(String credenciales) {
-		this.credenciales = credenciales;
+	public Usuario(Long idPerson, String credentials, Alternativa...alternatives) {
+		this.idPerson = idPerson;
+		this.credentials = credentials;
+		this.alternatives = Stream.of(alternatives).collect(Collectors.toSet());
+	    this.alternatives.forEach(x -> x.setPerson(this));
 	}
 
 
-	
-	
-	
+
+
+	public Long getIdPerson() {
+		return idPerson;
+	}
+
+
+
+
+	public void setIdPerson(Long idPerson) {
+		this.idPerson = idPerson;
+	}
+
+
+
+
+	public String getCredentials() {
+		return credentials;
+	}
+
+
+
+
+	public void setCredentials(String credentials) {
+		this.credentials = credentials;
+	}
+
+
+
+
+	public Set<Alternativa> getAlternatives() {
+		return alternatives;
+	}
+
+
+
+
+	public void setAlternatives(Set<Alternativa> alternatives) {
+		this.alternatives = alternatives;
+	}
 	
 
 }
