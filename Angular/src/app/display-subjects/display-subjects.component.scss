@@ -18,13 +18,39 @@
 
         &-item {
             max-width: calc(50% - 8px) !important;
-            margin-right: 0;
-            margin-left: 8px;
+            margin-right: 16px;
+            margin-left: 0;
             margin-bottom: 20px;
 
-            &:nth-child(odd) {
+            // Para dispositivos de escritorio
+            @media screen and (min-width: $vp-tablet) {
+                &:nth-child(even) {
+                    margin-right: 0;
+                }
+            }
+
+            // Para tablets
+            @media screen and (max-width: $vp-tablet) {
+                max-width: calc(25% - 8px) !important;
                 margin-right: 8px;
                 margin-left: 0;
+                
+                &:nth-child(4n) {
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+            }
+
+            // Para celulares
+            @media screen and (max-width: $vp-mobile) {
+                max-width: calc(50% - 12px) !important;
+                margin-right: 12px;
+                margin-left: 0;
+                
+                &:nth-child(4n) {
+                    margin-right: 0;
+                    margin-left: 0;
+                }
             }
         }
     }
