@@ -29,6 +29,7 @@
     
     min-height: 56px;
     padding-top: 2px;
+    
     border: solid 2px #2c5697;
     min-width: 56px;
     padding: 0;
@@ -63,6 +64,61 @@
   }
 
 }
+
+.movilMenu{
+  
+  
+  display: none;
+  @media (max-width: $vp-mobile) {
+    
+    display: block;
+    
+    
+    //border-top: 1px solid #e6e6e6;
+  }
+  .mat-tab-label {
+    
+    min-height: 56px;
+    padding-top: 2px;
+    margin-left: 27px;
+    border: solid 2px white;
+    min-width: 56px;
+    padding:0;
+    color: #2c5697;
+
+    &:hover{
+      min-height: 56px;
+      min-width: 56px;
+      border: solid 2px white;
+      background-color: #d4dce9;
+      color:white;
+    }
+  }
+  
+  .mat-tab-label-active {
+     padding-top: 2px;
+    min-width: 56px;
+    min-height: 56px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.16);
+    border: solid 2px #f8cd00;
+    border-bottom: solid 2px #f8cd00;
+    background-color: #fcea98;
+    color: white;
+  }
+  
+  .mat-tab.label-disabled{
+    padding-top: 2px;
+    min-width: 56px;
+    min-height: 56px;
+  border: solid 2px #d4dce9;
+  color: "#d4dce9"
+
+  }
+  
+  
+}
+
+
 
 .cal-week-view .cal-time-events .cal-event {
   width: calc(100% - 12px);
