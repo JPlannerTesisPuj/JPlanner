@@ -23,7 +23,7 @@
             margin-bottom: 20px;
 
             // Para dispositivos de escritorio
-            @media screen and (min-width: $vp-tablet) {
+            @media screen and (min-width: ($vp-tablet + 1)) {
                 &:nth-child(even) {
                     margin-right: 0;
                 }
