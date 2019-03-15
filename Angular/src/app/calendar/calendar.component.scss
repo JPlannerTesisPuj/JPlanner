@@ -1,6 +1,6 @@
 .cal-menu-container {
   margin-top: 51px;
-
+  
   .mat-tab-group {
     flex-direction: row;
   }
@@ -18,6 +18,8 @@
   }
   .mat-tab-body-wrapper {
     flex: 1 1 auto;
+  }
+  .mat-tab-body-content {
     border: 1px solid $black-20;
   }
   .mat-tab-body.mat-tab-body-active {
