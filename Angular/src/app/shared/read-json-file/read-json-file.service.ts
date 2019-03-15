@@ -82,6 +82,49 @@ export class ReadJsonFileService {
   public filterToken(token: string): Observable<User[]> {
     return (this.http.get<User[]>(this.baseUrl + 'tokenauth/' + token, { withCredentials: true }));
   }
+  
+  public saveSubject(classNumber: any, name: string): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'putSubjectData/' + classNumber +'/'+name,{ withCredentials: true })
+      );
+  }
+ 
+  public saveUser(idPerson: any, credentials: string): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'putUserData/' + idPerson +'/'+credentials,{ withCredentials: true })
+      );
+  }
+ 
+  public deleteSubject(classNumber: any): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'deleteSubjectData/' + classNumber,{ withCredentials: true })
+      );
+  }
+  
+  public saveAlternative(idPerson: any, numberAlternatives: any): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'addAlternativeData/' + idPerson + '/' + numberAlternatives,{ withCredentials: true })
+      );
+  }
+
+  public getUser(){
+    return this.userToken;
+  }
+
+
+  public saveSubjectAlternative(idAlternative: any, classNumber: any): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'addSubjectAlternative/' + idAlternative + '/' + classNumber,{ withCredentials: true })
+      );
+  }
+
+
+
 
   /**
    * Guarda al usuario que ingresó a la aplicación

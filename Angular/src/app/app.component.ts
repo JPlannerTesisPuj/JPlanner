@@ -35,8 +35,11 @@ export class AppComponent implements OnInit {
         this.userAuthenticaded = user;
         this.name = 'Bienvenido, ' + this.userAuthenticaded[0].nombre_estudiante;
         this.readJSONFileService.setUSer(this.userAuthenticaded[0]);
+        this.readJSONFileService.saveUser(this.userAuthenticaded[0].GID, this.userAuthenticaded[0].credenciales).subscribe();
       }
     });
+    
+    
   }
 
   /**

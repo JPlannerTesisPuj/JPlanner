@@ -15,6 +15,7 @@ import { DayViewHourSegment } from 'calendar-utils';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
+import { User } from '../shared/model/User';
 /**
  * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
@@ -260,6 +261,9 @@ export class CalendarComponent implements OnInit {
     });
   }
 
+
+   
+
   /**
    * Captura el evento swipe cuando este se realice en el calendar: left o right
    * 
@@ -444,6 +448,13 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
+    console.log(this.currentAlternative);
+    this.readJSONFileService.saveSubject(subjectToDisplay.numeroClase, subjectToDisplay.nombre).subscribe();
+    let user: User;
+    user = this.readJSONFileService.getUser();
+    this.readJSONFileService.saveAlternative(user.GID, this.numberOfAlternatives).subscribe();
+    console.log((this.currentAlternative+1));
+    this.readJSONFileService.saveSubjectAlternative((this.currentAlternative+1),subjectToDisplay.numeroClase).subscribe();
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
@@ -519,6 +530,8 @@ export class CalendarComponent implements OnInit {
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
+    let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
+    this.readJSONFileService.deleteSubject(auxClass[0].numeroClase).subscribe();
     this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
