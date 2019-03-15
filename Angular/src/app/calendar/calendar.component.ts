@@ -677,20 +677,6 @@ export class CalendarComponent implements OnInit {
     blockParentID = 'block_' + this.blockIdCount;
     const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, addHours(firstBlockDate, 1), blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID);
 
-    // Agrega los bloqueos de los días en todas las semanas
-    for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
-      /**
-       * @var blockIDWeek 
-       * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
-       */
-      let blockIDWeek: string = blockParentID + '__0__' + contWeeks;
-      let startDayOnWeek: Date = addWeeks(firstBlockDate, contWeeks);
-      let endDayOnWeek: Date = addWeeks(addHours(firstBlockDate, 1), contWeeks);
-
-      // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
-      this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID);
-    }
-
     this.blockIdCount++;
     // Se toma la posición del cuadro que fue seleccionado para agregar el bloqueo
     const segmentPosition = segmentElement.getBoundingClientRect();
