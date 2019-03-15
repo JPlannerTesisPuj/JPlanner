@@ -373,12 +373,6 @@ export class CalendarComponent implements OnInit {
         this.addClass(newClasses, subjectToDisplay);
       }
     }
-      this.classes = newClasses;
-      this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
-      this.calendarClasses.push(subjectToDisplay);
-      this.creditCounter += subjectToDisplay.creditos;
-      this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
-      this.refresh.next();
   }
 
    /**
@@ -453,6 +447,7 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
+    this.creditCounter += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
