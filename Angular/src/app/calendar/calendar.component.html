@@ -28,7 +28,7 @@
       
       </ng-template>
 
-      <app-display-classes [calendarList]="calendarList"></app-display-classes>
+      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
     </mat-tab>
 
     <mat-tab>
@@ -79,6 +79,12 @@
             <span class="atom-radio-btn"></span>
         </label>
      </div>
+     <div class="cal-alt-number-credits">
+      <label>Número de Créditos: 
+        <label class="number-credits">{{creditCounter}}</label>
+      </label>
+     </div>
+  
   </div>
 
       <div *ngIf ="sholudDisplayDialog[currentAlternative]" class= "cal-conflict-msj">
@@ -183,20 +189,15 @@
     </div>
   </div>
 
-  <!-- Este grupo de botones se usan para probar el cambio de días en la vista -->
   <div class="btn-group">
-    <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-    </button>
-    <!--
-    <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-      Today
-    </button>
-    -->
-    <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-    </button>
-    <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-    <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
+    <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
+    <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
   </div>
+  
+  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
+  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
 
 </div>
 
