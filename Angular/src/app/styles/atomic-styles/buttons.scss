@@ -122,7 +122,7 @@ color: "#d4dce9"
   color: $white;
   border-style: none;
   border: solid 1px $light-blue;
-  padding: 8px 46px 8px 16px;
+  padding: 8px 16px 8px 16px;
 
   i{
     vertical-align: middle;
@@ -144,10 +144,4 @@ color: "#d4dce9"
   &:focus{
       outline: none;
   }
-}
-
-.atom-buttons-search{
-  background-image: url(https://www.iconsdb.com/icons/download/white/search-13-32.png);
-  background-repeat: no-repeat;
-  background-position: 94%;
 }
