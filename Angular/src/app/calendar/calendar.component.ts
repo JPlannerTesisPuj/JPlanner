@@ -112,6 +112,7 @@ export class CalendarComponent implements OnInit {
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
   private pru: string;
+  private creditCounter = 0;
 
 
   private verticalMenuIndex: number = 0;
@@ -260,6 +261,8 @@ export class CalendarComponent implements OnInit {
     });
   }
 
+
+
   /**
    * Captura el evento swipe cuando este se realice en el calendar: left o right
    * 
@@ -370,6 +373,12 @@ export class CalendarComponent implements OnInit {
         this.addClass(newClasses, subjectToDisplay);
       }
     }
+      this.classes = newClasses;
+      this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
+      this.calendarClasses.push(subjectToDisplay);
+      this.creditCounter += subjectToDisplay.creditos;
+      this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
+      this.refresh.next();
   }
 
    /**
@@ -519,12 +528,12 @@ export class CalendarComponent implements OnInit {
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
+    let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
+    this.creditCounter -= auxClass[0].creditos
     this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
-    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
+    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
-
-
   }
 
   /**
