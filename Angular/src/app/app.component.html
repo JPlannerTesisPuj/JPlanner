@@ -1,5 +1,28 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <body>
+    <div *ngIf="showOptions" class="app-blocked-menu"></div>
+    <a *ngIf="showOptions==false"(click)="showOptions=true" class="app-float-btn-cross">  <i class="material-icons btn-icon"> add </i> </a>
+   
+    <!-- <a *ngIf="showOptions==true"(click)="showOptions=false" class="app-float-btn-x"></a> -->
+    <ul class="app-menu-options" *ngIf="showOptions==true">
+        <a (click)="showOptions=false" class="app-float-btn-x"> <i class="material-icons btn-icon"> clear </i> </a>
+       
+        <li>
+          <a><p>Recomendar Materias</p>
+              <i class="material-icons"> search </i>
+          </a>
+        </li>
+        <li>
+          <a><p>Armar Horario</p>
+              <i class="material-icons"> event </i>
+          </a>
+        </li>
+        <li><a><p>Terminos y Condiciones</p>
+            <i class="material-icons">description</i>
+        </a>
+        </li>
+    </ul>
+
   <header class="cmp-header">
       <img width="30px" alt="JPlanner Logo" src="/assets/web/logo.1.png">
       <a>JPlanner</a>
@@ -8,9 +31,11 @@
       </div>
   </header>
 
+ 
+ 
+
   <app-calendar class="grid-noGutter"></app-calendar>
   <router-outlet></router-outlet>
-
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -20,4 +45,5 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+
 </body>
