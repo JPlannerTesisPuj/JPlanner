@@ -194,7 +194,20 @@
 <div class="movilMenu col-12 ">
   
 
-  <mat-tab-group headerPosition="below" class="col-12">
+  <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndex">
+      <mat-tab >
+          <ng-template mat-tab-label>
+          <i class="material-icons" >
+              search
+            </i>
+          </ng-template>
+          <app-filter></app-filter>
+          <br>
+          <br>
+          <br>
+          
+  
+          </mat-tab>
       <mat-tab>
           <ng-template mat-tab-label>
               <i class="material-icons" >
@@ -204,59 +217,67 @@
               <app-display-classes [calendarList]="calendarList"></app-display-classes>
               
               
-              <hr style="border: 1px inset #e6e6e6 ;">
+              
       </mat-tab>
-    <mat-tab >
-        <ng-template mat-tab-label>
-        <i class="material-icons" >
-            search
-          </i>
-        </ng-template>
-        <app-filter></app-filter>
-        <br>
-        <br>
-        <br>
-        <hr style="border: 1px inset #e6e6e6 ;">
+      <mat-tab > 
+          <ng-template mat-tab-label>
+              <i class="material-icons" >
+                  shopping_cart
+                </i>
+              </ng-template>
+  
+              <h2>Carrito de compras</h2>
+              <div > 
+              
+              
+              <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
+              <div *ngFor="let class of calendarClasses" >
+                <app-display-class [subject]="class"></app-display-class>
+              </div>
+              
+            </div>
+              <button class="fil-btn" disabled="true">Inscribir</button>
+              <br>
+              <br>
+              
+             </mat-tab>
 
-        </mat-tab>
         <mat-tab> 
             <ng-template mat-tab-label>
              <i class="material-icons" >
                today
              </i>
             </ng-template>
-            <div (swipe)="onSwipe($event)">
-              <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1"
-                [dayStartHour]="7" [dayEndHour]="22" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+            <div
+            class="cal-view-container grid-noGutter">
+            
+            <div class="cal-display-sm col-12">
+     
+              <div class="cal-day-text">
+                {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
+              </div>
+              <div (swipe)="onSwipe($event)">
+              <mwl-calendar-day-view 
+                [viewDate]="viewDate"
+                [events]="classes"
+                [refresh]="refresh"
+                [hourSegments]="1"
+                [locale]="locale"
+                [dayStartHour]="7"
+                [dayEndHour]="22"
+                [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner"
+                [hourSegmentHeight]="35"
+                (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventTimesChanged($event)">
               </mwl-calendar-day-view>
             </div>
-
-          <br>
-          <br>
-          <hr style="border: 1px inset #e6e6e6 ;">
-         </mat-tab>
-    <mat-tab style="margin-left:1px"> 
-        <ng-template mat-tab-label>
-            <i class="material-icons" >
-                shopping_cart
-              </i>
-            </ng-template>
-
-            <h2>Carrito de compras</h2>
-            <div > 
-            
-            
-            <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
-            <div *ngFor="let class of calendarClasses" >
-              <app-display-class [subject]="class"></app-display-class>
             </div>
-            
           </div>
-            <button class="fil-btn" disabled="true">Inscribir</button>
-            <br>
-            <br>
-            <hr style="border: 1px inset #e6e6e6 ;">
-           </mat-tab>
+          <br>
+          <br>
+          
+         </mat-tab>
+    
 
   </mat-tab-group>
 </div>
