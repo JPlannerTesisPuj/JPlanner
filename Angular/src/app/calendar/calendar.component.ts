@@ -107,7 +107,7 @@ export class CalendarComponent implements OnInit {
   private view: CalendarView = CalendarView.Week;
   /** @var calendarView Enum */
   private calendarView = CalendarView;
-  private viewDate: Date = new Date('2019-1-20 00:00:00');
+  private viewDate: Date = this.consumeLectiveCycle(this.viewDate);
   private calendarClasses: Subject[] = [];
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
@@ -969,6 +969,11 @@ export class CalendarComponent implements OnInit {
     this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
     this.refresh.next();
   }
+
+  private consumeLectiveCycle(initSchoolYear: Date){
+    return initSchoolYear = new Date('2019-1-20 00:00:00');
+
+  }
 }
 
 /**
@@ -1017,4 +1022,5 @@ export class OverlapClassConfirmationDialog {
       this.dialogRef.close(this.data.subjectsToChoose);
     }
   }
+
 }
