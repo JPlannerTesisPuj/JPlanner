@@ -1,5 +1,5 @@
 
-<div class="cal-menu-container col-3_xs-12_sm-12_md-12_lg-3">
+<div class="cal-menu-container col-3_xs-12_sm-12_md-12_lg-3 sm-hidden">
 
   <!--
     verticalMenuIndex es una variable numérica del componente que le indica al menú
@@ -56,7 +56,7 @@
   </mat-tab-group>
 </div>
 
-<div class="cal-schedule-container col-9_xs-12_sm-12_md-12_lg-9">
+<div class="cal-schedule-container col-9_xs-12_sm-12_md-12_lg-9 sm-hidden">
 
   <div class= "cal-alternatives-paginator">
       <div class="cal-alt-title-div">
@@ -151,7 +151,7 @@
       class="cal-display-lg sm-hidden col-12">
     </mwl-calendar-week-view>
 
-    <div class="cal-display-sm col-12">
+    <div class="cal-display-sm col-12 ">
      
       <div class="cal-day-text">
         {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
