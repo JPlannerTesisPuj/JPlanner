@@ -51,16 +51,18 @@
       <ng-multiselect-dropdown class="col-12 atom-custom-margin" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
         [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
       </ng-multiselect-dropdown>
-      <div id="fil-day-comparator-state" class="col-12 grid-noGutter">
-        <input class="col-1" type="radio" name="fil-day-comparator" value="1" id="selected-days" [(ngModel)]="dayComparator">
-        <label class="col-4">Buscar solamente en los días seleccionados</label>
-        <input class="col-1" type="radio" name="fil-day-comparator" value="0" id="all-days" [(ngModel)]="dayComparator">
-        <label class="col-4">Buscar en cualquiera de estos días</label>
+      <div class="fil-padding-left">
+          <div id="fil-day-comparator-state" class="col-12 grid-noGutter">
+              <input class="col-1" type="radio" name="fil-day-comparator" value="1" id="selected-days" [(ngModel)]="dayComparator">
+              <label class="col-4">Buscar solamente en los días seleccionados</label>
+              <input class="col-1" type="radio" name="fil-day-comparator" value="0" id="all-days" [(ngModel)]="dayComparator">
+              <label class="col-4">Buscar en cualquiera de estos días</label>
+            </div>
       </div>
     </div>
   
-    <div id="fil-credit-selector" class="fil-credits col-12">
-      <label for="fil-credit-selector" class="col-12">
+    <div id="fil-credit-selector" class="col-12">
+      <label for="fil-credit-selector">
         <strong>Créditos:</strong>
       </label>
       <select [hidden]="!shouldDisplayCreditValue1" class="col-6 atom-dropdown" [(ngModel)]="selectedCreditValue1"
@@ -118,10 +120,14 @@
       <label for="fil-class-state" class="col-12">
         <strong>Estado:</strong>
       </label>
-      <input id="{{openStateCheckbox.id}}" type="checkbox" [(ngModel)]="openStateCheckbox.isChecked" class="col-1" />
-      <label class="col-4">{{openStateCheckbox.name}}</label>
-      <input id="{{closedStateCheckbox.id}}" type="checkbox" [(ngModel)]="closedStateCheckbox.isChecked" class="col-1" />
-      <label class="col-4">{{closedStateCheckbox.name}}</label>
+      <label class="checkbox-atom-container col-4">{{openStateCheckbox.name}}
+          <input id="{{openStateCheckbox.id}}" [(ngModel)]="openStateCheckbox.isChecked" type="checkbox">
+          <span class="checkbox-atom col-1"></span>
+      </label>
+      <label class="checkbox-atom-container col-4">{{closedStateCheckbox.name}}
+          <input id="{{closedStateCheckbox.id}}" [(ngModel)]="closedStateCheckbox.isChecked" type="checkbox">
+          <span class="checkbox-atom col-1"></span>
+      </label>
     </div>
   
     <div id="fil-grade-filter" class="col-12 grid-noGutter">
@@ -174,6 +180,6 @@
 
   <div class="fil-center">
     <button class="atom-buttons" (click)="CleanAll()">Limpiar</button>
-    <button class="atom-buttons-primary" (click)="searchClasses()">Buscar</button>
+    <button class="atom-buttons-primary atom-buttons-search" (click)="searchClasses()">Buscar</button>
   </div>
 </div>

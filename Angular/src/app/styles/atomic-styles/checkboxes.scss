@@ -1,0 +1,65 @@
+/* Customize the label (the container) */
+.checkbox-atom-container {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checkbox-atom-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkbox-atom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .checkbox-atom-container:hover input ~ .checkbox-atom {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .checkbox-atom-container input:checked ~ .checkbox-atom {
+    background-color: $light-blue;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkbox-atom:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkbox-atom-container input:checked ~ .checkbox-atom:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkbox-atom-container .checkbox-atom:after {
+    left: 5px;
+    top: 2px;
+    width: 3px;
+    height: 7px;
+    border: solid $white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

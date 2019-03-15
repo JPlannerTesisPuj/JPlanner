@@ -25,11 +25,12 @@
 
     label[for="fil-week-hours"] {
       display: block;
+      width: 75px;
+      margin-right: 0px;
     }
     .fil-hour-dropdown {
-      float: left;
       padding-left: 12px;
-      width: 150px;
+      width: 130px;
     }
     #fil-hourTo {
       display: none;
@@ -39,12 +40,10 @@
 
 .fil-credits,
 #fil-class-size {
-  display: inline-block;
+  display: block;
   .fil-credit-dropdown {
     min-height: 35px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    width: 200px;
+    width: 130px;
     padding-left: 12px;
   }
   .fil-input-number {
@@ -106,14 +105,14 @@
     margin-bottom: 6px;
   }
 
-  strong{
+  label{
     margin-left: 12px;
     margin-bottom: 12px;
   }
 
   select{
     margin: 12px;
-    width: 60px;
+    width: 200px;
     padding-left: 12px;
   }
 
@@ -125,4 +124,8 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.fil-padding-left{
+  padding-left: 12px;
 }
