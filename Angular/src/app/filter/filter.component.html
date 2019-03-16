@@ -5,7 +5,7 @@
 
 <div class="fil-border">
   <div class="fil-sub-menu-container grid-noGutter">
-    <button id="basic-search" class="atom-buttons-secondary" (click)='clickedTab($event)'>Básica</button>
+    <button id="basic-search" class="atom-buttons-secondary-first-selected" (click)='clickedTab($event)'>Básica</button>
     <button id="adv-search" class="atom-buttons-secondary" (click)='clickedTab($event)'>Avanzada</button>
   </div>
   <div class="grid-noGutter" id="fil-basic-search">
@@ -67,8 +67,8 @@
       </div>
     </div>
   
-    <div id="fil-credit-selector" class="col-12">
-      <label for="fil-credit-selector">
+    <div id="fil-class-size" class="col-12">
+      <label for="fil-class-size" class="fil-label-block">
         <strong>Créditos:</strong>
       </label>
       <select [hidden]="!shouldDisplayCreditValue1" class="col-6 atom-dropdown" [(ngModel)]="selectedCreditValue1"
@@ -77,9 +77,9 @@
           {{value.value}}
         </option>
       </select>
-      <select id="fil-creditLogicOp" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)"
-        class="fil-credit-dropdown col-12 atom-dropdown">
-        <option value="" disabled selected>Filtrar Por Creditos</option>
+      <select id="fil-creditLogic" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)"
+        class="fil-fdropdown fil-credit-dropdown col-12 atom-dropdown">
+        <option value="" disabled selected>N. créditos</option>
         <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
           {{comparator.value}}
         </option>
@@ -114,7 +114,7 @@
       <label for="fil-schoolyear-filter" class="col-12">
         <strong>Ciclo Lectivo:</strong>
       </label>
-      <select [(ngModel)]="year" class="col-6 atom-dropdown">
+      <select [(ngModel)]="year" class="col-4 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let schoolyear of dropdownSchoolYear">
           {{schoolyear}}
@@ -144,7 +144,7 @@
       <label for="fil-garde-filter" class="col-12">
         <strong>Grado:</strong>
       </label>
-      <select [(ngModel)]="gradeFilter" class="col-6 atom-dropdown">
+      <select [(ngModel)]="gradeFilter" class="col-4 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let grade of dropdownGrades" [ngValue]="grade.value">
           {{grade.name}}
@@ -153,7 +153,7 @@
     </div>
   
     <div id="fil-class-size" class="col-12 grid-noGutter">
-      <label for="fil-class-size">
+      <label for="fil-class-size" class="fil-label-block">
         <strong>Cupos Disponibles:</strong>
       </label>
       <select [hidden]="!shouldDisplaySizeValue1" class="col-6 atom-dropdown" [(ngModel)]="selectedSizeValue1"
@@ -180,7 +180,7 @@
       <label for="fil-teaching-mode" class="col-12">
         <strong>Modo de Enseñanza:</strong>
       </label>
-      <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-6 atom-dropdown">
+      <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-4 atom-dropdown">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
       </select>

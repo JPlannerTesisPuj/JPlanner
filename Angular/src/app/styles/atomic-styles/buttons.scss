@@ -90,7 +90,7 @@ color: "#d4dce9"
 
   &:hover{    
     border: solid 1px $black;
-    color: $black
+    color: $black;
   }
   &:active{
     box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -104,7 +104,7 @@ color: "#d4dce9"
     color: $black-20; 
   }
   &:focus{
-      outline: none;
+    outline: none;
   }
 }
 
@@ -143,5 +143,35 @@ color: "#d4dce9"
   }
   &:focus{
       outline: none;
+  }
+}
+
+.atom-buttons-secondary-first-selected{
+  background-color: $white;
+  font-family: $font-secondary;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: underline;
+  color: $black;
+  border: solid 1px $black;
+  padding: 8px 24px 8px 24px;
+  &:active{
+    box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px $black-50;
+    background-color: $white;
+    color: $black-50;
+  }
+  &:disabled{
+    border: solid 1px $black-30;
+    background-color: $black-50;
+    color: $black-20; 
+  }
+  &:focus{
+    outline: none;
   }
 }

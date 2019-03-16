@@ -21,16 +21,14 @@
     }
   }
   #fil-week-hours {
-    width: 100%;
 
     label[for="fil-week-hours"] {
-      display: block;
-      width: 75px;
+      width: 30px;
       margin-right: 0px;
     }
     .fil-hour-dropdown {
       padding-left: 12px;
-      width: 130px;
+      width: 140px;
     }
     #fil-hourTo {
       display: none;
@@ -112,9 +110,11 @@
   }
 
   select{
-    margin: 12px;
-    width: 200px;
+    margin-left: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
     padding-left: 12px;
+    width: 70px;
   }
 
 }
@@ -129,4 +129,8 @@
 
 .fil-padding-left{
   padding-left: 12px;
+}
+
+.fil-label-block{
+  display: block;
 }
