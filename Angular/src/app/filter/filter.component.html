@@ -51,14 +51,14 @@
       <ng-multiselect-dropdown class="col-12 atom-custom-margin" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
         [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
       </ng-multiselect-dropdown>
-      <div class="fil-padding-left">
+      <div class="radio-atom-fix-group">
           <div id="fil-day-comparator-state" class="col-12 grid-noGutter">
             <div class="cal-alt-radio-group">
-              <label class="cal-radio-container col-4">Buscar solamente en los días seleccionados
+              <label class="cal-radio-container col-4 radio-atom-fix">Buscar solamente en los días seleccionados
                   <input type="radio" name="fil-day-comparator" value="1" id="selected-days" [(ngModel)]="dayComparator">
                   <span class="atom-radio-btn col-1"></span>
               </label>
-              <label class="cal-radio-container col-4">Buscar en cualquiera de estos días
+              <label class="cal-radio-container col-4 radio-atom-fix">Buscar en cualquiera de estos días
                 <input type="radio" name="fil-day-comparator" value="0" id="all-days" [(ngModel)]="dayComparator">
                 <span class="atom-radio-btn col-1"></span>
             </label>

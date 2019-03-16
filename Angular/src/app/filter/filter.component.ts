@@ -153,10 +153,6 @@ export class FilterComponent implements OnInit {
         value: 'master'
       }
     ];
-
-    document.getElementById('basic-search').style.border = 'solid 1px #000000';
-    document.getElementById('basic-search').style.color = '#000000';
-    
   }
 
 
