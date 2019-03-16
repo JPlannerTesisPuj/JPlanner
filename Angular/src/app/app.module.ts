@@ -1,5 +1,5 @@
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -30,6 +30,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DataService } from './shared/data.service';
 import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/calendar.component';
 import localeEs from '@angular/common/locales/es';
+import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
 
 registerLocaleData(localeEs);
 
@@ -41,7 +42,8 @@ registerLocaleData(localeEs);
     ClassModalComponent,
     FilterComponent,
     CalendarComponent,
-    OverlapClassConfirmationDialog
+    OverlapClassConfirmationDialog,
+    DisplaySubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,10 @@ registerLocaleData(localeEs);
     OverlapClassConfirmationDialog
   ],
 
-  providers: [DataService],
+  providers: [
+    DataService,
+    {provide: LOCALE_ID, useValue: 'es'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

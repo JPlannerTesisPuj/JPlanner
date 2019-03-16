@@ -18,7 +18,7 @@ export class DisplayClassesComponent implements OnInit {
   @Input() calendarList: any;
 
   // Lista que tiene la información de las materias que se quieren visualizar
-  private classes: Subject[];
+  @Input() classes: Subject[];
   private filter: any;
   private error: string;
 
@@ -30,40 +30,9 @@ export class DisplayClassesComponent implements OnInit {
 
 
   // Se pide la dependencia de ReadJsonFileService
-  constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.showLoader = false;
-
-    //Supscripción a los mensajes
-    this.data.currentMessage.subscribe(message => {
-      //Reinicio arreglo y mensaje de error
-      this.classes = [];
-      this.error = '';
-      this.filter = message;
-      if (this.filter['type'] === 'filter') {
-        //Inicializa el loader cuando una busqueda es realizada
-        this.showLoader = true;
-        this.readJSONFileService.filter('classes', this.filter).subscribe(
-          classes => {
-            //Pinta en el buscador las clases encontradas
-            this.classes = classes;
-            this.numberClasses = this.classes.length;
-          },
-          //Maneja un error en el observable (Por ejemplo si el servicio esta caido)
-          error => {
-            this.error = 'Se ha producido un error, intentelo nuevamente';
-            this.showLoader = false;
-          },
-          //Esconde el loader cuando el observable finaliza
-          () => {
-            this.showLoader = false;
-          }
-        );
-
-      }
-    });
-  }
+  ngOnInit() { }
 
   private dropInside(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
