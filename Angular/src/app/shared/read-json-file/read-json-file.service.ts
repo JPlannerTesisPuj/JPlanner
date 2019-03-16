@@ -82,6 +82,12 @@ export class ReadJsonFileService {
   public filterToken(token: string): Observable<User[]> {
     return (this.http.get<User[]>(this.baseUrl + 'tokenauth/' + token, { withCredentials: true }));
   }
+  /**
+   * Servicio que guarda una materia en la base de datos
+   * 
+   * @param classNumber numero de clase, primary key
+   * @param name nombre de la clase
+   */
   
   public saveSubject(classNumber: any, name: string): Observable<any>{
     return (
@@ -89,6 +95,12 @@ export class ReadJsonFileService {
         this.baseUrl + 'putSubjectData/' + classNumber +'/'+name,{ withCredentials: true })
       );
   }
+   /**
+   * Servicio que guarda el usuario autenticado en la base de datos
+   * 
+   * @param idPerson id del usuario, primary key
+   * @param credentials token jwt
+   */
  
   public saveUser(idPerson: any, credentials: string): Observable<any>{
     return (
@@ -96,6 +108,12 @@ export class ReadJsonFileService {
         this.baseUrl + 'putUserData/' + idPerson +'/'+credentials,{ withCredentials: true })
       );
   }
+
+   /**
+   * Servicio que borra la materia en la base de datos
+   * 
+   * @param classNumber numero de clase, primary key
+   */
  
   public deleteSubject(classNumber: any): Observable<any>{
     return (
@@ -103,18 +121,23 @@ export class ReadJsonFileService {
         this.baseUrl + 'deleteSubjectData/' + classNumber,{ withCredentials: true })
       );
   }
+  /**
+   * Servicio que guarda las alternativas en la base de datos, idALternativa se autogenera
+   * 
+   * @param idPerson idPerson, foreign key referencia al usuario autenticado
+   */
   
-  public saveAlternative(idPerson: any, numberAlternatives: any): Observable<any>{
+  public saveAlternative(idPerson: any): Observable<any>{
     return (
       this.http.get<any>(
-        this.baseUrl + 'addAlternativeData/' + idPerson + '/' + numberAlternatives,{ withCredentials: true })
+        this.baseUrl + 'addAlternativeData/' + idPerson,{ withCredentials: true })
       );
   }
-
-  public getUser(){
-    return this.userToken;
-  }
-
+  /**
+   * Servicio que guarda las materias en determinada alternativa en la base de datos
+   * @param idAlternative idAlternative, foreign key referencia a la alternativa
+   * @param classNumber classNumber, foreign key referencia a la materia
+   */
 
   public saveSubjectAlternative(idAlternative: any, classNumber: any): Observable<any>{
     return (
@@ -122,9 +145,40 @@ export class ReadJsonFileService {
         this.baseUrl + 'addSubjectAlternative/' + idAlternative + '/' + classNumber,{ withCredentials: true })
       );
   }
+   /**
+   * Servicio que elimina las materias en determinada alternativa en la base de datos
+   * @param idAlternative idAlternative, foreign key referencia a la alternativa
+   * @param classNumber classNumber, foreign key referencia a la materia
+   */
 
 
-
+  public deleteSubjectAlternative(idAlternative: any, classNumber: any): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'deleteSubjectAlternative/' + idAlternative + '/' + classNumber,{ withCredentials: true })
+      );
+  }
+   /**
+   * Servicio que guarda los bloqueos en la base de datos
+   * @param addBlock idBlock, primary key del bloqueo
+   * @param idAlternative idAlternative, foreign key referencia a la alternativa
+   */
+  public addBlock(idBlock: any,idAlternative: any): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'addBlock/' + idBlock + '/' + idAlternative,{ withCredentials: true })
+      );
+  }
+  /**
+   * Servicio que elimina los bloqueos en la base de datos
+   * @param addBlock idBlock, primary key del bloqueo
+   */
+  public deleteBlock(idBlock: any): Observable<any>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'deleteBlock/' + idBlock,{ withCredentials: true })
+      );
+  }
 
   /**
    * Guarda al usuario que ingresó a la aplicación

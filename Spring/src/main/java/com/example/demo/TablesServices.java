@@ -35,7 +35,7 @@ public class TablesServices {
 	Optional<Usuario> find(@PathVariable("id") Long id) {
 		return repository.findById(id);
 	}
-	
+	// Servicio para guardar materia en la base de datos
 	@RequestMapping(value="/putSubjectData/{class_number}/{name}",method=RequestMethod.GET)
 	public void addSubject(@PathVariable("class_number") Long classNumber, 
 			 			@PathVariable("name") String name) {
@@ -48,7 +48,7 @@ public class TablesServices {
 		}
 		
 	}
-	
+	// Servicio para guardar un usuario en la base de datos
 	@RequestMapping(value="/putUserData/{id_person}/{credentials}",method=RequestMethod.GET)
 	public void addUser(@PathVariable("id_person") Long idPerson, 
 			 			@PathVariable("credentials") String credentials) {
@@ -61,9 +61,9 @@ public class TablesServices {
 		}
 		
 	}
-	
+	// Servicio para eliminar una materia de la base de datos
 	@RequestMapping(value="/deleteSubjectData/{class_number}",method=RequestMethod.GET)
-	public void addUser(@PathVariable("class_number") Long classNumber) {
+	public void deleteSubject(@PathVariable("class_number") Long classNumber) {
 		 
 		try {
 			jdbc.execute("DELETE FROM MATERIA WHERE CLASS_NUMBER="+classNumber);
@@ -72,13 +72,12 @@ public class TablesServices {
 		}
 		
 	}
-	
-	@RequestMapping(value="/addAlternativeData/{id_person}/{number_alternatives}",method=RequestMethod.GET)
-	public void addAlternative(@PathVariable("id_person") Long idPerson,
-							   @PathVariable("number_alternatives") Long numberAlternatives) {
+	// Servicio para guardar alternativas del usuario en la base de datos
+	@RequestMapping(value="/addAlternativeData/{id_person}",method=RequestMethod.GET)
+	public void addAlternative(@PathVariable("id_person") Long idPerson) {
 		 
 		try {
-			for(int i=1; i <= numberAlternatives ; i++) {
+			for(int i=1; i <= 6 ; i++) {
 				jdbc.execute("INSERT INTO ALTERNATIVA(PERSON_ID_PERSON) VALUES ("+idPerson+")");
 			}
 			
@@ -87,9 +86,9 @@ public class TablesServices {
 		}
 		
 	}
-	
+	// Servicio para guardar las materias por alternativa en la base de datos
 	@RequestMapping(value="/addSubjectAlternative/{id_alternative}/{class_number}",method=RequestMethod.GET)
-	public void addSubject_Alternative(@PathVariable("id_alternative") Long idAlternative,
+	public void addSubject_Alternative(@PathVariable("id_alternative") int idAlternative,
 							   @PathVariable("class_number") Long classNumber) {
 		 
 		try {		
@@ -99,6 +98,52 @@ public class TablesServices {
 		}
 		
 	}
+	
+    // Servicio para eliminar las materias por alternativa de la base de datos
+	@RequestMapping(value="/deleteSubjectAlternative/{id_alternative}/{class_number}",method=RequestMethod.GET)
+	public void deleteSubject_Alternative(@PathVariable("id_alternative") int idAlternative,
+							   @PathVariable("class_number") Long classNumber) {
+		 
+		try {		
+			
+			jdbc.execute("DELETE FROM MATERIA_ALTERNATIVA WHERE CLASS_NUMBER="+classNumber+"AND ID_ALTERNATIVE="+idAlternative);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	// Servicio para guardar un bloqueo en la base de datos
+	@RequestMapping(value="/addBlock/{id_block}/{id_alternative}",method=RequestMethod.GET)
+	public void addBlock(
+			@PathVariable("id_block") String idBlock,
+			@PathVariable("id_alternative") int idAlternative) {
+		 
+		try {		
+			
+			jdbc.execute(
+					"INSERT INTO BLOQUEO(ID_BLOCK,ALTERNATIVE_ID_ALTERNATIVE) VALUES('"+idBlock+"',"+idAlternative+")");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	// Servicio para eliminar un bloqueo de la base de datos
+	@RequestMapping(value="/deleteBlock/{id_block}",method=RequestMethod.GET)
+	public void deleteBlock(
+			@PathVariable("id_block") String idBlock) {
+		 
+		try {		
+			
+			jdbc.execute(
+					"DELETE FROM BLOQUEO WHERE ID_BLOCK='"+idBlock+"'");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
 	
 	
 	

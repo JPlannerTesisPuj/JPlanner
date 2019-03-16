@@ -259,6 +259,7 @@ export class CalendarComponent implements OnInit {
         this.verticalMenuIndex = 1;
       }
     });
+
   }
 
 
@@ -448,15 +449,12 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
-    console.log(this.currentAlternative);
+    // Se llama al servicio que guarda las materias en la base de datos
     this.readJSONFileService.saveSubject(subjectToDisplay.numeroClase, subjectToDisplay.nombre).subscribe();
-    let user: User;
-    user = this.readJSONFileService.getUser();
-    this.readJSONFileService.saveAlternative(user.GID, this.numberOfAlternatives).subscribe();
-    console.log((this.currentAlternative+1));
-    this.readJSONFileService.saveSubjectAlternative((this.currentAlternative+1),subjectToDisplay.numeroClase).subscribe();
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
+    // Se llama al servicio que guarda las materias dependiendo de la alternativa en la base de datos
+    this.readJSONFileService.saveSubjectAlternative((this.currentAlternative+1),subjectToDisplay.numeroClase).subscribe();
   }
 
   /**
@@ -531,11 +529,12 @@ export class CalendarComponent implements OnInit {
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
     let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
-    this.readJSONFileService.deleteSubject(auxClass[0].numeroClase).subscribe();
+    this.readJSONFileService.deleteSubjectAlternative((this.currentAlternative+1),auxClass[0].numeroClase).subscribe();
     this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
+    this.readJSONFileService.deleteSubject(auxClass[0].numeroClase).subscribe();
 
 
   }
@@ -855,7 +854,8 @@ export class CalendarComponent implements OnInit {
         },
         cssClass: "cal-block"
       };
-
+      // Se llama el servicio que guarda el bloqueo en la base de datos
+      this.readJSONFileService.addBlock(newBlock.id,(this.currentAlternative+1)).subscribe();
       this.classes = [...this.classes, newBlock];
       this.calendarBlocks.push(
         new CalendarBlock(
@@ -965,7 +965,8 @@ export class CalendarComponent implements OnInit {
     if (blockIndexToDelete != -1) {
       this.classes.splice(blockIndexToDelete, 1);
     }
-
+    // Se llama el servicio que elimina un bloqueo de la base de datos
+    this.readJSONFileService.deleteBlock(blockIdToDelete).subscribe();
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
   }
