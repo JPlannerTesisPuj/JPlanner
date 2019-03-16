@@ -21,6 +21,7 @@
   }
   .mat-tab-body-content {
     border: 1px solid $black-20;
+    overflow: hidden;
   }
   .mat-tab-body.mat-tab-body-active {
     overflow-y: hidden;

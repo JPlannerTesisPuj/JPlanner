@@ -54,14 +54,14 @@
       <div class="fil-padding-left">
           <div id="fil-day-comparator-state" class="col-12 grid-noGutter">
             <div class="cal-alt-radio-group">
-              <label class="cal-radio-container col-4" *ngFor='let ind of alternativeIterationArray'>Buscar solamente en los días seleccionados
-                  <input type="radio" name="fil-day-comparator" value="1" id="selected-days" [value]=ind [(ngModel)]="dayComparator" (change)="onItemChange(ind)">
+              <label class="cal-radio-container col-4">Buscar solamente en los días seleccionados
+                  <input type="radio" name="fil-day-comparator" value="1" id="selected-days" [(ngModel)]="dayComparator">
                   <span class="atom-radio-btn col-1"></span>
               </label>
-              <label class="cal-radio-container col-4" *ngFor='let ind of alternativeIterationArray'>Buscar en cualquiera de estos días
-                  <input type="radio" name="fil-day-comparator" value="0" id="all-days" [value]=ind [(ngModel)]="dayComparator" (change)="onItemChange(ind)">
-                  <span class="atom-radio-btn col-1"></span>
-              </label>
+              <label class="cal-radio-container col-4">Buscar en cualquiera de estos días
+                <input type="radio" name="fil-day-comparator" value="0" id="all-days" [(ngModel)]="dayComparator">
+                <span class="atom-radio-btn col-1"></span>
+            </label>
             </div>
           </div>
       </div>
