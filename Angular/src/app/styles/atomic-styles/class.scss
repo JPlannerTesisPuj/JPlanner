@@ -1,0 +1,41 @@
+.class {
+    &-box {
+        background-color: $light-blue;
+        padding: 8px;
+        padding-right: 4px;
+        border-radius: 8px;
+        color: $white;
+        font-weight: 900;
+        font-size: 14px;
+        line-height: 20px;
+        font-family: $font-main;
+
+        a, p {
+            color: $white;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+            text-transform: capitalize;
+            font-family: $font-main;
+            cursor: pointer;
+            display: block;
+        }
+
+        span {
+            font-weight: 500;
+            font-style: italic;
+            font-size: 11px;
+            line-height: 18px;
+            text-align: right;
+            display: block;
+            margin-top: 22px;
+            font-family: $font-main;
+
+            em {
+                font-size: 14px;
+                font-family: $font-main;
+                line-height: 18px;
+            }
+        }
+    }
+}
