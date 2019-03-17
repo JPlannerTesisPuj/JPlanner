@@ -112,6 +112,7 @@ export class CalendarComponent implements OnInit {
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
   private pru: string;
+  private creditCounter = 0;
 
 
   private verticalMenuIndex: number = 0;
@@ -259,6 +260,8 @@ export class CalendarComponent implements OnInit {
       }
     });
   }
+
+
 
   /**
    * Captura el evento swipe cuando este se realice en el calendar: left o right
@@ -444,6 +447,7 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
+    this.creditCounter += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
@@ -519,12 +523,12 @@ export class CalendarComponent implements OnInit {
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
+    let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
+    this.creditCounter -= auxClass[0].creditos
     this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
-    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
+    this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
-
-
   }
 
   /**
@@ -676,20 +680,6 @@ export class CalendarComponent implements OnInit {
 
     blockParentID = 'block_' + this.blockIdCount;
     const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, addHours(firstBlockDate, 1), blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID);
-
-    // Agrega los bloqueos de los días en todas las semanas
-    for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
-      /**
-       * @var blockIDWeek 
-       * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
-       */
-      let blockIDWeek: string = blockParentID + '__0__' + contWeeks;
-      let startDayOnWeek: Date = addWeeks(firstBlockDate, contWeeks);
-      let endDayOnWeek: Date = addWeeks(addHours(firstBlockDate, 1), contWeeks);
-
-      // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
-      this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID);
-    }
 
     this.blockIdCount++;
     // Se toma la posición del cuadro que fue seleccionado para agregar el bloqueo
@@ -969,6 +959,13 @@ export class CalendarComponent implements OnInit {
   }: CalendarEventTimesChangedEvent): void {
     this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
     this.refresh.next();
+  }
+  private titleCaseWord(word: string) {
+    if (!word) {
+      return word;
+    }
+
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 }
 

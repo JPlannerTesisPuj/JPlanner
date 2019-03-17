@@ -8,6 +8,8 @@
 @import './styles/atomic-styles/input-fields.scss';
 @import './styles/atomic-styles/menu-buttons.scss';
 @import './styles/atomic-styles/radio-buttons.scss';
+@import './styles/atomic-styles/subject.scss';
+@import './styles/atomic-styles/class.scss';
 
 //Molecules
 @import './styles/molecular-styles/paginator.scss';
@@ -18,6 +20,7 @@
 @import './app.component';
 @import './calendar/calendar.component';
 @import './class-modal/class-modal.component';
+@import './display-subjects/display-subjects.component';
 
 
 // This library is used to style the Calendar View provided by angular-calendar.
