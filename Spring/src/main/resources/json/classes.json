@@ -473,803 +473,802 @@
       }
     ]
   },
-  [
-    {
-      "numeroClase": 843199,
-      "idCurso": 3583,
-      "nombre": "NICUT",
-      "profesor": "Shephard Morraw",
-      "creditos": 7,
-      "cuposTotales": 39,
-      "cuposDisponibles": 20,
-      "modoEnsenanza": "Presencial",
-      "estado": "cerrada",
-      "grado": "Pregrado",
-      "unidadAcademica": "BRAGG COURT",
-      "cicloLectivo": "2018-3",
-      "puedeVerMateria": true,
-      "descripcion": "Irure in ut ipsum fugiat laborum. Enim labore ea culpa occaecat minim deserunt qui incididunt nulla laborum id. Elit eiusmod nulla consectetur veniam proident consectetur id ea ea esse. Consequat officia exercitation consectetur veniam enim est ad dolor eu. Anim nisi qui id adipisicing et elit.\r\n",
-      "horarios": [
-        {
-          "dia": 2,
-          "salon": "11-114",
-          "horaInicio": 1548208800000,
-          "horaFin": 1548212400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "2-355",
-          "horaInicio": 1548468000000,
-          "horaFin": 1548471600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "18-468",
-          "horaInicio": 1548813600000,
-          "horaFin": 1548817200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "3-446",
-          "horaInicio": 1549072800000,
-          "horaFin": 1549076400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "17-418",
-          "horaInicio": 1549418400000,
-          "horaFin": 1549422000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "15-472",
-          "horaInicio": 1549677600000,
-          "horaFin": 1549681200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "10-430",
-          "horaInicio": 1550023200000,
-          "horaFin": 1550026800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "8-15",
-          "horaInicio": 1550282400000,
-          "horaFin": 1550286000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "7-486",
-          "horaInicio": 1550628000000,
-          "horaFin": 1550631600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "7-174",
-          "horaInicio": 1550887200000,
-          "horaFin": 1550890800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "3-399",
-          "horaInicio": 1551232800000,
-          "horaFin": 1551236400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "19-169",
-          "horaInicio": 1551492000000,
-          "horaFin": 1551495600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "6-166",
-          "horaInicio": 1551837600000,
-          "horaFin": 1551841200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "10-335",
-          "horaInicio": 1552096800000,
-          "horaFin": 1552100400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "19-166",
-          "horaInicio": 1552442400000,
-          "horaFin": 1552446000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "18-233",
-          "horaInicio": 1552701600000,
-          "horaFin": 1552705200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "3-443",
-          "horaInicio": 1553047200000,
-          "horaFin": 1553050800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "16-292",
-          "horaInicio": 1553306400000,
-          "horaFin": 1553310000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "4-414",
-          "horaInicio": 1553652000000,
-          "horaFin": 1553655600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "7-123",
-          "horaInicio": 1553911200000,
-          "horaFin": 1553914800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "3-171",
-          "horaInicio": 1554256800000,
-          "horaFin": 1554260400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "12-104",
-          "horaInicio": 1554516000000,
-          "horaFin": 1554519600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "3-163",
-          "horaInicio": 1554861600000,
-          "horaFin": 1554865200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "10-280",
-          "horaInicio": 1555120800000,
-          "horaFin": 1555124400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "8-194",
-          "horaInicio": 1555466400000,
-          "horaFin": 1555470000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "6-427",
-          "horaInicio": 1555725600000,
-          "horaFin": 1555729200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "13-97",
-          "horaInicio": 1556071200000,
-          "horaFin": 1556074800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "5-398",
-          "horaInicio": 1556330400000,
-          "horaFin": 1556334000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "11-104",
-          "horaInicio": 1556676000000,
-          "horaFin": 1556679600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "2-72",
-          "horaInicio": 1556935200000,
-          "horaFin": 1556938800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "8-182",
-          "horaInicio": 1557280800000,
-          "horaFin": 1557284400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "11-437",
-          "horaInicio": 1557540000000,
-          "horaFin": 1557543600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "17-169",
-          "horaInicio": 1557885600000,
-          "horaFin": 1557889200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "16-329",
-          "horaInicio": 1558144800000,
-          "horaFin": 1558148400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "3-359",
-          "horaInicio": 1558490400000,
-          "horaFin": 1558494000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "16-310",
-          "horaInicio": 1558749600000,
-          "horaFin": 1558753200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "14-467",
-          "horaInicio": 1559095200000,
-          "horaFin": 1559098800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "10-139",
-          "horaInicio": 1559354400000,
-          "horaFin": 1559358000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        }
-      ]
-    },
-    {
-      "numeroClase": 843290,
-      "idCurso": 3583,
-      "nombre": "NICUT",
-      "profesor": "Astermin Morrow",
-      "creditos": 7,
-      "cuposTotales": 39,
-      "cuposDisponibles": 20,
-      "modoEnsenanza": "Presencial",
-      "estado": "cerrada",
-      "grado": "Pregrado",
-      "unidadAcademica": "BRAGG COURT",
-      "cicloLectivo": "2018-3",
-      "puedeVerMateria": true,
-      "descripcion": "Irure in ut ipsum fugiat laborum. Enim labore ea culpa occaecat minim deserunt qui incididunt nulla laborum id. Elit eiusmod nulla consectetur veniam proident consectetur id ea ea esse. Consequat officia exercitation consectetur veniam enim est ad dolor eu. Anim nisi qui id adipisicing et elit.\r\n",
-      "horarios": [
-        {
-          "dia": 2,
-          "salon": "20-498",
-          "horaInicio": 1548208800000,
-          "horaFin": 1548212400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "13-123",
-          "horaInicio": 1548468000000,
-          "horaFin": 1548471600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "18-73",
-          "horaInicio": 1548554400000,
-          "horaFin": 1548558000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "14-395",
-          "horaInicio": 1548813600000,
-          "horaFin": 1548817200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "9-351",
-          "horaInicio": 1549072800000,
-          "horaFin": 1549076400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "4-312",
-          "horaInicio": 1549159200000,
-          "horaFin": 1549162800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "16-443",
-          "horaInicio": 1549418400000,
-          "horaFin": 1549422000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "17-247",
-          "horaInicio": 1549677600000,
-          "horaFin": 1549681200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "1-399",
-          "horaInicio": 1549764000000,
-          "horaFin": 1549767600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "2-384",
-          "horaInicio": 1550023200000,
-          "horaFin": 1550026800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "4-340",
-          "horaInicio": 1550282400000,
-          "horaFin": 1550286000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "2-382",
-          "horaInicio": 1550368800000,
-          "horaFin": 1550372400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "4-150",
-          "horaInicio": 1550628000000,
-          "horaFin": 1550631600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "6-185",
-          "horaInicio": 1550887200000,
-          "horaFin": 1550890800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "17-254",
-          "horaInicio": 1550973600000,
-          "horaFin": 1550977200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "5-264",
-          "horaInicio": 1551232800000,
-          "horaFin": 1551236400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "14-417",
-          "horaInicio": 1551492000000,
-          "horaFin": 1551495600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "5-451",
-          "horaInicio": 1551578400000,
-          "horaFin": 1551582000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "15-79",
-          "horaInicio": 1551837600000,
-          "horaFin": 1551841200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "10-493",
-          "horaInicio": 1552096800000,
-          "horaFin": 1552100400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "17-189",
-          "horaInicio": 1552183200000,
-          "horaFin": 1552186800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "13-283",
-          "horaInicio": 1552442400000,
-          "horaFin": 1552446000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "13-80",
-          "horaInicio": 1552701600000,
-          "horaFin": 1552705200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "18-94",
-          "horaInicio": 1552788000000,
-          "horaFin": 1552791600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "18-500",
-          "horaInicio": 1553047200000,
-          "horaFin": 1553050800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "16-294",
-          "horaInicio": 1553306400000,
-          "horaFin": 1553310000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "2-384",
-          "horaInicio": 1553392800000,
-          "horaFin": 1553396400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "19-381",
-          "horaInicio": 1553652000000,
-          "horaFin": 1553655600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "12-403",
-          "horaInicio": 1553911200000,
-          "horaFin": 1553914800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "19-207",
-          "horaInicio": 1553997600000,
-          "horaFin": 1554001200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "1-185",
-          "horaInicio": 1554256800000,
-          "horaFin": 1554260400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "17-239",
-          "horaInicio": 1554516000000,
-          "horaFin": 1554519600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "4-423",
-          "horaInicio": 1554602400000,
-          "horaFin": 1554606000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "8-32",
-          "horaInicio": 1554861600000,
-          "horaFin": 1554865200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "11-138",
-          "horaInicio": 1555120800000,
-          "horaFin": 1555124400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "3-314",
-          "horaInicio": 1555207200000,
-          "horaFin": 1555210800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "2-242",
-          "horaInicio": 1555466400000,
-          "horaFin": 1555470000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "11-356",
-          "horaInicio": 1555725600000,
-          "horaFin": 1555729200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "10-244",
-          "horaInicio": 1555812000000,
-          "horaFin": 1555815600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "18-122",
-          "horaInicio": 1556071200000,
-          "horaFin": 1556074800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "4-380",
-          "horaInicio": 1556330400000,
-          "horaFin": 1556334000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "3-473",
-          "horaInicio": 1556416800000,
-          "horaFin": 1556420400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "1-389",
-          "horaInicio": 1556676000000,
-          "horaFin": 1556679600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "9-195",
-          "horaInicio": 1556935200000,
-          "horaFin": 1556938800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "13-452",
-          "horaInicio": 1557021600000,
-          "horaFin": 1557025200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "16-445",
-          "horaInicio": 1557280800000,
-          "horaFin": 1557284400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "10-453",
-          "horaInicio": 1557540000000,
-          "horaFin": 1557543600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "16-390",
-          "horaInicio": 1557626400000,
-          "horaFin": 1557630000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "12-230",
-          "horaInicio": 1557885600000,
-          "horaFin": 1557889200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "7-200",
-          "horaInicio": 1558144800000,
-          "horaFin": 1558148400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "20-343",
-          "horaInicio": 1558231200000,
-          "horaFin": 1558234800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "20-13",
-          "horaInicio": 1558490400000,
-          "horaFin": 1558494000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "11-220",
-          "horaInicio": 1558749600000,
-          "horaFin": 1558753200000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "18-406",
-          "horaInicio": 1558836000000,
-          "horaFin": 1558839600000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 2,
-          "salon": "3-418",
-          "horaInicio": 1559095200000,
-          "horaFin": 1559098800000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 5,
-          "salon": "9-95",
-          "horaInicio": 1559354400000,
-          "horaFin": 1559358000000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        },
-        {
-          "dia": 6,
-          "salon": "19-194",
-          "horaInicio": 1559440800000,
-          "horaFin": 1559444400000,
-          "horaNumeroInicio": 21,
-          "horaNumeroFin": 22
-        }
-      ]
-    },
+  {
+    "numeroClase": 843199,
+    "idCurso": 3583,
+    "nombre": "NICUT",
+    "profesor": "Shephard Morraw",
+    "creditos": 7,
+    "cuposTotales": 39,
+    "cuposDisponibles": 20,
+    "modoEnsenanza": "Presencial",
+    "estado": "cerrada",
+    "grado": "Pregrado",
+    "unidadAcademica": "BRAGG COURT",
+    "cicloLectivo": "2018-3",
+    "puedeVerMateria": true,
+    "descripcion": "Irure in ut ipsum fugiat laborum. Enim labore ea culpa occaecat minim deserunt qui incididunt nulla laborum id. Elit eiusmod nulla consectetur veniam proident consectetur id ea ea esse. Consequat officia exercitation consectetur veniam enim est ad dolor eu. Anim nisi qui id adipisicing et elit.\r\n",
+    "horarios": [
+      {
+        "dia": 2,
+        "salon": "11-114",
+        "horaInicio": 1548208800000,
+        "horaFin": 1548212400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "2-355",
+        "horaInicio": 1548468000000,
+        "horaFin": 1548471600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "18-468",
+        "horaInicio": 1548813600000,
+        "horaFin": 1548817200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "3-446",
+        "horaInicio": 1549072800000,
+        "horaFin": 1549076400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "17-418",
+        "horaInicio": 1549418400000,
+        "horaFin": 1549422000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "15-472",
+        "horaInicio": 1549677600000,
+        "horaFin": 1549681200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "10-430",
+        "horaInicio": 1550023200000,
+        "horaFin": 1550026800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "8-15",
+        "horaInicio": 1550282400000,
+        "horaFin": 1550286000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "7-486",
+        "horaInicio": 1550628000000,
+        "horaFin": 1550631600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "7-174",
+        "horaInicio": 1550887200000,
+        "horaFin": 1550890800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "3-399",
+        "horaInicio": 1551232800000,
+        "horaFin": 1551236400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "19-169",
+        "horaInicio": 1551492000000,
+        "horaFin": 1551495600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "6-166",
+        "horaInicio": 1551837600000,
+        "horaFin": 1551841200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "10-335",
+        "horaInicio": 1552096800000,
+        "horaFin": 1552100400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "19-166",
+        "horaInicio": 1552442400000,
+        "horaFin": 1552446000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "18-233",
+        "horaInicio": 1552701600000,
+        "horaFin": 1552705200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "3-443",
+        "horaInicio": 1553047200000,
+        "horaFin": 1553050800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "16-292",
+        "horaInicio": 1553306400000,
+        "horaFin": 1553310000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "4-414",
+        "horaInicio": 1553652000000,
+        "horaFin": 1553655600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "7-123",
+        "horaInicio": 1553911200000,
+        "horaFin": 1553914800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "3-171",
+        "horaInicio": 1554256800000,
+        "horaFin": 1554260400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "12-104",
+        "horaInicio": 1554516000000,
+        "horaFin": 1554519600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "3-163",
+        "horaInicio": 1554861600000,
+        "horaFin": 1554865200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "10-280",
+        "horaInicio": 1555120800000,
+        "horaFin": 1555124400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "8-194",
+        "horaInicio": 1555466400000,
+        "horaFin": 1555470000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "6-427",
+        "horaInicio": 1555725600000,
+        "horaFin": 1555729200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "13-97",
+        "horaInicio": 1556071200000,
+        "horaFin": 1556074800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "5-398",
+        "horaInicio": 1556330400000,
+        "horaFin": 1556334000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "11-104",
+        "horaInicio": 1556676000000,
+        "horaFin": 1556679600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "2-72",
+        "horaInicio": 1556935200000,
+        "horaFin": 1556938800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "8-182",
+        "horaInicio": 1557280800000,
+        "horaFin": 1557284400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "11-437",
+        "horaInicio": 1557540000000,
+        "horaFin": 1557543600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "17-169",
+        "horaInicio": 1557885600000,
+        "horaFin": 1557889200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "16-329",
+        "horaInicio": 1558144800000,
+        "horaFin": 1558148400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "3-359",
+        "horaInicio": 1558490400000,
+        "horaFin": 1558494000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "16-310",
+        "horaInicio": 1558749600000,
+        "horaFin": 1558753200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "14-467",
+        "horaInicio": 1559095200000,
+        "horaFin": 1559098800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "10-139",
+        "horaInicio": 1559354400000,
+        "horaFin": 1559358000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      }
+    ]
+  },
+  {
+    "numeroClase": 843290,
+    "idCurso": 3583,
+    "nombre": "NICUT",
+    "profesor": "Astermin Morrow",
+    "creditos": 7,
+    "cuposTotales": 39,
+    "cuposDisponibles": 20,
+    "modoEnsenanza": "Presencial",
+    "estado": "cerrada",
+    "grado": "Pregrado",
+    "unidadAcademica": "BRAGG COURT",
+    "cicloLectivo": "2018-3",
+    "puedeVerMateria": true,
+    "descripcion": "Irure in ut ipsum fugiat laborum. Enim labore ea culpa occaecat minim deserunt qui incididunt nulla laborum id. Elit eiusmod nulla consectetur veniam proident consectetur id ea ea esse. Consequat officia exercitation consectetur veniam enim est ad dolor eu. Anim nisi qui id adipisicing et elit.\r\n",
+    "horarios": [
+      {
+        "dia": 2,
+        "salon": "20-498",
+        "horaInicio": 1548208800000,
+        "horaFin": 1548212400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "13-123",
+        "horaInicio": 1548468000000,
+        "horaFin": 1548471600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "18-73",
+        "horaInicio": 1548554400000,
+        "horaFin": 1548558000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "14-395",
+        "horaInicio": 1548813600000,
+        "horaFin": 1548817200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "9-351",
+        "horaInicio": 1549072800000,
+        "horaFin": 1549076400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "4-312",
+        "horaInicio": 1549159200000,
+        "horaFin": 1549162800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "16-443",
+        "horaInicio": 1549418400000,
+        "horaFin": 1549422000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "17-247",
+        "horaInicio": 1549677600000,
+        "horaFin": 1549681200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "1-399",
+        "horaInicio": 1549764000000,
+        "horaFin": 1549767600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "2-384",
+        "horaInicio": 1550023200000,
+        "horaFin": 1550026800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "4-340",
+        "horaInicio": 1550282400000,
+        "horaFin": 1550286000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "2-382",
+        "horaInicio": 1550368800000,
+        "horaFin": 1550372400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "4-150",
+        "horaInicio": 1550628000000,
+        "horaFin": 1550631600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "6-185",
+        "horaInicio": 1550887200000,
+        "horaFin": 1550890800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "17-254",
+        "horaInicio": 1550973600000,
+        "horaFin": 1550977200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "5-264",
+        "horaInicio": 1551232800000,
+        "horaFin": 1551236400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "14-417",
+        "horaInicio": 1551492000000,
+        "horaFin": 1551495600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "5-451",
+        "horaInicio": 1551578400000,
+        "horaFin": 1551582000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "15-79",
+        "horaInicio": 1551837600000,
+        "horaFin": 1551841200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "10-493",
+        "horaInicio": 1552096800000,
+        "horaFin": 1552100400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "17-189",
+        "horaInicio": 1552183200000,
+        "horaFin": 1552186800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "13-283",
+        "horaInicio": 1552442400000,
+        "horaFin": 1552446000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "13-80",
+        "horaInicio": 1552701600000,
+        "horaFin": 1552705200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "18-94",
+        "horaInicio": 1552788000000,
+        "horaFin": 1552791600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "18-500",
+        "horaInicio": 1553047200000,
+        "horaFin": 1553050800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "16-294",
+        "horaInicio": 1553306400000,
+        "horaFin": 1553310000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "2-384",
+        "horaInicio": 1553392800000,
+        "horaFin": 1553396400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "19-381",
+        "horaInicio": 1553652000000,
+        "horaFin": 1553655600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "12-403",
+        "horaInicio": 1553911200000,
+        "horaFin": 1553914800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "19-207",
+        "horaInicio": 1553997600000,
+        "horaFin": 1554001200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "1-185",
+        "horaInicio": 1554256800000,
+        "horaFin": 1554260400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "17-239",
+        "horaInicio": 1554516000000,
+        "horaFin": 1554519600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "4-423",
+        "horaInicio": 1554602400000,
+        "horaFin": 1554606000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "8-32",
+        "horaInicio": 1554861600000,
+        "horaFin": 1554865200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "11-138",
+        "horaInicio": 1555120800000,
+        "horaFin": 1555124400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "3-314",
+        "horaInicio": 1555207200000,
+        "horaFin": 1555210800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "2-242",
+        "horaInicio": 1555466400000,
+        "horaFin": 1555470000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "11-356",
+        "horaInicio": 1555725600000,
+        "horaFin": 1555729200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "10-244",
+        "horaInicio": 1555812000000,
+        "horaFin": 1555815600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "18-122",
+        "horaInicio": 1556071200000,
+        "horaFin": 1556074800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "4-380",
+        "horaInicio": 1556330400000,
+        "horaFin": 1556334000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "3-473",
+        "horaInicio": 1556416800000,
+        "horaFin": 1556420400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "1-389",
+        "horaInicio": 1556676000000,
+        "horaFin": 1556679600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "9-195",
+        "horaInicio": 1556935200000,
+        "horaFin": 1556938800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "13-452",
+        "horaInicio": 1557021600000,
+        "horaFin": 1557025200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "16-445",
+        "horaInicio": 1557280800000,
+        "horaFin": 1557284400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "10-453",
+        "horaInicio": 1557540000000,
+        "horaFin": 1557543600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "16-390",
+        "horaInicio": 1557626400000,
+        "horaFin": 1557630000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "12-230",
+        "horaInicio": 1557885600000,
+        "horaFin": 1557889200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "7-200",
+        "horaInicio": 1558144800000,
+        "horaFin": 1558148400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "20-343",
+        "horaInicio": 1558231200000,
+        "horaFin": 1558234800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "20-13",
+        "horaInicio": 1558490400000,
+        "horaFin": 1558494000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "11-220",
+        "horaInicio": 1558749600000,
+        "horaFin": 1558753200000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "18-406",
+        "horaInicio": 1558836000000,
+        "horaFin": 1558839600000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 2,
+        "salon": "3-418",
+        "horaInicio": 1559095200000,
+        "horaFin": 1559098800000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 5,
+        "salon": "9-95",
+        "horaInicio": 1559354400000,
+        "horaFin": 1559358000000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      },
+      {
+        "dia": 6,
+        "salon": "19-194",
+        "horaInicio": 1559440800000,
+        "horaFin": 1559444400000,
+        "horaNumeroInicio": 21,
+        "horaNumeroFin": 22
+      }
+    ]
+  },
   {
     "numeroClase": 999318,
     "idCurso": 2588,

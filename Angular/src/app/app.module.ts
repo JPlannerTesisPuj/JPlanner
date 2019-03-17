@@ -1,5 +1,5 @@
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -20,7 +20,7 @@ import { ClassModalComponent } from './class-modal/class-modal.component';
 import { FilterComponent } from './filter/filter.component';
 
 // Librerías necesarias para mostrar el calendario
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -29,7 +29,10 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { DataService } from './shared/data.service';
 import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/calendar.component';
+import localeEs from '@angular/common/locales/es';
+import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
 
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/ca
     ClassModalComponent,
     FilterComponent,
     CalendarComponent,
-    OverlapClassConfirmationDialog
+    OverlapClassConfirmationDialog,
+    DisplaySubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,10 @@ import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/ca
     OverlapClassConfirmationDialog
   ],
 
-  providers: [DataService],
+  providers: [
+    DataService,
+    {provide: LOCALE_ID, useValue: 'es'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

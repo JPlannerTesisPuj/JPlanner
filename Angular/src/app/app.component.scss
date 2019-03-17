@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .cmp-header {
     overflow: hidden;
     background-color: $dark-blue-90;
@@ -24,3 +28,90 @@
 * {
   box-sizing: border-box;
 }
+
+.app-blocked-menu{
+  position: fixed;
+  background: $black;
+  opacity: 0.7;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.app-float-btn-cross,.app-float-btn-x{
+  position: fixed;
+  bottom:21px;
+  @media (max-width: $vp-mobile) {
+    bottom:70px;
+  }
+  right:28px;
+  z-index: 200;
+  border: 20px solid;
+  border-radius: 50%;
+  color:$light-blue;
+  opacity: 0.5;
+
+  .btn-icon{
+    position: absolute;
+    font-size: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:$white;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+  
+}
+
+.app-float-btn-x{
+  color:$red;
+  opacity: 1;
+}
+
+.app-menu-options{
+  position: fixed;
+  bottom:32px;
+  right:29px;
+  z-index: 205;
+  list-style-type: none;
+
+  li{
+    a{
+      display: block;
+      margin-bottom: 32px;
+      color:$white;
+      font-family: $font-secondary;
+      font-size: $space-md;
+      position: relative;
+      text-align: right;    
+     
+    i{
+      position: absolute;
+      background: $light-blue;
+      border-radius: 50%;
+      right:0;
+      font-size: 27px;
+      bottom: -10px;
+      padding:6px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    p{
+      position: relative;
+      right: 55px;
+      font-weight: bold;
+      font-size:16px;
+    }
+  }
+  }
+}
+
+
+
+
