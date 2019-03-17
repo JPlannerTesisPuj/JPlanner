@@ -1,6 +1,30 @@
  .atom-custom-margin .multiselect-dropdown .dropdown-btn {
     width: 90% !important;
     margin-left: 12px !important; 
+
+    div.dropdown-list{
+        width: 90% !important;
+        margin-left: 12px !important; 
+        margin-top: 0px !important;
+    }
+    
+    span.selected-item.ng-star-inserted{
+        background-color: $light-blue !important;
+        margin-bottom: 4px;
+    }
+
+    li.multiselect-item-checkbox.ng-star-inserted{
+        div{
+            &::after{   
+                border-color: $light-blue !important;
+            }
+            &::before{
+                border-color: $light-blue !important;
+                color: $light-blue !important;
+            }
+        }
+    }
+
  }
  
  .atom-dropdown{
