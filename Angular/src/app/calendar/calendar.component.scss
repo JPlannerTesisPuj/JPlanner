@@ -116,6 +116,9 @@
     min-width: 56px;
     padding:0;
     color: #2c5697;
+    &:first-child{
+      margin-left:0;
+    }
   }
   .mat-tab-label-content i{
     font-size: 32px;
