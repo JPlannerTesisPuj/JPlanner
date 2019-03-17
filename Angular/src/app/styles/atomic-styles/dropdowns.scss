@@ -1,14 +1,19 @@
  .atom-custom-margin .multiselect-dropdown .dropdown-btn {
+    font: $font-main;
+    font-style: italic;
     width: 90% !important;
     margin-left: 12px !important; 
 
     span.selected-item.ng-star-inserted{
         background-color: $light-blue !important;
         margin-bottom: 4px;
+        border-radius: 5px !important;
     }
  }
 
  .atom-custom-list .multiselect-dropdown .dropdown-list {
+    font: $font-main;
+    font-style: italic;
     width: 90% !important;
     margin-left: 12px !important; 
     margin-top: 0px !important;
@@ -25,9 +30,18 @@
             }
         }
     }
+
+    li.multiselect-item-checkbox.ng-star-inserted:hover{
+        background-color: $light-blue !important;
+        div{
+            color: $white !important;
+        }
+    }
  }
  
  .atom-dropdown{
+    font: $font-main;
+    font-style: italic;
     padding: 0px;
     background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 93% 0;  
     height: 30px;
