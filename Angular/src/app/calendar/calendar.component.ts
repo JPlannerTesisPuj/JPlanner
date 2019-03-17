@@ -373,6 +373,8 @@ export class CalendarComponent implements OnInit {
         this.addClass(newClasses, subjectToDisplay);
       }
     }
+    // Se llama al servicio que guarda las materias dependiendo de la alternativa en la base de datos
+    this.readJSONFileService.saveSubjectAlternative((this.currentAlternative+1),subjectToDisplay.numeroClase).subscribe();
   }
 
    /**
@@ -428,6 +430,8 @@ export class CalendarComponent implements OnInit {
     * El metodo agrega una materia nueva al calendario
     */
   addClass(newClasses: CalendarEvent[], subjectToDisplay: Subject) {
+    // Se llama al servicio que guarda las materias en la base de datos
+    this.readJSONFileService.saveSubject(subjectToDisplay.numeroClase, subjectToDisplay.nombre).subscribe();
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = new Date(horary.horaInicio);
       let endHour: Date = new Date(horary.horaFin);
@@ -447,13 +451,18 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
-    // Se llama al servicio que guarda las materias en la base de datos
-    this.readJSONFileService.saveSubject(subjectToDisplay.numeroClase, subjectToDisplay.nombre).subscribe();
     this.creditCounter += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
-    // Se llama al servicio que guarda las materias dependiendo de la alternativa en la base de datos
-    this.readJSONFileService.saveSubjectAlternative((this.currentAlternative+1),subjectToDisplay.numeroClase).subscribe();
+  }
+
+  sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
   }
 
   /**

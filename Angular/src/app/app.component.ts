@@ -37,10 +37,12 @@ export class AppComponent implements OnInit {
         this.readJSONFileService.setUSer(this.userAuthenticaded[0]);
         // Se llama al servicio que guarda el usuario en la base de datos
         this.readJSONFileService.saveUser(this.userAuthenticaded[0].GID, this.userAuthenticaded[0].credenciales).subscribe();
+        this.sleep(3000);
         // Se llama al servicio que guarda las alternativas en la base de datos
         this.readJSONFileService.saveAlternative(this.userAuthenticaded[0].GID).subscribe();
       }
     });
+
     
     
   }
@@ -51,6 +53,15 @@ export class AppComponent implements OnInit {
   generateToken() {
     const tokenIndex = Math.floor((Math.random() * this.tokenArray.length));
     this.userToken = this.tokenArray[tokenIndex];
+  }
+
+  sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
   }
 
   
