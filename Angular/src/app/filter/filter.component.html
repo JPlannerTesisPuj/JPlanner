@@ -20,7 +20,7 @@
         <div class="error-msg" id="fil-error-searchBox"></div>
       </div>
       
-        <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-margin" [placeholder]="'Búscar en Campo Específico'"
+        <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-margin atom-custom-list" [placeholder]="'Búscar en Campo Específico'"
           [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">
         </ng-multiselect-dropdown>
     </div>
@@ -48,7 +48,7 @@
       <label class="col-12" for="fil-week-days">
         <strong>Dias de la Semana:</strong>
       </label>
-      <ng-multiselect-dropdown class="col-12 atom-custom-margin" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
+      <ng-multiselect-dropdown class="col-12 atom-custom-margin atom-custom-list" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
         [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
       </ng-multiselect-dropdown>
       <div class="radio-atom-fix-group">
