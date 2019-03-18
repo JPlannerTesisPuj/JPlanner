@@ -163,7 +163,13 @@
     cdkDropList
     #calendarList="cdkDropList"
     (cdkDropListDropped)="dropClass($event)"
-    class="cal-view-container grid-noGutter">
+    class="cal-view-container grid-noGutter cal-view-desktop">
+
+    <div class="btn-group cal-arrow-buttons-desktop">
+      <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
+      <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
+    </div>
+
     <mwl-calendar-week-view
       [viewDate]="viewDate"
       [events]="classes"
@@ -200,11 +206,6 @@
       </mwl-calendar-day-view>
     </div>
     </div>
-  </div>
-
-  <div class="btn-group">
-    <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
-    <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
   </div>
   
   <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
