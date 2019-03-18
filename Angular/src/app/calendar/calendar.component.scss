@@ -606,3 +606,16 @@
     }
   }
 }
+
+.cal-view-desktop {
+  position: relative;
+
+  .cal-arrow-buttons-desktop {
+    position: absolute;
+    top: 25px;
+
+    button {
+      cursor: pointer;
+    }
+  }
+}
