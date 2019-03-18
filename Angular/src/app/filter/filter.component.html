@@ -51,9 +51,8 @@
       <ng-multiselect-dropdown class="col-12 atom-custom-margin atom-custom-list" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
         [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
       </ng-multiselect-dropdown>
-      <div class="radio-atom-fix-group">
-          <div id="fil-day-comparator-state" class="col-12 grid-noGutter">
-            <div class="cal-alt-radio-group">
+      <div class="radio-atom-fix-group grid-noGutter">   
+          <div class="cal-alt-radio-group">
               <label class="cal-radio-container col-4 radio-atom-fix">Buscar solamente en los días seleccionados
                   <input type="radio" name="fil-day-comparator" value="1" id="selected-days" [(ngModel)]="dayComparator">
                   <span class="atom-radio-btn col-1"></span>
@@ -61,8 +60,7 @@
               <label class="cal-radio-container col-4 radio-atom-fix">Buscar en cualquiera de estos días
                 <input type="radio" name="fil-day-comparator" value="0" id="all-days" [(ngModel)]="dayComparator">
                 <span class="atom-radio-btn col-1"></span>
-            </label>
-            </div>
+              </label>
           </div>
       </div>
     </div>
@@ -100,21 +98,21 @@
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input type="text" [(ngModel)]="searchedFilterId" class="col-11 atom-input-field" />
+      <input type="text" [(ngModel)]="searchedFilterId" class="atom-input-field" />
     </div>
   
     <div id="fil-number-filter" class="col-12 grid-noGutter">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterNumber" class="col-11 atom-input-field" />
+      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field" />
     </div>
   
     <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
       <label for="fil-schoolyear-filter" class="col-12">
         <strong>Ciclo Lectivo:</strong>
       </label>
-      <select [(ngModel)]="year" class="col-11 atom-dropdown-advanced">
+      <select [(ngModel)]="year" class="atom-dropdown-advanced">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let schoolyear of dropdownSchoolYear">
           {{schoolyear}}
@@ -144,7 +142,7 @@
       <label for="fil-garde-filter" class="col-12">
         <strong>Grado:</strong>
       </label>
-      <select [(ngModel)]="gradeFilter" class="col-11 atom-dropdown-advanced">
+      <select [(ngModel)]="gradeFilter" class="atom-dropdown-advanced">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let grade of dropdownGrades" [ngValue]="grade.value">
           {{grade.name}}
@@ -156,7 +154,7 @@
       <label for="fil-class-size" class="fil-label-block">
         <strong>Cupos Disponibles:</strong>
       </label>
-      <select [hidden]="!shouldDisplaySizeValue1" class="col-6 atom-dropdown-advanced" [(ngModel)]="selectedSizeValue1"
+      <select [hidden]="!shouldDisplaySizeValue1" class="col-3 atom-dropdown" [(ngModel)]="selectedSizeValue1"
         (ngModelChange)="onChangeSizeOne($event)">
         <option [disabled]="value.disabled" *ngFor="let value of sizeValue1">
           {{value.value}}
@@ -169,7 +167,7 @@
           {{comparator.value}}
         </option>
       </select>
-      <select [hidden]="!shouldDisplaySizeValue2" class="col-6 atom-dropdown" [(ngModel)]="selectedSizeValue2">
+      <select [hidden]="!shouldDisplaySizeValue2" class="col-3 atom-dropdown" [(ngModel)]="selectedSizeValue2">
         <option [disabled]="value.disabled" *ngFor="let value of sizeValue2">
           {{value.value}}
         </option>
@@ -180,7 +178,7 @@
       <label for="fil-teaching-mode" class="col-12">
         <strong>Modo de Enseñanza:</strong>
       </label>
-      <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="col-11 atom-dropdown-advanced">
+      <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="atom-dropdown-advanced">
         <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
         <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
       </select>
