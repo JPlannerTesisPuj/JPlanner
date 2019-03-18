@@ -31,6 +31,7 @@ import { DataService } from './shared/data.service';
 import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/calendar.component';
 import localeEs from '@angular/common/locales/es';
 import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
+import { ShoppingCartComponent } from './calendar/menu-tabs/shopping-cart/shopping-cart.component';
 
 registerLocaleData(localeEs);
 
@@ -43,7 +44,8 @@ registerLocaleData(localeEs);
     FilterComponent,
     CalendarComponent,
     OverlapClassConfirmationDialog,
-    DisplaySubjectsComponent
+    DisplaySubjectsComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
