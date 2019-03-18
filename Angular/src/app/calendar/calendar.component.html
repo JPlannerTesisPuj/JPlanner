@@ -1,5 +1,18 @@
-
-<div class="cal-menu-container col-4_xs-12_sm-12_md-12_lg-4">
+<div *ngIf="isMobile" class="col-12 cal-display-sm lg-hidden md-hidden cal-alt-mobile">
+  <div class="cal-alternatives-paginator ">
+    <div class="cal-alt-title-div">
+      <label for="cal-alt-title">Titulo:</label>
+      <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
+    </div>
+    <div class="cal-alt-radio-group">
+      <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
+        <input type="radio" name="cal-alternative" [value]=ind [(ngModel)]="currentAlternative" (change)="onItemChange(ind)">
+        <span class="atom-radio-btn"></span>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="cal-menu-container col-3_xs-12_sm-12_md-12_lg-3 sm-hidden">
 
   <!--
     verticalMenuIndex es una variable numérica del componente que le indica al menú
@@ -28,7 +41,7 @@
       
       </ng-template>
 
-      <app-display-classes [calendarList]="calendarList"></app-display-classes>
+      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
     </mat-tab>
 
     <mat-tab>
@@ -40,25 +53,34 @@
         
 
       </ng-template>
-      <h2>Carrito de compras</h2>
+      <h2 class="cal-sc-title">Materias de {{alternativeTitles[currentAlternative]}}</h2>
+      <hr>
       <div > 
       
       
       <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
-      <div *ngFor="let class of calendarClasses" >
-        <app-display-class [subject]="class"></app-display-class>
+      <div class="grid-2_sm-2_md-4 cal-shopping-cart">
+        <div class="cal-shopping-item col" *ngFor="let class of calendarClasses">
+          <i (click)="removeClass(class.numeroClase)" class="material-icons cal-sh-remove">cancel</i>
+          <p class="cal-sh-title">{{titleCaseWord(class.nombre)}}</p>
+          <p class="cal-sh-size">Cupos Disponibles: {{class.cuposDisponibles}}</p>
+          
+        </div>
       </div>
-      
+      <button class="grid-1 cal-enroll-btn atom-buttons-primary">
+          Inscribir
+          <i class="material-icons">shopping_cart</i>
+      </button>
     </div>
-      <button class="fil-btn" disabled="true">Inscribir</button>
+     
 
     </mat-tab>
   </mat-tab-group>
 </div>
 
-<div class="cal-schedule-container col-8_xs-12_sm-12_md-12_lg-8">
+<div class="cal-schedule-container col-9_xs-12_sm-12_md-12_lg-9 sm-hidden">
 
-  <div class= "cal-alternatives-paginator">
+  <div *ngIf="!isMobile" class= "cal-alternatives-paginator sm-hidden xs-hidden">
       <div class="cal-alt-title-div">
         <label for="cal-alt-title">Titulo:</label>
         <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
@@ -70,6 +92,12 @@
             <span class="atom-radio-btn"></span>
         </label>
      </div>
+     <div class="cal-alt-number-credits">
+      <label>Número de Créditos: 
+        <label class="number-credits">{{creditCounter[currentAlternative]}}</label>
+      </label>
+     </div>
+  
   </div>
 
       <div *ngIf ="sholudDisplayDialog[currentAlternative]" class= "cal-conflict-msj">
@@ -130,26 +158,18 @@
     * dayStartHour: de 0 a 7
     * dayEndHour: de 23 a 22
   -->
-  <!-- Este grupo de botones se usan para probar el cambio de días en la vista -->
-  <div class="btn-group">
-    <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-    </button>
-    <!--
-    <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-      Today
-    </button>
-    -->
-    <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-    </button>
-    <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-    <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
-  </div>
 
   <div
     cdkDropList
     #calendarList="cdkDropList"
     (cdkDropListDropped)="dropClass($event)"
-    class="grid-noGutter">
+    class="cal-view-container grid-noGutter cal-view-desktop">
+
+    <div class="btn-group cal-arrow-buttons-desktop">
+      <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
+      <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
+    </div>
+
     <mwl-calendar-week-view
       [viewDate]="viewDate"
       [events]="classes"
@@ -165,7 +185,7 @@
       class="cal-display-lg sm-hidden col-12">
     </mwl-calendar-week-view>
 
-    <div class="cal-display-sm col-12">
+    <div class="cal-display-sm col-12 ">
      
       <div class="cal-day-text">
         {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
@@ -187,6 +207,101 @@
     </div>
     </div>
   </div>
+  
+  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
+  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
+  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
 
 </div>
 
+<div class="movilMenu col-12 ">
+  
+
+  <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndex">
+      <mat-tab >
+          <ng-template mat-tab-label>
+          <i class="material-icons" >
+              search
+            </i>
+          </ng-template>
+          <app-filter></app-filter>
+          <br>
+          <br>
+          <br>
+          
+  
+          </mat-tab>
+      <mat-tab>
+          <ng-template mat-tab-label>
+              <i class="material-icons" >
+                  view_list
+                </i>
+              </ng-template>
+              <app-display-classes [calendarList]="calendarList"></app-display-classes>
+              
+              
+              
+      </mat-tab>
+      <mat-tab > 
+          <ng-template mat-tab-label>
+              <i class="material-icons" >
+                  shopping_cart
+                </i>
+              </ng-template>
+  
+              <h2>Carrito de compras</h2>
+              <div > 
+              
+              
+              <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
+              <div *ngFor="let class of calendarClasses" >
+                <app-display-class [subject]="class"></app-display-class>
+              </div>
+              
+            </div>
+              <button class="fil-btn" disabled="true">Inscribir</button>
+              <br>
+              <br>
+              
+             </mat-tab>
+
+        <mat-tab> 
+            <ng-template mat-tab-label>
+             <i class="material-icons" >
+               today
+             </i>
+            </ng-template>
+            <div
+            class="cal-view-container grid-noGutter">
+            
+            <div class="cal-display-sm col-12">
+     
+              <div class="cal-day-text">
+                {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
+              </div>
+              <div (swipe)="onSwipe($event)">
+              <mwl-calendar-day-view 
+                [viewDate]="viewDate"
+                [events]="classes"
+                [refresh]="refresh"
+                [hourSegments]="1"
+                [locale]="locale"
+                [dayStartHour]="7"
+                [dayEndHour]="22"
+                [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner"
+                [hourSegmentHeight]="35"
+                (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventTimesChanged($event)">
+              </mwl-calendar-day-view>
+            </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          
+         </mat-tab>
+    
+
+  </mat-tab-group>
+</div>

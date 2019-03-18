@@ -1,4 +1,8 @@
 .cal-alternatives-paginator{
+    position: relative;
+    @media (min-width: $vp-mobile) and (max-width: $vp-tablet){
+        margin: 15px 0px;
+    }
     .cal-alt-title-div{
         text-align: center;
         margin-left: auto;
@@ -16,7 +20,7 @@
             letter-spacing: normal;
             text-align: left;
             color: $black;
-                    
+                  
 
         }
     }
@@ -27,6 +31,24 @@
             &:last-child{
                 margin-right: 0;
             }
+        }
+    }
+
+    .cal-alt-number-credits {
+        position: absolute;
+        right: 25px;
+        top: 50px;
+        font-family: $font-secondary;
+        font-size: 20px;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.2;
+        letter-spacing: normal;
+        color: $black;
+        margin-top: 10px;
+        .number-credits {
+            font-weight: bold;
         }
     }
 }
