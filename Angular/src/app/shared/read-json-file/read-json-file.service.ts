@@ -91,4 +91,14 @@ export class ReadJsonFileService {
   public setUSer(user: User) {
     this.userToken = user;
   }
+  /*
+  * Función que permite consumir el servicio de ciclo lectivo actual y retorna
+  * la fecha leida
+  
+  
+  */
+  public consumeLectiveCycle(){
+    return new Date('2019-1-20 00:00:00');
+
+  }
 }

@@ -107,7 +107,7 @@ export class CalendarComponent implements OnInit {
   private view: CalendarView = CalendarView.Week;
   /** @var calendarView Enum */
   private calendarView = CalendarView;
-  private viewDate: Date = this.consumeLectiveCycle(this.viewDate);
+  private viewDate: Date;
   private calendarClasses: Subject[] = [];
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
@@ -246,6 +246,7 @@ export class CalendarComponent implements OnInit {
     this.sholudDisplayDialog.fill(false);
     this.initTitles();
     this.onItemChange(0);
+    this.viewDate = this.readJSONFileService.consumeLectiveCycle();
 
     /**
  * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
@@ -970,10 +971,7 @@ export class CalendarComponent implements OnInit {
     this.refresh.next();
   }
 
-  private consumeLectiveCycle(initSchoolYear: Date){
-    return initSchoolYear = new Date('2019-1-20 00:00:00');
-
-  }
+  
 }
 
 /**
