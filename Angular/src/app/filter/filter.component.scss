@@ -29,13 +29,14 @@
     }
     .fil-hour-dropdown {
       padding-left: 12px;
-      width: 140px;
+      width: 110px;
     }
     #fil-hourTo {
       display: none;
     }
   }
   #fil-week-days {
+    width: 100%;
     label{
       margin-bottom: 8px;
     }
@@ -79,7 +80,7 @@
     margin-bottom: 10px;
 
     select {
-      height: 35px;
+      height: 32px;
       line-height: 35px;
       border-radius: 4px;
       padding-left: 12px;
@@ -100,6 +101,8 @@
 
 .fil-border {
   margin: 0px;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   h2{
     text-align: center;
@@ -131,6 +134,7 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
 }
 
 .fil-padding-left{
