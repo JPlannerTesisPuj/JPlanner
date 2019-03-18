@@ -17,7 +17,10 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 /**
- * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
+ * The documentation used to 
+ 
+ 
+ this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
  */
 
@@ -118,7 +121,7 @@ export class CalendarComponent implements OnInit {
   private view: CalendarView = CalendarView.Week;
   /** @var calendarView Enum */
   private calendarView = CalendarView;
-  private viewDate: Date = new Date();
+  private viewDate: Date;
   private calendarClasses: Subject[] = [];
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
@@ -265,6 +268,7 @@ export class CalendarComponent implements OnInit {
     this.creditCounter.fill(0);
     this.initTitles();
     this.onItemChange(0);
+    this.viewDate = this.readJSONFileService.consumeLectiveCycle();
 
     /**
  * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
@@ -1051,4 +1055,5 @@ export class OverlapClassConfirmationDialog {
       this.dialogRef.close(this.data.subjectsToChoose);
     }
   }
+
 }
