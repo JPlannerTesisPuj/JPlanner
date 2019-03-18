@@ -13,14 +13,10 @@ export class ShoppingCartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.classes);
+   
   }
 
-  ngOnChanges() {
-    console.log("holis");
-    console.log(this.classes);
-  }
-  private titleCaseWord(word: string) {
+    private titleCaseWord(word: string) {
     if (!word) {
       return word;
     }

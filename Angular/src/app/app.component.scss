@@ -79,7 +79,9 @@ body {
   right:29px;
   z-index: 205;
   list-style-type: none;
-
+  @media (max-width: $vp-mobile) {
+    bottom: 85px;
+  }
   li{
     a{
       display: block;

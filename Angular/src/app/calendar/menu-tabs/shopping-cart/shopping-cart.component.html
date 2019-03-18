@@ -5,9 +5,7 @@
 
   <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
   <div class="grid-2_sm-2_md-4 cal-shopping-cart">
-    fdfdsfdsfdsfdsfdsfsdffdsf
     <div class="cal-shopping-item col" *ngFor="let class of classes">
-      dsad
       <i (click)="removeClass(class.numeroClase)" class="material-icons cal-sh-remove">cancel</i>
       <p class="cal-sh-title">{{titleCaseWord(class.nombre)}}</p>
       <p class="cal-sh-size">Cupos Disponibles: {{class.cuposDisponibles}}</p>
