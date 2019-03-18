@@ -197,6 +197,8 @@ export class CalendarComponent implements OnInit {
    */
   private editBlockOption: boolean = false;
 
+  private isMobile = false;
+
   /**
    * @var Array donde se almacenan los sets con las classes cruzadas, por aternativa
    */
@@ -240,6 +242,9 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (window.screen.width <= 768) { // 768px portrait
+      this.isMobile = true;
+    }
     //Inicializa el numero de alternativas, el arreglo de titulos y la alterativa escogida por defecto
     this.numberOfAlternatives = 6;
     this.overLappedInCellByAlternative = new Array(this.numberOfAlternatives);
