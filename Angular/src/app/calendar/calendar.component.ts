@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, HostListener } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTitleFormatter, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
@@ -101,7 +101,17 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   encapsulation: ViewEncapsulation.None
 })
 
+
 export class CalendarComponent implements OnInit {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth <= 768) { // 768px portrait
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }
 
   private locale: string = 'es';
 
@@ -113,7 +123,7 @@ export class CalendarComponent implements OnInit {
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
   private pru: string;
-  private creditCounter = 0;
+  private creditCounter: number[];
 
 
   private verticalMenuIndex: number = 0;
@@ -197,6 +207,8 @@ export class CalendarComponent implements OnInit {
    */
   private editBlockOption: boolean = false;
 
+  private isMobile = false;
+
   /**
    * @var Array donde se almacenan los sets con las classes cruzadas, por aternativa
    */
@@ -240,12 +252,17 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (window.screen.width <= 768) { // 768px portrait
+      this.isMobile = true;
+    }
     //Inicializa el numero de alternativas, el arreglo de titulos y la alterativa escogida por defecto
     this.numberOfAlternatives = 6;
     this.overLappedInCellByAlternative = new Array(this.numberOfAlternatives);
     this.overLappedInCellByAlternative.fill(new Set());
     this.sholudDisplayDialog = new Array(this.numberOfAlternatives);
     this.sholudDisplayDialog.fill(false);
+    this.creditCounter = new Array(this.numberOfAlternatives);
+    this.creditCounter.fill(0);
     this.initTitles();
     this.onItemChange(0);
 
@@ -451,7 +468,7 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
-    this.creditCounter += subjectToDisplay.creditos;
+    this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
@@ -539,7 +556,7 @@ export class CalendarComponent implements OnInit {
     let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
     this.readJSONFileService.deleteSubjectAlternative((this.currentAlternative+1),auxClass[0].numeroClase).subscribe();
 
-    this.creditCounter -= auxClass[0].creditos
+    this.creditCounter[this.currentAlternative] -= auxClass[0].creditos
 
     this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
