@@ -1,5 +1,8 @@
 .cal-alternatives-paginator{
     position: relative;
+    @media (min-width: $vp-mobile) and (max-width: $vp-tablet){
+        margin: 15px 0px;
+    }
     .cal-alt-title-div{
         text-align: center;
         margin-left: auto;

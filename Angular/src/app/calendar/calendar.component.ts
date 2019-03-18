@@ -113,7 +113,7 @@ export class CalendarComponent implements OnInit {
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
   private pru: string;
-  private creditCounter = 0;
+  private creditCounter: number[];
 
 
   private verticalMenuIndex: number = 0;
@@ -246,6 +246,8 @@ export class CalendarComponent implements OnInit {
     this.overLappedInCellByAlternative.fill(new Set());
     this.sholudDisplayDialog = new Array(this.numberOfAlternatives);
     this.sholudDisplayDialog.fill(false);
+    this.creditCounter = new Array(this.numberOfAlternatives);
+    this.creditCounter.fill(0);
     this.initTitles();
     this.onItemChange(0);
 
@@ -451,7 +453,7 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
-    this.creditCounter += subjectToDisplay.creditos;
+    this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
@@ -539,7 +541,7 @@ export class CalendarComponent implements OnInit {
     let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
     this.readJSONFileService.deleteSubjectAlternative((this.currentAlternative+1),auxClass[0].numeroClase).subscribe();
 
-    this.creditCounter -= auxClass[0].creditos
+    this.creditCounter[this.currentAlternative] -= auxClass[0].creditos
 
     this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);

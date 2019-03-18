@@ -1,18 +1,18 @@
-
-<div class="cal-menu-container col-3_xs-12_sm-12_md-12_lg-3 sm-hidden">
-
-    <div class= "cal-alternatives-paginator cal-display-sm lg-hidden md-hidden">
-        <div class="cal-alt-title-div">
-          <label for="cal-alt-title">Titulo:</label>
-          <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
-        </div>
-        <div class="cal-alt-radio-group">
-          <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
-              <input type="radio" name="cal-alternative" [value]=ind [(ngModel)]="currentAlternative" (change)="onItemChange(ind)">
-              <span class="atom-radio-btn"></span>
-          </label>
-       </div>
+<div *ngIf=false class="col-12 cal-display-sm lg-hidden md-hidden cal-alt-mobile">
+  <div class="cal-alternatives-paginator ">
+    <div class="cal-alt-title-div">
+      <label for="cal-alt-title">Titulo:</label>
+      <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
     </div>
+    <div class="cal-alt-radio-group">
+      <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
+        <input type="radio" name="cal-alternative" [value]=ind [(ngModel)]="currentAlternative" (change)="onItemChange(ind)">
+        <span class="atom-radio-btn"></span>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="cal-menu-container col-3_xs-12_sm-12_md-12_lg-3 sm-hidden">
 
   <!--
     verticalMenuIndex es una variable numérica del componente que le indica al menú
@@ -94,7 +94,7 @@
      </div>
      <div class="cal-alt-number-credits">
       <label>Número de Créditos: 
-        <label class="number-credits">{{creditCounter}}</label>
+        <label class="number-credits">{{creditCounter[currentAlternative]}}</label>
       </label>
      </div>
   
