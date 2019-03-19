@@ -71,6 +71,7 @@
     margin-left: 12px;
     width: 100%;
     font-size: 15px;
+    max-width: calc(100% - 24px);
   }
 }
 
@@ -86,7 +87,8 @@
       line-height: 35px;
       border-radius: 4px;
       padding-left: 12px;
-      width: 90%;
+      width: 100%;
+      max-width: calc(100% - 24px);
       margin-right: 12px;
     }
   }

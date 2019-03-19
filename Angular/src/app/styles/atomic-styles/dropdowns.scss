@@ -1,7 +1,8 @@
  .atom-custom-margin .multiselect-dropdown .dropdown-btn {
     font: $font-main;
     font-style: italic;
-    width: 90% !important;
+    width: 100% !important;
+    max-width: calc(100% - 24px) !important;
     margin-left: 12px !important; 
 
     span.selected-item.ng-star-inserted{
@@ -71,7 +72,7 @@
     font: $font-main;
     font-style: italic;
     padding: 0px;
-    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;  
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 97.5% 0;  
     overflow: hidden;
     font-size: 16px;
 
