@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, HostListener } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTitleFormatter, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
@@ -15,8 +15,12 @@ import { DayViewHourSegment } from 'calendar-utils';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
+import { User } from '../shared/model/User';
 /**
- * The documentation used to develop this calendar was taken form https://www.npmjs.com/package/angular-calendar
+ * The documentation used to 
+ 
+ 
+ this calendar was taken form https://www.npmjs.com/package/angular-calendar
  * and also https://mattlewis92.github.io/angular-calendar/#/kitchen-sink
  */
 
@@ -100,19 +104,29 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   encapsulation: ViewEncapsulation.None
 })
 
+
 export class CalendarComponent implements OnInit {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth <= 768) { // 768px portrait
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }
 
   private locale: string = 'es';
 
   private view: CalendarView = CalendarView.Week;
   /** @var calendarView Enum */
   private calendarView = CalendarView;
-  private viewDate: Date = new Date();
+  private viewDate: Date;
   private calendarClasses: Subject[] = [];
   private calendarBlocks: CalendarBlock[] = [];
   private inCalendar: string[] = [];
   private pru: string;
-  private creditCounter = 0;
+  private creditCounter: number[];
 
 
   private verticalMenuIndex: number = 0;
@@ -196,6 +210,8 @@ export class CalendarComponent implements OnInit {
    */
   private editBlockOption: boolean = false;
 
+  private isMobile = false;
+
   /**
    * @var Array donde se almacenan los sets con las classes cruzadas, por aternativa
    */
@@ -239,14 +255,20 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (window.screen.width <= 768) { // 768px portrait
+      this.isMobile = true;
+    }
     //Inicializa el numero de alternativas, el arreglo de titulos y la alterativa escogida por defecto
     this.numberOfAlternatives = 6;
     this.overLappedInCellByAlternative = new Array(this.numberOfAlternatives);
     this.overLappedInCellByAlternative.fill(new Set());
     this.sholudDisplayDialog = new Array(this.numberOfAlternatives);
     this.sholudDisplayDialog.fill(false);
+    this.creditCounter = new Array(this.numberOfAlternatives);
+    this.creditCounter.fill(0);
     this.initTitles();
     this.onItemChange(0);
+    this.viewDate = this.readJSONFileService.consumeLectiveCycle();
 
     /**
  * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
@@ -259,9 +281,8 @@ export class CalendarComponent implements OnInit {
         this.verticalMenuIndex = 1;
       }
     });
+
   }
-
-
 
   /**
    * Captura el evento swipe cuando este se realice en el calendar: left o right
@@ -373,6 +394,8 @@ export class CalendarComponent implements OnInit {
         this.addClass(newClasses, subjectToDisplay);
       }
     }
+    // Se llama al servicio que guarda las materias dependiendo de la alternativa en la base de datos
+    this.readJSONFileService.saveSubjectAlternative((this.currentAlternative+1),subjectToDisplay.numeroClase).subscribe();
   }
 
    /**
@@ -428,6 +451,8 @@ export class CalendarComponent implements OnInit {
     * El metodo agrega una materia nueva al calendario
     */
   addClass(newClasses: CalendarEvent[], subjectToDisplay: Subject) {
+    // Se llama al servicio que guarda las materias en la base de datos
+    this.readJSONFileService.saveSubject(subjectToDisplay.numeroClase, subjectToDisplay.nombre).subscribe();
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = new Date(horary.horaInicio);
       let endHour: Date = new Date(horary.horaFin);
@@ -447,9 +472,18 @@ export class CalendarComponent implements OnInit {
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
     this.calendarClasses.push(subjectToDisplay);
-    this.creditCounter += subjectToDisplay.creditos;
+    this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
+  }
+
+  sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
   }
 
   /**
@@ -524,11 +558,15 @@ export class CalendarComponent implements OnInit {
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
     let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
-    this.creditCounter -= auxClass[0].creditos
+    this.readJSONFileService.deleteSubjectAlternative((this.currentAlternative+1),auxClass[0].numeroClase).subscribe();
+
+    this.creditCounter[this.currentAlternative] -= auxClass[0].creditos
+
     this.calendarClasses = this.calendarClasses.filter(subject => subject.numeroClase != id);
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
+    this.readJSONFileService.deleteSubject(auxClass[0].numeroClase).subscribe();
   }
 
   /**
@@ -832,7 +870,8 @@ export class CalendarComponent implements OnInit {
         },
         cssClass: "cal-block"
       };
-
+      // Se llama el servicio que guarda el bloqueo en la base de datos
+      this.readJSONFileService.addBlock(newBlock.id,(this.currentAlternative+1)).subscribe();
       this.classes = [...this.classes, newBlock];
       this.calendarBlocks.push(
         new CalendarBlock(
@@ -942,7 +981,8 @@ export class CalendarComponent implements OnInit {
     if (blockIndexToDelete != -1) {
       this.classes.splice(blockIndexToDelete, 1);
     }
-
+    // Se llama el servicio que elimina un bloqueo de la base de datos
+    this.readJSONFileService.deleteBlock(blockIdToDelete).subscribe();
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
   }
@@ -980,7 +1020,7 @@ export class CalendarComponent implements OnInit {
 export class OverlapClassConfirmationDialog {
   constructor(
     public dialogRef: MatDialogRef<any>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   private conflictExists: boolean = false;
@@ -1015,4 +1055,5 @@ export class OverlapClassConfirmationDialog {
       this.dialogRef.close(this.data.subjectsToChoose);
     }
   }
+
 }

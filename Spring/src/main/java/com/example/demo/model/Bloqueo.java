@@ -8,66 +8,29 @@ import javax.persistence.*;
 @Entity
 public class Bloqueo {
 	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int idBlock;	    
-	    private Long startHour;
-	    private Long endHour;
-	    private Long parentId;
+	    private String idBlock;	    
 
 	    @ManyToOne
 	    @JoinColumn
 	    private Alternativa alternative;
 
 	    
-		public Bloqueo(int idBlock, Long startHour, Long endHour, Long parentId,
-				Alternativa idAlternative) {
+		public Bloqueo(String idBlock,Alternativa idAlternative) {
 			super();
 			this.idBlock = idBlock;
-			this.startHour = startHour;
-			this.endHour = endHour;
-			this.parentId = parentId;
 			this.alternative = idAlternative;
 		}
 
 
-		public int getIdBlock() {
+		public String getIdBlock() {
 			return idBlock;
 		}
 
 
-		public void setIdBlock(int idBlock) {
+		public void setIdBlock(String idBlock) {
 			this.idBlock = idBlock;
 		}
 
-
-		public Long getStartHour() {
-			return startHour;
-		}
-
-
-		public void setStartHour(Long startHour) {
-			this.startHour = startHour;
-		}
-
-
-		public Long getEndHour() {
-			return endHour;
-		}
-
-
-		public void setEndHour(Long endHour) {
-			this.endHour = endHour;
-		}
-
-
-		public Long getParentId() {
-			return parentId;
-		}
-
-
-		public void setParentId(Long parentId) {
-			this.parentId = parentId;
-		}
 
 
 		public Alternativa getAlternative() {
