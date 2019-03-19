@@ -191,11 +191,13 @@ export class ReadJsonFileService {
   /*
   * Función que permite consumir el servicio de ciclo lectivo actual y retorna
   * la fecha leida
-  
-  
   */
   public consumeLectiveCycle(){
     return new Date('2019-1-20 00:00:00');
 
   }
+
+  public checkClassSize(id:string | number){
+    return Math.floor((Math.random() * 50) + 1);
+  } 
 }

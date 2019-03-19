@@ -107,6 +107,8 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
 
 export class CalendarComponent implements OnInit {
 
+
+  
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth <= 768) { // 768px portrait
@@ -224,7 +226,7 @@ export class CalendarComponent implements OnInit {
 
   /**
    * @var Object creado para subscripcion a diferencias en el array
-  */
+  */s
   private differ: any;
   private sholudDisplayDialog: any;
   constructor(
@@ -234,6 +236,7 @@ export class CalendarComponent implements OnInit {
     private readJSONFileService: ReadJsonFileService,
     private changeDetectorRef: ChangeDetectorRef) {
     this.differ = differs.find([]).create(null);
+    this.checkAvailableSize();
   }
 
   /**
@@ -468,6 +471,7 @@ export class CalendarComponent implements OnInit {
           tmpEvent: false
         },
       });
+     
     }
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
@@ -476,6 +480,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
+
 
   sleep(milliseconds) {
     var start = new Date().getTime();
@@ -486,6 +491,8 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+
+  
   /**
    * Toma el nombre de un día de la semana y retorna el número equivalente al día de la semana.
    * 
@@ -1006,6 +1013,27 @@ export class CalendarComponent implements OnInit {
     }
 
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
+  
+  private checkAvailableSize() {
+    setInterval(() => {
+      this.updateClassSize();
+    }, 10000);
+  }
+
+  private updateClassSize() {
+    let newClassSize;
+    this.classes.forEach((value, index) => {
+      if (index == 0) {
+        newClassSize = this.readJSONFileService.checkClassSize(value.id);
+      }
+      let subjects = this.calendarClasses.filter(subj => subj.numeroClase == value.id);
+      subjects.forEach(subjectToDisplay => {
+        subjectToDisplay.cuposDisponibles = newClassSize;
+        value.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + subjectToDisplay.cuposDisponibles + '</p>';
+      })
+    });
   }
 }
 
