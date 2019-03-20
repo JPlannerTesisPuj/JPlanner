@@ -664,6 +664,8 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
     this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
     this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
+
+    this.updateClassSize();
   }
   /**
    * Inicializa los titulos de las alternativas segun la configuración de la variable numberOfAlternatives
@@ -1019,7 +1021,7 @@ export class CalendarComponent implements OnInit {
   private checkAvailableSize() {
     setInterval(() => {
       this.updateClassSize();
-    }, 10000);
+    }, 300000);
   }
 
   private updateClassSize() {

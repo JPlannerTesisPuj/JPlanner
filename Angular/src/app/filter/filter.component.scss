@@ -15,6 +15,11 @@
 }
 
 #fil-basic-search {
+  .radio-atom-fix{
+    & > p{
+      margin:5px;
+    }
+  }
   .fil-dropdown-specific-field {
     .fil-dropdown-list {
       margin: 0px;
