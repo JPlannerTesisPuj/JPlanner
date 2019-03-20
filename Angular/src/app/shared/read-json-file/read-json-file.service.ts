@@ -197,6 +197,12 @@ export class ReadJsonFileService {
 
   }
 
+
+  /**
+   * 
+   * @param classNumber Id del numero de clase que se consultara
+   * Retorna un observable con la información del numero nuevo de cupos disponibles en la clase
+   */
   public checkClassSize(classNumber:string | number) : Observable<number>{
     return (
       this.http.get<any>(
