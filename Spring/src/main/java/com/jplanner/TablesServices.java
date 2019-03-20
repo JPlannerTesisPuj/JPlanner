@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.jplanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Alternativa;
-import com.example.demo.model.Materia;
-import com.example.demo.model.MateriaRepository;
-import com.example.demo.model.Usuario;
-import com.example.demo.model.UsuarioRepository;
+import com.jplanner.model.Alternativa;
+import com.jplanner.model.Materia;
+import com.jplanner.model.MateriaRepository;
+import com.jplanner.model.Usuario;
+import com.jplanner.model.UsuarioRepository;
 
 import java.util.Optional;
 import java.util.Set;

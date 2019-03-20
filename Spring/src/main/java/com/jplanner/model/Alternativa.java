@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.jplanner.model;
 
 import javax.persistence.*;
 
