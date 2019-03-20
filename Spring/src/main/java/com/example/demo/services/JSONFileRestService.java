@@ -406,6 +406,14 @@ public class JSONFileRestService {
 		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
 	}
 	
+
+	/**
+	 * 
+	 * @param classNumber Id de la clase que se consultara por los cupos disponibles
+	 * @return Cupos disponibles de la clase consultada
+	 * @throws JsonProcessingException
+	 */
+
 	@RequestMapping(value = "updateClassSize/{classNumber}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	ResponseEntity<Integer> updateClassSize(@PathVariable("classNumber") String classNumber) throws JsonProcessingException {

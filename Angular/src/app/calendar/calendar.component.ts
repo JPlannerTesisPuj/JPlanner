@@ -224,7 +224,15 @@ export class CalendarComponent implements OnInit {
    */
   @Input() private overLappedIds: Set<any>;
 
+  /**
+   * @var Boolean que indica si se esta actualizando o no los cupos de las materias
+   * 
+   */
   private showLoader: boolean = false;
+    /**
+   * @var number Numero en milisegundos que indica cada cuanto se actualizara el numero de cupos disponibles por cada materia inscrita
+   * 
+   */
   private checkSizeInterval: number = 300000;
 
   /**
@@ -1021,12 +1029,18 @@ export class CalendarComponent implements OnInit {
   }
 
   
+  /**
+   * Inicializa el timeout para verificar y actualizar los cupos de las clases inscritas en el calendario
+   */
   private checkAvailableSize() {
     setInterval(() => {
       this.updateClassSize();
     }, this.checkSizeInterval);
   }
 
+  /**
+   * Actualiza los cupos en las clases del calendario
+   */
   private updateClassSize() {
     let newClassSize;
     let updatedIndexes = new Map();
