@@ -645,10 +645,23 @@ export class FilterComponent implements OnInit {
       advFilters.classList.add('hidden');
       this.isAdvancedSearch = false;
 
+      document.getElementById('basic-search').style.border = 'solid 1px #000000';
+      document.getElementById('basic-search').style.color = '#000000';
+
+      document.getElementById('adv-search').style.border = 'solid 1px #b1b1b1';
+      document.getElementById('adv-search').style.color = '#cbcbcb';
+
     } else if (event.currentTarget.id == 'adv-search') {
       //Display Adv Search
       advFilters.classList.remove('hidden');
       this.isAdvancedSearch = true;
+
+      document.getElementById('basic-search').style.border = 'solid 1px #b1b1b1';
+      document.getElementById('basic-search').style.color = '#cbcbcb';
+
+      document.getElementById('adv-search').style.border = 'solid 1px #000000';
+      document.getElementById('adv-search').style.color = '#000000';
+
     }
   }
 }

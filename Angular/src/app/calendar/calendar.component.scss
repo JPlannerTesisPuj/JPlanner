@@ -390,12 +390,14 @@
 //Estilos de clases
 
 .cal-schedule-container{
-  .cdk-drop-list{
-    [class|="cal-display"]{
-      .cal-block{
+      div.cal-block{
         div.cal-event{
           background-color: $black-40 !important;
           border: solid 0.5px #6c6c6c !important;
+          width: 100%;
+          border-radius: 0;
+          margin: 0;
+          height: 100%;
           .remove-icon{
             color:$black;
             font-weight: bold;
@@ -413,12 +415,12 @@
           }
         }
       }
-      div.cal-event{
-        width: 100%;
-        border-radius: 0;
+      [class|="cal-display"] div.cal-event{
+        width: 100% ;
+        border-radius: 0 ;
         padding: 0;
         margin: 0;
-        height:100%;
+        height:100% ;
         background: $dark-blue !important;
         border: solid 0.1px;
         @media (max-width: $vp-mobile) {
@@ -482,8 +484,7 @@
         }
       }
     }
-  }
-}
+
 .cal-buttons-weekend-right {
 
   background: transparent;

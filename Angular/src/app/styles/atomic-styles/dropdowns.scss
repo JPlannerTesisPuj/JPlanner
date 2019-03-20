@@ -1,18 +1,86 @@
-.atom-custom-margin .multiselect-dropdown {
-    margin: 0px;
+ .atom-custom-margin .multiselect-dropdown .dropdown-btn {
+    font: $font-main;
+    font-style: italic;
+    width: 100% !important;
+    max-width: calc(100% - 24px) !important;
+    margin-left: 12px !important; 
+
+    span.selected-item.ng-star-inserted{
+        background-color: $light-blue !important;
+        margin-bottom: 4px;
+        border-radius: 5px !important;
+    }
  }
 
+ .atom-custom-list .multiselect-dropdown .dropdown-list {
+    font: $font-main;
+    font-style: italic;
+    width: 90% !important;
+    margin-left: 12px !important; 
+    margin-top: 0px !important;
+
+    li.multiselect-item-checkbox.ng-star-inserted{
+        div{
+            &::after{   
+                border-color: $light-blue !important;
+            }
+            &::before{
+                border-color: $light-blue !important;
+                color: $light-blue !important;
+                background-color: $white !important;
+            }
+        }
+    }
+
+    li.multiselect-item-checkbox.ng-star-inserted:hover{
+        background-color: $light-blue !important;
+        div{
+            color: $white !important;
+        }
+    }
+ }
+ 
  .atom-dropdown{
-    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 99% 0;
+    font: $font-main;
+    font-style: italic;
+    padding: 0px;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 93% 0;  
     height: 30px;
     overflow: hidden;
-    padding-left: 4px;
-    width: 200px;
     font-size: 16px;
 
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:hover:not(:active):not(:focus):not(:disabled){
+        border-color:$light-blue-90;
+    }
+    &:active,&:focus{
+        border-color:$dark-blue;
+        outline: none;
+    }
+    &:disabled{
+        border-color:$black-30;    
+        background-color:$black-30;
+    }
+ }
+
+ .atom-dropdown-advanced{
+    font: $font-main;
+    font-style: italic;
+    padding: 0px;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 97.5% 0;  
+    overflow: hidden;
+    font-size: 16px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
     &:hover:not(:active):not(:focus):not(:disabled){
         border-color:$light-blue-90;

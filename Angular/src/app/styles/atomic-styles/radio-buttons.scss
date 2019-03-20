@@ -66,3 +66,21 @@
 
     
 }
+
+.radio-atom-fix{
+    margin-top: 4px;
+    padding-left: 24px;
+    width: 100%;
+
+    span.atom-radio-btn.col-1{
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+}
+
+.radio-atom-fix-group{
+    width: match-parent;
+    margin-top: 4px;
+    height: auto;
+}

@@ -1060,7 +1060,7 @@ export class CalendarComponent implements OnInit {
 export class OverlapClassConfirmationDialog {
   constructor(
     public dialogRef: MatDialogRef<any>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   private conflictExists: boolean = false;

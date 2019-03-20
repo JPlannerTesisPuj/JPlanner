@@ -1,7 +1,6 @@
 .fil-sub-menu-container {
   button {
     width: 50%;
-    margin-top: 10px;
     margin-bottom: 10px;
   }
 }
@@ -18,32 +17,42 @@
 #fil-basic-search {
   .fil-dropdown-specific-field {
     .fil-dropdown-list {
-      margin-bottom: 10px;
+      margin: 0px;
     }
   }
   #fil-week-hours {
     width: 100%;
 
     label[for="fil-week-hours"] {
-      display: block;
+      width: 30px;
+      margin-right: 0px;
     }
     .fil-hour-dropdown {
-      float: left;
-      padding: 10px;
+      padding-left: 12px;
+      width: 110px;
     }
     #fil-hourTo {
       display: none;
     }
   }
+  #fil-week-days {
+    width: 100%;
+    height: auto;
+    label{
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+  }
+
 }
 
 .fil-credits,
 #fil-class-size {
-  display: inline-block;
+  display: block;
   .fil-credit-dropdown {
     min-height: 35px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    width: 130px;
+    padding-left: 12px;
   }
   .fil-input-number {
     min-height: 35px;
@@ -58,6 +67,11 @@
 .fil-search-container {
   input {
     padding: 3px;
+    padding-left: 12px;
+    margin-left: 12px;
+    width: 100%;
+    font-size: 15px;
+    max-width: calc(100% - 24px);
   }
 }
 
@@ -69,9 +83,13 @@
     margin-bottom: 10px;
 
     select {
-      height: 35px;
+      height: 32px;
       line-height: 35px;
       border-radius: 4px;
+      padding-left: 12px;
+      width: 100%;
+      max-width: calc(100% - 24px);
+      margin-right: 12px;
     }
   }
 }
@@ -83,4 +101,51 @@
   margin-top: 10px;
   font-size: 12px;
   min-width: 25%;
+  text-align: center;
+}
+
+.fil-border {
+  margin: 0px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  h2{
+    text-align: center;
+    margin-top: 7.8px;
+    margin-bottom: 7.8px;
+  }
+
+  div{
+    margin-bottom: 6px;
+  }
+
+  label{
+    margin-left: 12px;
+  }
+
+  select{
+    margin-left: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-left: 12px;
+    width: 25%;
+  }
+
+}
+
+.fil-center{
+  margin-top: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.fil-padding-left{
+  padding-left: 12px;
+}
+
+.fil-label-block{
+  display: block;
 }
