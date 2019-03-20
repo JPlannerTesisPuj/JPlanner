@@ -224,6 +224,9 @@ export class CalendarComponent implements OnInit {
    */
   @Input() private overLappedIds: Set<any>;
 
+  private showLoader: boolean = false;
+  private checkSizeInterval: number = 300000;
+
   /**
    * @var Object creado para subscripcion a diferencias en el array
   */s
@@ -1021,18 +1024,20 @@ export class CalendarComponent implements OnInit {
   private checkAvailableSize() {
     setInterval(() => {
       this.updateClassSize();
-    }, 300000);
+    }, this.checkSizeInterval);
   }
 
   private updateClassSize() {
     let newClassSize;
     let updatedIndexes = new Map();
     let indexesArray = new Set();
+    let finishedObservables = 0;
     this.classes.forEach((value) => {
       indexesArray.add(value.id);
     });
     indexesArray.forEach(value => {
       if (!updatedIndexes.has(value)) { 
+        this.showLoader = true;
         this.readJSONFileService.checkClassSize(value).subscribe(
           updatedClassSize => {
             updatedIndexes.set(value, updatedClassSize);
@@ -1044,6 +1049,11 @@ export class CalendarComponent implements OnInit {
             altClasses.forEach(subj => {
               subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
             });
+            finishedObservables ++;
+            if(finishedObservables == indexesArray.size){
+              this.showLoader = false;
+            }
+
            },
         );
       }
