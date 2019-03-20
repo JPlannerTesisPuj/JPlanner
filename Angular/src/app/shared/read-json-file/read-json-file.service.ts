@@ -198,7 +198,5 @@ export class ReadJsonFileService {
     return new Date('2019-1-20 00:00:00');
 
   }
-  public tokenService(){
-    return true;
-  }
+ 
 }

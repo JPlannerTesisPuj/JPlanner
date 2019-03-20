@@ -64,6 +64,10 @@ public class JSONFileRestService {
 			return 0;
 		}
 	}
+	//Metodo que proporciona la lectura del token para hacer una petición a MAX
+	private boolean tokenReadService() {
+		return true;
+	}
 
 	// Servicio para filtros de clases
 	@RequestMapping(value = "files/read/json/class-filter/{days}/{dayComparator}/{hoursFrom}/{hoursTo}/"
@@ -106,7 +110,8 @@ public class JSONFileRestService {
 			@PathVariable("classSizeOpTwo") String classSizeOpTwo, @PathVariable("schoolarYear") String schoolarYear,
 			@PathVariable("grade") String grade, @PathVariable("idStudent") String idStudent)
 			throws JsonProcessingException, ParseException {
-
+		
+		
 		String fileName = "classes";
 		// Se obtiene la información del archivo
 		InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
@@ -126,7 +131,9 @@ public class JSONFileRestService {
 			// Retorna un String en forma de JSON con un error 400
 			return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
 		}
+		
 		try {
+			if(this.tokenReadService()) { 
 
 			BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 			StringBuilder JSONFileBuilder = new StringBuilder();
@@ -317,6 +324,8 @@ public class JSONFileRestService {
 			String filteredJSON = new ObjectMapper().writeValueAsString(classes);
 
 			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
+		}
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -335,6 +344,7 @@ public class JSONFileRestService {
 
 		// Retorna un String en forma de JSON con un error 400
 		return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@RequestMapping(value = "tokenauth/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -388,7 +398,8 @@ public class JSONFileRestService {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		
+	}
 
 		// Si hubo un error al leer el archivo se crea un JSON que contiene
 		// especificando el error
