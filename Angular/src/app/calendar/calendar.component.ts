@@ -1024,15 +1024,27 @@ export class CalendarComponent implements OnInit {
 
   private updateClassSize() {
     let newClassSize;
-    this.classes.forEach((value, index) => {
-      if (index == 0) {
-        newClassSize = this.readJSONFileService.checkClassSize(value.id);
+    let updatedIndexes = new Map();
+    let indexesArray = new Set();
+    this.classes.forEach((value) => {
+      indexesArray.add(value.id);
+    });
+    indexesArray.forEach(value => {
+      if (!updatedIndexes.has(value)) { 
+        this.readJSONFileService.checkClassSize(value).subscribe(
+          updatedClassSize => {
+            updatedIndexes.set(value, updatedClassSize);
+          },
+          error => { },
+          () => { 
+            let subjectToDisplay = this.calendarClasses.filter(subj => subj.numeroClase == value)[0];
+            let altClasses = this.classes.filter(subj => subj.id == value);
+            altClasses.forEach(subj => {
+              subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
+            });
+           },
+        );
       }
-      let subjects = this.calendarClasses.filter(subj => subj.numeroClase == value.id);
-      subjects.forEach(subjectToDisplay => {
-        subjectToDisplay.cuposDisponibles = newClassSize;
-        value.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + subjectToDisplay.cuposDisponibles + '</p>';
-      })
     });
   }
 }

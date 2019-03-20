@@ -197,7 +197,12 @@ export class ReadJsonFileService {
 
   }
 
-  public checkClassSize(id:string | number){
-    return Math.floor((Math.random() * 50) + 1);
+  public checkClassSize(classNumber:string | number) : Observable<number>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'updateClassSize/' + classNumber,{ withCredentials: true })
+      );
+  
+    //return Math.floor((Math.random() * 50) + 1);
   } 
 }
