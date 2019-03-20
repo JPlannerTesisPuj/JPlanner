@@ -105,11 +105,17 @@ public class JSONFileRestService {
 			@PathVariable("classSizeOperator") Integer classSizeOperator,
 			@PathVariable("classSizeOpTwo") String classSizeOpTwo, @PathVariable("schoolarYear") String schoolarYear,
 			@PathVariable("grade") String grade, @PathVariable("idStudent") String idStudent)
-			throws JsonProcessingException, ParseException {
+			throws ParseException, IOException {
 
 		String fileName = "classes";
 		// Se obtiene la información del archivo
 		InputStream in = getClass().getResourceAsStream("/json/" + fileName + ".json");
+		
+        // Se obtiene el token que debe ser enviado en cada http request de materias
+		TokenManager tokenManagerClases = new TokenManager();
+		tokenManagerClases.generateToken("clases");
+		System.out.println("ESTE ES EL TOKEN DE CLASES:" + tokenManagerClases.getToken()+ "\n\n");
+		
 
 		// Si no existe el archivo se crea un JSON que contiene especificando el error
 		if (in == null) {
@@ -345,10 +351,15 @@ public class JSONFileRestService {
 	 * @return Objeto JSON con la información del usuario al cual pertenece el token
 	 * @throws JsonProcessingException
 	 */
-	ResponseEntity<String> getTokenAuth(@PathVariable("token") String token) throws JsonProcessingException {
+	ResponseEntity<String> getTokenAuth(@PathVariable("token") String token) throws IOException {
 
 		// Se obtiene la información del archivo
 		InputStream in = getClass().getResourceAsStream("/json/" + "users" + ".json");
+		
+		// Se obtiene el token que debe ser enviado en cada http request de personas
+		TokenManager tokenManagerPersonas = new TokenManager();
+		tokenManagerPersonas.generateToken("personas");
+		System.out.println("ESTE ES EL TOKEN DE PERSONAS:" + tokenManagerPersonas.getToken() + "\n\n");
 
 		// Si no existe el archivo se crea un JSON que contiene especificando el error
 		if (in == null) {
