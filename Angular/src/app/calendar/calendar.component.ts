@@ -107,6 +107,8 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
 
 export class CalendarComponent implements OnInit {
 
+
+  
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth <= 768) { // 768px portrait
@@ -223,8 +225,19 @@ export class CalendarComponent implements OnInit {
   @Input() private overLappedIds: Set<any>;
 
   /**
+   * @var Boolean que indica si se esta actualizando o no los cupos de las materias
+   * 
+   */
+  private showLoader: boolean = false;
+    /**
+   * @var number Numero en milisegundos que indica cada cuanto se actualizara el numero de cupos disponibles por cada materia inscrita
+   * 
+   */
+  private checkSizeInterval: number = 300000;
+
+  /**
    * @var Object creado para subscripcion a diferencias en el array
-  */
+  */s
   private differ: any;
   private sholudDisplayDialog: any;
   constructor(
@@ -234,6 +247,7 @@ export class CalendarComponent implements OnInit {
     private readJSONFileService: ReadJsonFileService,
     private changeDetectorRef: ChangeDetectorRef) {
     this.differ = differs.find([]).create(null);
+    this.checkAvailableSize();
   }
 
   /**
@@ -468,6 +482,7 @@ export class CalendarComponent implements OnInit {
           tmpEvent: false
         },
       });
+     
     }
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
@@ -476,6 +491,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
   }
+
 
   sleep(milliseconds) {
     var start = new Date().getTime();
@@ -486,6 +502,8 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+
+  
   /**
    * Toma el nombre de un día de la semana y retorna el número equivalente al día de la semana.
    * 
@@ -657,6 +675,8 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
     this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
     this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
+
+    this.updateClassSize();
   }
   /**
    * Inicializa los titulos de las alternativas segun la configuración de la variable numberOfAlternatives
@@ -1006,6 +1026,52 @@ export class CalendarComponent implements OnInit {
     }
 
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
+  
+  /**
+   * Inicializa el timeout para verificar y actualizar los cupos de las clases inscritas en el calendario
+   */
+  private checkAvailableSize() {
+    setInterval(() => {
+      this.updateClassSize();
+    }, this.checkSizeInterval);
+  }
+
+  /**
+   * Actualiza los cupos en las clases del calendario
+   */
+  private updateClassSize() {
+    let newClassSize;
+    let updatedIndexes = new Map();
+    let indexesArray = new Set();
+    let finishedObservables = 0;
+    this.classes.forEach((value) => {
+      indexesArray.add(value.id);
+    });
+    indexesArray.forEach(value => {
+      if (!updatedIndexes.has(value)) { 
+        this.showLoader = true;
+        this.readJSONFileService.checkClassSize(value).subscribe(
+          updatedClassSize => {
+            updatedIndexes.set(value, updatedClassSize);
+          },
+          error => { },
+          () => { 
+            let subjectToDisplay = this.calendarClasses.filter(subj => subj.numeroClase == value)[0];
+            let altClasses = this.classes.filter(subj => subj.id == value);
+            altClasses.forEach(subj => {
+              subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
+            });
+            finishedObservables ++;
+            if(finishedObservables == indexesArray.size){
+              this.showLoader = false;
+            }
+
+           },
+        );
+      }
+    });
   }
 }
 
