@@ -1,4 +1,4 @@
-package com.jplanner.services;
+package com.jplanner.rest.iservice;
 
 import java.util.List;
 import com.jplanner.bean.City;

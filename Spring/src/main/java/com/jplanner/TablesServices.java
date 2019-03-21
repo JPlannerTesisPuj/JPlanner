@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jplanner.model.Alternativa;
-import com.jplanner.model.Materia;
-import com.jplanner.model.MateriaRepository;
-import com.jplanner.model.Usuario;
-import com.jplanner.model.UsuarioRepository;
+import com.jplanner.rest.model.Alternativa;
+import com.jplanner.rest.model.Materia;
+import com.jplanner.rest.model.Usuario;
+import com.jplanner.rest.repository.MateriaRepository;
+import com.jplanner.rest.repository.UsuarioRepository;
 
 import java.util.Optional;
 import java.util.Set;

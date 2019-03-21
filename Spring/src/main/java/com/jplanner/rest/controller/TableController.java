@@ -1,4 +1,4 @@
-package com.jplanner.controller;
+package com.jplanner.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

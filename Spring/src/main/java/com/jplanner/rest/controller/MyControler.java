@@ -1,4 +1,4 @@
-package com.jplanner.controller;
+package com.jplanner.rest.controller;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jplanner.bean.City;
-import com.jplanner.services.ICityService;
+import com.jplanner.rest.iservice.ICityService;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 

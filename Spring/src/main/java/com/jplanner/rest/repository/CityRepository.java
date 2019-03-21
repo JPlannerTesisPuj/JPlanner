@@ -1,4 +1,4 @@
-package com.jplanner.repository;
+package com.jplanner.rest.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
