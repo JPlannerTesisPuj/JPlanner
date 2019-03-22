@@ -124,6 +124,7 @@ export class CalendarComponent implements OnInit {
   private viewDate: Date;
   private calendarClasses: Subject[] = [];
   private calendarBlocks: CalendarBlock[] = [];
+
   private inCalendar: string[] = [];
   private pru: string;
   private creditCounter: number[];
@@ -657,6 +658,7 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
     this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
     this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
+
   }
   /**
    * Inicializa los titulos de las alternativas segun la configuración de la variable numberOfAlternatives
@@ -826,6 +828,7 @@ export class CalendarComponent implements OnInit {
         // ACtualiza el bloqueo principal
         this.updateBlockCalendarEvent(dragToSelectEvent.id + '', newStart, newEnd);
         this.refreshCal();
+
       });
   }
  
@@ -851,7 +854,7 @@ export class CalendarComponent implements OnInit {
       endDate = addHours(startDate, 1);
     }
 
-    // Si el bloqueo no existe o no se cruza con ninguna vlase u otro bloqueo entonces lo crea
+    // Si el bloqueo no existe o no se cruza con ninguna clase u otro bloqueo entonces lo crea
     if (blockIndexToAdd == -1 && !this.checkOverlappingClasses(startDate, endDate).isOverLapped) {
       newBlock = {
         start: startDate,
@@ -883,6 +886,7 @@ export class CalendarComponent implements OnInit {
       );
       this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
       this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
+      
     }
 
     return newBlock;
@@ -922,6 +926,7 @@ export class CalendarComponent implements OnInit {
       this.classes[blockIndexToEdit].start = startDay;
       this.classes[blockIndexToEdit].end = endDay;
     }
+
   }
 
   /**
@@ -985,6 +990,7 @@ export class CalendarComponent implements OnInit {
     this.readJSONFileService.deleteBlock(blockIdToDelete).subscribe();
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
+
   }
 
   /**
@@ -1055,5 +1061,4 @@ export class OverlapClassConfirmationDialog {
       this.dialogRef.close(this.data.subjectsToChoose);
     }
   }
-
 }

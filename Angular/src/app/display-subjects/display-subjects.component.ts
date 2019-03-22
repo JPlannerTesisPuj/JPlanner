@@ -3,10 +3,12 @@ import { Subject } from '../shared/model/Subject';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { stringify } from 'querystring';
+import { CalendarBlock } from '../shared/model/CalendarBlock';
+import { areRangesOverlapping } from 'date-fns';
 
 @Component({
   selector: 'app-display-subjects',
-  templateUrl: './display-subjects.component.html'
+  templateUrl: './display-subjects.component.html',
 })
 export class DisplaySubjectsComponent implements OnInit {
 
@@ -22,6 +24,12 @@ export class DisplaySubjectsComponent implements OnInit {
   private error: string;
   private showLoader: boolean;
   private showClasses: boolean = false;
+
+  // Lista que tiene todos los bloqueos actuales del calendario (alternativa seleccionada)
+  @Input() calendarBlocks: CalendarBlock[];
+
+  // Lista de clases que no se cruzan con los horarios de los bloqueos
+  private notOverLappedClasses: Subject[] = [];
 
   constructor(
     private readJSONFileService: ReadJsonFileService,
@@ -75,9 +83,23 @@ export class DisplaySubjectsComponent implements OnInit {
    * @param subjectClasses Clases a mostrar
    */
   private showSubjectClasses(subjectClasses: Subject[]) {
+
+    this.notOverLappedClasses = [];
+    this.getNotOverlappedClasses(subjectClasses);
+    this.classesToShow = this.notOverLappedClasses;
+    if(this.notOverLappedClasses.length == 0){
+      this.subjectNameToShow = "No hay clases disponibles";
+    } else {
+      this.subjectNameToShow = this.notOverLappedClasses[0].nombre;
+    }
+    this.showClasses = true;
+
+    /*
+    //Muestra todas las clases de las materias aún así se crucen
     this.classesToShow = subjectClasses;
     this.subjectNameToShow = subjectClasses[0].nombre;
     this.showClasses = true;
+    */
   }
 
   /**
@@ -87,6 +109,38 @@ export class DisplaySubjectsComponent implements OnInit {
     this.classesToShow = [];
     this.subjectNameToShow = '';
     this.showClasses = false;
+  }
+
+  /**
+   * Mira si las materias de la busqueda se cruzan con los horarios de los bloqueos
+   * 
+   * @param subjectClasses Arreglo de clases de la materia seleccionada
+   * 
+   * Retorna una lista de clases que no se cruzan con los horarios de los bloqueos
+   */
+  private getNotOverlappedClasses(subjectClasses: Subject[]) {
+
+    let alreadyInArray: boolean;
+    let overLapped: boolean;
+
+    subjectClasses.forEach(myClass => {
+
+      overLapped = false;
+
+      this.calendarBlocks.forEach(blocking => {
+        myClass.horarios.forEach(horary => {
+
+          if(areRangesOverlapping(blocking.startHour, blocking.endHour, horary.horaInicio, horary.horaFin))
+            overLapped = true; 
+
+        });
+      });
+
+      if(!overLapped)
+        this.notOverLappedClasses.push(myClass);
+
+    });
+
   }
 
 }
