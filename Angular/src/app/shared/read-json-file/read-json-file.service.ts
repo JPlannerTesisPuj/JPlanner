@@ -191,11 +191,24 @@ export class ReadJsonFileService {
   /*
   * Función que permite consumir el servicio de ciclo lectivo actual y retorna
   * la fecha leida
-  
-  
   */
   public consumeLectiveCycle(){
     return new Date('2019-1-20 00:00:00');
 
   }
+
+
+  /**
+   * 
+   * @param classNumber Id del numero de clase que se consultara
+   * Retorna un observable con la información del numero nuevo de cupos disponibles en la clase
+   */
+  public checkClassSize(classNumber:string | number) : Observable<number>{
+    return (
+      this.http.get<any>(
+        this.baseUrl + 'updateClassSize/' + classNumber,{ withCredentials: true })
+      );
+  
+    //return Math.floor((Math.random() * 50) + 1);
+  } 
 }
