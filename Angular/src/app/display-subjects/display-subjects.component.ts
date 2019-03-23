@@ -3,13 +3,16 @@ import { Subject } from '../shared/model/Subject';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { stringify } from 'querystring';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-display-subjects',
   templateUrl: './display-subjects.component.html'
 })
 export class DisplaySubjectsComponent implements OnInit {
-
+  //Emite el evento para agregar una materia
+  @Output() addSubjetEmit = new EventEmitter<Subject>();
   // Lista externa con la que la lista de clases estará relacionada
   @Input() calendarList: any;
 
@@ -87,6 +90,14 @@ export class DisplaySubjectsComponent implements OnInit {
     this.classesToShow = [];
     this.subjectNameToShow = '';
     this.showClasses = false;
+  }
+
+  /**
+   * 
+   * @param subject Materia que se agregara
+   */
+  private addSubj(subject){
+    this.addSubjetEmit.next(subject);
   }
 
 }

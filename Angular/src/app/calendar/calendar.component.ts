@@ -459,12 +459,19 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
+   * Añade la clase cand se agrega presionando el boton
+   */
+  private addClassSubject(subject){
+    let newClasses = Object.assign([], this.classes);
+    this.addClass(newClasses,subject);
+  }
+  /**
     * 
     * @param newClasses Arreglo auxiliar en el cual se almacenan las clases
     * @param subjectToDisplay Nueva clase que se agregara
     * El metodo agrega una materia nueva al calendario
     */
-  addClass(newClasses: CalendarEvent[], subjectToDisplay: Subject) {
+  addClass(newClasses: CalendarEvent[] , subjectToDisplay: Subject) {
     // Se llama al servicio que guarda las materias en la base de datos
     this.readJSONFileService.saveSubject(subjectToDisplay.numeroClase, subjectToDisplay.nombre).subscribe();
     for (let horary of subjectToDisplay.horarios) {
