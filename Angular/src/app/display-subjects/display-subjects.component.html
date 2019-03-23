@@ -6,10 +6,10 @@
     <article *ngIf="!showClasses">
       <ul class="grid-noGutter dps-list">
           <li
-            *ngFor="let subject of subjects | keyvalue"
+            *ngFor="let subject of materias "
             class="col-6_xs-6_sm-6_md-3 dps-list-item subject-box"
-            (click)="showSubjectClasses(subject.value)">
-              <p class="subject-box-title">{{ subject.value[0].nombre }}</p>
+            (click)="showSubjectClasses(subject)">
+              <p class="subject-box-title">{{ subject[0].nombre }}</p>
           </li>
       </ul>
     </article>
