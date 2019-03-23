@@ -688,19 +688,6 @@ export class FilterComponent implements OnInit {
 
   /**
    * 
-   * Este método valida los campos de números de la búsqueda
-   */
-  private checkInputFieldNumber(input: string){
-    // Patron de entrada, en este caso solo acepta numeros
-    let regularExpression = /^[0-9]*$/;
-
-    if(regularExpression.test(input)){
-      alert("El campo no puede contener letras o caracteres especiales");
-    }
-  }
-
-  /**
-   * 
    * Este método valida el campo de búsqueda
    */
   private checkInputFieldSearch(input: string){
