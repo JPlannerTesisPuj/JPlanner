@@ -33,7 +33,7 @@ export class FilterComponent implements OnInit {
   // Variables filtro avanzado
   private teachingModeDropdown: any;
   private selectedTeachingMode: string;
-  private defaultTeachingMode: string;;
+  private defaultTeachingMode: string;
   private openStateCheckbox: any;
   private closedStateCheckbox: any;
   private searchedFilterId: string;
@@ -685,5 +685,36 @@ export class FilterComponent implements OnInit {
     
     return true;
   }
+
+  /**
+   * 
+   * Este método valida los campos de números de la búsqueda
+   */
+  private checkInputFieldNumber(input: string){
+    // Patron de entrada, en este caso solo acepta numeros
+    let regularExpression = /^[0-9]*$/;
+
+    if(regularExpression.test(input)){
+      alert("El campo no puede contener letras o caracteres especiales");
+    }
+  }
+
+  /**
+   * 
+   * Este método valida el campo de búsqueda
+   */
+  private checkInputFieldSearch(input: string){
+    // Patron de entrada, en este caso solo acepta letras
+    let regularExpression = /^[A-Za-z]*$/;
+
+    if(regularExpression.test(input)){
+      if(input.length < 2){
+        alert("El campo debe tener más de dos caracteres");
+      } 
+    } else {
+      alert("El campo no puede contener número o caracteres especiales");
+    }
+  }
+
 
 }
