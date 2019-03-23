@@ -436,7 +436,9 @@ export class FilterComponent implements OnInit {
     if (!this.isAdvancedSearch) {
       this.restartAdvFilter(data);
     }
-    this.data.changeMessage(data);
+
+    if(this.validateSearch(data, this.yearActualCycle))
+      this.data.changeMessage(data);
   }
 
   private CleanAll() {
@@ -664,4 +666,24 @@ export class FilterComponent implements OnInit {
 
     }
   }
+
+  /**
+   * 
+   * Este método valida si los campos de búsqueda estan vacíos
+   */
+  private validateSearch(data: any, yearActualCycle: any): boolean{
+    
+    if (data['days'] == "none" && data['hours'].from == 0 && data['hours'].to == 86399 
+          && data['searchBox'].searched == "none" && data['searchBox'].params == "none" 
+          && data['credits'].creditComparator == 0 && data['credits'].creditValue1 == -1
+          && data['credits'].creditValue2 == -1 && data['teachingMode'] == "none" && data['state'] == "open"
+          && data['class-ID'] == "none" && data['class-number'] == "none" && data['class-size'].firstOp == "none"
+          && data['class-size'].comp == 0 && data['class-size'].secondOp == "none" 
+          && data['scholar-year'] == yearActualCycle && data['grade'] == "none"){
+      return false;
+    }
+    
+    return true;
+  }
+
 }
