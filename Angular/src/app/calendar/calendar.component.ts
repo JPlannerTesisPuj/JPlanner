@@ -462,8 +462,11 @@ export class CalendarComponent implements OnInit {
    * Añade la clase cand se agrega presionando el boton
    */
   private addClassSubject(subject){
-    let newClasses = Object.assign([], this.classes);
-    this.addClass(newClasses,subject);
+    //Si la clase no esta inscrita
+    if(this.calendarClasses.filter(subj=>subj.numeroClase == subject.numeroClase).length == 0){
+      let newClasses = Object.assign([], this.classes);
+      this.addClass(newClasses,subject);
+    }
   }
   /**
     * 
