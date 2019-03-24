@@ -43,7 +43,7 @@
 
       </ng-template>
 
-      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
+      <app-display-subjects (addSubjetEmit) = "addClassSubject($event)" [calendarList]="calendarList"></app-display-subjects>
     </mat-tab>
 
     <mat-tab>
@@ -183,7 +183,7 @@
           view_list
         </i>
       </ng-template>
-      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
+      <app-display-subjects (addSubjetEmit) = "addClassSubject($event)" [calendarList]="calendarList"></app-display-subjects>
 
 
 
