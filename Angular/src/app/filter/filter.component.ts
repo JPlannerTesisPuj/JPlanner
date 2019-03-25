@@ -29,6 +29,8 @@ export class FilterComponent implements OnInit {
   private shouldDisplayCreditValue1: boolean = false;
   private shouldDisplayCreditValue2: boolean = false;
   private dayComparator: string = '0';
+  private errorFilterSearch: boolean;
+  private errorFilterSearchN: boolean;
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
@@ -153,6 +155,7 @@ export class FilterComponent implements OnInit {
         value: 'master'
       }
     ];
+
   }
 
 
@@ -688,20 +691,23 @@ export class FilterComponent implements OnInit {
 
   /**
    * 
-   * Este método valida el campo de búsqueda
+   * Este método valida el campo de búsqueda y muestra una alerta
    */
   private checkInputFieldSearch(input: string){
-    // Patron de entrada, en este caso solo acepta letras
-    let regularExpression = /^[A-Za-z]*$/;
-
-    if(regularExpression.test(input)){
-      if(input.length < 2){
-        alert("El campo debe tener más de dos caracteres");
-      } 
+    if(input.length < 2 && input.length != 0){
+      this.errorFilterSearchN = true;
     } else {
-      alert("El campo no puede contener número o caracteres especiales");
+      this.errorFilterSearchN = false;
     }
   }
 
+  private onlyLetters(){
+    //Este método hace que el input solo admita letras
+    document.getElementById('fil-searchBox').onkeydown = function (e) {
+      if (!e.key.match(/^[A-Za-z]*$/)) {
+        e.preventDefault();  
+      }
+    };
+  }
 
 }
