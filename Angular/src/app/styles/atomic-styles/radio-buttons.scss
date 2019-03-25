@@ -15,6 +15,7 @@
         cursor: pointer;
         width: $space-lg;
         height: $space-lg;
+        display: none;
         &:disabled ~ .atom-radio-btn{
             border-color: $dark-blue-50;
             &:after{
@@ -73,6 +74,7 @@
     width: 100%;
 
     span.atom-radio-btn.col-1{
+        margin-top: 4px !important;
         width: 12px !important;
         height: 12px !important;
     }
