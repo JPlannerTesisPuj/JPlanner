@@ -17,8 +17,8 @@ public class Bloqueo {
 
 	// VARIABLES
 
-	@EmbeddedId
-	private BloqueoKey bloqueoKey;
+	@Id
+	private String idBloqueo;
 
 	@ManyToOne
 	private Alternativa alternativa;
@@ -33,9 +33,9 @@ public class Bloqueo {
 	public Bloqueo() {
 	}
 
-	public Bloqueo(BloqueoKey bloqueoKey, Alternativa alternativa, BigInteger horaInicio, BigInteger horaFin,
-			String nombre, String idPadre) {
-		this.bloqueoKey = bloqueoKey;
+	public Bloqueo(String idBloqueo, Alternativa alternativa, BigInteger horaInicio, BigInteger horaFin, String nombre,
+			String idPadre) {
+		this.idBloqueo = idBloqueo;
 		this.alternativa = alternativa;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
@@ -49,12 +49,12 @@ public class Bloqueo {
 		return alternativa;
 	}
 
-	public BloqueoKey getBloqueoKey() {
-		return bloqueoKey;
+	public String getIdBloqueo() {
+		return idBloqueo;
 	}
 
-	public void setBloqueoKey(BloqueoKey bloqueoKey) {
-		this.bloqueoKey = bloqueoKey;
+	public void setIdBloqueo(String idBloqueo) {
+		this.idBloqueo = idBloqueo;
 	}
 
 	public void setAlternativa(Alternativa alternativa) {

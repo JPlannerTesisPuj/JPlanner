@@ -31,7 +31,8 @@ public class AlternativaService implements IAlternativaService{
 		Iterable<Alternativa> allALternatives = alternativaRepository.findAll();
 		
 		for (Alternativa alternative : allALternatives) {
-			if(alternative.getAlternativaKey().equals(alternativeKey)) {
+			if(alternative.getIdAlternativa() == alternativeKey.getIdAlternativa() &&
+					alternative.getPersona().getIdPersona().equals(alternativeKey.getPersona())) {
 				return alternative;
 			}
 		}

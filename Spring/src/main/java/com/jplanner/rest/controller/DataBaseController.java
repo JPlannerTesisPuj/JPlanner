@@ -63,9 +63,8 @@ public class DataBaseController {
 			List<Alternativa> alternatives = new ArrayList<Alternativa>();
 
 			for (int cont = 1; cont <= MAX_ALTERNATIVAS; ++cont) {
-				alternatives.add(
-						alternativaService.addAlternative(new Alternativa(new AlternativaKey(cont, user.getIdPersona()),
-								user, new ArrayList<Bloqueo>(), new ArrayList<Materia>())));
+				alternatives.add(alternativaService.addAlternative(
+						new Alternativa(cont, user, new ArrayList<Bloqueo>(), new ArrayList<Materia>())));
 			}
 
 			user.setAlternativas(alternatives);
@@ -81,17 +80,21 @@ public class DataBaseController {
 	}
 
 	@RequestMapping(value = "/rest/addSubject/{idAlternative}/{idUser}", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<String> addSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
+	public ResponseEntity<String> addSubject(@RequestBody Materia subject,
+			@PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
 
 		Alternativa alternative = alternativaService.findById(new AlternativaKey(idAlternative, idUser));
-		
-		System.out.println(idAlternative);
-		System.out.println(idUser);
-		System.out.println(subject.getNombre());
-		System.out.println(alternative.getAlternativaKey().getIdAlternativa());
-		System.out.println(alternative.getAlternativaKey().getPersona());
-		
-		subject.getAlternativas().add(alternative);
+		Materia auxSubject = materiaService.findSubjectByClassNumber(subject.getNumeroClase());
+
+		if (auxSubject == null) {
+			List<Alternativa> alternativesForSubject = new ArrayList<Alternativa>();
+			alternativesForSubject.add(alternative);
+			subject.setAlternativas(alternativesForSubject);
+		} else {
+			subject = auxSubject;
+			subject.getAlternativas().add(alternative);
+		}
+
 		Materia newSubject = materiaService.addSubject(subject);
 
 		if (newSubject != null) {

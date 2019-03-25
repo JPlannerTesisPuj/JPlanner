@@ -27,8 +27,8 @@ import java.util.stream.Stream;
 public class Alternativa {
 
 	// VARIABLES
-	@EmbeddedId
-	private AlternativaKey alternativaKey;
+	@Id
+	private Integer idAlternativa;
 
 	@ManyToOne
 	@JoinColumn
@@ -38,44 +38,44 @@ public class Alternativa {
 	private List<Bloqueo> blocks;
 
 	@ManyToMany(mappedBy = "alternativas")
-	private List<Materia> subjects = new ArrayList<Materia>();
+	private List<Materia> materias = new ArrayList<Materia>();
 
 	// CONSTRUCTORES
 
 	public Alternativa() {
 	}
 
-	public Alternativa(AlternativaKey alternativaKey, Usuario persona, List<Bloqueo> blocks, List<Materia> subjects) {
-		this.alternativaKey = alternativaKey;
+	public Alternativa(Integer idAlternativa, Usuario persona, List<Bloqueo> blocks, List<Materia> materias) {
+		this.idAlternativa = idAlternativa;
 		this.persona = persona;
 		this.blocks = blocks;
-		this.subjects = subjects;
+		this.materias = materias;
 	}
 
 	// GETTERS Y SETTERS
 
-	public AlternativaKey getAlternativaKey() {
-		return alternativaKey;
-	}
-
-	public void setAlternativaKey(AlternativaKey alternativaKey) {
-		this.alternativaKey = alternativaKey;
-	}
-
 	public List<Bloqueo> getBlocks() {
 		return blocks;
+	}
+
+	public Integer getIdAlternativa() {
+		return idAlternativa;
+	}
+
+	public void setIdAlternativa(Integer idAlternativa) {
+		this.idAlternativa = idAlternativa;
 	}
 
 	public void setBlocks(List<Bloqueo> blocks) {
 		this.blocks = blocks;
 	}
 
-	public List<Materia> getSubjects() {
-		return subjects;
+	public List<Materia> getMaterias() {
+		return materias;
 	}
 
-	public void setSubjects(List<Materia> subjects) {
-		this.subjects = subjects;
+	public void setMaterias(List<Materia> materias) {
+		this.materias = materias;
 	}
 
 	public Usuario getPersona() {

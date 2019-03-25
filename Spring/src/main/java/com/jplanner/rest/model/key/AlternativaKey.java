@@ -56,7 +56,7 @@ public class AlternativaKey implements Serializable {
 		if (!Objects.equals(this.persona, other.persona)) {
 			return false;
 		}
-		return ((this.idAlternativa != other.idAlternativa) && Objects.equals(this.persona, other.persona));
+		return ((this.idAlternativa == other.idAlternativa) && Objects.equals(this.persona, other.persona));
 	}
 
 }
