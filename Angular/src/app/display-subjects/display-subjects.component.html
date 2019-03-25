@@ -23,6 +23,7 @@
         <h3 class="dps-classes-subtitle">{{ subjectNameToShow }}</h3>
       </header>
       <app-display-classes 
+        (addSubjetEmit) = "addSubj($event)"
         *ngIf="showClasses"
         [calendarList]="calendarList"
         [classes]="classesToShow">
