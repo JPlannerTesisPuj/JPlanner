@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,7 +32,7 @@ public class Alternativa {
 	private AlternativaKey alternativaKey;
 
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name="id_persona", referencedColumnName="id_persona", insertable=false, updatable=false)
 	private Usuario persona;
 
 	@OneToMany(mappedBy = "alternativa", cascade = CascadeType.ALL)

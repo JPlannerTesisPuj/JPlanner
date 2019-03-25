@@ -8,4 +8,5 @@ public interface IMateriaService {
 
 	public List<Materia> findAll();
 	public Materia addSubject(Materia subject);
+	public Materia findSubjectByClassNumber(String classNumber);
 }

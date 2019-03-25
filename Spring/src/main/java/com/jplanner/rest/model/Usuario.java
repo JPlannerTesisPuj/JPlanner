@@ -15,6 +15,7 @@ public class Usuario {
 	// VARIABLES
 	
 	@Id
+	@Column(name = "id_persona")
 	private String idPersona;
 	private String credenciales;
 

@@ -24,4 +24,17 @@ public class UsuarioService implements IUsuarioService {
 	public Usuario addUser(Usuario user) {
 		return usuarioRepository.save(user);
 	}
+	
+	@Override
+	public Usuario findUserById(String userID) {
+		Iterable<Usuario> allUsers = usuarioRepository.findAll();
+		
+		for (Usuario user : allUsers) {
+			if(user.getIdPersona().equals(userID)) {
+				return user;
+			}
+		}
+		
+		return null;
+	}
 }

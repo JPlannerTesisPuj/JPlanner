@@ -25,4 +25,17 @@ public class MateriaService implements IMateriaService {
 	public Materia addSubject(Materia subject) {
 		return materiaRepository.save(subject);
 	}
+	
+	@Override
+	public Materia findSubjectByClassNumber(String classNumber) {
+		Iterable<Materia> allsubjects = materiaRepository.findAll();
+		
+		for (Materia subject : allsubjects) {
+			if(subject.getNumeroClase().equals(classNumber)) {
+				return subject;
+			}
+		}
+		
+		return null;
+	}
 }

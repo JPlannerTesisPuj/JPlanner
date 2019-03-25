@@ -6,6 +6,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,6 +22,10 @@ public class Bloqueo {
 	private BloqueoKey bloqueoKey;
 
 	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name="id_alternativa", referencedColumnName="id_alternativa", insertable=false, updatable=false),
+		@JoinColumn(name="id_persona", referencedColumnName="id_persona", insertable=false, updatable=false)
+	})
 	private Alternativa alternativa;
 
 	private BigInteger horaInicio;

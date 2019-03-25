@@ -9,9 +9,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AlternativaKey implements Serializable {
 
-	@Column(name = "idAlternativa")
+	@Column(name = "id_alternativa")
 	private Integer idAlternativa;
-	@Column(name = "idPersona")
+	@Column(name = "id_persona")
 	private String persona;
 
 	public AlternativaKey() {
@@ -56,7 +56,7 @@ public class AlternativaKey implements Serializable {
 		if (!Objects.equals(this.persona, other.persona)) {
 			return false;
 		}
-		return ((this.idAlternativa != other.idAlternativa) && Objects.equals(this.persona, other.persona));
+		return ((this.idAlternativa == other.idAlternativa) && Objects.equals(this.persona, other.persona));
 	}
 
 }

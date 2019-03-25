@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class BloqueoKey implements Serializable {
 
-	@Column(name = "idBloqueo")
+	@Column(name = "id_bloqueo")
 	private String idBloqueo;
 	private AlternativaKey alternativa;
 

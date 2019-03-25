@@ -84,14 +84,22 @@ public class DataBaseController {
 	public ResponseEntity<String> addSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
 
 		Alternativa alternative = alternativaService.findById(new AlternativaKey(idAlternative, idUser));
+		Materia auxSubject = materiaService.findSubjectByClassNumber(subject.getNumeroClase());
+
+		if (auxSubject == null) {
+			List<Alternativa> alternativesForSubject = new ArrayList<Alternativa>();
+			alternativesForSubject.add(alternative);
+			subject.setAlternativas(alternativesForSubject);
+		} else {
+			if(alternative.getSubjects().contains(auxSubject)) {
+				return new ResponseEntity<String>("{\"respuesta\": \"La materia "
+						+ subject.getNumeroClase() + "  ya se encuentra actualmente en el horario\"}", HttpStatus.OK);
+			}
+			
+			subject = auxSubject;
+			subject.getAlternativas().add(alternative);
+		}
 		
-		System.out.println(idAlternative);
-		System.out.println(idUser);
-		System.out.println(subject.getNombre());
-		System.out.println(alternative.getAlternativaKey().getIdAlternativa());
-		System.out.println(alternative.getAlternativaKey().getPersona());
-		
-		subject.getAlternativas().add(alternative);
 		Materia newSubject = materiaService.addSubject(subject);
 
 		if (newSubject != null) {
