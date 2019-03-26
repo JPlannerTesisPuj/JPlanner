@@ -1,3 +1,5 @@
+<div *ngIf="showLoader" class="dispclass-loader updating-size"></div>
+
 <div *ngIf="isMobile" class="col-12 cal-display-sm lg-hidden md-hidden cal-alt-mobile">
   <div class="cal-alternatives-paginator ">
     <div class="cal-alt-title-div">
@@ -41,7 +43,7 @@
 
       </ng-template>
 
-      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
+      <app-display-subjects (addSubjetEmit) = "addClassSubject($event)" [calendarList]="calendarList"></app-display-subjects>
     </mat-tab>
 
     <mat-tab>
@@ -53,7 +55,7 @@
 
 
       </ng-template>
-      <app-shopping-cart [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
+      <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
 
 
     </mat-tab>
@@ -181,7 +183,7 @@
           view_list
         </i>
       </ng-template>
-      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
+      <app-display-subjects (addSubjetEmit) = "addClassSubject($event)" [calendarList]="calendarList"></app-display-subjects>
 
 
 
@@ -193,7 +195,7 @@
         </i>
       </ng-template>
 
-      <app-shopping-cart [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
+      <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
 
     </mat-tab>
 

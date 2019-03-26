@@ -6,10 +6,10 @@
     <article *ngIf="!showClasses">
       <ul class="grid-noGutter dps-list">
           <li
-            *ngFor="let subject of subjects | keyvalue"
+            *ngFor="let subject of sortedClasses "
             class="col-6_xs-6_sm-6_md-3 dps-list-item subject-box"
-            (click)="showSubjectClasses(subject.value)">
-              <p class="subject-box-title">{{ subject.value[0].nombre }}</p>
+            (click)="showSubjectClasses(subject)">
+              <p class="subject-box-title">{{ subject[0].nombre }}</p>
           </li>
       </ul>
     </article>
@@ -23,6 +23,7 @@
         <h3 class="dps-classes-subtitle">{{ subjectNameToShow }}</h3>
       </header>
       <app-display-classes 
+        (addSubjetEmit) = "addSubj($event)"
         *ngIf="showClasses"
         [calendarList]="calendarList"
         [classes]="classesToShow">
