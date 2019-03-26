@@ -24,6 +24,11 @@
         <span class="closebtn"></span>
           Por favor, digite dos letras o más
       </div> 
+
+      <div class="alert" *ngIf="errorFilterSearchS">
+        <span class="closebtn"></span>
+          Por favor, no utilice la tecla espacio en el primer o segundo campo
+      </div> 
       
         <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-margin atom-custom-list" [placeholder]="'Búscar en Campo Específico'"
           [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">

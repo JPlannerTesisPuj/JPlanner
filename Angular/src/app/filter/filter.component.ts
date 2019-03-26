@@ -31,6 +31,7 @@ export class FilterComponent implements OnInit {
   private dayComparator: string = '0';
   private errorFilterSearch: boolean;
   private errorFilterSearchN: boolean;
+  private errorFilterSearchS: boolean;
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
@@ -345,103 +346,108 @@ export class FilterComponent implements OnInit {
    * Crea el objeto filtro que se le enviara al servicio read-json-files
    */
   private searchClasses() {
-    let gradeToSend = this.gradeFilter;
-    let modeToSend = this.selectedTeachingMode;
-    let idToSend = this.searchedFilterId;
-    let numberToSend = this.searchedFilterNumber;
-    let codeToSend = this.searchedFilterCode;
-    let yearToSend = this.year;
 
-    if (this.searchedFilterId.replace(/\s/g, '') == '') {
-      idToSend = 'none';
-    }
-    if (this.selectedTeachingMode === 'Cualquiera') {
-      modeToSend = 'none';
-    }
-    if (this.year === 'Cualquiera') {
-      yearToSend = this.yearActualCycle;
-      if(this.isAdvancedSearch){
-        yearToSend = 'none';
+    if(this.errorFilterSearchN || this.errorFilterSearchS){
+      alert("Por favor, revise las alertas");
+    } else {
+      let gradeToSend = this.gradeFilter;
+      let modeToSend = this.selectedTeachingMode;
+      let idToSend = this.searchedFilterId;
+      let numberToSend = this.searchedFilterNumber;
+      let codeToSend = this.searchedFilterCode;
+      let yearToSend = this.year;
+
+      if (this.searchedFilterId.replace(/\s/g, '') == '') {
+        idToSend = 'none';
       }
-    }
-    if (this.gradeFilter === 'Cualquiera') {
-      gradeToSend = 'none';
-    }
-    if (this.searchedFilterNumber == null || this.searchedFilterNumber.length == 0) {
-      numberToSend = 'none';
-    }
-    if (this.searchedFilterCode == null || this.searchedFilterCode.length == 0) {
-      codeToSend = 'none';
-    }
+      if (this.selectedTeachingMode === 'Cualquiera') {
+        modeToSend = 'none';
+      }
+      if (this.year === 'Cualquiera') {
+        yearToSend = this.yearActualCycle;
+        if(this.isAdvancedSearch){
+          yearToSend = 'none';
+        }
+      }
+      if (this.gradeFilter === 'Cualquiera') {
+        gradeToSend = 'none';
+      }
+      if (this.searchedFilterNumber == null || this.searchedFilterNumber.length == 0) {
+        numberToSend = 'none';
+      }
+      if (this.searchedFilterCode == null || this.searchedFilterCode.length == 0) {
+        codeToSend = 'none';
+      }
 
-    // Convierte el arreglo de dias a un string separado con -
-    let days = this.selectedItemsWeek.toString().replace(/,/g, '-');
-    if (days == '') {
-      days = 'none';
-    }
+      // Convierte el arreglo de dias a un string separado con -
+      let days = this.selectedItemsWeek.toString().replace(/,/g, '-');
+      if (days == '') {
+        days = 'none';
+      }
 
-    // Convierte la hora a long
-    let hmsFrom = this.selectedOptionFrom + ':00';
-    let splittedFrom = hmsFrom.split(':');
-    let secondsFrom = (+splittedFrom[0]) * 60 * 60 + (+splittedFrom[1]) * 60 + (+splittedFrom[2]);
+      // Convierte la hora a long
+      let hmsFrom = this.selectedOptionFrom + ':00';
+      let splittedFrom = hmsFrom.split(':');
+      let secondsFrom = (+splittedFrom[0]) * 60 * 60 + (+splittedFrom[1]) * 60 + (+splittedFrom[2]);
 
-    // Convierte la hora a long
-    let hmsTo = this.selectedOptionTo + ':00';
-    let splittedTo = hmsTo.split(':');
-    let secondsTo = (+splittedTo[0]) * 60 * 60 + (+splittedTo[1]) * 60 + (+splittedTo[2]);
+      // Convierte la hora a long
+      let hmsTo = this.selectedOptionTo + ':00';
+      let splittedTo = hmsTo.split(':');
+      let secondsTo = (+splittedTo[0]) * 60 * 60 + (+splittedTo[1]) * 60 + (+splittedTo[2]);
 
-    if (isNaN(secondsTo)) {
-      secondsTo = 86399;
-    }
-    if (isNaN(secondsFrom)) {
-      secondsFrom = 0;
-    }
+      if (isNaN(secondsTo)) {
+        secondsTo = 86399;
+      }
+      if (isNaN(secondsFrom)) {
+        secondsFrom = 0;
+      }
 
-    let hours: any = {
-      'from': secondsFrom,
-      'to': secondsTo
-    }
+      let hours: any = {
+        'from': secondsFrom,
+        'to': secondsTo
+      }
 
-    let selectedDropdownSearch = this.selectedItemsSearch.toString().replace(/,/g, '-');
-    if (selectedDropdownSearch === '') {
-      selectedDropdownSearch = 'none';
-    }
-    let sendedSearchBox = this.searchBox;
-    if (this.searchBox === '' || this.searchBox === undefined){
-      sendedSearchBox = 'none';
-    }
-    let searchFields: any = {
-      'searched': sendedSearchBox,
-      'params': selectedDropdownSearch
-    }
+      let selectedDropdownSearch = this.selectedItemsSearch.toString().replace(/,/g, '-');
+      if (selectedDropdownSearch === '') {
+        selectedDropdownSearch = 'none';
+      }
+      let sendedSearchBox = this.searchBox;
+      if (this.searchBox === '' || this.searchBox === undefined){
+        sendedSearchBox = 'none';
+      }
+      let searchFields: any = {
+        'searched': sendedSearchBox,
+        'params': selectedDropdownSearch
+      }
 
-    let creditsToSend = this.getSelectedCredits();
-    let stateToSend = this.getSelectedStates();
-    let classSizeToSend = this.getClassSizeOption();
+      let creditsToSend = this.getSelectedCredits();
+      let stateToSend = this.getSelectedStates();
+      let classSizeToSend = this.getClassSizeOption();
 
-    let data = {
-      'type': 'filter',
-      'days': days,
-      'dayComparator': this.dayComparator,
-      'hours': hours,
-      'searchBox': searchFields,
-      'credits': creditsToSend,
-      'teachingMode': modeToSend,
-      'state': stateToSend,
-      'class-ID': idToSend,
-      'class-number': numberToSend,
-      'class-size': classSizeToSend,
-      'scholar-year': yearToSend,
-      'grade': gradeToSend
-    }
+      let data = {
+        'type': 'filter',
+        'days': days,
+        'dayComparator': this.dayComparator,
+        'hours': hours,
+        'searchBox': searchFields,
+        'credits': creditsToSend,
+        'teachingMode': modeToSend,
+        'state': stateToSend,
+        'class-ID': idToSend,
+        'class-number': numberToSend,
+        'class-size': classSizeToSend,
+        'scholar-year': yearToSend,
+        'grade': gradeToSend
+      }
 
-    // Si el filtro es básico , no envie los datos de esos filtros
-    if (!this.isAdvancedSearch) {
-      this.restartAdvFilter(data);
-    }
+      // Si el filtro es básico , no envie los datos de esos filtros
+      if (!this.isAdvancedSearch) {
+        this.restartAdvFilter(data);
+      }
 
-    if(this.validateSearch(data, this.yearActualCycle))
       this.data.changeMessage(data);
+
+    }
   }
 
   private CleanAll() {
@@ -672,39 +678,26 @@ export class FilterComponent implements OnInit {
 
   /**
    * 
-   * Este método valida si los campos de búsqueda estan vacíos
-   */
-  private validateSearch(data: any, yearActualCycle: any): boolean{
-    
-    if (data['days'] == "none" && data['hours'].from == 0 && data['hours'].to == 86399 
-          && data['searchBox'].searched == "none" && data['searchBox'].params == "none" 
-          && data['credits'].creditComparator == 0 && data['credits'].creditValue1 == -1
-          && data['credits'].creditValue2 == -1 && data['teachingMode'] == "none" && data['state'] == "open"
-          && data['class-ID'] == "none" && data['class-number'] == "none" && data['class-size'].firstOp == "none"
-          && data['class-size'].comp == 0 && data['class-size'].secondOp == "none" 
-          && data['scholar-year'] == yearActualCycle && data['grade'] == "none"){
-      return false;
-    }
-    
-    return true;
-  }
-
-  /**
-   * 
    * Este método valida el campo de búsqueda y muestra una alerta
    */
   private checkInputFieldSearch(input: string){
-    if(input.length < 2 && input.length != 0){
+    if(input.length == 1 && input.charAt(0) != ' '){
       this.errorFilterSearchN = true;
     } else {
       this.errorFilterSearchN = false;
     }
+    if(input.charAt(0) == ' ' || input.charAt(1) == ' '){
+      this.errorFilterSearchS = true;
+    } else {
+      this.errorFilterSearchS = false;
+    }
   }
 
   private onlyLetters(){
+
     //Este método hace que el input solo admita letras
     document.getElementById('fil-searchBox').onkeydown = function (e) {
-      if (!e.key.match(/^[A-Za-z]*$/)) {
+      if (!e.key.match(/^[A-Za-z ]*$/)) {
         e.preventDefault();  
       }
     };
