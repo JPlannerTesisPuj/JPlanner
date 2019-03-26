@@ -76,9 +76,9 @@ http://localhost:4200
 Para más información dirigirse a -- https://cli.angular.io/ -- https://github.com/angular/angular-cli/wiki
 Curso de Angular 6 : https://www.youtube.com/watch?v=AR1tLGQ7COs&index=3&list=LLPeAk0L7s60ebYx6LiP9fOA&t=1880s
 
+---
 
-
-### GULP
+## GULP
 
 -	npm install --global gulp-cli
 -	npm install --save-dev gulp@next
@@ -92,3 +92,49 @@ y agregar el archivo scss de este componente en el gulpfile en el arreglo de sas
 Los archivos nuevos quedan en app/styles/styles.css. La justificacion para realizar esto es que solo se van a cargar los estilos estaticos una unica vez
 y el resto de veces que el sitio se cargue ya estaran cacheados, lo que aumentaria el performance en el sitio.
 
+---
+
+## POSTGRESQL
+
+Para crear la base de datos primero hay que descargar e instalar PostgreSQL:
+
+### Windows
+1.  Ir a https://www.enterprisedb.com/downloads/postgres-postgresql-downloads y descargar la versión más reciente. Se recomienda descargar la versión 11. 
+2.  Al momento de instalar cuando se requiera ingresar el puerto, dejar el puerto 5432. Si no está por defecto se debe colocarlo.
+3.  Una vez finalizada la instalación abrir el programa *pgAdmin 4*, este abrirá una ventana en el navegador.
+4.  En la parte izquierda aparecerá el *Browser*, y debajo de *Servers* aparecerá *PostgreSQL 11*, dar click derecho - Conect to Server.
+5.  Dar click derecho en *Login/Group Roles*, luego *Create* y luego *Login/Group Role...*.
+6.  En el modal que aparece, en el campo de *Nombre* poner *jplanner*, en la pestaña e *definition* en el campo *Password* poner *jplanner51910* y en la pestaña de *Privileges* poner las siguiente configuración:
+    -   Can login?: Yes
+    -   Superuser: No
+    -   Create roles?: No
+    -   Create databases?: Yes
+    -   Update catalog?: No
+    -   Inherit rights from parent roles?: Yes
+    -   Can initiate streaming replication and backups?: No
+    
+    Dar click en *Save*.
+7.  Dar click derecho en *Databases* y luego *Create* y después *Database...*.
+8.  En el modal que aparece en el campo *Database* poner *restdb* y en *Owner* seleccionar *jplanner*. Dar click en *Save*.
+
+### Linux
+1.  Abrir la terminal y:
+    -  Ejecutar ```sudo apt-get install postgresql```
+    -  Ejecutar ```/etc/init.d/postgresql status```
+    -  Ejecutar ```sudo -u postgres psql postgres``` Se entrará dentro de la consola de PostgreSQL, ejecutar el comando \password postgres y escribir la contraseña que se desee. En caso de NO QUERER contraseña sólo presionar la tecla ENTER.
+    - Ejecutar ```sudo -u postgres createuser --interactive --password jplanner``` A las siguientes preguntas dar las respuesta de enfrente:
+        -   Shall the new role be a superuser? (y/n) **n**
+        -   Shall the new role be allowed to create databases? (y/n) **y**
+        -   Shall the new role be allowed to create more new roles? (y/n) **n**
+    - Abrir el archivo que se encuentra en */etc/postgresql/9.5/main/pg_hba.conf* y actualizar la siguiente información:
+
+        ```
+        # "local" is for Unix domain socket connections only
+        local   all             all                                     trust
+        # IPv4 local connections:
+        host    all             all             127.0.0.1/32            trust
+        ```
+
+        Guardar.
+    -   Ejecutar ```sudo service postgresql restart```
+    -   Ejecutar ```psql -U jplanner -d restdb -W```
