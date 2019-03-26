@@ -16,6 +16,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
+import { Materia } from '../shared/model/rest/Materia';
 /**
  * The documentation used to 
  
@@ -108,7 +109,7 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
 export class CalendarComponent implements OnInit {
 
 
-  
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth <= 768) { // 768px portrait
@@ -229,10 +230,10 @@ export class CalendarComponent implements OnInit {
    * 
    */
   private showLoader: boolean = false;
-    /**
-   * @var number Numero en milisegundos que indica cada cuanto se actualizara el numero de cupos disponibles por cada materia inscrita
-   * 
-   */
+  /**
+ * @var number Numero en milisegundos que indica cada cuanto se actualizara el numero de cupos disponibles por cada materia inscrita
+ * 
+ */
   private checkSizeInterval: number = 300000;
 
   /**
@@ -408,18 +409,16 @@ export class CalendarComponent implements OnInit {
         this.addClass(newClasses, subjectToDisplay);
       }
     }
-    // Se llama al servicio que guarda las materias dependiendo de la alternativa en la base de datos
-    this.readJSONFileService.saveSubjectAlternative((this.currentAlternative+1),subjectToDisplay.numeroClase).subscribe();
   }
 
-   /**
-   * Mira si la materia nueva que se agregará al horario se cruza con las otras materias
-   * 
-   * @param startHour Hora de inicio
-   * @param endHour Hora de fin
-   * 
-   * Retorna un objeto con un booleano que dice si las materias se curzan o no y la clase que esta isncrita en el horario que impide inscribir la nueva
-   */
+  /**
+  * Mira si la materia nueva que se agregará al horario se cruza con las otras materias
+  * 
+  * @param startHour Hora de inicio
+  * @param endHour Hora de fin
+  * 
+  * Retorna un objeto con un booleano que dice si las materias se curzan o no y la clase que esta isncrita en el horario que impide inscribir la nueva
+  */
   private checkOverlappingClasses(startHour: Date, endHour: Date) {
     let overlapped: CalendarEvent = null;
 
@@ -461,11 +460,11 @@ export class CalendarComponent implements OnInit {
   /**
    * Añade la clase cand se agrega presionando el boton
    */
-  private addClassSubject(subject){
+  private addClassSubject(subject) {
     //Si la clase no esta inscrita
-    if(this.calendarClasses.filter(subj=>subj.numeroClase == subject.numeroClase).length == 0){
+    if (this.calendarClasses.filter(subj => subj.numeroClase == subject.numeroClase).length == 0) {
       let newClasses = Object.assign([], this.classes);
-      this.addClass(newClasses,subject);
+      this.addClass(newClasses, subject);
     }
   }
   /**
@@ -474,9 +473,9 @@ export class CalendarComponent implements OnInit {
     * @param subjectToDisplay Nueva clase que se agregara
     * El metodo agrega una materia nueva al calendario
     */
-  addClass(newClasses: CalendarEvent[] , subjectToDisplay: Subject) {
+  addClass(newClasses: CalendarEvent[], subjectToDisplay: Subject) {
     // Se llama al servicio que guarda las materias en la base de datos
-    this.readJSONFileService.saveSubject(subjectToDisplay.numeroClase, subjectToDisplay.nombre).subscribe();
+    this.readJSONFileService.saveAlternativeSubject(this.currentAlternative + 1, new Materia(subjectToDisplay.numeroClase, subjectToDisplay.nombre)).subscribe();
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = new Date(horary.horaInicio);
       let endHour: Date = new Date(horary.horaFin);
@@ -485,14 +484,14 @@ export class CalendarComponent implements OnInit {
         start: startHour,
         end: endHour,
         color: colors.black,
-        title: '<span class="cal-class-title">'+subjectToDisplay.nombre+'</span>'+'<p class="cal-class-size-alert">'+'Cupos Disponibles: '+subjectToDisplay.cuposDisponibles+'</p>',
+        title: '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + subjectToDisplay.cuposDisponibles + '</p>',
         id: subjectToDisplay.numeroClase,
         actions: this.actions,
         meta: {
           tmpEvent: false
         },
       });
-     
+
     }
     this.classes = newClasses;
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);;
@@ -506,14 +505,14 @@ export class CalendarComponent implements OnInit {
   sleep(milliseconds) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
+      if ((new Date().getTime() - start) > milliseconds) {
         break;
       }
     }
   }
 
 
-  
+
   /**
    * Toma el nombre de un día de la semana y retorna el número equivalente al día de la semana.
    * 
@@ -559,12 +558,12 @@ export class CalendarComponent implements OnInit {
     } else if (action === 'BlockRemoved') {
       // Verifica si se debe eliminar sólo el bloqueo seleccionado o todo el grupo de bloqueos
       if (this.editBlockOption) {
-        this.deleteBlockByID(event.id + '');
+        this.deleteBlockByID(event.id + '', false);
       } else {
         const parentID: string = this.calendarBlocks.find(myBlock => myBlock.id == event.id + '').parentID;
         const blocksToDelete: CalendarBlock[] = this.calendarBlocks.filter(myBlock => myBlock.parentID == parentID);
 
-        blocksToDelete.forEach(myBlock => this.deleteBlockByID(myBlock.id));
+        blocksToDelete.forEach(myBlock => this.deleteBlockByID(myBlock.id, false));
       }
       this.refresh.next();
     }
@@ -586,7 +585,6 @@ export class CalendarComponent implements OnInit {
     newClasses = newClasses.filter(subject => subject.id != id);
     this.classes = newClasses;
     let auxClass = this.calendarClasses.filter(subject => subject.numeroClase == id);
-    this.readJSONFileService.deleteSubjectAlternative((this.currentAlternative+1),auxClass[0].numeroClase).subscribe();
 
     this.creditCounter[this.currentAlternative] -= auxClass[0].creditos
 
@@ -594,7 +592,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
-    this.readJSONFileService.deleteSubject(auxClass[0].numeroClase).subscribe();
+    this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre)).subscribe();
   }
 
   /**
@@ -722,7 +720,7 @@ export class CalendarComponent implements OnInit {
     let eventMove: string = 'mousemove';
     let eventEnd: string = 'mouseup';
 
-    if(mouseTouchDownEvent.type == 'touchstart') {
+    if (mouseTouchDownEvent.type == 'touchstart') {
       eventMove = 'touchmove';
       eventEnd = 'touchend';
     }
@@ -762,6 +760,12 @@ export class CalendarComponent implements OnInit {
         finalize(() => {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
+
+          this.calendarBlocks.forEach(myBlock => {
+            // Se llama el servicio que guarda el bloqueo en la base de datos
+            this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
+          })
+
           this.refreshCal();
         }),
         takeUntil(fromEvent(document, eventEnd))
@@ -770,7 +774,7 @@ export class CalendarComponent implements OnInit {
 
         let clientX: number = 0;
         let clientY: number = 0;
-        if(mouseTouchMoveEvent instanceof TouchEvent) {
+        if (mouseTouchMoveEvent instanceof TouchEvent) {
           clientX = mouseTouchMoveEvent.changedTouches[0].clientX;
           clientY = mouseTouchMoveEvent.changedTouches[0].clientY;
         } else {
@@ -824,7 +828,8 @@ export class CalendarComponent implements OnInit {
           contDaysEnd,
           newStart,
           newEnd,
-          blockParentID
+          blockParentID,
+          true
         );
 
         // Agrega los bloqueos hacia los lados
@@ -858,7 +863,7 @@ export class CalendarComponent implements OnInit {
         this.refreshCal();
       });
   }
- 
+
   /**
    * Crea un bloqueo en el calendario
    * 
@@ -900,17 +905,16 @@ export class CalendarComponent implements OnInit {
         },
         cssClass: "cal-block"
       };
-      // Se llama el servicio que guarda el bloqueo en la base de datos
-      this.readJSONFileService.addBlock(newBlock.id,(this.currentAlternative+1)).subscribe();
+
+      let newCalendarBlock: CalendarBlock = new CalendarBlock(
+        newBlock.id + '',
+        newBlock.start,
+        newBlock.end,
+        blockParentID,
+        blockTitle
+      )
       this.classes = [...this.classes, newBlock];
-      this.calendarBlocks.push(
-        new CalendarBlock(
-          newBlock.id + '',
-          newBlock.start,
-          newBlock.end,
-          blockParentID
-        )
-      );
+      this.calendarBlocks.push(newCalendarBlock);
       this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
       this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
     }
@@ -971,7 +975,7 @@ export class CalendarComponent implements OnInit {
    * @param toDate Fecha final
    * @param blockID 
    */
-  private deleteBlocksNotInRage(fromDay: number, toDay: number, fromDate: Date, toDate: Date, blockID: string) {
+  private deleteBlocksNotInRage(fromDay: number, toDay: number, fromDate: Date, toDate: Date, blockID: string, creating: boolean) {
     let startOfView = startOfWeek(this.startSchoolYear);
     let endOfView = endOfWeek(this.startSchoolYear);
     let startDay: Date;
@@ -988,7 +992,7 @@ export class CalendarComponent implements OnInit {
 
         for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
           let blockWeeklyIDToDelete = blockID + '__' + contDays + '__' + contWeeks;
-          this.deleteBlockByID(blockWeeklyIDToDelete);
+          this.deleteBlockByID(blockWeeklyIDToDelete, creating);
         }
       }
     }
@@ -999,11 +1003,16 @@ export class CalendarComponent implements OnInit {
    * 
    * @param blockIdToDelete ID del bloqueo a eliminar
    */
-  private deleteBlockByID(blockIdToDelete: string) {
+  private deleteBlockByID(blockIdToDelete: string, creating: boolean) {
     let blockIndexToDelete: number;
     blockIndexToDelete = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdToDelete);
 
     if (blockIndexToDelete != -1) {
+      if (!creating){
+        // Se llama el servicio que elimina un bloqueo de la base de datos
+        this.readJSONFileService.deleteBlock(this.calendarBlocks[blockIndexToDelete], this.currentAlternative + 1).subscribe();
+      }
+
       this.calendarBlocks.splice(blockIndexToDelete, 1);
     }
 
@@ -1011,8 +1020,7 @@ export class CalendarComponent implements OnInit {
     if (blockIndexToDelete != -1) {
       this.classes.splice(blockIndexToDelete, 1);
     }
-    // Se llama el servicio que elimina un bloqueo de la base de datos
-    this.readJSONFileService.deleteBlock(blockIdToDelete).subscribe();
+
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
   }
@@ -1038,7 +1046,7 @@ export class CalendarComponent implements OnInit {
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 
-  
+
   /**
    * Inicializa el timeout para verificar y actualizar los cupos de las clases inscritas en el calendario
    */
@@ -1060,25 +1068,25 @@ export class CalendarComponent implements OnInit {
       indexesArray.add(value.id);
     });
     indexesArray.forEach(value => {
-      if (!updatedIndexes.has(value)) { 
+      if (!updatedIndexes.has(value)) {
         this.showLoader = true;
         this.readJSONFileService.checkClassSize(value).subscribe(
           updatedClassSize => {
             updatedIndexes.set(value, updatedClassSize);
           },
           error => { },
-          () => { 
+          () => {
             let subjectToDisplay = this.calendarClasses.filter(subj => subj.numeroClase == value)[0];
             let altClasses = this.classes.filter(subj => subj.id == value);
             altClasses.forEach(subj => {
               subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
             });
-            finishedObservables ++;
-            if(finishedObservables == indexesArray.size){
+            finishedObservables++;
+            if (finishedObservables == indexesArray.size) {
               this.showLoader = false;
             }
 
-           },
+          },
         );
       }
     });

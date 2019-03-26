@@ -82,8 +82,8 @@ public class DataBaseController {
 				+ user.getIdPersona() + "\"}", HttpStatus.BAD_REQUEST);
 	}
 
-	@RequestMapping(value = "/rest/addSubject/{idAlternative}/{idUser}", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<String> addSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
+	@RequestMapping(value = "/rest/addAlternativeSubject/{idAlternative}/{idUser}", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<String> addAlternativeSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
 
 		Alternativa alternative = alternativaService.findAlternativeById(new AlternativaKey(idAlternative, idUser));
 		Materia auxSubject = materiaService.findSubjectByClassNumber(subject.getNumeroClase());
@@ -132,7 +132,7 @@ public class DataBaseController {
 
 	// MÉTODOS DE ELIMINACIÓN
 	
-	@RequestMapping(value = "/rest/deleteAlternativeSubject/{idAlternative}/{idUser}", method = RequestMethod.DELETE, produces = "application/json")
+	@RequestMapping(value = "/rest/deleteAlternativeSubject/{idAlternative}/{idUser}", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> deleteAlternativeSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
 
 		Alternativa alternative = alternativaService.findAlternativeById(new AlternativaKey(idAlternative, idUser));
@@ -156,7 +156,7 @@ public class DataBaseController {
 				+ subject.getNumeroClase() + " de la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
 	}
 	
-	@RequestMapping(value = "/rest/deleteBlock", method = RequestMethod.DELETE, produces = "application/json")
+	@RequestMapping(value = "/rest/deleteBlock", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> deleteBlock(@RequestBody Bloqueo block) {
 
 		Alternativa alternative = alternativaService.findAlternativeById(block.getBloqueoKey().getAlternativa());
@@ -171,5 +171,6 @@ public class DataBaseController {
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha producido un error al intentar eliminar el bloqueo "
 				+ block.getNombre() + " de la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
 	}
+
 
 }

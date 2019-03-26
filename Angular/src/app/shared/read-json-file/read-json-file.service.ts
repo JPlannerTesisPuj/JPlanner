@@ -5,6 +5,12 @@ import { Observable } from 'rxjs';
 import { Subject } from '../model/Subject';
 import { BinaryOperator } from '@angular/compiler';
 import { User } from '../model/User';
+import { Usuario } from '../model/rest/Usuario';
+import { Materia } from '../model/rest/Materia';
+import { CalendarBlock } from '../model/CalendarBlock';
+import { Bloqueo } from '../model/rest/Bloqueo';
+import { BloqueoKey } from '../model/rest/keys/BloqueoKey';
+import { AlternativaKey } from '../model/rest/keys/AlternativaKey';
 
 /**
  * Permite consumir servicios externos para leer archivos JSON
@@ -82,102 +88,105 @@ export class ReadJsonFileService {
   public filterToken(token: string): Observable<User[]> {
     return (this.http.get<User[]>(this.baseUrl + 'tokenauth/' + token, { withCredentials: true }));
   }
+
   /**
    * Servicio que guarda una materia en la base de datos
    * 
    * @param classNumber numero de clase, primary key
    * @param name nombre de la clase
    */
-  
-  public saveSubject(classNumber: any, name: string): Observable<any>{
+  public saveAlternativeSubject(alternativeNumber: number, subjectToAdd: Materia): Observable<any> {
     return (
-      this.http.get<any>(
-        this.baseUrl + 'putSubjectData/' + classNumber +'/'+name,{ withCredentials: true })
-      );
-  }
-   /**
-   * Servicio que guarda el usuario autenticado en la base de datos
-   * 
-   * @param idPerson id del usuario, primary key
-   * @param credentials token jwt
-   */
- 
-  public saveUser(idPerson: any, credentials: string): Observable<any>{
-    return (
-      this.http.get<any>(
-        this.baseUrl + 'putUserData/' + idPerson +'/'+credentials,{ withCredentials: true })
-      );
+      this.http.post<any>(
+        this.baseUrl + 'rest/addAlternativeSubject/' + alternativeNumber + '/' + this.userToken.GID,
+        subjectToAdd,
+        { withCredentials: true }
+      )
+    );
+    // this.http.get<any>(
+    //   this.baseUrl + 'putSubjectData/' + classNumber + '/' + name, { withCredentials: true })
   }
 
-   /**
-   * Servicio que borra la materia en la base de datos
-   * 
-   * @param classNumber numero de clase, primary key
-   */
- 
-  public deleteSubject(classNumber: any): Observable<any>{
-    return (
-      this.http.get<any>(
-        this.baseUrl + 'deleteSubjectData/' + classNumber,{ withCredentials: true })
-      );
-  }
   /**
-   * Servicio que guarda las alternativas en la base de datos, idALternativa se autogenera
-   * 
-   * @param idPerson idPerson, foreign key referencia al usuario autenticado
-   */
-  
-  public saveAlternative(idPerson: any): Observable<any>{
+  * Servicio que guarda el usuario autenticado en la base de datos
+  * 
+  * @param idPerson id del usuario, primary key
+  * @param credentials token jwt
+  */
+  public saveUser(idPerson: any, credentials: string): Observable<any> {
     return (
-      this.http.get<any>(
-        this.baseUrl + 'addAlternativeData/' + idPerson,{ withCredentials: true })
-      );
+      this.http.post<any>(
+        this.baseUrl + 'rest/addUser',
+        new Usuario(idPerson, credentials),
+        { withCredentials: true }
+      ));
+    // this.http.get<any>(
+    //   this.baseUrl + 'rest/addUser' + idPerson +'/'+credentials,{ withCredentials: true })
+    // );
   }
+
   /**
-   * Servicio que guarda las materias en determinada alternativa en la base de datos
-   * @param idAlternative idAlternative, foreign key referencia a la alternativa
-   * @param classNumber classNumber, foreign key referencia a la materia
-   */
-
-  public saveSubjectAlternative(idAlternative: any, classNumber: any): Observable<any>{
+  * Servicio que borra la materia en la base de datos
+  * 
+  * @param classNumber numero de clase, primary key
+  */
+  public deleteAlternativeSubject(alternativeNumber: number, subjectToDelete: Materia): Observable<any> {
     return (
-      this.http.get<any>(
-        this.baseUrl + 'addSubjectAlternative/' + idAlternative + '/' + classNumber,{ withCredentials: true })
-      );
+      this.http.post<any>(
+        this.baseUrl + 'rest/deleteAlternativeSubject/' + alternativeNumber + '/' + this.userToken.GID,
+        subjectToDelete,
+        { withCredentials: true })
+    );
   }
-   /**
-   * Servicio que elimina las materias en determinada alternativa en la base de datos
-   * @param idAlternative idAlternative, foreign key referencia a la alternativa
-   * @param classNumber classNumber, foreign key referencia a la materia
-   */
 
+  /**
+  * Servicio que guarda los bloqueos en la base de datos
+  * @param addBlock idBlock, primary key del bloqueo
+  * @param idAlternative idAlternative, foreign key referencia a la alternativa
+  */
+  public addBlock(blockToAdd: CalendarBlock, idAlternative: number): Observable<any> {
+    return (
+      this.http.post<any>(
+        this.baseUrl + 'rest/addBlock',
+        new Bloqueo(
+          new BloqueoKey(
+            blockToAdd.id,
+            new AlternativaKey(
+              idAlternative,
+              this.userToken.GID
+            )
+          ),
+          blockToAdd.startHour.getTime(),
+          blockToAdd.endHour.getTime(),
+          blockToAdd.name,
+          blockToAdd.parentID
+        ),
+        { withCredentials: true })
+    );
+  }
 
-  public deleteSubjectAlternative(idAlternative: any, classNumber: any): Observable<any>{
-    return (
-      this.http.get<any>(
-        this.baseUrl + 'deleteSubjectAlternative/' + idAlternative + '/' + classNumber,{ withCredentials: true })
-      );
-  }
-   /**
-   * Servicio que guarda los bloqueos en la base de datos
-   * @param addBlock idBlock, primary key del bloqueo
-   * @param idAlternative idAlternative, foreign key referencia a la alternativa
-   */
-  public addBlock(idBlock: any,idAlternative: any): Observable<any>{
-    return (
-      this.http.get<any>(
-        this.baseUrl + 'addBlock/' + idBlock + '/' + idAlternative,{ withCredentials: true })
-      );
-  }
   /**
    * Servicio que elimina los bloqueos en la base de datos
    * @param addBlock idBlock, primary key del bloqueo
    */
-  public deleteBlock(idBlock: any): Observable<any>{
+  public deleteBlock(blockToAdd: CalendarBlock, idAlternative: number): Observable<any> {
     return (
-      this.http.get<any>(
-        this.baseUrl + 'deleteBlock/' + idBlock,{ withCredentials: true })
-      );
+      this.http.post<any>(
+        this.baseUrl + 'rest/deleteBlock',
+        new Bloqueo(
+          new BloqueoKey(
+            blockToAdd.id,
+            new AlternativaKey(
+              idAlternative,
+              this.userToken.GID
+            )
+          ),
+          blockToAdd.startHour.getTime(),
+          blockToAdd.endHour.getTime(),
+          blockToAdd.name,
+          blockToAdd.parentID
+        ),{ withCredentials: true })
+    );
   }
 
   /**
@@ -188,27 +197,25 @@ export class ReadJsonFileService {
   public setUSer(user: User) {
     this.userToken = user;
   }
+
   /*
   * Función que permite consumir el servicio de ciclo lectivo actual y retorna
   * la fecha leida
   */
-  public consumeLectiveCycle(){
+  public consumeLectiveCycle() {
     return new Date('2019-1-20 00:00:00');
 
   }
-
 
   /**
    * 
    * @param classNumber Id del numero de clase que se consultara
    * Retorna un observable con la información del numero nuevo de cupos disponibles en la clase
    */
-  public checkClassSize(classNumber:string | number) : Observable<number>{
+  public checkClassSize(classNumber: string | number): Observable<number> {
     return (
       this.http.get<any>(
-        this.baseUrl + 'updateClassSize/' + classNumber,{ withCredentials: true })
-      );
-  
-    //return Math.floor((Math.random() * 50) + 1);
-  } 
+        this.baseUrl + 'updateClassSize/' + classNumber, { withCredentials: true })
+    );
+  }
 }

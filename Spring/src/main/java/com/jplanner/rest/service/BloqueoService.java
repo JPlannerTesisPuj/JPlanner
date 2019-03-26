@@ -36,9 +36,8 @@ public class BloqueoService implements IBloqueoService{
 	@Override
 	public Bloqueo findBlockById(BloqueoKey blockKey) {
 		Iterable<Bloqueo> allBlocks = bloqueoRepository.findAll();
-		
 		for (Bloqueo block : allBlocks) {
-			if(block.getBloqueoKey().equals(block.getBloqueoKey())) {
+			if(block.getBloqueoKey().equals(blockKey)) {
 				return block;
 			}
 		}

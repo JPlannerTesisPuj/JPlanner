@@ -49,13 +49,13 @@ public class BloqueoKey implements Serializable {
 			return false;
 		}
 		final BloqueoKey other = (BloqueoKey) obj;
-		if (this.idBloqueo != other.idBloqueo) {
+		if (!this.idBloqueo.equals(other.idBloqueo)) {
 			return false;
 		}
 		if (!this.alternativa.equals(other.getAlternativa())) {
 			return false;
 		}
-		return ((this.idBloqueo == other.idBloqueo) && this.alternativa.equals(other.getAlternativa()));
+		return (this.idBloqueo.equals(other.idBloqueo) && this.alternativa.equals(other.getAlternativa()));
 	}
 
 }
