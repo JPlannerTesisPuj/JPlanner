@@ -3,8 +3,8 @@
 <div *ngIf="isMobile" class="col-12 cal-display-sm lg-hidden md-hidden cal-alt-mobile">
   <div class="cal-alternatives-paginator ">
     <div class="cal-alt-title-div">
-      <label for="cal-alt-title">Titulo:</label>
-      <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
+       <!--<label for="cal-alt-title">Titulo:</label> -->
+      <input class="atom-alternative-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
     </div>
     <div class="cal-alt-radio-group">
       <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
@@ -43,7 +43,7 @@
 
       </ng-template>
 
-      <app-display-subjects [calendarList]="calendarList" [calendarBlocks]="calendarBlocks"></app-display-subjects>
+      <app-display-subjects (addSubjetEmit) = "addClassSubject($event)" [calendarList]="calendarList"></app-display-subjects>
     </mat-tab>
 
     <mat-tab>
@@ -55,7 +55,7 @@
 
 
       </ng-template>
-      <app-shopping-cart [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
+      <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
 
 
     </mat-tab>
@@ -66,8 +66,8 @@
 
   <div *ngIf="!isMobile" class="cal-alternatives-paginator sm-hidden xs-hidden">
     <div class="cal-alt-title-div">
-      <label for="cal-alt-title">Titulo:</label>
-      <input class="atom-input-field atom-input-field-title" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
+      <!--<label for="cal-alt-title">Titulo:</label> -->
+      <input class="atom-alternative-input-field"  type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
 
     </div>
     <div class="cal-alt-radio-group">
@@ -183,7 +183,7 @@
           view_list
         </i>
       </ng-template>
-      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
+      <app-display-subjects (addSubjetEmit) = "addClassSubject($event)" [calendarList]="calendarList"></app-display-subjects>
 
 
 
@@ -195,7 +195,7 @@
         </i>
       </ng-template>
 
-      <app-shopping-cart [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
+      <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
 
     </mat-tab>
 

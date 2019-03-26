@@ -5,7 +5,12 @@
     margin-right: 12px;
     margin-bottom: 12px;
     margin-left: 12px;
-
+    
+    .add-btn{
+        cursor: pointer;
+        border: solid 2px;
+        border-radius: 50%;
+    }
     a {
         cursor: pointer;
         font-family: $font-main;

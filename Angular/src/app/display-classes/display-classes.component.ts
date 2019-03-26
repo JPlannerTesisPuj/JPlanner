@@ -8,6 +8,8 @@ import { CalendarEvent } from 'calendar-utils';
 import { areRangesOverlapping } from 'date-fns';
 import { forEach } from '@angular/router/src/utils/collection';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 /**
  * Clase que actúa como controlador de la vista que desplega la información de una lista de materias.
@@ -27,6 +29,8 @@ export class DisplayClassesComponent implements OnInit {
   private error: string;
 
   private numberClasses: any;
+  //Emite el evento para agregar una materia
+  @Output() addSubjetEmit = new EventEmitter<Subject>();
 
   //Booleano para mostrar o esconder el loader  
   private showLoader: boolean;
@@ -43,4 +47,11 @@ export class DisplayClassesComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * @param subject Materia que se agregara
+   */
+  private addSubj(subject){
+    this.addSubjetEmit.next(subject);
+  }
 }
