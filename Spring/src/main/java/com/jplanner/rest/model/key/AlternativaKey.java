@@ -6,6 +6,10 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * Objeto que será usado para crear la llave primaria de la tabla Alternativas
+ *
+ */
 @Embeddable
 public class AlternativaKey implements Serializable {
 

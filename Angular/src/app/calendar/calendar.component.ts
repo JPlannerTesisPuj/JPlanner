@@ -475,7 +475,7 @@ export class CalendarComponent implements OnInit {
     */
   addClass(newClasses: CalendarEvent[], subjectToDisplay: Subject) {
     // Se llama al servicio que guarda las materias en la base de datos
-    this.readJSONFileService.saveAlternativeSubject(this.currentAlternative + 1, new Materia(subjectToDisplay.numeroClase, subjectToDisplay.nombre)).subscribe();
+    this.readJSONFileService.saveAlternativeSubject(this.currentAlternative + 1, new Materia(subjectToDisplay.numeroClase, subjectToDisplay.nombre, [])).subscribe();
     for (let horary of subjectToDisplay.horarios) {
       let startHour: Date = new Date(horary.horaInicio);
       let endHour: Date = new Date(horary.horaFin);
@@ -592,7 +592,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
-    this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre)).subscribe();
+    this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre, [])).subscribe();
   }
 
   /**

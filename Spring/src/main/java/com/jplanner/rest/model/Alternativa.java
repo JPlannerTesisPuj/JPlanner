@@ -32,25 +32,25 @@ public class Alternativa {
 	private AlternativaKey alternativaKey;
 
 	@ManyToOne
-	@JoinColumn(name="id_persona", referencedColumnName="id_persona", insertable=false, updatable=false)
+	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false)
 	private Usuario persona;
 
 	@OneToMany(mappedBy = "alternativa", cascade = CascadeType.ALL)
-	private List<Bloqueo> blocks;
+	private List<Bloqueo> bloqueos;
 
 	@ManyToMany(mappedBy = "alternativas")
-	private List<Materia> subjects = new ArrayList<Materia>();
+	private List<Materia> materias = new ArrayList<Materia>();
 
 	// CONSTRUCTORES
 
 	public Alternativa() {
 	}
 
-	public Alternativa(AlternativaKey alternativaKey, Usuario persona, List<Bloqueo> blocks, List<Materia> subjects) {
+	public Alternativa(AlternativaKey alternativaKey, Usuario persona, List<Bloqueo> bloqueos, List<Materia> materias) {
 		this.alternativaKey = alternativaKey;
 		this.persona = persona;
-		this.blocks = blocks;
-		this.subjects = subjects;
+		this.bloqueos = bloqueos;
+		this.materias = materias;
 	}
 
 	// GETTERS Y SETTERS
@@ -63,22 +63,6 @@ public class Alternativa {
 		this.alternativaKey = alternativaKey;
 	}
 
-	public List<Bloqueo> getBlocks() {
-		return blocks;
-	}
-
-	public void setBlocks(List<Bloqueo> blocks) {
-		this.blocks = blocks;
-	}
-
-	public List<Materia> getSubjects() {
-		return subjects;
-	}
-
-	public void setSubjects(List<Materia> subjects) {
-		this.subjects = subjects;
-	}
-
 	public Usuario getPersona() {
 		return persona;
 	}
@@ -86,4 +70,21 @@ public class Alternativa {
 	public void setPersona(Usuario persona) {
 		this.persona = persona;
 	}
+
+	public List<Bloqueo> getBloqueos() {
+		return bloqueos;
+	}
+
+	public void setBloqueos(List<Bloqueo> bloqueos) {
+		this.bloqueos = bloqueos;
+	}
+
+	public List<Materia> getMaterias() {
+		return materias;
+	}
+
+	public void setMaterias(List<Materia> materias) {
+		this.materias = materias;
+	}
+
 }

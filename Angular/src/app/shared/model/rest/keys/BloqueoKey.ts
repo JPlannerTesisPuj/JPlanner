@@ -1,5 +1,8 @@
 import { AlternativaKey } from "./AlternativaKey";
 
+/**
+ * Objeto usuado para crear la llave primaria de Bloqueo
+ */
 export class BloqueoKey {
     public idBloqueo: string;
     public alternativa: AlternativaKey;

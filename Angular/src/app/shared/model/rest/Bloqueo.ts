@@ -1,5 +1,8 @@
 import { BloqueoKey } from "./keys/BloqueoKey";
 
+/**
+ * Objeto equivalente al Objeto Bloqueo del Servidor
+ */
 export class Bloqueo {
     public bloqueoKey: BloqueoKey;
     public horaInicio: number;

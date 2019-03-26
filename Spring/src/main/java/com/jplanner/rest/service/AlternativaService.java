@@ -48,11 +48,11 @@ public class AlternativaService implements IAlternativaService{
 	@Override
 	public Alternativa deleteSubjectAlternative(Alternativa alternative, Materia subjectToDelete) {
 		
-		for (Materia subject : alternative.getSubjects()) {
+		for (Materia subject : alternative.getMaterias()) {
 			if(subject.getNumeroClase().equals(subjectToDelete.getNumeroClase())) {
-				List<Materia> auxSubjects = alternative.getSubjects();
+				List<Materia> auxSubjects = alternative.getMaterias();
 				auxSubjects.remove(subject);
-				alternative.setSubjects(auxSubjects);
+				alternative.setMaterias(auxSubjects);
 				return alternativaRepository.save(alternative);
 			}
 		}

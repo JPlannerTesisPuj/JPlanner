@@ -6,6 +6,10 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * Objeto que será usado para crear la llave primaria de la tabla Bloqueos
+ *
+ */
 @Embeddable
 public class BloqueoKey implements Serializable {
 

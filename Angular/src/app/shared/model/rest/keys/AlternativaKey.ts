@@ -1,3 +1,6 @@
+/**
+ * Objeto usuado para crear la llave primaria de Alternativa
+ */
 export class AlternativaKey {
     public idAlternativa: number;
     public persona: string;

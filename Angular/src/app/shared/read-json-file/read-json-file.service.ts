@@ -117,7 +117,7 @@ export class ReadJsonFileService {
     return (
       this.http.post<any>(
         this.baseUrl + 'rest/addUser',
-        new Usuario(idPerson, credentials),
+        new Usuario(idPerson, credentials, []),
         { withCredentials: true }
       ));
     // this.http.get<any>(

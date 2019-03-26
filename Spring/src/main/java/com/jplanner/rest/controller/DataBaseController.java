@@ -48,14 +48,13 @@ public class DataBaseController {
 
 	// MÉTODOS DE CONSULTA
 
-	@RequestMapping("/showUsers")
-	public ResponseEntity<List<Usuario>> findCities() {
-		List<Usuario> users = (List<Usuario>) usuarioService.findAll();
-		return new ResponseEntity<List<Usuario>>(users, HttpStatus.OK);
-	}
-
 	// MÉTODOS DE INSERCIÓN
 
+	/**
+	 * Agrega un usuario al sistema
+	 * @param user - Usuario, usuario a agregar
+	 * @return ResponseEntity, 200 en caso de éxito y 400 en caso de fallo
+	 */
 	@RequestMapping(value = "/rest/addUser", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> addUser(@RequestBody Usuario user) {
 		Usuario newUser = usuarioService.addUser(user);
@@ -82,6 +81,13 @@ public class DataBaseController {
 				+ user.getIdPersona() + "\"}", HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * Agrega una materia a una alternativa de horario de un usuario
+	 * @param subject - Materia, materia a agregar al horario
+	 * @param idAlternative - Integer, número de la alternativa donde se va a agregar la materia
+	 * @param idUser - String, ID del estudiante al cual se le va agregar la materia en su alternativa de horario
+	 * @return ResponseEntity, 200 en caso de éxito y 400 en caso de fallo
+	 */
 	@RequestMapping(value = "/rest/addAlternativeSubject/{idAlternative}/{idUser}", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> addAlternativeSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
 
@@ -93,7 +99,7 @@ public class DataBaseController {
 			alternativesForSubject.add(alternative);
 			subject.setAlternativas(alternativesForSubject);
 		} else {
-			if(alternative.getSubjects().contains(auxSubject)) {
+			if(alternative.getMaterias().contains(auxSubject)) {
 				return new ResponseEntity<String>("{\"respuesta\": \"La materia "
 						+ subject.getNumeroClase() + " ya se encuentra actualmente en el horario\"}", HttpStatus.OK);
 			}
@@ -113,6 +119,11 @@ public class DataBaseController {
 				+ subject.getNumeroClase() + " a la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * Agrega un bloqueo a la alternativa de Horario de un usuario
+	 * @param block - Bloqueo, bloqueo a agregar
+	 * @return ResponseEntity, 200 en caso de éxito y 400 en caso de fallo
+	 */
 	@RequestMapping(value = "/rest/addBlock", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> addBlock(@RequestBody Bloqueo block) {
 
@@ -132,6 +143,13 @@ public class DataBaseController {
 
 	// MÉTODOS DE ELIMINACIÓN
 	
+	/**
+	 * Elimina una materia de la lista de materias de una alternativa de horario del usuario
+	 * @param subject - Materia, materia a agregar al horario
+	 * @param idAlternative - Integer, número de la alternativa donde se va a agregar la materia
+	 * @param idUser - String, ID del estudiante al cual se le va agregar la materia en su alternativa de horario
+	 * @return ResponseEntity, 200 en caso de éxito y 400 en caso de fallo
+	 */
 	@RequestMapping(value = "/rest/deleteAlternativeSubject/{idAlternative}/{idUser}", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> deleteAlternativeSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
 
@@ -156,6 +174,11 @@ public class DataBaseController {
 				+ subject.getNumeroClase() + " de la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * Elimina un bloqueo de la alternativa de horario de un usuario
+	 * @param block - Bloqueo, bloqueo a agregar
+	 * @return ResponseEntity, 200 en caso de éxito y 400 en caso de fallo
+	 */
 	@RequestMapping(value = "/rest/deleteBlock", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> deleteBlock(@RequestBody Bloqueo block) {
 
