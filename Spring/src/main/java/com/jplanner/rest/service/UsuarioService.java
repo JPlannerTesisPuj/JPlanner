@@ -26,6 +26,11 @@ public class UsuarioService implements IUsuarioService {
 	}
 	
 	@Override
+	public void deleteUser(Usuario user) {
+		usuarioRepository.delete(user);
+	}
+	
+	@Override
 	public Usuario findUserById(String userID) {
 		Iterable<Usuario> allUsers = usuarioRepository.findAll();
 		

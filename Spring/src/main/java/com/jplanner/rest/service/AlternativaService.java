@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jplanner.rest.iservice.IAlternativaService;
 import com.jplanner.rest.model.Alternativa;
+import com.jplanner.rest.model.Materia;
 import com.jplanner.rest.model.key.AlternativaKey;
 import com.jplanner.rest.repository.AlternativaRepository;
 
@@ -27,12 +28,32 @@ public class AlternativaService implements IAlternativaService{
 	}
 	
 	@Override
-	public Alternativa findById(AlternativaKey alternativeKey) {
-		Iterable<Alternativa> allALternatives = alternativaRepository.findAll();
+	public void deleteAlternative(Alternativa alternative) {
+		alternativaRepository.delete(alternative);
+	}
+	
+	@Override
+	public Alternativa findAlternativeById(AlternativaKey alternativeKey) {
+		Iterable<Alternativa> allAlternatives = alternativaRepository.findAll();
 		
-		for (Alternativa alternative : allALternatives) {
+		for (Alternativa alternative : allAlternatives) {
 			if(alternative.getAlternativaKey().equals(alternativeKey)) {
 				return alternative;
+			}
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public Alternativa deleteSubjectAlternative(Alternativa alternative, Materia subjectToDelete) {
+		
+		for (Materia subject : alternative.getSubjects()) {
+			if(subject.getNumeroClase().equals(subjectToDelete.getNumeroClase())) {
+				List<Materia> auxSubjects = alternative.getSubjects();
+				auxSubjects.remove(subject);
+				alternative.setSubjects(auxSubjects);
+				return alternativaRepository.save(alternative);
 			}
 		}
 		

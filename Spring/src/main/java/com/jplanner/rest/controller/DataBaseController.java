@@ -83,7 +83,7 @@ public class DataBaseController {
 	@RequestMapping(value = "/rest/addSubject/{idAlternative}/{idUser}", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> addSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
 
-		Alternativa alternative = alternativaService.findById(new AlternativaKey(idAlternative, idUser));
+		Alternativa alternative = alternativaService.findAlternativeById(new AlternativaKey(idAlternative, idUser));
 		Materia auxSubject = materiaService.findSubjectByClassNumber(subject.getNumeroClase());
 
 		if (auxSubject == null) {
@@ -93,7 +93,7 @@ public class DataBaseController {
 		} else {
 			if(alternative.getSubjects().contains(auxSubject)) {
 				return new ResponseEntity<String>("{\"respuesta\": \"La materia "
-						+ subject.getNumeroClase() + "  ya se encuentra actualmente en el horario\"}", HttpStatus.OK);
+						+ subject.getNumeroClase() + " ya se encuentra actualmente en el horario\"}", HttpStatus.OK);
 			}
 			
 			subject = auxSubject;
@@ -110,9 +110,64 @@ public class DataBaseController {
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha producido un error al intentar agregar la materia "
 				+ subject.getNumeroClase() + " a la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
 	}
+	
+	@RequestMapping(value = "/rest/addBlock", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<String> addBlock(@RequestBody Bloqueo block) {
+
+		Alternativa alternative = alternativaService.findAlternativeById(block.getBloqueoKey().getAlternativa());
+		Bloqueo newBlock = bloqueoService.addBlock(block);
+		
+		if (newBlock != null) {
+			return new ResponseEntity<String>("{\"respuesta\": \"Se ha agregado correctamente el bloqueo  "
+					+ newBlock.getNombre() + " a la alternativa de horario\"}", HttpStatus.OK);
+		}
+
+		return new ResponseEntity<String>("{\"respuesta\": \"Se ha producido un error al intentar agregar la materia "
+				+ block.getNombre() + " a la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
+	}
 
 	// MÉTODOS DE ACTUALIZACIÓN
 
 	// MÉTODOS DE ELIMINACIÓN
+	
+	@RequestMapping(value = "/rest/deleteAlternativeSubject/{idAlternative}/{idUser}", method = RequestMethod.DELETE, produces = "application/json")
+	public ResponseEntity<String> deleteAlternativeSubject(@RequestBody Materia subject, @PathVariable("idAlternative") Integer idAlternative, @PathVariable("idUser") String idUser) {
+
+		Alternativa alternative = alternativaService.findAlternativeById(new AlternativaKey(idAlternative, idUser));
+		Materia auxSubject = materiaService.findSubjectByClassNumber(subject.getNumeroClase());
+
+		if (auxSubject == null) {
+			return new ResponseEntity<String>("{\"respuesta\": \"La materia "
+					+ subject.getNumeroClase() + "  no existe en el sistema\"}", HttpStatus.OK);
+		}
+		
+		subject = auxSubject;
+		Alternativa updatedAlternative = alternativaService.deleteSubjectAlternative(alternative, subject);
+		Materia updatedSubject = materiaService.deleteSubjectAlternative(alternative, subject);
+
+		if (updatedAlternative != null && updatedSubject != null) {
+			return new ResponseEntity<String>("{\"respuesta\": \"Se ha eliminado correctamente la materia "
+					+ subject.getNumeroClase() + " de la alternativa de horario\"}", HttpStatus.OK);
+		}
+
+		return new ResponseEntity<String>("{\"respuesta\": \"Se ha producido un error al intentar eliminar la materia "
+				+ subject.getNumeroClase() + " de la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
+	}
+	
+	@RequestMapping(value = "/rest/deleteBlock", method = RequestMethod.DELETE, produces = "application/json")
+	public ResponseEntity<String> deleteBlock(@RequestBody Bloqueo block) {
+
+		Alternativa alternative = alternativaService.findAlternativeById(block.getBloqueoKey().getAlternativa());
+		Bloqueo newBlock = bloqueoService.findBlockById(block.getBloqueoKey());
+		
+		if (newBlock != null) {
+			bloqueoService.deleteBlock(newBlock);
+			return new ResponseEntity<String>("{\"respuesta\": \"Se ha eliminado correctamente el bloqueo  "
+					+ block.getNombre() + " de la alternativa de horario\"}", HttpStatus.OK);
+		}
+
+		return new ResponseEntity<String>("{\"respuesta\": \"Se ha producido un error al intentar eliminar el bloqueo "
+				+ block.getNombre() + " de la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
+	}
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jplanner.rest.iservice.IMateriaService;
+import com.jplanner.rest.model.Alternativa;
 import com.jplanner.rest.model.Bloqueo;
 import com.jplanner.rest.model.Materia;
 import com.jplanner.rest.repository.MateriaRepository;
@@ -24,6 +25,26 @@ public class MateriaService implements IMateriaService {
 	@Override
 	public Materia addSubject(Materia subject) {
 		return materiaRepository.save(subject);
+	}
+	
+	@Override
+	public void deleteSubject(Materia subject) {
+		materiaRepository.delete(subject);
+	}
+	
+	@Override
+	public Materia deleteSubjectAlternative(Alternativa alternativeToDelete, Materia subject) {
+		
+		for (Alternativa alternative: subject.getAlternativas()) {
+			if(alternative.getAlternativaKey().equals(alternativeToDelete.getAlternativaKey())) {
+				List<Alternativa> auxalternatives = subject.getAlternativas();
+				auxalternatives.remove(alternative);
+				subject.setAlternativas(auxalternatives);
+				return materiaRepository.save(subject);
+			}
+		}
+		
+		return null;
 	}
 	
 	@Override

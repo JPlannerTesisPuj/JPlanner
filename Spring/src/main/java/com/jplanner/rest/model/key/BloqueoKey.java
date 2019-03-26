@@ -1,6 +1,7 @@
 package com.jplanner.rest.model.key;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -34,6 +35,27 @@ public class BloqueoKey implements Serializable {
 
 	public void setAlternativa(AlternativaKey alternativa) {
 		this.alternativa = alternativa;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final BloqueoKey other = (BloqueoKey) obj;
+		if (this.idBloqueo != other.idBloqueo) {
+			return false;
+		}
+		if (!this.alternativa.equals(other.getAlternativa())) {
+			return false;
+		}
+		return ((this.idBloqueo == other.idBloqueo) && this.alternativa.equals(other.getAlternativa()));
 	}
 
 }
