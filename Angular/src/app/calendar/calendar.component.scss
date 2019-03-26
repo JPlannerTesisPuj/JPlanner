@@ -630,3 +630,8 @@
   height: 50px;
   z-index:200;
 }
+
+//Diplay de una clase en el calendario
+.cal-schedule-container .cdk-drop-list-dragging .dis-cls-subject {
+  display: none;
+}
