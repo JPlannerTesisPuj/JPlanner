@@ -93,13 +93,6 @@ export class DisplaySubjectsComponent implements OnInit {
       this.subjectNameToShow = this.notOverLappedClasses[0].nombre;
     }
     this.showClasses = true;
-
-    /*
-    //Muestra todas las clases de las materias aún así se crucen
-    this.classesToShow = subjectClasses;
-    this.subjectNameToShow = subjectClasses[0].nombre;
-    this.showClasses = true;
-    */
   }
 
   /**
