@@ -4,6 +4,10 @@ import { Subject } from '../shared/model/Subject';
 import { Horary } from '../shared/model/Horary';
 import { DataService } from '../shared/data.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CalendarEvent } from 'calendar-utils';
+import { areRangesOverlapping } from 'date-fns';
+import { forEach } from '@angular/router/src/utils/collection';
+import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
@@ -31,11 +35,10 @@ export class DisplayClassesComponent implements OnInit {
   //Booleano para mostrar o esconder el loader  
   private showLoader: boolean;
 
-
   // Se pide la dependencia de ReadJsonFileService
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   private dropInside(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -50,4 +53,5 @@ export class DisplayClassesComponent implements OnInit {
   private addSubj(subject){
     this.addSubjetEmit.next(subject);
   }
+
 }
