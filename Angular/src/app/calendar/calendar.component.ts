@@ -1008,7 +1008,7 @@ export class CalendarComponent implements OnInit {
     blockIndexToDelete = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdToDelete);
 
     if (blockIndexToDelete != -1) {
-      if (!creating){
+      if (!creating) {
         // Se llama el servicio que elimina un bloqueo de la base de datos
         this.readJSONFileService.deleteBlock(this.calendarBlocks[blockIndexToDelete], this.currentAlternative + 1).subscribe();
       }
@@ -1076,16 +1076,19 @@ export class CalendarComponent implements OnInit {
           },
           error => { },
           () => {
-            let subjectToDisplay = this.calendarClasses.filter(subj => subj.numeroClase == value)[0];
-            let altClasses = this.classes.filter(subj => subj.id == value);
-            altClasses.forEach(subj => {
-              subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
-            });
-            finishedObservables++;
-            if (finishedObservables == indexesArray.size) {
+            if (this.calendarClasses.filter(subj => subj.numeroClase == value).length != 0) {
+              let subjectToDisplay = this.calendarClasses.filter(subj => subj.numeroClase == value)[0];
+              let altClasses = this.classes.filter(subj => subj.id == value);
+              altClasses.forEach(subj => {
+                subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
+              });
+              finishedObservables++;
+              if (finishedObservables == indexesArray.size) {
+                this.showLoader = false;
+              }
+            } else {
               this.showLoader = false;
             }
-
           },
         );
       }
