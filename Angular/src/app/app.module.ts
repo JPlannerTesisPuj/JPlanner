@@ -32,6 +32,7 @@ import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/ca
 import localeEs from '@angular/common/locales/es';
 import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
 import { ShoppingCartComponent } from './calendar/menu-tabs/shopping-cart/shopping-cart.component';
+import { BlockModalComponent } from './block-modal/block-modal.component';
 
 registerLocaleData(localeEs);
 
@@ -45,7 +46,8 @@ registerLocaleData(localeEs);
     CalendarComponent,
     OverlapClassConfirmationDialog,
     DisplaySubjectsComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    BlockModalComponent
   ],
   imports: [
     BrowserModule,
