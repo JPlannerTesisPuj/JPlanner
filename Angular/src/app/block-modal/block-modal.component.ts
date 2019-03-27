@@ -1,10 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-block-modal',
   templateUrl: './block-modal.component.html',
 })
-export class BlockModalComponent implements OnInit {
+export class BlockModalComponent {
 
   private blockName: string;
   private blockSelectedItemsWeek: string;
@@ -13,14 +14,13 @@ export class BlockModalComponent implements OnInit {
   private blockSelectedOptionTo = '';
 
   private dropdownSettings = {};
-  private dropdownListWeek= [];
-  private blockHoursFrom= [];
-  private blockHoursTo= [];
+  private dropdownListWeek = [];
+  private blockHoursFrom = [];
+  private blockHoursTo = [];
 
-  constructor() { }
-
-  ngOnInit() {
-
+  constructor(
+    public dialogRef: MatDialogRef<BlockModalComponent>
+  ) {
     this.dropdownListWeek = [
       { item_id: 0, item_text: 'Lunes' },
       { item_id: 1, item_text: 'Martes' },
@@ -42,19 +42,18 @@ export class BlockModalComponent implements OnInit {
       selectAllText: 'Seleccionar Todos',
       unSelectAllText: 'Remover Todos'
     };
+    
     this.initHoursFrom();
   }
 
   /**
-     * Inicia el dropdown de horas desde
-     */
-    initHoursFrom() {
-      for (let i = 7; i <= 21; ++i) {
-        this.blockHoursFrom.push(i + ':00');
-      }
+  * Inicia el dropdown de horas desde
+  */
+  initHoursFrom() {
+    for (let i = 7; i <= 21; ++i) {
+      this.blockHoursFrom.push(i + ':00');
     }
-
-  @Output() messageEvent = new EventEmitter<Object>();
+  }
 
   /**
    * Si horas desde se muestra, entonces se muestra el horas hasta
@@ -82,7 +81,7 @@ export class BlockModalComponent implements OnInit {
   /**
    * Envia los datos del modal al Calendar
    */
-  private createBlocks(){
+  private createBlocks() {
 
     //Convierte el arreglo de dias a un string separado con -
     let daysBlock = this.blockSelectedItemsWeek;
@@ -102,7 +101,6 @@ export class BlockModalComponent implements OnInit {
       ['hourTo']: selectedToSeconds
     }
 
-    this.messageEvent.emit(data);
+    this.dialogRef.close(data);
   }
-
 }

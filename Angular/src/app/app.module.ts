@@ -68,7 +68,8 @@ registerLocaleData(localeEs);
   ],
   entryComponents: [
     ClassModalComponent,
-    OverlapClassConfirmationDialog
+    OverlapClassConfirmationDialog,
+    BlockModalComponent
   ],
 
   providers: [

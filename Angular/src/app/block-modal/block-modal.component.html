@@ -1,23 +1,25 @@
 <div class="small">
   <h2 mat-dialog-tittle> Datos del bloqueo</h2>
 
-  <b>Seleccione un nombre para el bloqueo</b>
-  <br>
+  <mat-dialog-content class="mat-typography">
+    <b>Seleccione un nombre para el bloqueo</b>
+    <br>
 
-  <div class="search-container col-12">
-    <input [(ngModel)]="blockName" type="text" class="col-12" placeholder="Nombre del bloqueo">
-  </div>
-
-  <b>Seleccione el/los día(s) en los que desea añadir el bloqueo</b>
-
-  <div class="grid-noGutter" id="basic-search">
-    <div id="week-days" class="col-12 grid-noGutter">
-      <label class="col-12" for="week-days"></label>
-      <ng-multiselect-dropdown class="col-12" [placeholder]="'Días de la Semana'" [data]="dropdownListWeek"
-        [(ngModel)]="blockSelectedItemsWeek" [settings]="dropdownSettings">
-      </ng-multiselect-dropdown>
+    <div class="search-container col-12">
+      <input [(ngModel)]="blockName" type="text" class="col-12" placeholder="Nombre del bloqueo">
     </div>
 
+    <b>Seleccione el/los día(s) en los que desea añadir el bloqueo</b>
+
+    <div class="grid-noGutter" id="basic-search">
+      <div id="week-days" class="col-12 grid-noGutter">
+        <label class="col-12" for="week-days"></label>
+        <ng-multiselect-dropdown class="col-12" [placeholder]="'Días de la Semana'" [data]="dropdownListWeek"
+          [(ngModel)]="blockSelectedItemsWeek" [settings]="dropdownSettings">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    
     <b>Seleccione una franja horaria</b>
 
     <div id="week-hours">
@@ -37,5 +39,8 @@
       </select>
     </div>
 
-    <button (click)="createBlocks()">Agregar Bloqueo</button>
-  </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="createBlocks()">Agregar Bloqueo</button>
+  </mat-dialog-actions>
+</div>

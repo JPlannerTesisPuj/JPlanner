@@ -4,7 +4,7 @@ import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMo
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS, fromEvent, generate } from 'rxjs';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatHeaderRow } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatHeaderRow, MatDialogConfig } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
@@ -16,6 +16,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
+import { BlockModalComponent } from '../block-modal/block-modal.component';
 /**
  * The documentation used to 
  
@@ -286,6 +287,16 @@ export class CalendarComponent implements OnInit {
     this.initTitles();
     this.onItemChange(0);
     this.viewDate = this.readJSONFileService.consumeLectiveCycle();
+
+    const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = {id : 1};
+
+    const dialogRef = this.dialog.open(BlockModalComponent).afterClosed().subscribe(
+      result => this.createBlocksFromModal(result)
+    );
 
     /**
  * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
@@ -1102,7 +1113,7 @@ export class CalendarComponent implements OnInit {
    * 
    * @param $event 
    */
-  private receiveMessage($event: any) {
+  private createBlocksFromModal($event: any) {
     this.incommingMessage = $event;
     const blockParentID: string = 'block_' + this.blockIdCount;
     const daysBlock: any = this.incommingMessage['daysBlock'];
