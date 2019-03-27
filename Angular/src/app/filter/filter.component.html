@@ -16,9 +16,19 @@
       </label>
       <div class="fil-search-container col-12">
         <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field ng-pristine ng-valid ng-touched" id="fil-searchBox"
-          placeholder="Escriba el texto de búsqueda...">
+          placeholder="Escriba el texto de búsqueda..." (ngModelChange)="checkInputFieldSearch($event)" (click)="onlyLetters()">
         <div class="error-msg" id="fil-error-searchBox"></div>
       </div>
+
+      <div class="alert" *ngIf="errorFilterSearchN">
+        <span class="closebtn"></span>
+          Por favor, digite dos letras o más
+      </div> 
+
+      <div class="alert" *ngIf="errorFilterSearchS">
+        <span class="closebtn"></span>
+          Por favor, no utilice la tecla espacio en el primer o segundo campo
+      </div> 
       
         <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-margin atom-custom-list" [placeholder]="'Búscar en Campo Específico'"
           [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">
@@ -98,14 +108,14 @@
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input type="text" [(ngModel)]="searchedFilterId" class="atom-input-field" />
+      <input type="number" [(ngModel)]="searchedFilterId" class="atom-input-field"/>
     </div>
   
     <div id="fil-number-filter" class="col-12 grid-noGutter">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field" />
+      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
     </div>
   
     <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
