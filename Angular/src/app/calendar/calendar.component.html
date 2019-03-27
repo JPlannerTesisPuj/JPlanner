@@ -68,7 +68,6 @@
     <div class="cal-alt-title-div">
       <!--<label for="cal-alt-title">Titulo:</label> -->
       <input class="atom-alternative-input-field"  type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
-
     </div>
     <div class="cal-alt-radio-group">
       <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
@@ -79,6 +78,13 @@
     <div class="cal-alt-number-credits">
       <label>Número de Créditos:
         <label class="number-credits">{{creditCounter[currentAlternative]}}</label>
+      </label>
+    </div>
+    <div class="checkbox-atom-fix-div">
+      <label for="editBlockOption" class="checkbox-atom-container checkbox-atom-fix">
+        Eliminar/Editar bloqueo semanalmente
+        <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption" class="hidden-checkbox">
+        <span class="checkbox-atom"></span>
       </label>
     </div>
 
@@ -152,12 +158,6 @@
       </div>
     </div>
   </div>
-
-  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
-  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
-
 </div>
 
 <div class="movilMenu col-12 ">
@@ -211,6 +211,13 @@
 
           <div class="cal-day-text">
             {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
+          </div>
+          <div class="checkbox-atom-fix-div">
+            <label for="editBlockOption" class="checkbox-atom-container checkbox-atom-fix">
+              Eliminar/Editar bloqueo semanalmente
+              <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption" class="hidden-checkbox">
+              <span class="checkbox-atom"></span>
+            </label>
           </div>
           <div class="cal-schedule-container cal-mobile col-9_xs-12_sm-12_md-12_lg-9 ">
             <div (swipe)="onSwipe($event)">
