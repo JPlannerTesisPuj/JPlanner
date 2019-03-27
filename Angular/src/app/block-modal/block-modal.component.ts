@@ -17,6 +17,8 @@ export class BlockModalComponent {
   private dropdownListWeek = [];
   private blockHoursFrom = [];
   private blockHoursTo = [];
+  private errorMessage: string = '';
+  private errorExists: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<BlockModalComponent>
@@ -42,7 +44,7 @@ export class BlockModalComponent {
       selectAllText: 'Seleccionar Todos',
       unSelectAllText: 'Remover Todos'
     };
-    
+
     this.initHoursFrom();
   }
 
@@ -83,23 +85,45 @@ export class BlockModalComponent {
    */
   private createBlocks() {
 
+    if (this.blockSelectedItemsWeek == undefined) {
+      this.errorMessage = 'Seleccione los días de la semana en los que quiere crear el bloqueo';
+      this.errorExists = true;
+
+      return;
+    }
+
+    if (this.blockSelectedOptionFrom == undefined || this.blockSelectedOptionFrom == '') {
+      this.errorMessage = 'Seleccione la hora inicial en la que quiere crear el bloqueo';
+      this.errorExists = true;
+
+      return;
+    }
+
+    if (this.blockSelectedOptionTo == undefined || this.blockSelectedOptionTo == '') {
+      this.errorMessage = 'Seleccione la hora final en la que quiere crear el bloqueo';
+      this.errorExists = true;
+
+      return;
+    }
+
     //Convierte el arreglo de dias a un string separado con -
     let daysBlock = this.blockSelectedItemsWeek;
 
     //Separar el formato de horario y pasarlo a segundos
-    var selectedFromSecondsArray = this.blockSelectedOptionFrom.split(':');
-    var selectedToSecondsArray = this.blockSelectedOptionTo.split(':');
+    var selectedFromArray = this.blockSelectedOptionFrom.split(':');
+    var selectedToArray = this.blockSelectedOptionTo.split(':');
 
-    var selectedFromSeconds = selectedFromSecondsArray[0];
-    var selectedToSeconds = selectedToSecondsArray[0];
+    var selectedFrom = selectedFromArray[0];
+    var selectedTo = selectedToArray[0];
 
     //Unir todo el mensaje para enviarlo
     let data = {
       ['blockName']: this.blockName,
       ['daysBlock']: daysBlock,
-      ['hourFrom']: selectedFromSeconds,
-      ['hourTo']: selectedToSeconds
+      ['hourFrom']: selectedFrom,
+      ['hourTo']: selectedTo
     }
+    console.log(data)
 
     this.dialogRef.close(data);
   }

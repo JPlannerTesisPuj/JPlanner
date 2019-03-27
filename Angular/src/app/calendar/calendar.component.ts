@@ -3,7 +3,7 @@ import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTitleFor
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
-import { Subject as SubjectRXJS, fromEvent, generate } from 'rxjs';
+import { Subject as SubjectRXJS, fromEvent, generate, Observable } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatHeaderRow, MatDialogConfig } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { HammerGestureConfig } from '@angular/platform-browser';
@@ -239,6 +239,8 @@ export class CalendarComponent implements OnInit {
   private checkSizeInterval: number = 300000;
 
   private incommingMessage: any;
+  private dialogEventSubscription: any;
+  @Input() private dialogEvent: Observable<void>;
 
   /**
    * @var Object creado para subscripcion a diferencias en el array
@@ -289,20 +291,10 @@ export class CalendarComponent implements OnInit {
     this.onItemChange(0);
     this.viewDate = this.readJSONFileService.consumeLectiveCycle();
 
-    const dialogConfig = new MatDialogConfig();
-
-        dialogConfig.disableClose = true;
-        dialogConfig.autoFocus = true;
-        dialogConfig.data = {id : 1};
-
-    const dialogRef = this.dialog.open(BlockModalComponent).afterClosed().subscribe(
-      result => this.createBlocksFromModal(result)
-    );
-
     /**
- * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
- * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
- */
+   * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
+   * haya una búsqueda cambia el index del menú de íconos para que este cambie de pestaña.
+   */
     let filter: any;
     this.data.currentMessage.subscribe(message => {
       filter = message;
@@ -310,6 +302,8 @@ export class CalendarComponent implements OnInit {
         this.verticalMenuIndex = 1;
       }
     });
+
+    this.dialogEventSubscription = this.dialogEvent.subscribe(() => this.openCreationBlocksDialog());
 
   }
 
@@ -564,7 +558,7 @@ export class CalendarComponent implements OnInit {
 
     if (action === 'Clicked') {
       let subjectToShowthis: Subject = this.calendarClasses.find(myClass => myClass.numeroClase === event.id);
-      if(subjectToShowthis !== undefined){
+      if (subjectToShowthis !== undefined) {
         let dialogRef = this.dialog.open(ClassModalComponent, {
           data: { class: subjectToShowthis }
         });
@@ -934,7 +928,7 @@ export class CalendarComponent implements OnInit {
       this.calendarBlocks.push(newCalendarBlock);
       this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
       this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
-      
+
     }
 
     return newBlock;
@@ -1129,10 +1123,15 @@ export class CalendarComponent implements OnInit {
     const daysBlock: any = this.incommingMessage['daysBlock'];
     const startHour: number = +this.incommingMessage['hourFrom'];
     const endHour: number = +this.incommingMessage['hourTo'];
+    let blockName: string = this.incommingMessage['blockName'];
 
     // Se toma como base la primera semana del ciclo lectivo para agregar los bloqueos
     const startOfView = startOfWeek(this.startSchoolYear);
     const endOfView = endOfWeek(this.endSchoolYear);
+
+    if (blockName == undefined) {
+      blockName = 'Bloqueo ' + this.blockIdCount;
+    }
 
     // Reccorre los días para crear los bloqueos
     for (let contDays = 0; contDays < daysBlock.length; contDays++) {
@@ -1140,28 +1139,40 @@ export class CalendarComponent implements OnInit {
       let endDay: Date = addHours(addDays(startOfWeek(this.startSchoolYear), daysBlock[contDays].item_id), endHour);
 
       for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
-      /**
-        * @var blockIDWeek 
-        * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
-        */
-      let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
-      let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
-      let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
+        /**
+          * @var blockIDWeek 
+          * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
+          */
+        let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
+        let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
+        let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
 
-      
-      // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
-      if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
-      startDay > startOfView && startDay < endOfView &&
-      endDay > startOfView && endDay < endOfView) {
-        this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID);
-      } else {
-        this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
+
+        // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
+        if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
+          startDay > startOfView && startDay < endOfView &&
+          endDay > startOfView && endDay < endOfView) {
+          this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, blockName, blockParentID);
+        } else {
+          this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
+        }
       }
     }
+    this.blockIdCount++;
+    this.refreshCal();
   }
-  this.blockIdCount++;
-  this.refreshCal();
-}
+
+  /**
+   * 
+   */
+  public openCreationBlocksDialog() {
+    const dialogRef = this.dialog.open(BlockModalComponent).afterClosed().subscribe(
+      result => {
+        if (result != undefined){
+          this.createBlocksFromModal(result)
+        }
+      });
+  }
 
 }
 

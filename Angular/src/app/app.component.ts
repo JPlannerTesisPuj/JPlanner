@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReadJsonFileService } from 'src/app/shared/read-json-file/read-json-file.service';
 import { DataService } from 'src/app/shared/data.service';
 import { User } from './shared/model/User';
+import { Subject as SubjectRxJs } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,8 @@ export class AppComponent implements OnInit {
     'eyJ0eXAiOiJKV1QidiQM0LCJhbGciOiJIUzI1NiJ9.eyJNMAin4b3J0eSBaCI6ImJsYSJ9.5dNA54MneukYGgNwkhKV7QyLx23fI5qEKFXhY2',
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzIHDN741NiJ9.eJ0eSBTbWl0aCI6ImJsYKi40iSJ9.5dNM-kYGgNwkhKV7QyLx23fKD8ncIXhY2BWleU',   
   ];
+
+  private dialogEventSubjectRxJs: SubjectRxJs<void> = new SubjectRxJs<void>();
 
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
@@ -59,6 +62,11 @@ export class AppComponent implements OnInit {
         break;
       }
     }
+  }
+
+  private openCreationBlockModal() {
+    this.showOptions = false;
+    this.dialogEventSubjectRxJs.next();
   }
 
   
