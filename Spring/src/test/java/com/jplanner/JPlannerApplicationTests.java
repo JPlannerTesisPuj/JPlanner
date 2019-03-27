@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.jplanner;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Demo2ApplicationTests {
+public class JPlannerApplicationTests {
 
 	@Test
 	public void contextLoads() {

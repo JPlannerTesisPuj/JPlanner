@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.jplanner.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
