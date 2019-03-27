@@ -37,9 +37,6 @@ export class AppComponent implements OnInit {
         this.readJSONFileService.setUSer(this.userAuthenticaded[0]);
         // Se llama al servicio que guarda el usuario en la base de datos
         this.readJSONFileService.saveUser(this.userAuthenticaded[0].GID, this.userAuthenticaded[0].credenciales).subscribe();
-        this.sleep(3000);
-        // Se llama al servicio que guarda las alternativas en la base de datos
-        this.readJSONFileService.saveAlternative(this.userAuthenticaded[0].GID).subscribe();
       }
     });
 
