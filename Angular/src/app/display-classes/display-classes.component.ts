@@ -35,11 +35,10 @@ export class DisplayClassesComponent implements OnInit {
   //Booleano para mostrar o esconder el loader  
   private showLoader: boolean;
 
-
   // Se pide la dependencia de ReadJsonFileService
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   private dropInside(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -54,4 +53,5 @@ export class DisplayClassesComponent implements OnInit {
   private addSubj(subject){
     this.addSubjetEmit.next(subject);
   }
+
 }
