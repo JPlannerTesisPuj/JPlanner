@@ -24,13 +24,13 @@ export class BlockModalComponent {
     public dialogRef: MatDialogRef<BlockModalComponent>
   ) {
     this.dropdownListWeek = [
-      { item_id: 0, item_text: 'Lunes' },
-      { item_id: 1, item_text: 'Martes' },
-      { item_id: 2, item_text: 'Miércoles' },
-      { item_id: 3, item_text: 'Jueves' },
-      { item_id: 4, item_text: 'Viernes' },
-      { item_id: 5, item_text: 'Sábado' },
-      { item_id: 6, item_text: 'Domingo' }
+      { item_id: 1, item_text: 'Lunes' },
+      { item_id: 2, item_text: 'Martes' },
+      { item_id: 3, item_text: 'Miércoles' },
+      { item_id: 4, item_text: 'Jueves' },
+      { item_id: 5, item_text: 'Viernes' },
+      { item_id: 6, item_text: 'Sábado' },
+      { item_id: 0, item_text: 'Domingo' }
     ];
 
     //Opciones de configuración del dropdown
