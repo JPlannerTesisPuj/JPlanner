@@ -1198,6 +1198,7 @@ export class CalendarComponent implements OnInit {
           * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
           */
         let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
+        let dayID: string = blockParentID + '__' + contDays;
         let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
         let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
 
@@ -1206,7 +1207,7 @@ export class CalendarComponent implements OnInit {
         if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
           startDay > startOfView && startDay < endOfView &&
           endDay > startOfView && endDay < endOfView) {
-          this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, blockName, blockParentID);
+          this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, blockName, blockParentID, dayID);
         } else {
           this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
         }
