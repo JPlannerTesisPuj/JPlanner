@@ -138,19 +138,6 @@
       [dayEndHour]="22" [locale]="locale" [hourSegmentTemplate]="customWeekViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
       (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" class="cal-display-lg sm-hidden col-12">
     </mwl-calendar-week-view>
-
-    <div class="cal-display-sm col-12 ">
-
-      <div class="cal-day-text">
-        {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
-      </div>
-      <div (swipe)="onSwipe($event)">
-        <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [locale]="locale"
-          [dayStartHour]="7" [dayEndHour]="22" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
-          (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-        </mwl-calendar-day-view>
-      </div>
-    </div>
   </div>
 
   <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
@@ -163,7 +150,7 @@
 <div class="movilMenu col-12 ">
 
 
-  <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndex">
+  <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndexMobile">
     <mat-tab>
       <ng-template mat-tab-label>
         <i class="material-icons">
@@ -216,7 +203,7 @@
             <div (swipe)="onSwipe($event)">
               <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [locale]="locale"
                 [dayStartHour]="7" [dayEndHour]="22" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
-                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" class="cal-display-sm  col-12">
               </mwl-calendar-day-view>
             </div>
           </div>
