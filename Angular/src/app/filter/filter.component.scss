@@ -19,6 +19,8 @@
     & > p{
       margin-left: 10px;
       margin-top: 4px;
+      width: 100%;
+      max-width: calc(100% - 24px);
     }
   }
   .fil-dropdown-specific-field {
@@ -154,6 +156,10 @@
 
 .fil-label-block{
   display: block;
+}
+
+.fil-fix-quotas{
+  width: 20% !important;
 }
 
 .alert {

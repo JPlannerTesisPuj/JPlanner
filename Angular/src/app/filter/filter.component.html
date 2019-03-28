@@ -164,7 +164,7 @@
       <label for="fil-class-size" class="fil-label-block">
         <strong>Cupos Disponibles:</strong>
       </label>
-      <select [hidden]="!shouldDisplaySizeValue1" class="col-3 atom-dropdown" [(ngModel)]="selectedSizeValue1"
+      <select [hidden]="!shouldDisplaySizeValue1" class="col-3 atom-dropdown fil-fix-quotas" [(ngModel)]="selectedSizeValue1"
         (ngModelChange)="onChangeSizeOne($event)">
         <option [disabled]="value.disabled" *ngFor="let value of sizeValue1">
           {{value.value}}
@@ -177,7 +177,7 @@
           {{comparator.value}}
         </option>
       </select>
-      <select [hidden]="!shouldDisplaySizeValue2" class="col-3 atom-dropdown" [(ngModel)]="selectedSizeValue2">
+      <select [hidden]="!shouldDisplaySizeValue2" class="col-3 atom-dropdown fil-fix-quotas" [(ngModel)]="selectedSizeValue2">
         <option [disabled]="value.disabled" *ngFor="let value of sizeValue2">
           {{value.value}}
         </option>
