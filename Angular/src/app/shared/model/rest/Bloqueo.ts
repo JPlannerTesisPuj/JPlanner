@@ -9,18 +9,21 @@ export class Bloqueo {
     public horaFin: number;
     public nombre: string;
     public idPadre: string;
+    public idDia: string;
 
     constructor(
         private nBloqueoKey: BloqueoKey, 
         private nHoraInicio: number,
         private nHoraFin: number,
         private nNombre: string,
-        private nIdPadre: string
+        private nIdPadre: string,
+        private nIdDia: string
     ) {
         this.bloqueoKey = nBloqueoKey;
         this.horaInicio = nHoraInicio;
         this.horaFin = nHoraFin;
         this.nombre = nNombre;
         this.idPadre = nIdPadre;
+        this.idDia = nIdDia;
     }
 }

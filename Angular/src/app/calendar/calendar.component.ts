@@ -574,7 +574,10 @@ export class CalendarComponent implements OnInit {
     } else if (action === 'BlockRemoved') {
       // Verifica si se debe eliminar sólo el bloqueo seleccionado o todo el grupo de bloqueos
       if (this.editBlockOption) {
-        this.deleteBlockByID(event.id + '', false);
+        const dayID: string = this.calendarBlocks.find(myBlock => myBlock.id == event.id + '').dayID;
+        const blocksToDelete: CalendarBlock[] = this.calendarBlocks.filter(myBlock => myBlock.dayID == dayID);
+        blocksToDelete.forEach(myBlock => this.deleteBlockByID(myBlock.id, false));
+        // this.deleteBlockByID(event.id + '');
       } else {
         const parentID: string = this.calendarBlocks.find(myBlock => myBlock.id == event.id + '').parentID;
         const blocksToDelete: CalendarBlock[] = this.calendarBlocks.filter(myBlock => myBlock.parentID == parentID);
@@ -761,7 +764,7 @@ export class CalendarComponent implements OnInit {
     }
 
     blockParentID = 'block_' + this.blockIdCount;
-    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, addHours(firstBlockDate, 1), blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID);
+    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, addHours(firstBlockDate, 1), blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID, blockParentID + '__0');
 
     this.blockIdCount++;
     // Se toma la posición del cuadro que fue seleccionado para agregar el bloqueo
@@ -778,6 +781,7 @@ export class CalendarComponent implements OnInit {
        * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
        */
       let blockIDWeek: string = blockParentID + '__' + 0 + '__' + contWeeks;
+      let dayID: string = blockParentID + '__' + 0;
       let startDayOnWeek: Date = addWeeks(dragToSelectEvent.start, contWeeks);
       let endDayOnWeek: Date = addWeeks(dragToSelectEvent.end, contWeeks);
 
@@ -785,7 +789,7 @@ export class CalendarComponent implements OnInit {
       if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
         dragToSelectEvent.start > startOfView && dragToSelectEvent.start < endOfView &&
         dragToSelectEvent.end > startOfView && dragToSelectEvent.end < endOfView) {
-        this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, dragToSelectEvent.title, blockParentID);
+        this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, dragToSelectEvent.title, blockParentID, dayID);
       } else {
         this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
       }
@@ -800,8 +804,10 @@ export class CalendarComponent implements OnInit {
 
           this.calendarBlocks.forEach(myBlock => {
             // Se llama el servicio que guarda el bloqueo en la base de datos
-            this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
-          })
+            if (myBlock.parentID == blockParentID) {
+              this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
+            }
+          });
 
           this.refreshCal();
           this.blocksOverlapsClassesAndBlocks[this.currentAlternative] = this.checkIfBlocksHasDifferentSizes(blockParentID);
@@ -882,6 +888,7 @@ export class CalendarComponent implements OnInit {
              * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
              */
             let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
+            let dayWeekID: string = blockParentID + '__' + contDays;
             let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
             let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
 
@@ -889,7 +896,7 @@ export class CalendarComponent implements OnInit {
             if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
               startDay > startOfView && startDay < endOfView &&
               endDay > startOfView && endDay < endOfView) {
-              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID);
+              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID, dayWeekID);
             } else {
               this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
             }
@@ -913,7 +920,7 @@ export class CalendarComponent implements OnInit {
    * @param blockParentID ID que representa el grupo al cual pertenece el bloqueo
    * @returns CalendarEvent Retorna un nuevo evento en el calendario.
    */
-  private createBlockCalendarEvent(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string, blockParentID: string) {
+  private createBlockCalendarEvent(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string, blockParentID: string, dayID) {
     let blockIndexToAdd: number;
     let newBlock: CalendarEvent = null;
 
@@ -950,6 +957,7 @@ export class CalendarComponent implements OnInit {
         newBlock.start,
         newBlock.end,
         blockParentID,
+        dayID,
         blockTitle
       )
       this.classes = [...this.classes, newBlock];
@@ -1076,7 +1084,25 @@ export class CalendarComponent implements OnInit {
     newStart,
     newEnd
   }: CalendarEventTimesChangedEvent): void {
-    this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
+    if (this.editBlockOption) {
+      // Se toma el ID del bloqueo que se está editando y se busca a todos los boqueos que tengan el mismo weekID
+      const selectedBlock: CalendarBlock = this.calendarBlocks.find(myBlock => myBlock.id == event.id);
+      const dayID: string = selectedBlock.dayID;
+      const blocksToUpdate: CalendarBlock[] = this.calendarBlocks.filter(myBlock => myBlock.dayID == dayID);
+
+      
+      // Se coge las horas de diferencia para editar
+      const startDifference: number = differenceInHours(newStart, startOfDay(selectedBlock.startHour));
+      const endDifference: number = differenceInHours(newEnd, startOfDay(selectedBlock.endHour));
+
+      // Se editan todos los bloqueos con el mismo weekID
+      blocksToUpdate.forEach(myBlock => {
+        this.updateBlockCalendarEvent(myBlock.id, addHours(startOfDay(myBlock.startHour), startDifference), addHours(startOfDay(myBlock.endHour), endDifference));
+        this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();        
+      });
+    } else {
+      this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
+    }
     this.refresh.next();
   }
 
@@ -1172,6 +1198,7 @@ export class CalendarComponent implements OnInit {
           * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
           */
         let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
+        let dayID: string = blockParentID + '__' + contDays;
         let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
         let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
 
@@ -1180,7 +1207,7 @@ export class CalendarComponent implements OnInit {
         if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
           startDay > startOfView && startDay < endOfView &&
           endDay > startOfView && endDay < endOfView) {
-          this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, blockName, blockParentID);
+          this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, blockName, blockParentID, dayID);
         } else {
           this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
         }
