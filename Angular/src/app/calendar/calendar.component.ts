@@ -767,8 +767,10 @@ export class CalendarComponent implements OnInit {
 
           this.calendarBlocks.forEach(myBlock => {
             // Se llama el servicio que guarda el bloqueo en la base de datos
-            this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
-          })
+            if (myBlock.parentID == blockParentID) {
+              this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
+            }
+          });
 
           this.refreshCal();
         }),
@@ -1052,12 +1054,13 @@ export class CalendarComponent implements OnInit {
 
       
       // Se coge las horas de diferencia para editar
-      const startDifference: number = differenceInHours(newStart, selectedBlock.startHour);
-      const endDifference: number = differenceInHours(newEnd, selectedBlock.endHour);
+      const startDifference: number = differenceInHours(newStart, startOfDay(selectedBlock.startHour));
+      const endDifference: number = differenceInHours(newEnd, startOfDay(selectedBlock.endHour));
 
       // Se editan todos los bloqueos con el mismo weekID
       blocksToUpdate.forEach(myBlock => {
-        this.updateBlockCalendarEvent(myBlock.id, addHours(myBlock.startHour, startDifference), addHours(myBlock.endHour, endDifference))
+        this.updateBlockCalendarEvent(myBlock.id, addHours(startOfDay(myBlock.startHour), startDifference), addHours(startOfDay(myBlock.endHour), endDifference));
+        this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();        
       });
     } else {
       this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
