@@ -102,20 +102,20 @@
   
   </div>
   
-  <div id="fil-adv-filters" class="grid-noGutter hidden">
+  <div id="fil-adv-filters" class="grid-noGutter" *ngIf="isAdvancedSearch">
   
     <div id="fil-id-filter" class="col-12 grid-noGutter">
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterId" class="atom-input-field"/>
+      <input [(ngModel)]="searchedFilterId" class="atom-input-field"/>
     </div>
   
     <div id="fil-number-filter" class="col-12 grid-noGutter">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
+      <input  [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
     </div>
   
     <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
