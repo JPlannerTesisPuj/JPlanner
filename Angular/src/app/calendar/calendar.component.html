@@ -1,4 +1,9 @@
 <div *ngIf="showLoader" class="dispclass-loader updating-size"></div>
+<div *ngIf="blocksOverlapsClassesAndBlocks[currentAlternative]" class="cal-conflict-msj col-12">
+  <span>¡El bloqueo se cruza con clases modulares u otros bloqueos por lo que no fue creado igual en todas las semanas!</span>
+  <i class="material-icons">warning</i>
+</div>
+
 <div *ngIf="isMobile" class="col-12 cal-display-sm lg-hidden md-hidden cal-alt-mobile">
   <div class="cal-alternatives-paginator ">
     <div class="cal-alt-title-div">
@@ -125,21 +130,12 @@
       [hourSegmentHeight]="35" [hourSegmentTemplate]="customWeekViewHourSegmentTemplateJplanner" [hourSegments]="1"
       [locale]="locale" [refresh]="refresh" [viewDate]="viewDate" class="cal-display-lg sm-hidden col-12">
     </mwl-calendar-week-view>
-    <div class="cal-display-sm col-12 ">
-      <div class="cal-day-text">
-        {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
-      </div>
-      <div (swipe)="onSwipe($event)">
-        <mwl-calendar-day-view (eventClicked)="handleEvent('Clicked', $event.event)"
-          (eventTimesChanged)="eventTimesChanged($event)" [dayEndHour]="22" [dayStartHour]="7" [events]="classes"
-          [hourSegmentHeight]="35" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegments]="1"
-          [locale]="locale" [refresh]="refresh" [viewDate]="viewDate"></mwl-calendar-day-view>
-      </div>
-    </div>
   </div>
 </div>
 <div class="movilMenu col-12 ">
-  <mat-tab-group [(selectedIndex)]="verticalMenuIndex" headerPosition="below">
+
+
+  <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndexMobile">
     <mat-tab>
       <ng-template mat-tab-label>
         <i class="material-icons">
@@ -190,10 +186,10 @@
           </div>
           <div class="cal-schedule-container cal-mobile col-9_xs-12_sm-12_md-12_lg-9 ">
             <div (swipe)="onSwipe($event)">
-              <mwl-calendar-day-view (eventClicked)="handleEvent('Clicked', $event.event)"
-                (eventTimesChanged)="eventTimesChanged($event)" [dayEndHour]="22" [dayStartHour]="7" [events]="classes"
-                [hourSegmentHeight]="35" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner"
-                [hourSegments]="1" [locale]="locale" [refresh]="refresh" [viewDate]="viewDate"></mwl-calendar-day-view>
+              <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [locale]="locale"
+                [dayStartHour]="7" [dayEndHour]="22" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
+                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" class="cal-display-sm  col-12">
+              </mwl-calendar-day-view>
             </div>
           </div>
         </div>
