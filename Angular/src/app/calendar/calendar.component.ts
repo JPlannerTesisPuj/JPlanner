@@ -762,6 +762,27 @@ export class CalendarComponent implements OnInit {
     const startOfView = startOfWeek(firstBlockDate);
     const endOfView = endOfWeek(firstBlockDate);
 
+    // Agrega los bloqueos de los días en todas las semanas al hacer click
+    for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
+      /**
+       * @var blockIDWeek 
+       * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
+       */
+      let blockIDWeek: string = blockParentID + '__' + 0 + '__' + contWeeks;
+      let startDayOnWeek: Date = addWeeks(dragToSelectEvent.start, contWeeks);
+      let endDayOnWeek: Date = addWeeks(dragToSelectEvent.end, contWeeks);
+
+      // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
+      if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
+        dragToSelectEvent.start > startOfView && dragToSelectEvent.start < endOfView &&
+        dragToSelectEvent.end > startOfView && dragToSelectEvent.end < endOfView) {
+        this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, dragToSelectEvent.title, blockParentID);
+      } else {
+        this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
+      }
+    }
+
+
     fromEvent(document, eventMove)
       .pipe(
         finalize(() => {
@@ -926,7 +947,7 @@ export class CalendarComponent implements OnInit {
       this.calendarBlocks.push(newCalendarBlock);
       this.alternativeClasses[this.currentAlternative] = Object.assign([], this.classes);
       this.alternativeCalendarBlocks[this.currentAlternative] = Object.assign([], this.calendarBlocks);
-      
+
     }
 
     return newBlock;
