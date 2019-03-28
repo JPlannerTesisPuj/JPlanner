@@ -60,7 +60,7 @@ export class FilterComponent implements OnInit {
   // Mensaje con los datos de los filtros
   private filterMsj: any;
   // Control si la búsqueda es o no avanzada
-  private isAdvancedSearch: boolean;
+  private isAdvancedSearch: boolean ;
 
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
@@ -650,10 +650,8 @@ export class FilterComponent implements OnInit {
    * Muestra o esconde los campos de la búsqueda avanada y setea el atributo isAdvanceSearch
    */
   private clickedTab(event) {
-    let advFilters = document.getElementById('fil-adv-filters');
     if (event.currentTarget.id == 'basic-search') {
       //Display None to Adv Search
-      advFilters.classList.add('hidden');
       this.isAdvancedSearch = false;
 
       document.getElementById('basic-search').style.border = 'solid 1px #000000';
@@ -664,7 +662,6 @@ export class FilterComponent implements OnInit {
 
     } else if (event.currentTarget.id == 'adv-search') {
       //Display Adv Search
-      advFilters.classList.remove('hidden');
       this.isAdvancedSearch = true;
 
       document.getElementById('basic-search').style.border = 'solid 1px #b1b1b1';
