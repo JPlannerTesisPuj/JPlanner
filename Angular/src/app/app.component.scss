@@ -142,6 +142,8 @@ body {
   }
 }
 
-
-
-
+.hidden-desktop {
+  @media (min-width: $vp-tablet) {
+    display: none;
+  }
+}

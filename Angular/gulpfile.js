@@ -11,6 +11,7 @@ var sassFiles = [
     './src/app/filter/filter.component.scss',
     'src/app/app.component.scss',
     './src/app/calendar/calendar.component.scss',
+    './src/app/block-modal/block-modal.component.scss',
     './src/app/display-subjects/display-subjects.component.scss',
     './src/app/styles/atomic-styles/*',
     './src/app/styles/molecular-styles/*',
