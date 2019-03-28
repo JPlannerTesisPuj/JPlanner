@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, HostListener } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTitleFormatter, CalendarEventTimesChangedEvent } from 'angular-calendar';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks } from 'date-fns';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks, differenceInHours, differenceInWeeks } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS, fromEvent, generate, Observable } from 'rxjs';
@@ -120,6 +120,8 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  private blocksOverlapsClassesAndBlocks: boolean[];
+
   private locale: string = 'es';
 
   private view: CalendarView = CalendarView.Week;
@@ -135,6 +137,7 @@ export class CalendarComponent implements OnInit {
 
 
   private verticalMenuIndex: number = 0;
+  private verticalMenuIndexMobile: number = 3;
   private dragToCreateActive = false;
   private blockIdCount: number = 0;
   /** @var startSchoolYear Fecha de inicio del ciclo lectivo */
@@ -285,6 +288,8 @@ export class CalendarComponent implements OnInit {
     this.overLappedInCellByAlternative.fill(new Set());
     this.sholudDisplayDialog = new Array(this.numberOfAlternatives);
     this.sholudDisplayDialog.fill(false);
+    this.blocksOverlapsClassesAndBlocks = new Array(this.numberOfAlternatives);
+    this.blocksOverlapsClassesAndBlocks.fill(false);
     this.creditCounter = new Array(this.numberOfAlternatives);
     this.creditCounter.fill(0);
     this.initTitles();
@@ -300,6 +305,7 @@ export class CalendarComponent implements OnInit {
       filter = message;
       if (filter['type'] == 'filter') {
         this.verticalMenuIndex = 1;
+        this.verticalMenuIndexMobile = 1;
       }
     });
 
@@ -777,6 +783,7 @@ export class CalendarComponent implements OnInit {
           })
 
           this.refreshCal();
+          this.blocksOverlapsClassesAndBlocks[this.currentAlternative] = this.checkIfBlocksHasDifferentSizes(blockParentID);
         }),
         takeUntil(fromEvent(document, eventEnd))
       )
@@ -1174,6 +1181,37 @@ export class CalendarComponent implements OnInit {
       });
   }
 
+  /**
+   * Método que mira todos los bloqueos de un mismo padre y evalúa si todos tienen la misma longitud entre horas
+   * y si todas las semanas tienen el mismo número de bloqueos
+   * 
+   * @param parentID ID del bloque padre de los bloqueos a evaluar
+   * @returns true sí hay algún bloqueo con longitud de horas diferente o si una semana tiene menos o más bloqueos
+   * que las demás. Retorna false en caso contrario
+   */
+  private checkIfBlocksHasDifferentSizes(parentID: string): boolean {
+    const blocksToCheck: CalendarBlock[] = this.calendarBlocks.filter(myBlock => myBlock.parentID == parentID);
+    const hoursOfDifference = differenceInHours(blocksToCheck[0].startHour, blocksToCheck[0].endHour);
+    let checkHoursOfDifference: boolean = false;
+    let contBlocksPerWeek: Array<number> = new Array<number>(19);
+    contBlocksPerWeek.fill(0);
+
+    blocksToCheck.forEach(myBlock => {
+      if(differenceInHours(myBlock.startHour, myBlock.endHour) != hoursOfDifference) {
+        checkHoursOfDifference = true;
+      }
+      contBlocksPerWeek[differenceInWeeks(myBlock.startHour, this.startSchoolYear)] += 1;
+    });
+
+    const maxBlocksPerWeek: number = contBlocksPerWeek[0];
+    contBlocksPerWeek.forEach(blocksInWeek => {
+      if(blocksInWeek != maxBlocksPerWeek) {
+        checkHoursOfDifference = true;
+      }
+    });
+
+    return checkHoursOfDifference;
+  }
 }
 
 /**
