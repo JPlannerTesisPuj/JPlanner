@@ -5,8 +5,8 @@
 
 <div class="fil-border">
   <div class="fil-sub-menu-container grid-noGutter">
-    <button id="basic-search" class="atom-buttons-secondary-first-selected" (click)='clickedTab($event)'>Básica</button>
-    <button id="adv-search" class="atom-buttons-secondary" (click)='clickedTab($event)'>Avanzada</button>
+    <button id="basic-search" class="basic-serch-btn atom-buttons-secondary-first-selected" (click)='clickedTab($event)'>Básica</button>
+    <button id="adv-search" class="adv-serch-btn atom-buttons-secondary" (click)='clickedTab($event)'>Avanzada</button>
   </div>
   <div class="grid-noGutter" id="fil-basic-search">
   
@@ -15,7 +15,7 @@
         <strong>Búsqueda por texto:</strong>
       </label>
       <div class="fil-search-container col-12">
-        <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field ng-pristine ng-valid ng-touched" id="fil-searchBox"
+        <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field ng-pristine ng-valid ng-touched search-box-fil-txt" id="fil-searchBox"
           placeholder="Escriba el texto de búsqueda..." (ngModelChange)="checkInputFieldSearch($event)" (click)="onlyLetters()">
         <div class="error-msg" id="fil-error-searchBox"></div>
       </div>
@@ -46,7 +46,7 @@
           {{hour}}
         </option>
       </select>
-      <select id="fil-hourTo" [(ngModel)]="selectedOptionTo" class="fil-hour-dropdown col-2 atom-dropdown" data-push-left="off-2">
+      <select id="fil-hourTo" [(ngModel)]="selectedOptionTo" class="fil-to-dropdown fil-hour-dropdown col-2 atom-dropdown" data-push-left="off-2">
         <option value="" disabled selected>H. final</option>
         <option *ngFor="let hour of hoursTo">
           {{hour}}
@@ -102,20 +102,20 @@
   
   </div>
   
-  <div id="fil-adv-filters" class="grid-noGutter hidden">
+  <div id="fil-adv-filters" class="grid-noGutter" *ngIf="isAdvancedSearch">
   
     <div id="fil-id-filter" class="col-12 grid-noGutter">
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterId" class="atom-input-field"/>
+      <input [(ngModel)]="searchedFilterId" class="atom-input-field"/>
     </div>
   
     <div id="fil-number-filter" class="col-12 grid-noGutter">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
+      <input  [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
     </div>
   
     <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">

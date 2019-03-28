@@ -60,9 +60,9 @@ export class FilterComponent implements OnInit {
   // Mensaje con los datos de los filtros
   private filterMsj: any;
   // Control si la búsqueda es o no avanzada
-  private isAdvancedSearch: boolean;
+  private isAdvancedSearch: boolean ;
 
-  constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
+  constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) {}
 
   ngOnInit() {
     this.isAdvancedSearch = false;
@@ -570,12 +570,16 @@ export class FilterComponent implements OnInit {
    * Si horas desde se muestra, entonces se muestra el horas hasta
    */
   private onChangeFromHour(item: any) {
-    let hour = document.getElementById('fil-hourTo');
+    let hour:any = document.getElementsByClassName('fil-to-dropdown');
 
     if (item == 'Ninguno') {
-      hour.style.display = 'none';
+      for(let i = 0 ; i<hour.length; i++){
+      hour[i].style.display = 'none';
+      }
     } else {
-      hour.style.display = 'inline-block';
+      for(let i = 0 ; i<hour.length; i++){
+      hour[i].style.display = 'inline-block';
+      }
     }
 
     this.changeHoursTo(item);
@@ -650,29 +654,34 @@ export class FilterComponent implements OnInit {
    * Muestra o esconde los campos de la búsqueda avanada y setea el atributo isAdvanceSearch
    */
   private clickedTab(event) {
-    let advFilters = document.getElementById('fil-adv-filters');
+    let basic_btns : any = document.getElementsByClassName("basic-serch-btn");
+    let adv_btns : any = document.getElementsByClassName("adv-serch-btn");      
     if (event.currentTarget.id == 'basic-search') {
       //Display None to Adv Search
-      advFilters.classList.add('hidden');
       this.isAdvancedSearch = false;
 
-      document.getElementById('basic-search').style.border = 'solid 1px #000000';
-      document.getElementById('basic-search').style.color = '#000000';
-
-      document.getElementById('adv-search').style.border = 'solid 1px #b1b1b1';
-      document.getElementById('adv-search').style.color = '#cbcbcb';
+      for(let i = 0 ; i<basic_btns.length ; i++){
+        basic_btns[i].style.border = 'solid 1px #000000';
+        basic_btns[i].style.color = '#000000';
+      }
+      
+      for(let i = 0 ; i<adv_btns.length ; i++){
+      adv_btns[i].style.border = 'solid 1px #b1b1b1';
+      adv_btns[i].style.color = '#cbcbcb';
+      }
 
     } else if (event.currentTarget.id == 'adv-search') {
       //Display Adv Search
-      advFilters.classList.remove('hidden');
       this.isAdvancedSearch = true;
-
-      document.getElementById('basic-search').style.border = 'solid 1px #b1b1b1';
-      document.getElementById('basic-search').style.color = '#cbcbcb';
-
-      document.getElementById('adv-search').style.border = 'solid 1px #000000';
-      document.getElementById('adv-search').style.color = '#000000';
-
+for(let i = 0 ; i<basic_btns.length ; i++){
+        basic_btns[i].style.border = 'solid 1px #b1b1b1';
+        basic_btns[i].style.color = '#cbcbcb';
+      }
+      
+      for(let i = 0 ; i<adv_btns.length ; i++){
+      adv_btns[i].style.border = 'solid 1px #000000';
+      adv_btns[i].style.color = '#000000';
+      }
     }
   }
 
@@ -696,11 +705,15 @@ export class FilterComponent implements OnInit {
   private onlyLetters(){
 
     //Este método hace que el input solo admita letras
-    document.getElementById('fil-searchBox').onkeydown = function (e) {
-      if (!e.key.match(/^[A-Za-z ]*$/)) {
-        e.preventDefault();  
-      }
-    };
+    let txt_boxes:any = document.getElementsByClassName('search-box-fil-txt');
+    for (let i = 0 ; i<txt_boxes.length ; i++){
+      txt_boxes[i].onkeydown = function (e) {
+        if (!e.key.match(/^[A-Za-z ]*$/)) {
+          e.preventDefault();  
+        }
+      };
+  
+    }
   }
 
 }
