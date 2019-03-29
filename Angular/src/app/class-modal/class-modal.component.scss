@@ -1,3 +1,156 @@
+* {
+    font-family:"Helvetica"
+}
+
 .cls-mod-small {
     font-size: 8px;
+    max-width: 762px;
+}
+
+.cls-mod-title {
+    max-width: 665px;
+    margin-bottom: 8px;
+    span {
+        width: 400px;
+        height: 43px;
+        font-size: 32px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: $black;
+        margin-right: 4px;
+    }
+    .subtitle {
+        font-size: 16px;
+        color: $black-50;
+    }
+}
+
+.cls-mod-elements-line{
+    max-width: 500px;
+    margin-bottom: 16px;
+    height: 21px;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $black-40;
+
+    .open{
+        color: $green;
+    }
+
+    .close{
+        color: $red;
+    }
+}
+
+.cls-mod-block-title {
+    height: 70px;
+    width: 100%;
+    max-width: calc(100% - 24px);
+    border-bottom: 1px solid #e6e6e6;
+    margin: 16px;
+}
+
+.cls-mod-block-content {
+    min-height: 150px;
+    width: 100%;
+    max-width: calc(100% - 24px);
+    margin-top: 16px;
+    font-weight: 300;
+    font-size: 12px;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $black;
+
+}
+
+.cls-mod-description{
+    float: left;
+    width: 60%;
+    padding-right: 4px;
+    height: 100%;
+    border-right: 1px solid #e6e6e6;
+
+    .title{
+        color: $dark-blue;
+        font-weight: bold;
+        margin-bottom: 8px;
+        border-right-width: 0px;
+    }
+
+    .below{
+        line-height: 1.5;
+        position: relative;
+        width: 100%;
+        border-right-width: 0px;
+        min-height: 150px;
+        top: 0%;
+    }
+}
+
+.cls-mod-middle-data{
+    margin-left: 12px;
+    
+    .block{
+        float: right;
+        height: 100%;
+        width: 40%;
+    }
+
+    .subtitle{
+        color: $dark-blue;
+        font-style: normal;
+        font-weight: bold;
+        margin-right: 40px;
+    }
+
+    .below{
+        position: relative;
+        margin-bottom: 24px;
+    }
+}
+
+#cls-mod-main-container{
+    width: 100%;
+    font-size: 12px;
+}
+
+table{
+	background-color: $light-blue-10;
+	text-align: left;
+	border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 36px;
+}
+
+th, td{
+    padding: 20px;
+    text-align: center;
+}
+
+th:first-child {
+    border-radius: 10px 0px 0px 0px;
+}
+
+th:last-child{
+    border-radius: 0px 10px 0px 0px;
+}
+
+thead{
+	background-color: $light-blue;
+	color: $white;
+}
+
+tr:nth-child(even){
+	background-color: $white;
 }
