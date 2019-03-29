@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jplanner.rest.iservice.IAlternativaService;
 import com.jplanner.rest.iservice.IBloqueoService;
 import com.jplanner.rest.iservice.IMateriaService;
@@ -194,6 +196,41 @@ public class DataBaseController {
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha producido un error al intentar eliminar el bloqueo "
 				+ block.getNombre() + " de la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
 	}
+	
+	@RequestMapping(value = "/rest/validate_user/{idUser}", method = RequestMethod.GET)
+	public ResponseEntity<String> validateUser(@PathVariable("idUser") String idUser) {
+
+		Usuario user = usuarioService.findUserById(idUser);
+		
+		if (user != null) {
+			
+			String filteredUser = "{\"GID\":\""+user.getIdPersona()+"\"}";
+			return new ResponseEntity<String>(filteredUser, HttpStatus.OK);
+		}
+        
+		return new ResponseEntity<String>("User not Found", HttpStatus.NOT_FOUND);
+	
+	}
+	
+	@RequestMapping(value = "/rest/retrieve_subjects/{idUser}/{idAlternative}", method = RequestMethod.GET)
+	public ResponseEntity<List<Materia>> retrieveSubjects(@PathVariable("idUser") String idUser, @PathVariable("idAlternative") Integer idAlternative) throws JsonProcessingException {
+
+		Usuario user = usuarioService.findUserById(idUser);
+		if (user != null) {
+			Alternativa alternative = alternativaService.findAlternativeById(new AlternativaKey(idAlternative, idUser));
+			List<Materia> subjects = alternative.getMaterias();
+			List<String> result = new ArrayList<String>();
+			for (Materia s: subjects) {
+				result.add(s.getNumeroClase());
+			}
+			return new ResponseEntity<List<Materia>>(subjects, HttpStatus.OK);
+		}
+        
+		return new ResponseEntity<List<Materia>>(new ArrayList<Materia>(), HttpStatus.NOT_FOUND);
+	
+	}
+	
+	
 
 
 }

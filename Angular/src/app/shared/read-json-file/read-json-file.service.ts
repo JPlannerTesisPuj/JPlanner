@@ -114,6 +114,7 @@ export class ReadJsonFileService {
   * @param credentials token jwt
   */
   public saveUser(idPerson: any, credentials: string): Observable<any> {
+    this.userToken = new User("",idPerson,credentials,"",null,null);
     return (
       this.http.post<any>(
         this.baseUrl + 'rest/addUser',
@@ -188,6 +189,16 @@ export class ReadJsonFileService {
         ),{ withCredentials: true })
     );
   }
+
+  public validateUser(idPerson: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'rest/validate_user/' + idPerson, { withCredentials: true });
+  }
+
+  public retriveAlternative(idAlternative: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'rest/retrieve_subjects/' + this.userToken.GID + '/' + idAlternative, { withCredentials: true });
+  }
+
+
 
   /**
    * Guarda al usuario que ingresó a la aplicación

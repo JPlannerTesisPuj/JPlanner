@@ -12,6 +12,9 @@ import javax.persistence.PrimaryKeyJoinColumns;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 
@@ -42,6 +45,7 @@ public class Materia {
 		},
     	uniqueConstraints = @UniqueConstraint(columnNames = {"numero_clase", "id_alternativa", "id_persona"})
 	)
+	@JsonIgnore
 	private List<Alternativa> alternativas;
 
 	// CONSTRUCTORES
@@ -80,4 +84,11 @@ public class Materia {
 	public void setAlternativas(List<Alternativa> alternativas) {
 		this.alternativas = alternativas;
 	}
+
+	@Override
+	public String toString() {
+		return "Materia [nombre=" + nombre + "]";
+	}
+	
+	
 }

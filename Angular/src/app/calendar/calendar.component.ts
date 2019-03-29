@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Inject, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, HostListener, SimpleChanges } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTitleFormatter, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks } from 'date-fns';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS, fromEvent } from 'rxjs';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Observable } from 'rxjs';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, SELECT_PANEL_INDENT_PADDING_X } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
@@ -226,6 +227,11 @@ export class CalendarComponent implements OnInit {
    */
   @Input() private overLappedIds: Set<any>;
 
+  @Input() private classesToShowAlternatives: Array<Materia[]>;
+  @Input() private continue: boolean;
+  @Input() private events:Observable<any>;
+  private eventSubscription: any;
+
   /**
    * @var Boolean que indica si se esta actualizando o no los cupos de las materias
    * 
@@ -251,6 +257,8 @@ export class CalendarComponent implements OnInit {
     this.differ = differs.find([]).create(null);
     this.checkAvailableSize();
   }
+
+  
 
   /**
    * Subscripción a cambios en el numero de clases sobrepuestas de la alternativa actual
@@ -298,7 +306,44 @@ export class CalendarComponent implements OnInit {
       }
     });
 
+    this.eventSubscription = this.events.subscribe();
+    console.log(this.eventSubscription);
+    console.log(this.continue);
   }
+
+  showAlternativeClasses(){
+    if(this.continue == true){
+      let data = {
+        'type': 'filter',
+        'days': 'none',
+        'dayComparator': '0',
+        'hours': {'from': 0, 'to': 86399},
+        'searchBox':  {'searched': "none", 'params': "none"},
+        'credits': {'creditComparator': 0, 'creditValue1': -1, 'creditValue2': -1},
+        'teachingMode': "none",
+        'state': "both",
+        'class-ID': "none",
+        'class-number': "",
+        'class-size': {'firstOp': "none", 'comp': "0", 'secondOp': "none"},
+        'scholar-year': "none",
+        'grade': "none"
+      }
+      for(let s of this.classesToShowAlternatives){
+        for(var i=0; i<s.length;i++){
+          data['class-number'] = s[i].numeroClase;
+          this.readJSONFileService.filter("classes", data).subscribe(subject =>{ 
+
+            this.addClassSubject(subject);
+          });
+        }
+        
+
+      }
+    }
+    
+      
+  }
+  
 
   /**
    * Captura el evento swipe cuando este se realice en el calendar: left o right
@@ -500,6 +545,7 @@ export class CalendarComponent implements OnInit {
     this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
+    console.log(this.continue);
   }
 
 
@@ -580,7 +626,6 @@ export class CalendarComponent implements OnInit {
 
     //Remueve tambien de los ids sobrepuestos si es el caso
     this.removeOverLappedIds(id);
-
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);

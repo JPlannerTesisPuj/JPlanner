@@ -315,7 +315,6 @@ public class JSONFileRestService {
 
 			ArrayList<Object> classes = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
 			String filteredJSON = new ObjectMapper().writeValueAsString(classes);
-
 			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -382,6 +381,7 @@ public class JSONFileRestService {
 
 			ArrayList<Object> user = JsonPath.read(JSONFileBuilder.toString(), baseFilter);
 			String filteredJSON = new ObjectMapper().writeValueAsString(user);
+			
 
 			// Retorna el archivo JSON leído
 			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);

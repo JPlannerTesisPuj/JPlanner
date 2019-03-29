@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ReadJsonFileService } from 'src/app/shared/read-json-file/read-json-file.service';
 import { DataService } from 'src/app/shared/data.service';
 import { User } from './shared/model/User';
+import { Materia } from './shared/model/rest/Materia';
+import { Subject as SubjectRxJs } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,9 @@ export class AppComponent implements OnInit {
   private userToken: string;
   private userAuthenticaded: User[];
   private name: string;
+  private continue: boolean = false ;
+  private classesToShowAlternatives: Array<Materia[]> = new Array<Materia[]>();
+  private eventsSubject: SubjectRxJs<any> = new SubjectRxJs<any>();
   // Arreglo con los tokens de usuario
   private tokenArray = [
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJNb3J0eSBTbWl0aCI6ImJsYSJ9.5dNAujcmM-kYGgNwkhKV7QyLx23fI5qEKFXhY2BWleU',
@@ -26,7 +31,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.userAuthenticaded = [];
     this.generateToken();
-
     // Se llama al servicio para encontrar el usuario con el token generado
     this.readJSONFileService.filterToken(this.userToken).subscribe(user => {
       if (user.length == 0) {
@@ -37,10 +41,54 @@ export class AppComponent implements OnInit {
         this.readJSONFileService.setUSer(this.userAuthenticaded[0]);
         // Se llama al servicio que guarda el usuario en la base de datos
         this.readJSONFileService.saveUser(this.userAuthenticaded[0].GID, this.userAuthenticaded[0].credenciales).subscribe();
+        this.readJSONFileService.validateUser(this.userAuthenticaded[0].GID).subscribe(user =>{
+          console.log(user["GID"]);
+          if (user["GID"] == this.userAuthenticaded[0].GID){
+                this.continue = true;
+                this.readJSONFileService.retriveAlternative(1).subscribe(result =>{
+                  
+                  
+                  this.classesToShowAlternatives[0] = Object.assign([], result);
+                  console.log(this.classesToShowAlternatives);
+                  
+                });
+                this.readJSONFileService.retriveAlternative(2).subscribe(result =>{
+                  
+                  
+                  this.classesToShowAlternatives[1] = Object.assign([], result); 
+                  
+                });
+                this.readJSONFileService.retriveAlternative(3).subscribe(result =>{
+                  
+                 
+                  this.classesToShowAlternatives[2] = Object.assign([], result); 
+                  
+                });
+                this.readJSONFileService.retriveAlternative(4).subscribe(result =>{
+              
+                  
+                  this.classesToShowAlternatives[3] = Object.assign([], result); 
+                  
+                });
+                this.readJSONFileService.retriveAlternative(5).subscribe(result =>{
+                 
+                  this.classesToShowAlternatives[4] = Object.assign([], result); 
+                  
+                });
+                this.readJSONFileService.retriveAlternative(6).subscribe(result =>{
+                
+                
+                  this.classesToShowAlternatives[5] = Object.assign([], result); 
+                  
+                });
+            
+          }
+        
+        });
       }
     });
-
-    
+  
+   this.showAlternatives();
     
   }
 
@@ -59,6 +107,10 @@ export class AppComponent implements OnInit {
         break;
       }
     }
+  }
+
+  private showAlternatives(){
+    this.eventsSubject.next();
   }
 
   
