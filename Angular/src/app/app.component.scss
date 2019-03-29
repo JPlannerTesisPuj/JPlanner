@@ -50,6 +50,12 @@ body {
 * {
   box-sizing: border-box;
 }
+.jplannerTittle{
+  @media (max-width: $vp-mobile) {
+    
+    display: none;
+  }
+}
 
 .app-blocked-menu{
   position: fixed;
@@ -136,6 +142,8 @@ body {
   }
 }
 
-
-
-
+.hidden-desktop {
+  @media (min-width: $vp-tablet) {
+    display: none;
+  }
+}
