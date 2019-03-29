@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { DataService } from '../shared/data.service';
 
@@ -8,6 +8,15 @@ import { DataService } from '../shared/data.service';
 })
 
 export class FilterComponent implements OnInit {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth > 768 && event.target.innerWidth <= 1024) { 
+      this.isTablet = true;
+    } else {
+      this.isTablet = false;
+    }
+  }
 
   // Variables filtos básicos
   private dropdownListWeek: string[] = [];
@@ -57,6 +66,8 @@ export class FilterComponent implements OnInit {
 
   private yearActualCycle;
 
+  private isTablet = false;
+
   // Mensaje con los datos de los filtros
   private filterMsj: any;
   // Control si la búsqueda es o no avanzada
@@ -65,6 +76,11 @@ export class FilterComponent implements OnInit {
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
   ngOnInit() {
+
+    if (window.screen.width > 768 && window.screen.width <= 1024) {
+      this.isTablet = true;
+    }
+
     this.isAdvancedSearch = false;
     this.creditsComparator = '';
     this.creditValue1 = [];
