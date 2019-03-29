@@ -18,6 +18,7 @@ import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
+import { Bloqueo } from '../shared/model/rest/Bloqueo';
 /**
  * The documentation used to 
  
@@ -230,8 +231,21 @@ export class CalendarComponent implements OnInit {
    */
   @Input() private overLappedIds: Set<any>;
 
-  @Input() private classesToShowAlternatives: Array<Materia[]>;
+  /**
+   * @var classesToShowAlternatives Multilista que contiene las materias por alternativa cargadas de la base de datos
+   */
+  @Input() private classesToShowAlternatives: Array<Materia[]> = new Array<Materia[]>();
+
+  /**
+   * @var blocksToShowAlternatives Multilista que contiene los bloqueos cargados por alternativa de la base de datos
+   */
+  @Input() private blocksToShowAlternatives: Array<Bloqueo[]> = new Array<Bloqueo[]>();
+
+  /**
+   * @var Boolean indica si el usuario ya esta autenticado
+   */
   @Input() private continue: boolean;
+  
   @Input() private events:Observable<any>;
   private eventSubscription: any;
 
@@ -316,15 +330,15 @@ export class CalendarComponent implements OnInit {
       }
     });
 
-    this.eventSubscription = this.events.subscribe();
-    console.log(this.eventSubscription);
-    console.log(this.continue);
+    this.eventSubscription = this.events.subscribe(() => this.showAlternativeClasses());
     this.dialogEventSubscription = this.dialogEvent.subscribe(() => this.openCreationBlocksDialog());
 
   }
 
   showAlternativeClasses(){
-    if(this.continue == true){
+    console.log(this.continue);
+    console.log("sadasd",this.classesToShowAlternatives);
+    if(this.continue == false){
       let data = {
         'type': 'filter',
         'days': 'none',
@@ -341,11 +355,13 @@ export class CalendarComponent implements OnInit {
         'grade': "none"
       }
       for(let s of this.classesToShowAlternatives){
+        console.log("este es s",s);
         for(var i=0; i<s.length;i++){
           data['class-number'] = s[i].numeroClase;
           this.readJSONFileService.filter("classes", data).subscribe(subject =>{ 
-
+            console.log("Este es el subject",subject);
             this.addClassSubject(subject);
+            this.refresh.next();
           });
         }
         
@@ -557,7 +573,7 @@ export class CalendarComponent implements OnInit {
     this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
-    console.log(this.continue);
+    console.log("que video",this.classesToShowAlternatives);
   }
 
 

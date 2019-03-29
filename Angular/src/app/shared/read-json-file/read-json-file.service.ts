@@ -200,6 +200,10 @@ export class ReadJsonFileService {
     return this.http.get<any>(this.baseUrl + 'rest/retrieve_subjects/' + this.userToken.GID + '/' + idAlternative, { withCredentials: true });
   }
 
+  public retriveBlocks(idAlternative: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'rest/retrieve_blocks/' + this.userToken.GID + '/' + idAlternative, { withCredentials: true });
+  }
+
 
 
   /**
