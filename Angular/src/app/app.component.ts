@@ -17,9 +17,10 @@ export class AppComponent implements OnInit {
   private userToken: string;
   private userAuthenticaded: User[];
   private name: string;
-  private continue: boolean = false ;
-  private classesToShowAlternatives: Array<Materia[]> = new Array<Materia[]>();
-  private blocksToShowAlternatives: Array<Bloqueo[]> = new Array<Bloqueo[]>();
+  private continue: boolean;
+  private numberOfAlternatives = 6;
+  private classesToShowAlternatives: Array<Materia[]> = new Array<Materia[]>(6);
+  private blocksToShowAlternatives: Array<Bloqueo[]> = new Array<Bloqueo[]>(6);
   private eventsSubject: SubjectRxJs<any> = new SubjectRxJs<any>();
   // Arreglo con los tokens de usuario
   private tokenArray = [
@@ -33,6 +34,8 @@ export class AppComponent implements OnInit {
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
   ngOnInit() {
+    this.classesToShowAlternatives.fill([]);
+    this.blocksToShowAlternatives.fill([]);
     this.userAuthenticaded = [];
     this.generateToken();
     // Se llama al servicio para encontrar el usuario con el token generado
@@ -49,67 +52,93 @@ export class AppComponent implements OnInit {
           console.log(user["GID"]);
           // Si el usuario esta en la base de datos pone en true la variable que indica si existe o no en la bd
           if (user["GID"] == this.userAuthenticaded[0].GID){
-                this.continue = true;
+                
                 // Se llama al servicio que consulta la bd y retorna las materias de la alternativa 1
                 this.readJSONFileService.retriveAlternative(1).subscribe(result =>{
-                  
-                  this.classesToShowAlternatives[0] = Object.assign([], result);
+                  console.log("result alternativa 1:", result);
+                  result.forEach(element => {
+                    this.classesToShowAlternatives[0].push(element as Materia);
+                  });
                   // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 1
                   this.readJSONFileService.retriveBlocks(1).subscribe(blocks =>{
-                    this.blocksToShowAlternatives[0] = Object.assign([], blocks);
-                    console.log("bloqueos", this.blocksToShowAlternatives);
+                    blocks.forEach(element => {
+                      this.blocksToShowAlternatives[0].push(element as Bloqueo );
+                    });
+                    
                   });
-                  console.log("Materias",this.classesToShowAlternatives);
+                  
                   
                 });
                 // Se llama al servicio que consulta la bd y retorna las materias de la alternativa 2
                 this.readJSONFileService.retriveAlternative(2).subscribe(result =>{
-                  
-                  this.classesToShowAlternatives[1] = Object.assign([], result); 
-                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 2
-                  this.readJSONFileService.retriveBlocks(2).subscribe(blocks =>{
-                    this.blocksToShowAlternatives[1] = Object.assign([], blocks);
-  
+                  console.log("result alternativa 2:", result);
+                  result.forEach(element => {
+                    this.classesToShowAlternatives[1].push(element as Materia);
                   });
-                  
+                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 1
+                  this.readJSONFileService.retriveBlocks(2).subscribe(blocks =>{
+                    blocks.forEach(element => {
+                      this.blocksToShowAlternatives[1].push(element as Bloqueo );
+                    });
+                    
+                  });
                 });
                 // Se llama al servicio que consulta la bd y retorna las materias de la alternativa 3
                 this.readJSONFileService.retriveAlternative(3).subscribe(result =>{
-                  
-                  this.classesToShowAlternatives[2] = Object.assign([], result);
-                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 3
+                  result.forEach(element => {
+                    this.classesToShowAlternatives[2].push(element as Materia);
+                  });
+                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 1
                   this.readJSONFileService.retriveBlocks(3).subscribe(blocks =>{
-                    this.blocksToShowAlternatives[2] = Object.assign([], blocks);
+                    blocks.forEach(element => {
+                      this.blocksToShowAlternatives[2].push(element as Bloqueo );
+                    });
+                    
                   });
                   
                 });
                 // Se llama al servicio que consulta la bd y retorna las materias de la alternativa 4
                 this.readJSONFileService.retriveAlternative(4).subscribe(result =>{
               
-                  this.classesToShowAlternatives[3] = Object.assign([], result);
-                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 4
+                  result.forEach(element => {
+                    this.classesToShowAlternatives[3].push(element as Materia);
+                  });
+                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 1
                   this.readJSONFileService.retriveBlocks(4).subscribe(blocks =>{
-                    this.blocksToShowAlternatives[3] = Object.assign([], blocks);
+                    blocks.forEach(element => {
+                      this.blocksToShowAlternatives[3].push(element as Bloqueo );
+                    });
+                    
                   });
                   
                 });
                 // Se llama al servicio que consulta la bd y retorna las materias de la alternativa 5
                 this.readJSONFileService.retriveAlternative(5).subscribe(result =>{
                  
-                  this.classesToShowAlternatives[4] = Object.assign([], result);
-                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 5
+                  result.forEach(element => {
+                    this.classesToShowAlternatives[4].push(element as Materia);
+                  });
+                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 1
                   this.readJSONFileService.retriveBlocks(5).subscribe(blocks =>{
-                    this.blocksToShowAlternatives[4] = Object.assign([], blocks);
+                    blocks.forEach(element => {
+                      this.blocksToShowAlternatives[4].push(element as Bloqueo );
+                    });
+                    
                   });
                   
                 });
                 // Se llama al servicio que consulta la bd y retorna las materias de la alternativa 6
                 this.readJSONFileService.retriveAlternative(6).subscribe(result =>{
                 
-                  this.classesToShowAlternatives[5] = Object.assign([], result);
-                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 6
+                  result.forEach(element => {
+                    this.classesToShowAlternatives[5].push(element as Materia);
+                  });
+                  // Se llama al servicio que consulta la bd y retorna los bloqueos de la alternativa 1
                   this.readJSONFileService.retriveBlocks(6).subscribe(blocks =>{
-                    this.blocksToShowAlternatives[5] = Object.assign([], blocks);
+                    blocks.forEach(element => {
+                      this.blocksToShowAlternatives[5].push(element as Bloqueo );
+                    });
+                    
                   });
                   
                 });
@@ -117,8 +146,16 @@ export class AppComponent implements OnInit {
           }
         
         });
+        this.continue = true;
+        let data = {
+          'alternatives' : this.classesToShowAlternatives,
+          'blocks': this.blocksToShowAlternatives,
+          'continue': this.continue
+        };
+        console.log("data: ", data);
+        this.showAlternatives(data);
       }
-      this.showAlternatives();
+     
     });
   
    
@@ -142,8 +179,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private showAlternatives(){
-    this.eventsSubject.next();
+  private showAlternatives(classesToShowAlternatives: any){
+    this.eventsSubject.next(classesToShowAlternatives);
   }
   private openCreationBlockModal() {
     this.showOptions = false;

@@ -330,16 +330,18 @@ export class CalendarComponent implements OnInit {
       }
     });
 
-    this.eventSubscription = this.events.subscribe(() => this.showAlternativeClasses());
+    this.eventSubscription = this.events.subscribe((data) => this.showAlternativeClasses(data));
     this.dialogEventSubscription = this.dialogEvent.subscribe(() => this.openCreationBlocksDialog());
 
   }
 
-  showAlternativeClasses(){
-    console.log(this.continue);
-    console.log("sadasd",this.classesToShowAlternatives);
-    if(this.continue == false){
-      let data = {
+  showAlternativeClasses(data: string){
+    console.log(data);
+    var classes: Array<Materia[]> = data['alternatives'];
+    var blocks = data['blocks'];
+    var show = data['continue']
+    if(show == true){
+      let dataToSend = {
         'type': 'filter',
         'days': 'none',
         'dayComparator': '0',
@@ -354,23 +356,136 @@ export class CalendarComponent implements OnInit {
         'scholar-year': "none",
         'grade': "none"
       }
-      for(let s of this.classesToShowAlternatives){
+
+
+      console.log("Clases:",classes);
+      for(let s of classes){
         console.log("este es s",s);
-        for(var i=0; i<s.length;i++){
-          data['class-number'] = s[i].numeroClase;
-          this.readJSONFileService.filter("classes", data).subscribe(subject =>{ 
+        if(s != undefined){
+          s.forEach(element => {
+            console.log("element", element);
+          });
+          dataToSend['class-number'] = s['numeroClase'];
+          /*this.readJSONFileService.filter("classes", dataToSend).subscribe(subject =>{ 
             console.log("Este es el subject",subject);
             this.addClassSubject(subject);
-            this.refresh.next();
-          });
+            this.refreshCal();
+          });*/
         }
-        
-
       }
+      console.log("Blocks:",blocks);
+      for(let o of blocks){
+        console.log("este es o",o);
+        if(o != undefined){
+           
+          
+        }
+      }
+
+
     }
-    
-      
   }
+
+  /**
+   * Crea un bloqueo en el calendario
+   * 
+   * @param startDate Fecha de inicio del bloqueo
+   * @param endDate Fecha de fin del bloqueo
+   * @param blockIdentifier ID del bloqueo
+   * @param blockTitle Título del bloqueo
+   * @param blockParentID ID que representa el grupo al cual pertenece el bloqueo
+   * @param currentAlternative Id de la alternativa en la que va a pintar el bloqueo
+   * @returns CalendarEvent Retorna un nuevo evento en el calendario.
+   */
+  private createBlockCalendarEventAlternative(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string, blockParentID: string, dayID, currentAlternative) {
+    let blockIndexToAdd: number;
+    let newBlock: CalendarEvent = null;
+
+    // Busca si el bloqueo ya existe
+    blockIndexToAdd = this.calendarBlocks.findIndex(myBlock => myBlock.id == blockIdentifier);
+
+    // Si no hay fecha final entonces la hora final será una hora después de la hora final
+    if (endDate == undefined) {
+      endDate = addHours(startDate, 1);
+    }
+
+    // Si el bloqueo no existe o no se cruza con ninguna clase u otro bloqueo entonces lo crea
+    if (blockIndexToAdd == -1 && !this.checkOverlappingClasses(startDate, endDate).isOverLapped) {
+      newBlock = {
+        start: startDate,
+        end: endDate,
+        color: colors.red,
+        title: blockTitle,
+        id: blockIdentifier,
+        actions: this.actionsBlock,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+        meta: {
+          tmpEvent: false
+        },
+        cssClass: "cal-block"
+      };
+
+      let newCalendarBlock: CalendarBlock = new CalendarBlock(
+        newBlock.id + '',
+        newBlock.start,
+        newBlock.end,
+        blockParentID,
+        dayID,
+        blockTitle
+      )
+      this.classes = [...this.classes, newBlock];
+      this.calendarBlocks.push(newCalendarBlock);
+      this.alternativeClasses[currentAlternative] = Object.assign([], this.classes);
+      this.alternativeCalendarBlocks[currentAlternative] = Object.assign([], this.calendarBlocks);
+
+    }
+
+    return newBlock;
+  }
+
+  private addClassSubjectAlternative(subject, currentAlternative) {
+    //Si la clase no esta inscrita
+    if (this.calendarClasses.filter(subj => subj.numeroClase == subject.numeroClase).length == 0) {
+      let newClasses = Object.assign([], this.classes);
+      this.addClassAlternative(newClasses, subject, currentAlternative);
+    }
+  }
+  /**
+    * 
+    * @param newClasses Arreglo auxiliar en el cual se almacenan las clases
+    * @param subjectToDisplay Nueva clase que se agregara
+    * El metodo agrega una materia nueva al calendario
+    */
+  addClassAlternative(newClasses: CalendarEvent[], subjectToDisplay: Subject, currentAlternative) {
+    for (let horary of subjectToDisplay.horarios) {
+      let startHour: Date = new Date(horary.horaInicio);
+      let endHour: Date = new Date(horary.horaFin);
+
+      newClasses.push({
+        start: startHour,
+        end: endHour,
+        color: colors.black,
+        title: '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + subjectToDisplay.cuposDisponibles + '</p>',
+        id: subjectToDisplay.numeroClase,
+        actions: this.actions,
+        meta: {
+          tmpEvent: false
+        },
+      });
+
+    }
+    this.classes = newClasses;
+    this.alternativeClasses[currentAlternative] = Object.assign([], this.classes);;
+    this.calendarClasses.push(subjectToDisplay);
+    this.creditCounter[currentAlternative] += subjectToDisplay.creditos;
+    this.alternativeCalendarClasses[currentAlternative] = Object.assign([], this.calendarClasses);
+    this.refresh.next();
+  }
+
   
 
   /**
@@ -573,7 +688,6 @@ export class CalendarComponent implements OnInit {
     this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
-    console.log("que video",this.classesToShowAlternatives);
   }
 
 
