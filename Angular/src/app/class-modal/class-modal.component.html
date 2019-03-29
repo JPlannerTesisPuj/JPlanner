@@ -1,5 +1,8 @@
-<div class="cls-mod-small">
+<div class="cls-mod-small" *ngIf="!isMobile">
 
+  <!--
+    Este caso es para cuando el no está en Mobile
+  -->
   <div class="cls-mod-block-title grid-noGutter">
 
     <div class="cls-mod-title col-12">
@@ -79,4 +82,74 @@
   </div>
   -->
 
+  </div>
+
+  <!--
+    Este caso es para cuando el está en Mobile
+  -->
+  <div class="cls-mod-small" *ngIf="isMobile">
+
+  <div class="cls-mod-block-title grid-noGutter">
+
+      <div class="cls-mod-title col-12">
+          <span>{{ subject.nombre }} </span> 
+          <div class="cls-mod-title subtitle"> {{ subject.unidadAcademica }}</div>
+      </div>
+      
+  
+      <div class="cls-mod-elements-line col-12">
+          <div>   ID Curso: {{ subject.idCurso }}    |   
+                  N. de clase: {{ subject.numeroClase }}    |   
+                  Creditos: {{ subject.creditos }}    |    
+                  Estado:
+                  <span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span>
+          </div>
+      </div>
+  
+    </div>
+  
+    <div class="cls-mod-block-content">
+        <div class="cls-mod-description">
+            <div class="cls-mod-description title">Descripción</div>
+            <div class="cls-mod-description below">{{ subject.descripcion }}</div>
+        </div>
+        <div class= "cls-mod-middle-data block">
+            <div class="cls-mod-middle-data below">
+              <span class="cls-mod-middle-data subtitle">Cupos totales</span><span>{{ subject.cuposTotales }}</span>
+            </div>
+            <div class="cls-mod-middle-data below">
+              <span class="cls-mod-middle-data subtitle">Cupos disponibles </span><span>{{ subject.cuposDisponibles }}</span>
+            </div>
+            <div class="cls-mod-middle-data below">
+              <span class="cls-mod-middle-data subtitle">Modo enseñanza </span><span>{{ subject.modoEnsenanza }}</span>
+            </div>
+            <div class="cls-mod-middle-data below">
+              <span class="cls-mod-middle-data subtitle">Grado </span><span>{{ subject.grado }}</span>
+            </div>
+            <div class="cls-mod-middle-data below">
+              <span class="cls-mod-middle-data subtitle">Ciclo Lectivo </span><span>{{ subject.cicloLectivo }}</span>
+            </div>
+        </div>
+    </div>
+  
+    <div id="cls-mod-main-container">
+  
+        <table>
+          <thead>
+            <tr>
+              <th>DÍA Y HORA</th><th>SALÓN</th><th>PROFESOR</th><th>FECHA</th>
+            </tr>
+          </thead>
+    
+          <tr>
+            <td>Lunes: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
+          </tr>
+          <tr>
+            <td>Miercoles: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
+          </tr>
+          <tr>
+            <td>Viernes: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
+          </tr>
+        </table>
+    </div>
 </div>

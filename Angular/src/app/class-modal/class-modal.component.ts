@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, HostListener } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Subject } from '../shared/model/Subject';
 @Component({
@@ -7,16 +7,27 @@ import { Subject } from '../shared/model/Subject';
 })
 export class ClassModalComponent implements OnInit {
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth <= 768) { // 768px portrait
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }
+
   @Input() private subject: Subject;
 
-  private statusOpen: boolean = false;
-  private statusClose: boolean = false;
+  private isMobile = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.subject = data.class;
   }
 
   ngOnInit() { 
+    if (window.screen.width <= 768) { // 768px portrait
+      this.isMobile = true;
+    }
   }
 
   /**

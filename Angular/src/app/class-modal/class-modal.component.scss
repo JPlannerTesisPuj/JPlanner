@@ -10,6 +10,11 @@
 .cls-mod-title {
     max-width: 665px;
     margin-bottom: 8px;
+
+    @media (max-width: $vp-mobile) {
+        min-width: 200px !important;
+    }
+
     span {
         width: 400px;
         height: 43px;
@@ -42,6 +47,12 @@
     text-align: left;
     color: $black-40;
 
+    @media (max-width: $vp-mobile) {
+        min-width: 200px !important;
+        margin-bottom: 32px !important;
+        padding-bottom: 8px;
+    }
+
     .open{
         color: $green;
     }
@@ -57,6 +68,10 @@
     max-width: calc(100% - 24px);
     border-bottom: 1px solid #e6e6e6;
     margin: 16px;
+
+    @media (max-width: $vp-mobile) {
+        min-width: 200px !important;
+    }
 }
 
 .cls-mod-block-content {
@@ -71,6 +86,10 @@
     text-align: left;
     color: $black;
 
+    @media (max-width: $vp-mobile) {
+        min-width: 200px !important;
+    }
+
 }
 
 .cls-mod-description{
@@ -79,12 +98,22 @@
     padding-right: 4px;
     height: 100%;
     border-right: 1px solid #e6e6e6;
+    @media (max-width: $vp-mobile) {
+        width: 100%;
+        border-right-width: 0px;
+        float: none;
+        min-width: 200px !important;
+        margin-bottom: 12px;
+    }
 
     .title{
         color: $dark-blue;
         font-weight: bold;
         margin-bottom: 8px;
         border-right-width: 0px;
+        @media (max-width: $vp-mobile) {
+            padding-top: 42px;
+        }
     }
 
     .below{
@@ -99,11 +128,20 @@
 
 .cls-mod-middle-data{
     margin-left: 12px;
+
+    @media (max-width: $vp-mobile) {
+        margin-left: 0px;
+    }
     
     .block{
         float: right;
         height: 100%;
         width: 40%;
+
+        @media (max-width: $vp-mobile) {
+            float: none;
+            min-width: 200px !important;
+        }
     }
 
     .subtitle{
