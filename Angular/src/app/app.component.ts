@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzIHDN741NiJ9.eJ0eSBTbWl0aCI6ImJsYKi40iSJ9.5dNM-kYGgNwkhKV7QyLx23fKD8ncIXhY2BWleU',   
   ];
 
+  private dialogEventSubjectRxJs: SubjectRxJs<void> = new SubjectRxJs<void>();
+
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
   ngOnInit() {
@@ -111,6 +113,10 @@ export class AppComponent implements OnInit {
 
   private showAlternatives(){
     this.eventsSubject.next();
+  }
+  private openCreationBlockModal() {
+    this.showOptions = false;
+    this.dialogEventSubjectRxJs.next();
   }
 
   

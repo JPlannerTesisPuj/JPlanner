@@ -160,7 +160,8 @@ export class ReadJsonFileService {
           blockToAdd.startHour.getTime(),
           blockToAdd.endHour.getTime(),
           blockToAdd.name,
-          blockToAdd.parentID
+          blockToAdd.parentID,
+          blockToAdd.dayID
         ),
         { withCredentials: true })
     );
@@ -185,7 +186,8 @@ export class ReadJsonFileService {
           blockToAdd.startHour.getTime(),
           blockToAdd.endHour.getTime(),
           blockToAdd.name,
-          blockToAdd.parentID
+          blockToAdd.parentID,
+          blockToAdd.dayID
         ),{ withCredentials: true })
     );
   }

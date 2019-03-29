@@ -23,15 +23,15 @@ public class Bloqueo {
 
 	@ManyToOne
 	@JoinColumns({
-		@JoinColumn(name="id_alternativa", referencedColumnName="id_alternativa", insertable=false, updatable=false),
-		@JoinColumn(name="id_persona", referencedColumnName="id_persona", insertable=false, updatable=false)
-	})
+			@JoinColumn(name = "id_alternativa", referencedColumnName = "id_alternativa", insertable = false, updatable = false),
+			@JoinColumn(name = "id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false) })
 	private Alternativa alternativa;
 
 	private BigInteger horaInicio;
 	private BigInteger horaFin;
 	private String nombre;
 	private String idPadre;
+	private String idDia;
 
 	// CONSTRUCTORES
 
@@ -39,13 +39,14 @@ public class Bloqueo {
 	}
 
 	public Bloqueo(BloqueoKey bloqueoKey, Alternativa alternativa, BigInteger horaInicio, BigInteger horaFin,
-			String nombre, String idPadre) {
+			String nombre, String idPadre, String idDia) {
 		this.bloqueoKey = bloqueoKey;
 		this.alternativa = alternativa;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 		this.nombre = nombre;
 		this.idPadre = idPadre;
+		this.idDia = idDia;
 	}
 
 	// GETTERS Y SETTERS
@@ -97,5 +98,15 @@ public class Bloqueo {
 	public void setIdPadre(String idPadre) {
 		this.idPadre = idPadre;
 	}
+
+	public String getIdDia() {
+		return idDia;
+	}
+
+	public void setIdDia(String idDia) {
+		this.idDia = idDia;
+	}
+	
+	
 
 }

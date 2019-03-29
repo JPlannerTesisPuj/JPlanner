@@ -6,6 +6,7 @@ export class CalendarBlock {
     public startHour: Date;
     public endHour: Date;
     public parentID: string;
+    public dayID: string;
     public name: string;
   
     constructor(
@@ -13,12 +14,14 @@ export class CalendarBlock {
       private nStartHour: Date,
       private nEndHour: Date,
       private nParentID: string,
+      private nDayID: string,
       private nName: string
     ) {
       this.id = nID;
       this.startHour = nStartHour;
       this.endHour = nEndHour;
       this.parentID = nParentID;
+      this.dayID = nDayID;
       this.name = nName;
     }
   }
