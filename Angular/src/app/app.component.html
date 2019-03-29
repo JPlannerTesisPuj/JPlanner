@@ -45,9 +45,6 @@
 
   <app-calendar class="grid-noGutter" 
                 [dialogEvent]="dialogEventSubjectRxJs.asObservable()"
-                [continue]="continue"
-                [classesToShowAlternatives]="classesToShowAlternatives"
-                [blocksToShowAlternatives]="blocksToShowAlternatives"
                 [events]="eventsSubject.asObservable()"></app-calendar>
   <router-outlet></router-outlet>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

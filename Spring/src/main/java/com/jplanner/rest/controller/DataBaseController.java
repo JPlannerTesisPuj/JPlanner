@@ -240,6 +240,17 @@ public class DataBaseController {
 	
 	}
 	
+	@RequestMapping(value = "/rest/user-alternatives/{idUser}", method = RequestMethod.GET)
+	public ResponseEntity<List<Alternativa>> retrieveBlocks(@PathVariable("idUser") String idUser) throws JsonProcessingException {
+
+		Usuario user = usuarioService.findUserById(idUser);
+		if (user != null) {
+			return new ResponseEntity<List<Alternativa>>(user.getAlternativas(), HttpStatus.OK);
+		}
+        
+		return new ResponseEntity<List<Alternativa>>(new ArrayList<Alternativa>(), HttpStatus.NOT_FOUND);
+	
+	}
 	
 
 

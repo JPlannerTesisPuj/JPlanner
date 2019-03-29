@@ -11,6 +11,7 @@ import { CalendarBlock } from '../model/CalendarBlock';
 import { Bloqueo } from '../model/rest/Bloqueo';
 import { BloqueoKey } from '../model/rest/keys/BloqueoKey';
 import { AlternativaKey } from '../model/rest/keys/AlternativaKey';
+import { Alternativa } from '../model/rest/Alternativa';
 
 /**
  * Permite consumir servicios externos para leer archivos JSON
@@ -196,8 +197,8 @@ export class ReadJsonFileService {
     return this.http.get<any>(this.baseUrl + 'rest/validate_user/' + idPerson, { withCredentials: true });
   }
 
-  public retriveAlternative(idAlternative: number): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'rest/retrieve_subjects/' + this.userToken.GID + '/' + idAlternative, { withCredentials: true });
+  public retriveAlternatives(): Promise<Alternativa> {
+    return this.http.get<any>(this.baseUrl + 'rest/user-alternatives/' + this.userToken.GID, { withCredentials: true }).toPromise();
   }
 
   public retriveBlocks(idAlternative: number): Observable<any> {

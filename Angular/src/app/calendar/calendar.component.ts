@@ -19,6 +19,7 @@ import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
 import { Bloqueo } from '../shared/model/rest/Bloqueo';
+import { Alternativa } from '../shared/model/rest/Alternativa';
 /**
  * The documentation used to 
  
@@ -138,7 +139,7 @@ export class CalendarComponent implements OnInit {
 
 
   private verticalMenuIndex: number = 0;
-  private verticalMenuIndexMobile: number = 3;
+  private verticalMenuIndexMobile: number = 0;
   private dragToCreateActive = false;
   private blockIdCount: number = 0;
   /** @var startSchoolYear Fecha de inicio del ciclo lectivo */
@@ -335,55 +336,83 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  showAlternativeClasses(data: string){
-    console.log(data);
-    var classes: Array<Materia[]> = data['alternatives'];
-    var blocks = data['blocks'];
-    var show = data['continue']
-    if(show == true){
-      let dataToSend = {
-        'type': 'filter',
-        'days': 'none',
-        'dayComparator': '0',
-        'hours': {'from': 0, 'to': 86399},
-        'searchBox':  {'searched': "none", 'params': "none"},
-        'credits': {'creditComparator': 0, 'creditValue1': -1, 'creditValue2': -1},
-        'teachingMode': "none",
-        'state': "both",
-        'class-ID': "none",
-        'class-number': "",
-        'class-size': {'firstOp': "none", 'comp': "0", 'secondOp': "none"},
-        'scholar-year': "none",
-        'grade': "none"
-      }
-
-
-      console.log("Clases:",classes);
-      for(let s of classes){
-        console.log("este es s",s);
-        if(s != undefined){
-          s.forEach(element => {
-            console.log("element", element);
-          });
-          dataToSend['class-number'] = s['numeroClase'];
-          /*this.readJSONFileService.filter("classes", dataToSend).subscribe(subject =>{ 
-            console.log("Este es el subject",subject);
-            this.addClassSubject(subject);
-            this.refreshCal();
-          });*/
+  showAlternativeClasses(data: any){
+    let show = data['continue']
+    let alternativesToLoad: Alternativa[] = data['alternatives'];
+    
+    if(show) {
+      for (const alternative of alternativesToLoad) {
+        console.log('ID ALTERNATIVA', alternative.alternativaKey.idAlternativa);
+        console.log('MATERIAS');
+        for (const subejct of alternative.materias) {
+          console.log(subejct);
         }
+        console.log('BLOQUEOS');
+        for (const block of alternative.bloqueos) {
+          console.log(block);
+        }
+        console.log('----------------------');
       }
-      console.log("Blocks:",blocks);
-      for(let o of blocks){
-        console.log("este es o",o);
-        if(o != undefined){
+    }
+
+
+    // console.log('------------')
+    // for(let a of data['alternatives']) {
+    //   console.log(a)
+    //   for(let i = 0; i<a.length; i++) {
+    //     console.log(a[i])
+    //   }
+    // }
+    // console.log('------------')
+    
+    // console.log(data);
+    // console.log('CLASES', data['alternatives']);
+    // var classes: Array<Materia[]> = data['alternatives'];
+    // var blocks = data['blocks'];
+    // if(show == true){
+    //   let dataToSend = {
+    //     'type': 'filter',
+    //     'days': 'none',
+    //     'dayComparator': '0',
+    //     'hours': {'from': 0, 'to': 86399},
+    //     'searchBox':  {'searched': "none", 'params': "none"},
+    //     'credits': {'creditComparator': 0, 'creditValue1': -1, 'creditValue2': -1},
+    //     'teachingMode': "none",
+    //     'state': "both",
+    //     'class-ID': "none",
+    //     'class-number': "",
+    //     'class-size': {'firstOp': "none", 'comp': "0", 'secondOp': "none"},
+    //     'scholar-year': "none",
+    //     'grade': "none"
+    //   }
+
+
+    //   console.log("Clases:",classes);
+    //   for(let s of classes){
+    //     console.log("este es s",s);
+    //     if(s != undefined){
+    //       s.forEach(element => {
+    //         console.log("element", element);
+    //       });
+    //       dataToSend['class-number'] = s['numeroClase'];
+    //       /*this.readJSONFileService.filter("classes", dataToSend).subscribe(subject =>{ 
+    //         console.log("Este es el subject",subject);
+    //         this.addClassSubject(subject);
+    //         this.refreshCal();
+    //       });*/
+    //     }
+    //   }
+    //   console.log("Blocks:",blocks);
+    //   for(let o of blocks){
+    //     console.log("este es o",o);
+    //     if(o != undefined){
            
           
-        }
-      }
+    //     }
+    //   }
 
 
-    }
+    // }
   }
 
   /**

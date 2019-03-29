@@ -14,6 +14,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jplanner.rest.model.key.AlternativaKey;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class Alternativa {
 
 	@ManyToOne
 	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false)
+	@JsonIgnore
 	private Usuario persona;
 
 	@OneToMany(mappedBy = "alternativa", cascade = CascadeType.ALL)
