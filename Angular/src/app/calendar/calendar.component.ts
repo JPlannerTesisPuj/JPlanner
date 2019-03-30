@@ -339,80 +339,46 @@ export class CalendarComponent implements OnInit {
   showAlternativeClasses(data: any){
     let show = data['continue']
     let alternativesToLoad: Alternativa[] = data['alternatives'];
-    
+    let dataToSend = {
+          'type': 'filter',
+          'days': 'none',
+          'dayComparator': '0',
+          'hours': {'from': 0, 'to': 86399},
+          'searchBox':  {'searched': "none", 'params': "none"},
+          'credits': {'creditComparator': 0, 'creditValue1': -1, 'creditValue2': -1},
+          'teachingMode': "none",
+          'state': "both",
+          'class-ID': "",
+          'class-number': "none",
+          'class-size': {'firstOp': "none", 'comp': "0", 'secondOp': "none"},
+          'scholar-year': "none",
+          'grade': "none"
+       }
     if(show) {
       for (const alternative of alternativesToLoad) {
         console.log('ID ALTERNATIVA', alternative.alternativaKey.idAlternativa);
         console.log('MATERIAS');
-        for (const subejct of alternative.materias) {
-          console.log(subejct);
+        for (const subject of alternative.materias) {
+          console.log(subject);
+          dataToSend['class-ID'] = subject.numeroClase;
+          this.readJSONFileService.filter("classes", dataToSend).subscribe(sub =>{ 
+              console.log(sub[0]);
+              this.addClassSubjectAlternative(sub[0], alternative.alternativaKey.idAlternativa);
+              this.refresh.next();
+          });
+
+          
         }
         console.log('BLOQUEOS');
         for (const block of alternative.bloqueos) {
           console.log(block);
+          this.createBlockCalendarEventAlternative(
+            new Date(block.horaInicio), new Date(block.horaFin), block.bloqueoKey.idBloqueo, 
+            block.nombre, block.idPadre, block.idDia,alternative.alternativaKey.idAlternativa)
         }
         console.log('----------------------');
       }
     }
-
-
-    // console.log('------------')
-    // for(let a of data['alternatives']) {
-    //   console.log(a)
-    //   for(let i = 0; i<a.length; i++) {
-    //     console.log(a[i])
-    //   }
-    // }
-    // console.log('------------')
-    
-    // console.log(data);
-    // console.log('CLASES', data['alternatives']);
-    // var classes: Array<Materia[]> = data['alternatives'];
-    // var blocks = data['blocks'];
-    // if(show == true){
-    //   let dataToSend = {
-    //     'type': 'filter',
-    //     'days': 'none',
-    //     'dayComparator': '0',
-    //     'hours': {'from': 0, 'to': 86399},
-    //     'searchBox':  {'searched': "none", 'params': "none"},
-    //     'credits': {'creditComparator': 0, 'creditValue1': -1, 'creditValue2': -1},
-    //     'teachingMode': "none",
-    //     'state': "both",
-    //     'class-ID': "none",
-    //     'class-number': "",
-    //     'class-size': {'firstOp': "none", 'comp': "0", 'secondOp': "none"},
-    //     'scholar-year': "none",
-    //     'grade': "none"
-    //   }
-
-
-    //   console.log("Clases:",classes);
-    //   for(let s of classes){
-    //     console.log("este es s",s);
-    //     if(s != undefined){
-    //       s.forEach(element => {
-    //         console.log("element", element);
-    //       });
-    //       dataToSend['class-number'] = s['numeroClase'];
-    //       /*this.readJSONFileService.filter("classes", dataToSend).subscribe(subject =>{ 
-    //         console.log("Este es el subject",subject);
-    //         this.addClassSubject(subject);
-    //         this.refreshCal();
-    //       });*/
-    //     }
-    //   }
-    //   console.log("Blocks:",blocks);
-    //   for(let o of blocks){
-    //     console.log("este es o",o);
-    //     if(o != undefined){
-           
-          
-    //     }
-    //   }
-
-
-    // }
   }
 
   /**

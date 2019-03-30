@@ -212,33 +212,8 @@ public class DataBaseController {
 	
 	}
 	
-	@RequestMapping(value = "/rest/retrieve_subjects/{idUser}/{idAlternative}", method = RequestMethod.GET)
-	public ResponseEntity<List<Materia>> retrieveSubjects(@PathVariable("idUser") String idUser, @PathVariable("idAlternative") Integer idAlternative) throws JsonProcessingException {
-
-		Usuario user = usuarioService.findUserById(idUser);
-		if (user != null) {
-			Alternativa alternative = alternativaService.findAlternativeById(new AlternativaKey(idAlternative, idUser));
-			List<Materia> subjects = alternative.getMaterias();
-			return new ResponseEntity<List<Materia>>(subjects, HttpStatus.OK);
-		}
-        
-		return new ResponseEntity<List<Materia>>(new ArrayList<Materia>(), HttpStatus.NOT_FOUND);
 	
-	}
 	
-	@RequestMapping(value = "/rest/retrieve_blocks/{idUser}/{idAlternative}", method = RequestMethod.GET)
-	public ResponseEntity<List<Bloqueo>> retrieveBlocks(@PathVariable("idUser") String idUser, @PathVariable("idAlternative") Integer idAlternative) throws JsonProcessingException {
-
-		Usuario user = usuarioService.findUserById(idUser);
-		if (user != null) {
-			Alternativa alternative = alternativaService.findAlternativeById(new AlternativaKey(idAlternative, idUser));
-			List<Bloqueo> blocks = alternative.getBloqueos();
-			return new ResponseEntity<List<Bloqueo>>(blocks, HttpStatus.OK);
-		}
-        
-		return new ResponseEntity<List<Bloqueo>>(new ArrayList<Bloqueo>(), HttpStatus.NOT_FOUND);
-	
-	}
 	
 	@RequestMapping(value = "/rest/user-alternatives/{idUser}", method = RequestMethod.GET)
 	public ResponseEntity<List<Alternativa>> retrieveBlocks(@PathVariable("idUser") String idUser) throws JsonProcessingException {
