@@ -64,6 +64,11 @@ public class JSONFileRestService {
 			return 0;
 		}
 	}
+	//Metodo que proporciona la lectura del token para hacer una petición a MAX
+	private boolean tokenReadService() {
+		return true;
+		
+	}
 
 	// Servicio para filtros de clases
 	@RequestMapping(value = "files/read/json/class-filter/{days}/{dayComparator}/{hoursFrom}/{hoursTo}/"
@@ -127,6 +132,7 @@ public class JSONFileRestService {
 			return new ResponseEntity<>(errorJson, HttpStatus.BAD_REQUEST);
 		}
 		try {
+			if(this.tokenReadService()) { 
 
 			BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 			StringBuilder JSONFileBuilder = new StringBuilder();
@@ -317,6 +323,7 @@ public class JSONFileRestService {
 			String filteredJSON = new ObjectMapper().writeValueAsString(classes);
 
 			return new ResponseEntity<>(filteredJSON, HttpStatus.OK);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
