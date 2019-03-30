@@ -356,27 +356,21 @@ export class CalendarComponent implements OnInit {
        }
     if(show) {
       for (const alternative of alternativesToLoad) {
-        console.log('ID ALTERNATIVA', alternative.alternativaKey.idAlternativa);
-        console.log('MATERIAS');
         for (const subject of alternative.materias) {
-          console.log(subject);
           dataToSend['class-ID'] = subject.numeroClase;
           this.readJSONFileService.filter("classes", dataToSend).subscribe(sub =>{ 
-              console.log(sub[0]);
-              this.addClassSubjectAlternative(sub[0], alternative.alternativaKey.idAlternativa);
+              this.addClassSubjectAlternative(sub[0], (alternative.alternativaKey.idAlternativa-1));
               this.refresh.next();
           });
 
           
         }
-        console.log('BLOQUEOS');
         for (const block of alternative.bloqueos) {
           console.log(block);
           this.createBlockCalendarEventAlternative(
             new Date(block.horaInicio), new Date(block.horaFin), block.bloqueoKey.idBloqueo, 
-            block.nombre, block.idPadre, block.idDia,alternative.alternativaKey.idAlternativa)
+            block.nombre, block.idPadre, block.idDia,(alternative.alternativaKey.idAlternativa-1))
         }
-        console.log('----------------------');
       }
     }
   }
