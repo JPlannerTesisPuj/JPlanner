@@ -67,6 +67,7 @@ public class JSONFileRestService {
 	//Metodo que proporciona la lectura del token para hacer una petición a MAX
 	private boolean tokenReadService() {
 		return true;
+		
 	}
 
 	// Servicio para filtros de clases

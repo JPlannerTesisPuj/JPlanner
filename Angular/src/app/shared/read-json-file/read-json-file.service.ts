@@ -179,7 +179,6 @@ export class ReadJsonFileService {
         this.baseUrl + 'deleteBlock/' + idBlock,{ withCredentials: true })
       );
   }
-
   /**
    * Guarda al usuario que ingresó a la aplicación
    * 
