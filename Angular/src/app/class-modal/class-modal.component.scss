@@ -155,6 +155,7 @@
         position: relative;
         margin-bottom: 24px;
     }
+
 }
 
 #cls-mod-main-container{
@@ -172,8 +173,9 @@ table{
 }
 
 th, td{
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    height: 30px;
 }
 
 th:first-child {
