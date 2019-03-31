@@ -5,8 +5,6 @@ import { ClassModalComponent } from '../class-modal/class-modal.component';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { addDays, getDay } from 'date-fns';
 import { Horary } from '../shared/model/Horary';
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-display-class',
@@ -17,9 +15,7 @@ export class DisplayClassComponent implements OnInit {
   // Se solicita un objeto de tipo Subject como parámetro para invocar al componente
   @Input() private subject: Subject;
   private locale: string = 'es';
-  //Evite el evento para agregar una materia
-  @Output() addSubjetEmit = new EventEmitter<Subject>();
-  
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() { }
@@ -40,14 +36,6 @@ export class DisplayClassComponent implements OnInit {
     });
 
     return weekHours;
-  }
-
-  /**
-   * 
-   * @param subject Materia que se agregara
-   */
-  private addSubject(){
-    this.addSubjetEmit.next(this.subject);
   }
 
 }

@@ -5,42 +5,19 @@ body {
 .cmp-header {
     overflow: hidden;
     background-color: $dark-blue-90;
-    max-height: 64px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 5px 10px;
     margin-bottom: 10px;
+}
 
-    a {
-      color: $white;
-      float: left;
-      text-align: center;
-      padding-left: 8px;
-      margin-left: 12px;
-      padding-top: 8px;
-      padding-bottom: 4px;
-      text-decoration: none;
-      font-size: 25px;
-      font-weight: bold;
-      line-height: 25px;
-      border-left: 2px solid $white;
-    }
-
-    img {
-      float: left;
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
-
-    div p {
-      color: $white;
-      padding-top: 8px;
-      padding-bottom: 4px;
-      text-decoration: none;
-      font-size: 18px;
-      line-height: 25px;
-      margin: 0px;
-    }
-
+.cmp-header a {
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 25px;
+  border-radius: 4px;
 }
 
 .cmp-header-right {
@@ -49,12 +26,6 @@ body {
 
 * {
   box-sizing: border-box;
-}
-.jplannerTittle{
-  @media (max-width: $vp-mobile) {
-    
-    display: none;
-  }
 }
 
 .app-blocked-menu{
@@ -142,8 +113,6 @@ body {
   }
 }
 
-.hidden-desktop {
-  @media (min-width: $vp-tablet) {
-    display: none;
-  }
-}
+
+
+

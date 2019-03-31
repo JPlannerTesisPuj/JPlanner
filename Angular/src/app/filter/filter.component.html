@@ -3,14 +3,10 @@
   <h2>Buscador</h2>
 </div>
 
-
-<!--
-  En caso de que no sea la vista de Tablet
--->
-<div *ngIf="!isTablet" class="fil-border">
+<div class="fil-border">
   <div class="fil-sub-menu-container grid-noGutter">
-    <button id="basic-search" class="basic-serch-btn atom-buttons-secondary-first-selected" (click)='clickedTab($event)'>Básica</button>
-    <button id="adv-search" class="adv-serch-btn atom-buttons-secondary" (click)='clickedTab($event)'>Avanzada</button>
+    <button id="basic-search" class="atom-buttons-secondary-first-selected" (click)='clickedTab($event)'>Básica</button>
+    <button id="adv-search" class="atom-buttons-secondary" (click)='clickedTab($event)'>Avanzada</button>
   </div>
   <div class="grid-noGutter" id="fil-basic-search">
   
@@ -19,20 +15,10 @@
         <strong>Búsqueda por texto:</strong>
       </label>
       <div class="fil-search-container col-12">
-        <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field ng-pristine ng-valid ng-touched search-box-fil-txt" id="fil-searchBox"
-          placeholder="Escriba el texto de búsqueda..." (ngModelChange)="checkInputFieldSearch($event)" (click)="onlyLetters()">
+        <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field ng-pristine ng-valid ng-touched" id="fil-searchBox"
+          placeholder="Escriba el texto de búsqueda...">
         <div class="error-msg" id="fil-error-searchBox"></div>
       </div>
-
-      <div class="alert" *ngIf="errorFilterSearchN">
-        <span class="closebtn"></span>
-          Por favor, digite dos letras o más
-      </div> 
-
-      <div class="alert" *ngIf="errorFilterSearchS">
-        <span class="closebtn"></span>
-          Por favor, no utilice la tecla espacio en el primer o segundo campo
-      </div> 
       
         <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-margin atom-custom-list" [placeholder]="'Búscar en Campo Específico'"
           [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">
@@ -50,7 +36,7 @@
           {{hour}}
         </option>
       </select>
-      <select id="fil-hourTo" [(ngModel)]="selectedOptionTo" class="fil-to-dropdown fil-hour-dropdown col-2 atom-dropdown" data-push-left="off-2">
+      <select id="fil-hourTo" [(ngModel)]="selectedOptionTo" class="fil-hour-dropdown col-2 atom-dropdown" data-push-left="off-2">
         <option value="" disabled selected>H. final</option>
         <option *ngFor="let hour of hoursTo">
           {{hour}}
@@ -106,20 +92,20 @@
   
   </div>
   
-  <div id="fil-adv-filters" class="grid-noGutter" *ngIf="isAdvancedSearch">
+  <div id="fil-adv-filters" class="grid-noGutter hidden">
   
     <div id="fil-id-filter" class="col-12 grid-noGutter">
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input [(ngModel)]="searchedFilterId" class="atom-input-field"/>
+      <input type="text" [(ngModel)]="searchedFilterId" class="atom-input-field" />
     </div>
   
     <div id="fil-number-filter" class="col-12 grid-noGutter">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input  [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
+      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field" />
     </div>
   
     <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
@@ -168,7 +154,7 @@
       <label for="fil-class-size" class="fil-label-block">
         <strong>Cupos Disponibles:</strong>
       </label>
-      <select [hidden]="!shouldDisplaySizeValue1" class="col-3 atom-dropdown fil-fix-quotas" [(ngModel)]="selectedSizeValue1"
+      <select [hidden]="!shouldDisplaySizeValue1" class="col-3 atom-dropdown" [(ngModel)]="selectedSizeValue1"
         (ngModelChange)="onChangeSizeOne($event)">
         <option [disabled]="value.disabled" *ngFor="let value of sizeValue1">
           {{value.value}}
@@ -181,7 +167,7 @@
           {{comparator.value}}
         </option>
       </select>
-      <select [hidden]="!shouldDisplaySizeValue2" class="col-3 atom-dropdown fil-fix-quotas" [(ngModel)]="selectedSizeValue2">
+      <select [hidden]="!shouldDisplaySizeValue2" class="col-3 atom-dropdown" [(ngModel)]="selectedSizeValue2">
         <option [disabled]="value.disabled" *ngFor="let value of sizeValue2">
           {{value.value}}
         </option>
@@ -189,209 +175,6 @@
     </div>
   
     <div id="fil-teaching-mode" class="col-12 grid-noGutter">
-      <label for="fil-teaching-mode" class="col-12">
-        <strong>Modo de Enseñanza:</strong>
-      </label>
-      <select name="selectTeachingMode" [(ngModel)]="selectedTeachingMode" class="atom-dropdown-advanced">
-        <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
-        <option *ngFor="let tMode of teachingModeDropdown" [ngValue]="tMode.value">{{tMode.name}}</option>
-      </select>
-    </div>
-  
-  </div>
-
-  <div class="fil-center">
-    <button class="atom-buttons" (click)="CleanAll()">Limpiar</button>
-    <button class="atom-buttons-primary" (click)="searchClasses()">Buscar<i class="material-icons">search</i></button>
-  </div>
-</div>
-
-
-<!--
-  En caso de que sea la vista de Tablet
--->
-<div *ngIf="isTablet" class="fil-border">
-  <div class="fil-sub-menu-container grid-noGutter">
-    <button id="basic-search" class="basic-serch-btn atom-buttons-secondary-first-selected" (click)='clickedTab($event)'>Básica</button>
-    <button id="adv-search" class="adv-serch-btn atom-buttons-secondary" (click)='clickedTab($event)'>Avanzada</button>
-  </div>
-  <div class="grid-noGutter" id="fil-basic-search">
-  
-    <div id="fil-search-fields" class="col-6 grid-noGutter fil-tablet-left"> 
-      <label for="fil-search-fields" class="col-6">
-        <strong>Búsqueda por texto:</strong>
-      </label>
-      <div class="fil-search-container col-12">
-        <input [(ngModel)]="searchBox" [value]="searchBox" type="text" class="col-12 atom-input-field ng-pristine ng-valid ng-touched search-box-fil-txt" id="fil-searchBox"
-          placeholder="Escriba el texto de búsqueda..." (ngModelChange)="checkInputFieldSearch($event)" (click)="onlyLetters()">
-        <div class="error-msg" id="fil-error-searchBox"></div>
-      </div>
-
-      <div class="alert" *ngIf="errorFilterSearchN">
-        <span class="closebtn"></span>
-          Por favor, digite dos letras o más
-      </div> 
-
-      <div class="alert" *ngIf="errorFilterSearchS">
-        <span class="closebtn"></span>
-          Por favor, no utilice la tecla espacio en el primer o segundo campo
-      </div> 
-      
-        <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-margin atom-custom-list" [placeholder]="'Búscar en Campo Específico'"
-          [data]="dropdownListSearch" [(ngModel)]="selectedItemsSearch" [settings]="dropdownSettings">
-        </ng-multiselect-dropdown>
-    </div>
-  
-    <div id="fil-week-hours" class="col-6 fil-tablet-right">
-      <label for='fil-week-hours' class="fil-label-block">
-        <strong>Horario:</strong>
-      </label>
-      <select id="fil-hourFrom" class="fil-hour-dropdown col-2 atom-dropdown" [(ngModel)]="selectedOptionFrom"
-        (ngModelChange)="onChangeFromHour($event)">
-        <option value="" disabled selected>H. inicio</option>
-        <option *ngFor="let hour of hoursFrom">
-          {{hour}}
-        </option>
-      </select>
-      <select id="fil-hourTo" [(ngModel)]="selectedOptionTo" class="fil-to-dropdown fil-hour-dropdown col-2 atom-dropdown" data-push-left="off-2">
-        <option value="" disabled selected>H. final</option>
-        <option *ngFor="let hour of hoursTo">
-          {{hour}}
-        </option>
-      </select>
-    </div>
-
-    <div id="fil-week-days" class="col-6 grid-noGutter">
-      <label class="col-12" for="fil-week-days">
-        <strong>Dias de la Semana:</strong>
-      </label>
-      <ng-multiselect-dropdown class="col-12 atom-custom-margin atom-custom-list" [placeholder]="'Dias de la Semana'" [data]="dropdownListWeek"
-        [(ngModel)]="selectedItemsWeek" [settings]="dropdownSettings">
-      </ng-multiselect-dropdown>
-      <div class="radio-atom-fix-group grid-noGutter">   
-          <div class="cal-alt-radio-group">
-              <label class="cal-radio-container col-4 radio-atom-fix"><p>Buscar en cualquiera de estos días</p>
-                <input type="radio" value="0" id="all-days" [(ngModel)]="dayComparator">
-                <span class="atom-radio-btn col-1"></span>
-              </label>
-              <label class="cal-radio-container col-4 radio-atom-fix"><p>Buscar solamente en los días seleccionados</p>
-                <input type="radio" value="1" id="selected-days" [(ngModel)]="dayComparator">
-                <span class="atom-radio-btn col-1"></span>
-            </label>
-          </div>
-      </div>
-    </div>
-  
-    <div id="fil-class-size" class="col-6 fil-tablet-right">
-      <label for="fil-class-size" class="fil-label-block">
-        <strong>Créditos:</strong>
-      </label>
-      <select [hidden]="!shouldDisplayCreditValue1" class="col-6 atom-dropdown" [(ngModel)]="selectedCreditValue1"
-        (ngModelChange)="onChangeCreditValue1($event)">
-        <option [disabled]="value.disabled" *ngFor="let value of creditValue1">
-          {{value.value}}
-        </option>
-      </select>
-      <select id="fil-creditLogic" [(ngModel)]="creditsComparator" (ngModelChange)="onChangeFromCredit($event)"
-        class="fil-fdropdown fil-credit-dropdown col-12 atom-dropdown">
-        <option value="" disabled selected>N. créditos</option>
-        <option *ngFor="let comparator of creditsComparatorOptions | keyvalue" [ngValue]="comparator">
-          {{comparator.value}}
-        </option>
-      </select>
-  
-      <select [hidden]="!shouldDisplayCreditValue2" class="col-6 atom-dropdown" [(ngModel)]="selectedCreditValue2">
-        <option [disabled]="value.disabled" *ngFor="let value of creditValue2">
-          {{value.value}}
-        </option>
-      </select>
-    </div>
-  
-  </div>
-  
-  <div id="fil-adv-filters" class="grid-noGutter" *ngIf="isAdvancedSearch">
-  
-    <div id="fil-id-filter" class="col-6 grid-noGutter fil-tablet-left">
-      <label for="fil-id-filter" class="col-12">
-        <strong>ID Curso:</strong>
-      </label>
-      <input type="number" [(ngModel)]="searchedFilterId" class="atom-input-field"/>
-    </div>
-  
-    <div id="fil-number-filter" class="col-6 grid-noGutter fil-tablet-right-advanced">
-      <label for="fil-number-filter" class="col-12">
-        <strong>Número de Clase:</strong>
-      </label>
-      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
-    </div>
-  
-    <div id="fil-schoolyear-filter" class="col-6 grid-noGutter">
-      <label for="fil-schoolyear-filter" class="col-12">
-        <strong>Ciclo Lectivo:</strong>
-      </label>
-      <select [(ngModel)]="year" class="atom-dropdown-advanced">
-        <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
-        <option *ngFor="let schoolyear of dropdownSchoolYear">
-          {{schoolyear}}
-        </option>
-      </select>
-    </div>
-  
-    <div id="fil-class-state" class="col-6 grid-noGutter fil-tablet-right-advanced">
-      <label for="fil-class-state" class="col-12">
-        <strong>Estado:</strong>
-      </label>
-      <div class="checkbox-atom-fix-div">
-        <label class="checkbox-atom-container col-4 checkbox-atom-fix">{{openStateCheckbox.name}}
-            <input id="{{openStateCheckbox.id}}" [(ngModel)]="openStateCheckbox.isChecked" type="checkbox">
-            <span class="checkbox-atom col-1"></span>
-        </label>
-      </div>
-      <div class="checkbox-atom-fix-div">
-        <label class="checkbox-atom-container col-4 checkbox-atom-fix">{{closedStateCheckbox.name}}
-            <input id="{{closedStateCheckbox.id}}" [(ngModel)]="closedStateCheckbox.isChecked" type="checkbox">
-            <span class="checkbox-atom col-1"></span>
-        </label>
-      </div>
-    </div>
-  
-    <div id="fil-grade-filter" class="col-6 grid-noGutter">
-      <label for="fil-garde-filter" class="col-12">
-        <strong>Grado:</strong>
-      </label>
-      <select [(ngModel)]="gradeFilter" class="atom-dropdown-advanced">
-        <option [ngValue]="defaultTeachingMode" selected>{{defaultTeachingMode}}</option>
-        <option *ngFor="let grade of dropdownGrades" [ngValue]="grade.value">
-          {{grade.name}}
-        </option>
-      </select>
-    </div>
-  
-    <div id="fil-class-size" class="col-6 grid-noGutter fil-tablet-right-advanced">
-      <label for="fil-class-size" class="fil-label-block">
-        <strong>Cupos Disponibles:</strong>
-      </label>
-      <select [hidden]="!shouldDisplaySizeValue1" class="col-3 atom-dropdown fil-fix-quotas" [(ngModel)]="selectedSizeValue1"
-        (ngModelChange)="onChangeSizeOne($event)">
-        <option [disabled]="value.disabled" *ngFor="let value of sizeValue1">
-          {{value.value}}
-        </option>
-      </select>
-      <select id="fil-sizeLogicOp" [(ngModel)]="sizeComparator" (ngModelChange)="onChangeFromClassSize($event)"
-        class="fil-fdropdown fil-credit-dropdown col-12 atom-dropdown">
-        <option [ngValue]="defaultTeachingMode" selected>N. cupos</option>
-        <option *ngFor="let comparator of sizeComparatorOptions | keyvalue" [ngValue]="comparator">
-          {{comparator.value}}
-        </option>
-      </select>
-      <select [hidden]="!shouldDisplaySizeValue2" class="col-3 atom-dropdown fil-fix-quotas" [(ngModel)]="selectedSizeValue2">
-        <option [disabled]="value.disabled" *ngFor="let value of sizeValue2">
-          {{value.value}}
-        </option>
-      </select>
-    </div>
-  
-    <div id="fil-teaching-mode" class="col-6 grid-noGutter fil-tablet-last-advanced">
       <label for="fil-teaching-mode" class="col-12">
         <strong>Modo de Enseñanza:</strong>
       </label>
