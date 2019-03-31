@@ -17,7 +17,10 @@
 #fil-basic-search {
   .radio-atom-fix{
     & > p{
-      margin:5px;
+      margin-left: 10px;
+      margin-top: 4px;
+      width: 100%;
+      max-width: calc(100% - 24px);
     }
   }
   .fil-dropdown-specific-field {
@@ -154,3 +157,60 @@
 .fil-label-block{
   display: block;
 }
+
+.fil-fix-quotas{
+  width: 20% !important;
+}
+
+.fil-tablet-left{
+  float: left;
+}
+
+.fil-tablet-right{
+  margin-bottom: 0px !important;
+  float: right;
+  border-left: 1px solid #e6e6e6;
+}
+
+.fil-tablet-right-advanced{
+  float: right;
+  border-left: 1px solid #e6e6e6;
+}
+
+#fil-number-filter, #fil-class-state{
+  @media (min-width: $vp-mobile) and (max-width: $vp-tablet){
+    display: block;
+   }
+}
+
+.fil-tablet-last-advanced{
+  border-right: 1px solid #e6e6e6;
+}
+
+.alert {
+    padding: 20px;
+    text-align: center;
+    margin-left: 12px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: calc(100% - 24px);
+  }
+  
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }

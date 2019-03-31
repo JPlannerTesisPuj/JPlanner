@@ -1,21 +1,26 @@
+<!-- <app-block-modal class="col-12" (messageEvent)="receiveMessage($event)"></app-block-modal> -->
+
 <div *ngIf="showLoader" class="dispclass-loader updating-size"></div>
+<div *ngIf="blocksOverlapsClassesAndBlocks[currentAlternative]" class="cal-conflict-msj col-12">
+  <span>¡El bloqueo se cruza con clases modulares u otros bloqueos por lo que no fue creado igual en todas las semanas!</span>
+  <i class="material-icons">warning</i>
+</div>
 
 <div *ngIf="isMobile" class="col-12 cal-display-sm lg-hidden md-hidden cal-alt-mobile">
-  <div class="cal-alternatives-paginator ">
+  <div *ngIf="verticalMenuIndexMobile!=0" class="cal-alternatives-paginator ">
     <div class="cal-alt-title-div">
-      <label for="cal-alt-title">Titulo:</label>
-      <input class="atom-input-field" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
-    </div>
+      <input [(ngModel)]="alternativeTitles[currentAlternative]" class="atom-alternative-input-field" id="cal-alt-title"
+        maxlength="25" name="Alternative Title" type="text"></div>
     <div class="cal-alt-radio-group">
-      <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
-        <input type="radio" name="cal-alternative" [value]=ind [(ngModel)]="currentAlternative" (change)="onItemChange(ind)">
+      <label *ngFor='let ind of alternativeIterationArray ' class="cal-radio-container">
+        <input (change)="onItemChange(ind)" [(ngModel)]="currentAlternative" [value]="ind" name="cal-alternative"
+          type="radio">
         <span class="atom-radio-btn"></span>
       </label>
     </div>
   </div>
 </div>
 <div class="cal-menu-container col-3_xs-12_sm-12_md-12_lg-3 sm-hidden">
-
   <!--
     verticalMenuIndex es una variable numérica del componente que le indica al menú
     qué pestaña debe seleccionar. Así mismo, el menú le indica el número de la pestaña
@@ -23,56 +28,42 @@
   -->
   <mat-tab-group [(selectedIndex)]="verticalMenuIndex">
     <mat-tab>
-
       <ng-template mat-tab-label>
-
         <i class="material-icons">
           search
         </i>
-
       </ng-template>
-
       <app-filter></app-filter>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
-
         <i class="material-icons">
           view_list
         </i>
-
       </ng-template>
-
-      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
+      <app-display-subjects (addSubjetEmit)="addClassSubject($event)" [calendarBlocks]="calendarBlocks"
+        [calendarList]="calendarList"></app-display-subjects>
     </mat-tab>
-
     <mat-tab>
       <ng-template mat-tab-label>
-
         <i class="material-icons">
           shopping_cart
         </i>
-
-
       </ng-template>
-      <app-shopping-cart [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
-
-
+      <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]'
+        [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
     </mat-tab>
   </mat-tab-group>
 </div>
-
 <div class="cal-schedule-container col-9_xs-12_sm-12_md-12_lg-9 sm-hidden">
-
   <div *ngIf="!isMobile" class="cal-alternatives-paginator sm-hidden xs-hidden">
     <div class="cal-alt-title-div">
-      <label for="cal-alt-title">Titulo:</label>
-      <input class="atom-input-field atom-input-field-title" type="text" id="cal-alt-title" name="Alternative Title" maxlength="25" [(ngModel)]="alternativeTitles[currentAlternative]">
-
-    </div>
+      <input [(ngModel)]="alternativeTitles[currentAlternative]" class="atom-alternative-input-field" id="cal-alt-title"
+        maxlength="25" name="Alternative Title" type="text"></div>
     <div class="cal-alt-radio-group">
-      <label class="cal-radio-container" *ngFor='let ind of alternativeIterationArray '>
-        <input type="radio" name="cal-alternative" [value]=ind [(ngModel)]="currentAlternative" (change)="onItemChange(ind)">
+      <label *ngFor='let ind of alternativeIterationArray ' class="cal-radio-container">
+        <input (change)="onItemChange(ind)" [(ngModel)]="currentAlternative" [value]="ind" name="cal-alternative"
+          type="radio">
         <span class="atom-radio-btn"></span>
       </label>
     </div>
@@ -81,89 +72,72 @@
         <label class="number-credits">{{creditCounter[currentAlternative]}}</label>
       </label>
     </div>
-
+    <div class="checkbox-atom-fix-div">
+      <label class="checkbox-atom-container checkbox-atom-fix" for="editBlockOption">
+        Eliminar un único bloqueo semanalmente / Editar bloqueo semanalmente
+        <input [(ngModel)]="editBlockOption" class="hidden-checkbox" id="editBlockOption" name="editBlockOption"
+          type="checkbox">
+        <span class="checkbox-atom"></span>
+      </label>
+    </div>
   </div>
-
   <div *ngIf="sholudDisplayDialog[currentAlternative]" class="cal-conflict-msj">
-    <span> ¡Conflicto!</span>
+    <span>
+      ¡Conflicto!</span>
     <i class="material-icons">warning</i>
   </div>
-
   <!--
     Los pasos para personalizar el Calendario fueron tomados de aquí https://github.com/mattlewis92/angular-calendar#how-do-i-use-a-custom-template
     La diferencia entre esta plantilla y la plantilla por defecto es que en esta no se muestra la fecha del día, sólo el nombre.
   -->
-
   <!--INICIO PLANTILLAS PERSONALIZADAS -->
-  <ng-template #customWeekViewHourSegmentTemplateJplanner let-segment="segment" let-locale="locale" let-segmentHeight="segmentHeight"
-    let-isTimeLabel="isTimeLabel">
-    <div #segmentElement class="cal-hour-segment" [style.height.px]="segmentHeight" [class.cal-hour-start]="segment.isStart"
-      [ngClass]="segment.cssClass" (mousedown)="startDragToCreateBlock(segment, $event, segmentElement)">
-      <div class="cal-time" *ngIf="isTimeLabel">
+  <ng-template #customWeekViewHourSegmentTemplateJplanner let-isTimeLabel="isTimeLabel" let-locale="locale"
+    let-segment="segment" let-segmentHeight="segmentHeight">
+    <div #segmentElement (mousedown)="startDragToCreateBlock(segment, $event, segmentElement)"
+      [class.cal-hour-start]="segment.isStart" [ngClass]="segment.cssClass" [style.height.px]="segmentHeight"
+      class="cal-hour-segment">
+      <div *ngIf="isTimeLabel" class="cal-time">
         {{ segment.date | date:'H:mm':locale }}
       </div>
     </div>
-
   </ng-template>
 
   <ng-template #customDayViewHourSegmentTemplateJplanner let-segment="segment" let-locale="locale" let-segmentHeight="segmentHeight"
     let-isTimeLabel="isTimeLabel">
     <div #segmentElementDay class="cal-hour-segment" [style.height.px]="segmentHeight" [class.cal-hour-start]="segment.isStart"
-      [ngClass]="segment.cssClass" (touchstart)="startDragToCreateBlock(segment, $event, segmentElementDay)">
+      [ngClass]="segment.cssClass">
       <div class="cal-time">
         {{ segment.date | date:'H:mm':locale }}
       </div>
     </div>
-
   </ng-template>
   <!--FIN PLANTILLAS PERSONALIZADAS -->
-
   <br />
-
   <!--
     Los atributos de las vistas que cambiaron fueron:
     * hourSegments: de 2 a 1
     * dayStartHour: de 0 a 7
     * dayEndHour: de 23 a 22
   -->
-
-  <div cdkDropList #calendarList="cdkDropList" (cdkDropListDropped)="dropClass($event)" class="cal-view-container grid-noGutter cal-view-desktop">
-
+  <div #calendarList="cdkDropList" (cdkDropListDropped)="dropClass($event)" cdkDropList
+    class="cal-view-container grid-noGutter cal-view-desktop">
     <div class="btn-group cal-arrow-buttons-desktop">
-      <button class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
-      <button class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false"></button>
+      <button (viewDateChange)="activeDayIsOpen = false" [(viewDate)]="viewDate" [view]="view"
+        class="btn btn-primary cal-buttons-weekend-left" mwlCalendarPreviousView></button>
+      <button (viewDateChange)="activeDayIsOpen = false" [(viewDate)]="viewDate" [view]="view"
+        class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView></button>
     </div>
-
-    <mwl-calendar-week-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [dayStartHour]="7"
-      [dayEndHour]="22" [locale]="locale" [hourSegmentTemplate]="customWeekViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
-      (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" class="cal-display-lg sm-hidden col-12">
+    <mwl-calendar-week-view (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)" [dayEndHour]="22" [dayStartHour]="7" [events]="classes"
+      [hourSegmentHeight]="35" [hourSegmentTemplate]="customWeekViewHourSegmentTemplateJplanner" [hourSegments]="1"
+      [locale]="locale" [refresh]="refresh" [viewDate]="viewDate" class="cal-display-lg sm-hidden col-12">
     </mwl-calendar-week-view>
-
-    <div class="cal-display-sm col-12 ">
-
-      <div class="cal-day-text">
-        {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
-      </div>
-      <div (swipe)="onSwipe($event)">
-        <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [locale]="locale"
-          [dayStartHour]="7" [dayEndHour]="22" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
-          (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-        </mwl-calendar-day-view>
-      </div>
-    </div>
   </div>
-
-  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
-  <input type="checkbox" name="editBlockOption" id="editBlockOption" [(ngModel)]="editBlockOption">
-  <label for="editBlockOption">Eliminar bloqueo seleccionado únicamente</label>
-
 </div>
-
 <div class="movilMenu col-12 ">
 
 
-  <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndex">
+  <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndexMobile">
     <mat-tab>
       <ng-template mat-tab-label>
         <i class="material-icons">
@@ -174,8 +148,6 @@
       <br>
       <br>
       <br>
-
-
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
@@ -183,10 +155,8 @@
           view_list
         </i>
       </ng-template>
-      <app-display-subjects [calendarList]="calendarList"></app-display-subjects>
-
-
-
+      <app-display-subjects (addSubjetEmit)="addClassSubject($event)" [calendarList]="calendarList">
+      </app-display-subjects>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
@@ -194,11 +164,9 @@
           shopping_cart
         </i>
       </ng-template>
-
-      <app-shopping-cart [altTitle]='alternativeTitles[currentAlternative]' [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
-
+      <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]'
+        [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
     </mat-tab>
-
     <mat-tab>
       <ng-template mat-tab-label>
         <i class="material-icons">
@@ -206,17 +174,23 @@
         </i>
       </ng-template>
       <div class="cal-view-container grid-noGutter">
-
         <div class="cal-display-sm col-12">
-
           <div class="cal-day-text">
             {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
+          </div>
+          <div class="checkbox-atom-fix-div">
+            <label class="checkbox-atom-container checkbox-atom-fix" for="editBlockOption">
+              Eliminar un único bloqueo semanalmente / Editar bloqueo semanalmente
+              <input [(ngModel)]="editBlockOption" class="hidden-checkbox" id="editBlockOption" name="editBlockOption"
+                type="checkbox">
+              <span class="checkbox-atom"></span>
+            </label>
           </div>
           <div class="cal-schedule-container cal-mobile col-9_xs-12_sm-12_md-12_lg-9 ">
             <div (swipe)="onSwipe($event)">
               <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [locale]="locale"
                 [dayStartHour]="7" [dayEndHour]="22" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
-                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" class="cal-display-sm  col-12">
               </mwl-calendar-day-view>
             </div>
           </div>
@@ -224,9 +198,6 @@
       </div>
       <br>
       <br>
-
     </mat-tab>
-
-
   </mat-tab-group>
 </div>

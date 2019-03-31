@@ -8,7 +8,7 @@
   <div *ngIf="showLoader" class="dispclass-loader"></div>
   <!-- Se recorre la lista de materias y se crea un app-display-class por cada materia -->
   <div *ngFor="let class of classes" class="col-12_xs-12_sm-12_md-6 sm-hidden" cdkDrag>
-    <app-display-class [subject]="class"></app-display-class>
+    <app-display-class  (addSubjetEmit) = "addSubj($event)" [subject]="class"></app-display-class>
   </div>  
 </div>
 
@@ -17,7 +17,7 @@
   <div *ngIf="showLoader" class="dispclass-loader"></div>
   <!-- Se recorre la lista de materias y se crea un app-display-class por cada materia -->
   <div *ngFor="let class of classes" class="col-12_xs-12_sm-12_md-6 dispclass-display-sm">
-    <app-display-class [subject]="class"></app-display-class>
+    <app-display-class (addSubjetEmit) = "addSubj($event)" [subject]="class"></app-display-class>
   </div>  
 </div>
 

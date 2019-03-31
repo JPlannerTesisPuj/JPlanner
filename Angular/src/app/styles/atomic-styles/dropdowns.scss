@@ -15,7 +15,8 @@
  .atom-custom-list .multiselect-dropdown .dropdown-list {
     font: $font-main;
     font-style: italic;
-    width: 90% !important;
+    width: 100% !important;
+    max-width: calc(100% - 24px) !important;
     margin-left: 12px !important; 
     margin-top: 0px !important;
 
