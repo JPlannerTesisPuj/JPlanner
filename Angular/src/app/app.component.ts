@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReadJsonFileService } from 'src/app/shared/read-json-file/read-json-file.service';
 import { DataService } from 'src/app/shared/data.service';
 import { User } from './shared/model/User';
+import { Subject as SubjectRxJs } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,8 @@ export class AppComponent implements OnInit {
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzIHDN741NiJ9.eJ0eSBTbWl0aCI6ImJsYKi40iSJ9.5dNM-kYGgNwkhKV7QyLx23fKD8ncIXhY2BWleU',   
   ];
 
+  private dialogEventSubjectRxJs: SubjectRxJs<void> = new SubjectRxJs<void>();
+
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
 
   ngOnInit() {
@@ -37,9 +40,6 @@ export class AppComponent implements OnInit {
         this.readJSONFileService.setUSer(this.userAuthenticaded[0]);
         // Se llama al servicio que guarda el usuario en la base de datos
         this.readJSONFileService.saveUser(this.userAuthenticaded[0].GID, this.userAuthenticaded[0].credenciales).subscribe();
-        this.sleep(3000);
-        // Se llama al servicio que guarda las alternativas en la base de datos
-        this.readJSONFileService.saveAlternative(this.userAuthenticaded[0].GID).subscribe();
       }
     });
 
@@ -62,6 +62,11 @@ export class AppComponent implements OnInit {
         break;
       }
     }
+  }
+
+  private openCreationBlockModal() {
+    this.showOptions = false;
+    this.dialogEventSubjectRxJs.next();
   }
 
   

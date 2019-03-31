@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { DataService } from '../shared/data.service';
 
@@ -8,6 +8,15 @@ import { DataService } from '../shared/data.service';
 })
 
 export class FilterComponent implements OnInit {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth > 768 && event.target.innerWidth <= 1024) { 
+      this.isTablet = true;
+    } else {
+      this.isTablet = false;
+    }
+  }
 
   // Variables filtos básicos
   private dropdownListWeek: string[] = [];
@@ -29,11 +38,14 @@ export class FilterComponent implements OnInit {
   private shouldDisplayCreditValue1: boolean = false;
   private shouldDisplayCreditValue2: boolean = false;
   private dayComparator: string = '0';
+  private errorFilterSearch: boolean;
+  private errorFilterSearchN: boolean;
+  private errorFilterSearchS: boolean;
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
   private selectedTeachingMode: string;
-  private defaultTeachingMode: string;;
+  private defaultTeachingMode: string;
   private openStateCheckbox: any;
   private closedStateCheckbox: any;
   private searchedFilterId: string;
@@ -54,14 +66,21 @@ export class FilterComponent implements OnInit {
 
   private yearActualCycle;
 
+  private isTablet = false;
+
   // Mensaje con los datos de los filtros
   private filterMsj: any;
   // Control si la búsqueda es o no avanzada
-  private isAdvancedSearch: boolean;
+  private isAdvancedSearch: boolean ;
 
-  constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
+  constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) {}
 
   ngOnInit() {
+
+    if (window.screen.width > 768 && window.screen.width <= 1024) {
+      this.isTablet = true;
+    }
+
     this.isAdvancedSearch = false;
     this.creditsComparator = '';
     this.creditValue1 = [];
@@ -153,6 +172,7 @@ export class FilterComponent implements OnInit {
         value: 'master'
       }
     ];
+
   }
 
 
@@ -342,101 +362,108 @@ export class FilterComponent implements OnInit {
    * Crea el objeto filtro que se le enviara al servicio read-json-files
    */
   private searchClasses() {
-    let gradeToSend = this.gradeFilter;
-    let modeToSend = this.selectedTeachingMode;
-    let idToSend = this.searchedFilterId;
-    let numberToSend = this.searchedFilterNumber;
-    let codeToSend = this.searchedFilterCode;
-    let yearToSend = this.year;
 
-    if (this.searchedFilterId.replace(/\s/g, '') == '') {
-      idToSend = 'none';
-    }
-    if (this.selectedTeachingMode === 'Cualquiera') {
-      modeToSend = 'none';
-    }
-    if (this.year === 'Cualquiera') {
-      yearToSend = this.yearActualCycle;
-      if(this.isAdvancedSearch){
-        yearToSend = 'none';
+    if(this.errorFilterSearchN || this.errorFilterSearchS){
+      alert("Por favor, revise las alertas");
+    } else {
+      let gradeToSend = this.gradeFilter;
+      let modeToSend = this.selectedTeachingMode;
+      let idToSend = this.searchedFilterId;
+      let numberToSend = this.searchedFilterNumber;
+      let codeToSend = this.searchedFilterCode;
+      let yearToSend = this.year;
+
+      if (this.searchedFilterId.replace(/\s/g, '') == '') {
+        idToSend = 'none';
       }
-    }
-    if (this.gradeFilter === 'Cualquiera') {
-      gradeToSend = 'none';
-    }
-    if (this.searchedFilterNumber == null || this.searchedFilterNumber.length == 0) {
-      numberToSend = 'none';
-    }
-    if (this.searchedFilterCode == null || this.searchedFilterCode.length == 0) {
-      codeToSend = 'none';
-    }
+      if (this.selectedTeachingMode === 'Cualquiera') {
+        modeToSend = 'none';
+      }
+      if (this.year === 'Cualquiera') {
+        yearToSend = this.yearActualCycle;
+        if(this.isAdvancedSearch){
+          yearToSend = 'none';
+        }
+      }
+      if (this.gradeFilter === 'Cualquiera') {
+        gradeToSend = 'none';
+      }
+      if (this.searchedFilterNumber == null || this.searchedFilterNumber.length == 0) {
+        numberToSend = 'none';
+      }
+      if (this.searchedFilterCode == null || this.searchedFilterCode.length == 0) {
+        codeToSend = 'none';
+      }
 
-    // Convierte el arreglo de dias a un string separado con -
-    let days = this.selectedItemsWeek.toString().replace(/,/g, '-');
-    if (days == '') {
-      days = 'none';
-    }
+      // Convierte el arreglo de dias a un string separado con -
+      let days = this.selectedItemsWeek.toString().replace(/,/g, '-');
+      if (days == '') {
+        days = 'none';
+      }
 
-    // Convierte la hora a long
-    let hmsFrom = this.selectedOptionFrom + ':00';
-    let splittedFrom = hmsFrom.split(':');
-    let secondsFrom = (+splittedFrom[0]) * 60 * 60 + (+splittedFrom[1]) * 60 + (+splittedFrom[2]);
+      // Convierte la hora a long
+      let hmsFrom = this.selectedOptionFrom + ':00';
+      let splittedFrom = hmsFrom.split(':');
+      let secondsFrom = (+splittedFrom[0]) * 60 * 60 + (+splittedFrom[1]) * 60 + (+splittedFrom[2]);
 
-    // Convierte la hora a long
-    let hmsTo = this.selectedOptionTo + ':00';
-    let splittedTo = hmsTo.split(':');
-    let secondsTo = (+splittedTo[0]) * 60 * 60 + (+splittedTo[1]) * 60 + (+splittedTo[2]);
+      // Convierte la hora a long
+      let hmsTo = this.selectedOptionTo + ':00';
+      let splittedTo = hmsTo.split(':');
+      let secondsTo = (+splittedTo[0]) * 60 * 60 + (+splittedTo[1]) * 60 + (+splittedTo[2]);
 
-    if (isNaN(secondsTo)) {
-      secondsTo = 86399;
-    }
-    if (isNaN(secondsFrom)) {
-      secondsFrom = 0;
-    }
+      if (isNaN(secondsTo)) {
+        secondsTo = 86399;
+      }
+      if (isNaN(secondsFrom)) {
+        secondsFrom = 0;
+      }
 
-    let hours: any = {
-      'from': secondsFrom,
-      'to': secondsTo
-    }
+      let hours: any = {
+        'from': secondsFrom,
+        'to': secondsTo
+      }
 
-    let selectedDropdownSearch = this.selectedItemsSearch.toString().replace(/,/g, '-');
-    if (selectedDropdownSearch === '') {
-      selectedDropdownSearch = 'none';
-    }
-    let sendedSearchBox = this.searchBox;
-    if (this.searchBox === '' || this.searchBox === undefined){
-      sendedSearchBox = 'none';
-    }
-    let searchFields: any = {
-      'searched': sendedSearchBox,
-      'params': selectedDropdownSearch
-    }
+      let selectedDropdownSearch = this.selectedItemsSearch.toString().replace(/,/g, '-');
+      if (selectedDropdownSearch === '') {
+        selectedDropdownSearch = 'none';
+      }
+      let sendedSearchBox = this.searchBox;
+      if (this.searchBox === '' || this.searchBox === undefined){
+        sendedSearchBox = 'none';
+      }
+      let searchFields: any = {
+        'searched': sendedSearchBox,
+        'params': selectedDropdownSearch
+      }
 
-    let creditsToSend = this.getSelectedCredits();
-    let stateToSend = this.getSelectedStates();
-    let classSizeToSend = this.getClassSizeOption();
+      let creditsToSend = this.getSelectedCredits();
+      let stateToSend = this.getSelectedStates();
+      let classSizeToSend = this.getClassSizeOption();
 
-    let data = {
-      'type': 'filter',
-      'days': days,
-      'dayComparator': this.dayComparator,
-      'hours': hours,
-      'searchBox': searchFields,
-      'credits': creditsToSend,
-      'teachingMode': modeToSend,
-      'state': stateToSend,
-      'class-ID': idToSend,
-      'class-number': numberToSend,
-      'class-size': classSizeToSend,
-      'scholar-year': yearToSend,
-      'grade': gradeToSend
-    }
+      let data = {
+        'type': 'filter',
+        'days': days,
+        'dayComparator': this.dayComparator,
+        'hours': hours,
+        'searchBox': searchFields,
+        'credits': creditsToSend,
+        'teachingMode': modeToSend,
+        'state': stateToSend,
+        'class-ID': idToSend,
+        'class-number': numberToSend,
+        'class-size': classSizeToSend,
+        'scholar-year': yearToSend,
+        'grade': gradeToSend
+      }
 
-    // Si el filtro es básico , no envie los datos de esos filtros
-    if (!this.isAdvancedSearch) {
-      this.restartAdvFilter(data);
+      // Si el filtro es básico , no envie los datos de esos filtros
+      if (!this.isAdvancedSearch) {
+        this.restartAdvFilter(data);
+      }
+
+      this.data.changeMessage(data);
+
     }
-    this.data.changeMessage(data);
   }
 
   private CleanAll() {
@@ -559,12 +586,16 @@ export class FilterComponent implements OnInit {
    * Si horas desde se muestra, entonces se muestra el horas hasta
    */
   private onChangeFromHour(item: any) {
-    let hour = document.getElementById('fil-hourTo');
+    let hour:any = document.getElementsByClassName('fil-to-dropdown');
 
     if (item == 'Ninguno') {
-      hour.style.display = 'none';
+      for(let i = 0 ; i<hour.length; i++){
+      hour[i].style.display = 'none';
+      }
     } else {
-      hour.style.display = 'inline-block';
+      for(let i = 0 ; i<hour.length; i++){
+      hour[i].style.display = 'inline-block';
+      }
     }
 
     this.changeHoursTo(item);
@@ -639,29 +670,66 @@ export class FilterComponent implements OnInit {
    * Muestra o esconde los campos de la búsqueda avanada y setea el atributo isAdvanceSearch
    */
   private clickedTab(event) {
-    let advFilters = document.getElementById('fil-adv-filters');
+    let basic_btns : any = document.getElementsByClassName("basic-serch-btn");
+    let adv_btns : any = document.getElementsByClassName("adv-serch-btn");      
     if (event.currentTarget.id == 'basic-search') {
       //Display None to Adv Search
-      advFilters.classList.add('hidden');
       this.isAdvancedSearch = false;
 
-      document.getElementById('basic-search').style.border = 'solid 1px #000000';
-      document.getElementById('basic-search').style.color = '#000000';
-
-      document.getElementById('adv-search').style.border = 'solid 1px #b1b1b1';
-      document.getElementById('adv-search').style.color = '#cbcbcb';
+      for(let i = 0 ; i<basic_btns.length ; i++){
+        basic_btns[i].style.border = 'solid 1px #000000';
+        basic_btns[i].style.color = '#000000';
+      }
+      
+      for(let i = 0 ; i<adv_btns.length ; i++){
+      adv_btns[i].style.border = 'solid 1px #b1b1b1';
+      adv_btns[i].style.color = '#cbcbcb';
+      }
 
     } else if (event.currentTarget.id == 'adv-search') {
       //Display Adv Search
-      advFilters.classList.remove('hidden');
       this.isAdvancedSearch = true;
-
-      document.getElementById('basic-search').style.border = 'solid 1px #b1b1b1';
-      document.getElementById('basic-search').style.color = '#cbcbcb';
-
-      document.getElementById('adv-search').style.border = 'solid 1px #000000';
-      document.getElementById('adv-search').style.color = '#000000';
-
+for(let i = 0 ; i<basic_btns.length ; i++){
+        basic_btns[i].style.border = 'solid 1px #b1b1b1';
+        basic_btns[i].style.color = '#cbcbcb';
+      }
+      
+      for(let i = 0 ; i<adv_btns.length ; i++){
+      adv_btns[i].style.border = 'solid 1px #000000';
+      adv_btns[i].style.color = '#000000';
+      }
     }
   }
+
+  /**
+   * 
+   * Este método valida el campo de búsqueda y muestra una alerta
+   */
+  private checkInputFieldSearch(input: string){
+    if(input.length == 1 && input.charAt(0) != ' '){
+      this.errorFilterSearchN = true;
+    } else {
+      this.errorFilterSearchN = false;
+    }
+    if(input.charAt(0) == ' ' || input.charAt(1) == ' '){
+      this.errorFilterSearchS = true;
+    } else {
+      this.errorFilterSearchS = false;
+    }
+  }
+
+  private onlyLetters(){
+
+    //Este método hace que el input solo admita letras
+    let txt_boxes:any = document.getElementsByClassName('search-box-fil-txt');
+    for (let i = 0 ; i<txt_boxes.length ; i++){
+      txt_boxes[i].onkeydown = function (e) {
+        if (!e.key.match(/^[A-Za-z ]*$/)) {
+          e.preventDefault();  
+        }
+      };
+  
+    }
+  }
+
 }
