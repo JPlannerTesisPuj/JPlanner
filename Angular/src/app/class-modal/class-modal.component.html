@@ -16,7 +16,7 @@
                 N. de clase: {{ subject.numeroClase }}    |   
                 Creditos: {{ subject.creditos }}    |    
                 Estado:
-                <span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span>
+                <span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span><span class="dot" *ngIf="showCircle"></span><span class="square" *ngIf="showRectangle"></span>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
             <span class="cls-mod-middle-data subtitle">Cupos totales</span><span>{{ subject.cuposTotales }}</span>
           </div>
           <div class="cls-mod-middle-data below">
-            <span class="cls-mod-middle-data subtitle">Cupos disponibles </span><span>{{ subject.cuposDisponibles }}</span>
+            <span class="cls-mod-middle-data subtitle">Cupos disponibles </span><span class="cls-mod-middle-data underline">{{ subject.cuposDisponibles }}</span>
           </div>
           <div class="cls-mod-middle-data below">
             <span class="cls-mod-middle-data subtitle">Modo enseñanza </span><span>{{ subject.modoEnsenanza }}</span>
@@ -102,7 +102,7 @@
                   N. de clase: {{ subject.numeroClase }}    |   
                   Creditos: {{ subject.creditos }}    |    
                   Estado:
-                  <span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span>
+                  <span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span><span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span><span class="dot" *ngIf="showCircle"></span><span class="square" *ngIf="showRectangle"></span>
           </div>
       </div>
   

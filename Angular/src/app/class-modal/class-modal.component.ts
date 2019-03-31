@@ -19,6 +19,9 @@ export class ClassModalComponent implements OnInit {
   @Input() private subject: Subject;
 
   private isMobile = false;
+  private showCircle: boolean;
+  private showRectangle: boolean;
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.subject = data.class;
@@ -51,8 +54,12 @@ export class ClassModalComponent implements OnInit {
 
     if(input == "abierta"){
       colorStatusObject[i].style.color= '#50ac31';
+      this.showCircle = true;
+      this.showRectangle = false;
     } else if(input == "cerrada"){
       colorStatusObject[i].style.color= '#ec660c';
+      this.showCircle = false;
+      this.showRectangle = true;
     }
     return input;
   }

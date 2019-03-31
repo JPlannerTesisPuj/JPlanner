@@ -159,6 +159,11 @@
         margin-bottom: 24px;
     }
 
+    .underline {
+        text-decoration: underline;
+        margin-left: 0px;
+    }
+
 }
 
 #cls-mod-main-container{
@@ -196,4 +201,21 @@ thead{
 
 tr:nth-child(even){
 	background-color: $white;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: $green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 3px;
+  }
+
+.square {
+    height: 10px;
+    width: 10px;
+    background-color: $red;
+    display: inline-block;
+    margin-left: 3px;
 }
