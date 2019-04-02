@@ -724,12 +724,28 @@ for(let i = 0 ; i<basic_btns.length ; i++){
     let txt_boxes:any = document.getElementsByClassName('search-box-fil-txt');
     for (let i = 0 ; i<txt_boxes.length ; i++){
       txt_boxes[i].onkeydown = function (e) {
-        if (!e.key.match(/^[A-Za-z ]*$/)) {
+        if (!e.key.match(/^[A-Za-z ÁÉÍÓÚáéíóú]*$/)) {
           e.preventDefault();  
         }
       };
   
     }
   }
+
+  private onlyNumbers(){
+
+    //Este método hace que el input solo admita números
+    let number_boxes:any = document.getElementsByClassName('fil-number-field');
+    for (let i = 0 ; i<number_boxes.length ; i++){
+      number_boxes[i].onkeydown = function (e) {
+        var code = (e.which) ? e.which : e.keyCode;
+        if (code > 31 && (code < 48 || code > 57)) {
+            e.preventDefault();
+        }
+      };
+  
+    }
+  }
+
 
 }
