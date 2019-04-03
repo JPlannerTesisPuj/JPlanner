@@ -310,6 +310,7 @@ export class CalendarComponent implements OnInit {
     });
 
     this.dialogEventSubscription = this.dialogEvent.subscribe(() => this.openCreationBlocksDialog());
+    this.refresh.next();
 
   }
 
