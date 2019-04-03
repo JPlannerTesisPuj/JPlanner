@@ -1,11 +1,9 @@
 <!-- <app-block-modal class="col-12" (messageEvent)="receiveMessage($event)"></app-block-modal> -->
-
-<mwl-calendar-week-view
-      [dayEndHour]="22" [dayStartHour]="7" [events]="classes"
-      [hourSegmentHeight]="35" [hourSegments]="1"
-      [viewDate]="viewDate" class="cal-display-lg col-12">
-    </mwl-calendar-week-view>
-<div class="movilMenu col-12 ">
+<mwl-calendar-week-view (eventClicked)="handleEvent('Clicked', $event.event)"
+(eventTimesChanged)="eventTimesChanged($event)" [dayEndHour]="22" [dayStartHour]="7" [events]="classes"
+[hourSegmentHeight]="35" [hourSegmentTemplate]="customWeekViewHourSegmentTemplateJplanner" [hourSegments]="1"
+[locale]="locale" [refresh]="refresh" [viewDate]="viewDate" class="cal-display-lg sm-hidden col-12">
+</mwl-calendar-week-view>
 
 <div *ngIf="showLoader" class="dispclass-loader updating-size"></div>
 <div *ngIf="blocksOverlapsClassesAndBlocks[currentAlternative]" class="cal-conflict-msj col-12">
@@ -134,13 +132,9 @@
       <button (viewDateChange)="activeDayIsOpen = false" [(viewDate)]="viewDate" [view]="view"
         class="btn btn-primary cal-buttons-weekend-right" mwlCalendarNextView></button>
     </div>
-    <mwl-calendar-week-view (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)" [dayEndHour]="22" [dayStartHour]="7" [events]="classes"
-      [hourSegmentHeight]="35" [hourSegmentTemplate]="customWeekViewHourSegmentTemplateJplanner" [hourSegments]="1"
-      [locale]="locale" [refresh]="refresh" [viewDate]="viewDate" class="cal-display-lg sm-hidden col-12">
-    </mwl-calendar-week-view>
   </div>
 </div>
+<div class="movilMenu col-12 ">
 
 
   <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndexMobile">
