@@ -69,6 +69,16 @@ export class AppComponent implements OnInit {
     this.dialogEventSubjectRxJs.next();
   }
 
+  private blockScroll(should){
+
+    let body = document.getElementsByTagName('body')[0];
+    if(should){
+      body.classList.add("float-open");
+    }
+    else{
+      body.classList.remove("float-open");
+    }
+  }
   
 }
 

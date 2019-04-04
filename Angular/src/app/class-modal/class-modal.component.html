@@ -55,33 +55,27 @@
           </tr>
         </thead>
   
-        <tr>
-          <td>Lunes: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
-        </tr>
-        <tr>
-          <td>Miercoles: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
-        </tr>
-        <tr>
-          <td>Viernes: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
-        </tr>
-      </table>
-  </div>
-  
-  <!--
-  <div>
-    <b>Horario: </b>
-    <ul>
-      <li *ngFor="let h of subject.horarios">
-        <ul>
-          <li>{{ h.salon }}</li>
-          <li>{{ textToDate( h.horaInicio) | date:'EEEE, MMMM d, y, H:mm:ss':locale }}</li>
-          <li>{{ textToDate( h.horaFin) | date:'EEEE, MMMM d, y, H:mm:ss':locale }}</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  -->
-
+        <ng-container *ngFor="let horary of paginatedHoraries[currentHoraryPage]">
+          <tr>
+            <td class="modal-table-hour">{{textToDate( horary.horaInicio) | date:'EEEE: hh:mm':locale}}
+              -
+              {{textToDate( horary.horaFin) | date:'hh:mm':locale}}
+            </td>
+            <td>{{horary.salon}}</td>
+            <td>{{horary.profesor}}</td>
+            <td>{{textToDate( horary.horaInicio) | date:'d \'de\' MMMM \'de\' y':locale}}</td>
+          </tr>
+        </ng-container>
+       </table>
+       
+      <div *ngFor="let item of paginatedHoraries | paginate: { itemsPerPage: 1, currentPage: p }"></div>
+      <pagination-controls 
+      (pageChange)="p = $event ;pageChanged($event-1); "
+      previousLabel=""
+      nextLabel=""
+      >
+      </pagination-controls>  
+    
   </div>
 
   <!--
@@ -132,24 +126,4 @@
         </div>
     </div>
   
-    <div id="cls-mod-main-container">
-  
-        <table>
-          <thead>
-            <tr>
-              <th>DÍA Y HORA</th><th>SALÓN</th><th>PROFESOR</th><th>FECHA</th>
-            </tr>
-          </thead>
-    
-          <tr>
-            <td>Lunes: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
-          </tr>
-          <tr>
-            <td>Miercoles: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
-          </tr>
-          <tr>
-            <td>Viernes: 7:00-9:00</td><td>SA027 - P504</td><td>Anabel Montero Posada</td><td>21 de Enero de 2019</td>
-          </tr>
-        </table>
-    </div>
 </div>
