@@ -69,7 +69,10 @@ export class AppComponent implements OnInit {
     this.dialogEventSubjectRxJs.next();
   }
 
-  private blockScroll(should){
+  /**
+   * Bloquea o habilita el scroll si el flotante esta desplegado
+   */
+  private blockScroll(should:boolean){
 
     let body = document.getElementsByTagName('body')[0];
     if(should){

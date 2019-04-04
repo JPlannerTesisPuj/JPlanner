@@ -72,6 +72,9 @@ export class ClassModalComponent implements OnInit {
     return input;
   }
 
+  /** 
+  * Divide el horario en un multiarreglo con una semana en cada posicion 
+  */
   private divideByWeek() {
     let weeksInSemester = new Map();
     for (let horary of this.subject.horarios) {
@@ -91,6 +94,11 @@ export class ClassModalComponent implements OnInit {
 
   }
 
+  /**
+   * 
+   * @param horary Horario al que se le calcularara el numero de la semana
+   * Retorna el numero de la semana del horario en cuestion
+   */
   private getWeekNumber(horary: Horary) {
     let d: any = this.textToDate(horary.horaInicio);
     d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -100,6 +108,11 @@ export class ClassModalComponent implements OnInit {
     return (weekNo);
   }
 
+  /**
+   * 
+   * @param page pagina seleccionada por el usuario
+   * Cambia la pagina
+   */
   private pageChanged(page){
     this.currentHoraryPage = page;
   }
