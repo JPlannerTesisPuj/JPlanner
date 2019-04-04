@@ -315,14 +315,14 @@
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input [(ngModel)]="searchedFilterId" class="atom-input-field fil-number-field" (click)="onlyNumbers()"/>
+      <input type="number" [(ngModel)]="searchedFilterId" class="atom-input-field fil-number-field" (click)="onlyNumbers()"/>
     </div>
   
     <div id="fil-number-filter" class="col-6 grid-noGutter fil-tablet-right-advanced">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input [(ngModel)]="searchedFilterNumber" class="atom-input-field fil-number-field" (click)="onlyNumbers()"/>
+      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field fil-number-field" (click)="onlyNumbers()"/>
     </div>
   
     <div id="fil-schoolyear-filter" class="col-6 grid-noGutter">

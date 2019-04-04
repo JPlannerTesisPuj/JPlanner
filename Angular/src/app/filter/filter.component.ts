@@ -739,13 +739,14 @@ for(let i = 0 ; i<basic_btns.length ; i++){
     for (let i = 0 ; i<number_boxes.length ; i++){
       number_boxes[i].onkeydown = function (e) {
         var code = (e.which) ? e.which : e.keyCode;
-        if (code > 31 && (code < 48 || code > 57)) {
+        var ctrl = e.ctrlKey ? e.ctrlKey : ((code === 17) ? true : false); // ctrl detection
+
+        if (code > 31 && (code < 48 || code > 57) && !(code == 86 && ctrl) && !(code == 67 && ctrl)) {
             e.preventDefault();
         }
       };
   
     }
   }
-
 
 }
