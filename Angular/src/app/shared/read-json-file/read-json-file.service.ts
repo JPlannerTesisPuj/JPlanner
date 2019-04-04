@@ -205,7 +205,7 @@ export class ReadJsonFileService {
   * la fecha leida
   */
   public consumeLectiveCycle() {
-    return new Date('2019-1-20 00:00:00');
+    return new Date('2019/1/20 00:00:00');
 
   }
 

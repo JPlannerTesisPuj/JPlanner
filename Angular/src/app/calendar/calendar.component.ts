@@ -141,9 +141,9 @@ export class CalendarComponent implements OnInit {
   private dragToCreateActive = false;
   private blockIdCount: number = 0;
   /** @var startSchoolYear Fecha de inicio del ciclo lectivo */
-  private startSchoolYear: Date = new Date('2019-1-20 00:00:00');
+  private startSchoolYear: Date = new Date('2019/1/20 00:00:00');
   /** @var endSchoolYear Fecha de fin del ciclo lectivo */
-  private endSchoolYear: Date = endOfWeek(new Date('2019-6-1 00:00:00'));
+  private endSchoolYear: Date = endOfWeek(new Date('2019/6/1 00:00:00'));
   /**
    * @var
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
