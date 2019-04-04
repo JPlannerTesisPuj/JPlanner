@@ -732,7 +732,7 @@ export class CalendarComponent implements OnInit {
    */
   private startDragToCreateBlock(
     segment: DayViewHourSegment,
-    mouseTouchDownEvent: MouseEvent | TouchEvent,
+    mouseTouchDownEvent: MouseEvent,
     segmentElement: HTMLElement
   ) {
 
@@ -815,17 +815,12 @@ export class CalendarComponent implements OnInit {
         }),
         takeUntil(fromEvent(document, eventEnd))
       )
-      .subscribe((mouseTouchMoveEvent: MouseEvent | TouchEvent) => {
+      .subscribe((mouseTouchMoveEvent: MouseEvent) => {
 
         let clientX: number = 0;
         let clientY: number = 0;
-        if (mouseTouchMoveEvent instanceof TouchEvent) {
-          clientX = mouseTouchMoveEvent.changedTouches[0].clientX;
-          clientY = mouseTouchMoveEvent.changedTouches[0].clientY;
-        } else {
-          clientX = mouseTouchMoveEvent.clientX;
-          clientY = mouseTouchMoveEvent.clientY;
-        }
+        clientX = mouseTouchMoveEvent.clientX;
+        clientY = mouseTouchMoveEvent.clientY;
 
         let segmentMinutes = 70;
 
@@ -1091,7 +1086,7 @@ export class CalendarComponent implements OnInit {
       const dayID: string = selectedBlock.dayID;
       const blocksToUpdate: CalendarBlock[] = this.calendarBlocks.filter(myBlock => myBlock.dayID == dayID);
 
-      
+
       // Se coge las horas de diferencia para editar
       const startDifference: number = differenceInHours(newStart, startOfDay(selectedBlock.startHour));
       const endDifference: number = differenceInHours(newEnd, startOfDay(selectedBlock.endHour));
@@ -1099,7 +1094,7 @@ export class CalendarComponent implements OnInit {
       // Se editan todos los bloqueos con el mismo weekID
       blocksToUpdate.forEach(myBlock => {
         this.updateBlockCalendarEvent(myBlock.id, addHours(startOfDay(myBlock.startHour), startDifference), addHours(startOfDay(myBlock.endHour), endDifference));
-        this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();        
+        this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
       });
     } else {
       this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
@@ -1224,7 +1219,7 @@ export class CalendarComponent implements OnInit {
   public openCreationBlocksDialog() {
     const dialogRef = this.dialog.open(BlockModalComponent).afterClosed().subscribe(
       result => {
-        if (result != undefined){
+        if (result != undefined) {
           this.createBlocksFromModal(result)
         }
       });
@@ -1246,7 +1241,7 @@ export class CalendarComponent implements OnInit {
     contBlocksPerWeek.fill(0);
 
     blocksToCheck.forEach(myBlock => {
-      if(differenceInHours(myBlock.startHour, myBlock.endHour) != hoursOfDifference) {
+      if (differenceInHours(myBlock.startHour, myBlock.endHour) != hoursOfDifference) {
         checkHoursOfDifference = true;
       }
       contBlocksPerWeek[differenceInWeeks(myBlock.startHour, this.startSchoolYear)] += 1;
@@ -1254,7 +1249,7 @@ export class CalendarComponent implements OnInit {
 
     const maxBlocksPerWeek: number = contBlocksPerWeek[0];
     contBlocksPerWeek.forEach(blocksInWeek => {
-      if(blocksInWeek != maxBlocksPerWeek) {
+      if (blocksInWeek != maxBlocksPerWeek) {
         checkHoursOfDifference = true;
       }
     });
