@@ -5,6 +5,11 @@
     max-width: calc(100% - 24px) !important;
     margin-left: 12px !important; 
 
+    
+    &:active,&:focus{
+        outline-color: $light-blue !important;
+    }
+
     span.selected-item.ng-star-inserted{
         background-color: $light-blue !important;
         margin-bottom: 4px;

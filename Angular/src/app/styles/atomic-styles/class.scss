@@ -5,7 +5,7 @@
         padding-right: 4px;
         border-radius: 8px;
         color: $white;
-        font-weight: 900;
+        font-weight: 700;
         font-size: 14px;
         line-height: 20px;
         font-family: $font-main;
@@ -30,6 +30,8 @@
             display: block;
             margin-top: 22px;
             font-family: $font-main;
+            position: relative;
+            left: 100px;
 
             em {
                 font-size: 14px;

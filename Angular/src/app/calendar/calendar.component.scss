@@ -21,6 +21,9 @@
   }
   .mat-tab-body-wrapper {
     flex: 1 1 auto;
+    @media (min-width: $vp-tablet+1){
+      height: 705px;
+    }
   }
   .mat-tab-body-content {
     border: 1px solid $black-20;
@@ -242,6 +245,7 @@
 .cal-schedule-container {
   .cal-view-container {
     border-top: 1px solid $black-20;
+    margin-top: 9.5px;
   }
 }
 
@@ -261,7 +265,7 @@
       border: none;
 
       .cal-header {
-        padding-top: 24px;
+        padding-top: 16px;
 
         &:first-child {
           border-left: none;
@@ -518,7 +522,8 @@
   padding: 6px 10px;
   padding-right: 0;
   margin: 0;
-  padding-top: 9px;
+  padding-top: 16.5px;
+  padding-bottom: 16.5px;
   @media (max-width: $vp-mobile) {
     display: none;
   }
@@ -634,4 +639,25 @@
 //Diplay de una clase en el calendario
 .cal-schedule-container .cdk-drop-list-dragging .dis-cls-subject {
   display: none;
+}
+
+.calendar-fix-checkbox{
+  margin-left: 12px;
+  max-width: 550px;
+  height: auto;
+  @media (max-width: $vp-mobile){
+    label.checkbox-atom-container.checkbox-atom-fix{
+      margin-bottom: 12px; 
+    }
+  }
+  @media (min-width: $vp-mobile) and (max-width: $vp-tablet){
+    label.checkbox-atom-container.checkbox-atom-fix{
+      width: 550px;
+    }
+  }
+  @media (min-width: $vp-mobile+1) and (max-width: $vp-tablet){
+    label.checkbox-atom-container.checkbox-atom-fix{
+      margin-top: 32px; 
+    }
+  }
 }
