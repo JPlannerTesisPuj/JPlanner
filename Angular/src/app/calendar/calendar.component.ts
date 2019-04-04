@@ -137,7 +137,7 @@ export class CalendarComponent implements OnInit {
 
 
   private verticalMenuIndex: number = 0;
-  private verticalMenuIndexMobile: number = 3;
+  private verticalMenuIndexMobile: number = 0;
   private dragToCreateActive = false;
   private blockIdCount: number = 0;
   /** @var startSchoolYear Fecha de inicio del ciclo lectivo */
