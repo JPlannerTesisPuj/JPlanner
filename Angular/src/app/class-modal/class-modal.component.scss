@@ -35,6 +35,9 @@
 }
 
 .cls-mod-elements-line{
+    @media (max-width: $vp-mobile){
+        margin: 20px 0;
+    }
     max-width: 500px;
     margin-bottom: 16px;
     height: 21px;
@@ -182,6 +185,9 @@
     }
     th, td{
         padding: 10px;
+        @media (max-width: 410px) {
+            padding:0;
+        }
         text-align: center;
         height: 30px;
     }
@@ -208,6 +214,9 @@
         padding: 0;
         margin: 20px 0 5px;
         .pagination-previous { 
+            @media (max-width: $vp-mobile) {
+                display: none;
+            }
             width: 25px;
             height: 25px;
             font-size: 18px;
@@ -226,6 +235,9 @@
             }
         }
         .pagination-next{ 
+            @media (max-width: $vp-mobile) {
+                display:none;
+            }
             width: 25px;
             height: 25px;
             font-size: 18px;
@@ -295,4 +307,10 @@
     background-color: $red;
     display: inline-block;
     margin-left: 3px;
+}
+
+#cdk-overlay-0{
+    @media (max-width: $vp-mobile) {
+        overflow-y: scroll;
+    }
 }
