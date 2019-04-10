@@ -19,6 +19,8 @@ export class DisplayClassComponent implements OnInit {
   private locale: string = 'es';
   //Evite el evento para agregar una materia
   @Output() addSubjetEmit = new EventEmitter<Subject>();
+
+  private moreClasses: boolean= false;
   
   constructor(public dialog: MatDialog) { }
 
@@ -32,12 +34,20 @@ export class DisplayClassComponent implements OnInit {
 
   private weekHoraries(horaries: Horary[]): Map<number, Date[]> {
     let weekHours: Map<number, Date[]> = new Map<number, Date[]>();
+    let contClasses: number= 0;
 
     horaries.forEach(horary => {
       if (!weekHours.has(getDay(horary.horaInicio))) {
+        contClasses++;
         weekHours.set(getDay(horary.horaInicio), [new Date(horary.horaInicio), new Date(horary.horaFin)]);
       }
     });
+    
+    if(contClasses > 3){
+      this.moreClasses= true;
+    } else if (contClasses <= 3){
+      this.moreClasses= false;
+    }
 
     return weekHours;
   }
