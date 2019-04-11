@@ -741,7 +741,9 @@ for(let i = 0 ; i<basic_btns.length ; i++){
         var code = (e.which) ? e.which : e.keyCode;
         var ctrl = e.ctrlKey ? e.ctrlKey : ((code === 17) ? true : false); // ctrl detection
 
-        if (code > 31 && (code < 48 || code > 57) && !(code == 86 && ctrl) && !(code == 67 && ctrl)) {
+        if (code > 31 && (code < 48 || code > 57) && !(code == 86 && ctrl) && !(code == 67 && ctrl) 
+              && !(code == 37) && !(code == 39) && !(code == 65 && ctrl) && !(code == 88 && ctrl) && !(code == 36)
+              && !(code == 35) && !(code == 46)) {
             e.preventDefault();
         }
       };
