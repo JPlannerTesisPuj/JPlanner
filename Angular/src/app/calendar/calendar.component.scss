@@ -21,7 +21,7 @@
   }
   .mat-tab-body-wrapper {
     flex: 1 1 auto;
-    @media (min-width: $vp-tablet+1){
+    @media (min-width: 1221px){
       height: 705px;
     }
   }
