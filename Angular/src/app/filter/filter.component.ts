@@ -41,6 +41,8 @@ export class FilterComponent implements OnInit {
   private errorFilterSearch: boolean;
   private errorFilterSearchN: boolean;
   private errorFilterSearchS: boolean;
+  private errorFilterNumbersID: boolean = false;
+  private errorFilterNumbersNum: boolean = false;
 
   // Variables filtro avanzado
   private teachingModeDropdown: any;
@@ -363,7 +365,7 @@ export class FilterComponent implements OnInit {
    */
   private searchClasses() {
 
-    if(this.errorFilterSearchN || this.errorFilterSearchS){
+    if(this.errorFilterSearchN || this.errorFilterSearchS || this.errorFilterNumbersID || this.errorFilterNumbersNum){
       alert("Por favor, revise las alertas");
     } else {
       let gradeToSend = this.gradeFilter;
@@ -718,6 +720,46 @@ for(let i = 0 ; i<basic_btns.length ; i++){
     }
   }
 
+  /**
+   * 
+   * Este método valida los campos de números y muestra una alerta
+   */
+  private checkInputFieldNumberID(input: string){
+
+    if(input != null && input.length != 0){
+      let regExpression = /^[0-9]*$/;
+    
+      if(regExpression.test(input)){
+        this.errorFilterNumbersID = false;
+      } else {
+        this.errorFilterNumbersID = true;
+      }
+    } else {
+      this.errorFilterNumbersID = false;
+    }
+    
+  }
+
+  /**
+   * 
+   * Este método valida los campos de números y muestra una alerta
+   */
+  private checkInputFieldNumberNum(input: string){
+
+    if(input != null && input.length != 0){
+      let regExpression = /^[0-9]*$/;
+    
+      if(regExpression.test(input)){
+        this.errorFilterNumbersNum = false;
+      } else {
+        this.errorFilterNumbersNum = true;
+      }
+    } else {
+      this.errorFilterNumbersNum = false;
+    }
+    
+  }
+
   private onlyLetters(){
 
     //Este método hace que el input solo admita letras
@@ -738,14 +780,18 @@ for(let i = 0 ; i<basic_btns.length ; i++){
     let number_boxes:any = document.getElementsByClassName('fil-number-field');
     for (let i = 0 ; i<number_boxes.length ; i++){
       number_boxes[i].onkeydown = function (e) {
+
         var code = (e.which) ? e.which : e.keyCode;
         var ctrl = e.ctrlKey ? e.ctrlKey : ((code === 17) ? true : false); // ctrl detection
+        var shift = e.ctrlKey ? e.ctrlKey : ((code === 16) ? true : false); // shift detection
 
-        if (code > 31 && (code < 48 || code > 57) && !(code == 86 && ctrl) && !(code == 67 && ctrl) 
-              && !(code == 37) && !(code == 39) && !(code == 65 && ctrl) && !(code == 88 && ctrl) && !(code == 36)
-              && !(code == 35) && !(code == 46)) {
+        if ((code < 48 || code > 57) && !(code == 67 && ctrl) && !(code == 86 && ctrl)
+              && !(code == 37) && !(code == 39) && !(code == 65 && ctrl) && !(code == 88 && ctrl) && code != 36
+              && code != 35 && code != 46 && code != 8 && code != 9) {
+
             e.preventDefault();
         }
+
       };
   
     }
