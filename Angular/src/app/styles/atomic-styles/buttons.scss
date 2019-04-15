@@ -48,7 +48,10 @@ color: "#d4dce9"
   color: $light-blue;
   border: solid 1px $light-blue;
   background-color: $white;
-  padding: 8px 24px 8px 24px;
+  padding: 8px 12px 8px 12px;
+  @media (min-width: 1023px) and (max-width: 1159px){
+    margin-right: 0px;
+  }
   margin-right: 12px;
   margin-bottom: 8px;
 
