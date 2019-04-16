@@ -23,9 +23,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/app/styles/styles.css"
+              "src/app/styles/styles.css",
+              "node_modules/swiper/dist/css/swiper.css" 
               ],
-            "scripts": []
+            "scripts": [
+              "node_modules/swiper/dist/js/swiper.js" 
+             ]
           },
           "configurations": {
             "production": {

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DisplayClassesComponent } from './display-classes/display-classes.component';
 import { DisplayClassComponent } from './display-class/display-class.component';
 
+
 // Librerías de Angular Material
 import {
   MatDialogModule,
@@ -33,7 +34,8 @@ import localeEs from '@angular/common/locales/es';
 import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
 import { ShoppingCartComponent } from './calendar/menu-tabs/shopping-cart/shopping-cart.component';
 import { BlockModalComponent } from './block-modal/block-modal.component';
-
+import { UseGuideComponent } from './use-guide/use-guide.component';
+import {SlideshowModule} from 'ng-simple-slideshow';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -47,9 +49,11 @@ registerLocaleData(localeEs);
     OverlapClassConfirmationDialog,
     DisplaySubjectsComponent,
     ShoppingCartComponent,
-    BlockModalComponent
+    BlockModalComponent,
+    UseGuideComponent
   ],
   imports: [
+    SlideshowModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -69,7 +73,8 @@ registerLocaleData(localeEs);
   entryComponents: [
     ClassModalComponent,
     OverlapClassConfirmationDialog,
-    BlockModalComponent
+    BlockModalComponent,
+    UseGuideComponent
   ],
 
   providers: [

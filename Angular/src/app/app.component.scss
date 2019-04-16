@@ -147,3 +147,17 @@ body {
     display: none;
   }
 }
+
+
+#slider-container{
+  .slick-dots{
+    li{
+      button{
+        &::before{
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
