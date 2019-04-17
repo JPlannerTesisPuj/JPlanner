@@ -475,11 +475,59 @@ export class CalendarComponent implements OnInit {
   /**
    * Añade la clase cand se agrega presionando el boton
    */
-  private addClassSubject(subject) {
-    //Si la clase no esta inscrita
-    if (this.calendarClasses.filter(subj => subj.numeroClase == subject.numeroClase).length == 0) {
-      let newClasses = Object.assign([], this.classes);
-      this.addClass(newClasses, subject);
+  private addClassSubject(subjectToDisplay) {
+    // Mira si la clase no ha sido agregada al horario
+    if (!this.calendarClasses.some(myClass => myClass.numeroClase == subjectToDisplay.numeroClase)) {
+      let newClasses: CalendarEvent[];
+      newClasses = Object.assign([], this.classes);
+      for (let horary of subjectToDisplay.horarios) {
+        let startHour: Date = new Date(horary.horaInicio);
+        let endHour: Date = new Date(horary.horaFin);
+      }
+      let overLappedInAdded = this.getOverLapped(newClasses, subjectToDisplay);
+      if (this.overLappedIds.size == 0) {
+        this.addClass(newClasses, subjectToDisplay);
+      } else {
+        // Si hay dos materias en la casilla en la que se intenta meter la nueva materia muestre el popup
+        if (overLappedInAdded.size >= 3) {
+          let overlappedSubjectsInfo: Object[] = [];
+
+          // Se busca la información de cada materia en el arreglo de materias que se muestran en el calendario
+          // NOTA: Si se quiere eliminar bloqueos también se debe hacer la búsqueda en this.classes no en this.calendarClases
+          overLappedInAdded.forEach(overlappedClassNumber => {
+            let className: string = '';
+            let classInfo: Subject = this.calendarClasses.find(myClass => myClass.numeroClase == overlappedClassNumber);
+
+            // Se guarda el Nombre y el Número de Clase para mostrarlos en el modal
+            if (classInfo != undefined) {
+              className = classInfo.nombre;
+            } else {
+              className = subjectToDisplay.nombre;
+            }
+            overlappedSubjectsInfo.push({
+              classNumber: overlappedClassNumber,
+              title: className,
+              toDelete: false
+            });
+          });
+
+          this.displaySelectingOptions(subjectToDisplay, overlappedSubjectsInfo).then(
+            //Respuesta del usuario al formulario
+            (userResponse) => {
+              if (userResponse) {
+                // Mira cuáles clases del horario el usuario desea eliminar
+                userResponse.forEach(subjectOverlapped => {
+                  if (subjectOverlapped.toDelete) {
+                    this.removeClass(subjectOverlapped.classNumber);
+                  }
+                });
+                //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
+              }
+            }
+          );
+        }
+        this.addClass(newClasses, subjectToDisplay);
+      }
     }
   }
   /**
