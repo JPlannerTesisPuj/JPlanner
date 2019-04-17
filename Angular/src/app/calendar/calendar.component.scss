@@ -640,3 +640,13 @@
 .cal-schedule-container .cdk-drop-list-dragging .dis-cls-subject {
   display: none;
 }
+
+.cal-schedule-container {
+  .cal-event-overLapped-mobile {
+    div.cal-event {
+      @media (max-width: $vp-mobile){
+        max-width: 50% !important;
+      }
+    }
+  }
+} 
