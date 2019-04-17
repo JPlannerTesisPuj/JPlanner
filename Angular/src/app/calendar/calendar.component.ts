@@ -6,7 +6,7 @@ import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS, fromEvent, generate, Observable } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatHeaderRow, MatDialogConfig } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
-import { HammerGestureConfig } from '@angular/platform-browser';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { IterableDiffers } from '@angular/core';
@@ -18,6 +18,15 @@ import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
+import Hammer from 'hammerjs';
+
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    swipe: { direction: Hammer.DIRECTION_HORIZONTAL },
+  };
+}
+
 /**
  * The documentation used to 
  
@@ -94,6 +103,10 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
     {
       provide: CalendarEventTitleFormatter,
       useClass: CustomEventTitleFormatter
+    },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
     }
   ],
   styles: [
@@ -314,19 +327,22 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
-   * Captura el evento swipe cuando este se realice en el calendar: left o right
+  * Captura el evento swipe cuando este se realice en el calendar: right
+  * 
+  * @param evt Evento de movimiento
+  */
+  onSwipeRight(evt: any) {
+    this.viewDate = subDays(this.viewDate, 1);
+  }
+
+  /**
+   * Captura el evento swipe cuando este se realice en el calendar: left
    * 
    * @param evt Evento de movimiento
    */
-  onSwipe(evt: any) {
-    const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left') : '';
-    if (verticalSwipeMove == 'right') {
-      // Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actual mostrado.
-      this.viewDate = subDays(this.viewDate, 1);
-    } else if (verticalSwipeMove == 'left') {
-      // Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actual mostrado.
-      this.viewDate = addDays(this.viewDate, 1);
-    }
+  onSwipeLeft(evt: any) {
+    this.viewDate = addDays(this.viewDate, 1);
+    console.log('left');
   }
 
   /**
@@ -1090,7 +1106,7 @@ export class CalendarComponent implements OnInit {
       const dayID: string = selectedBlock.dayID;
       const blocksToUpdate: CalendarBlock[] = this.calendarBlocks.filter(myBlock => myBlock.dayID == dayID);
 
-      
+
       // Se coge las horas de diferencia para editar
       const startDifference: number = differenceInHours(newStart, startOfDay(selectedBlock.startHour));
       const endDifference: number = differenceInHours(newEnd, startOfDay(selectedBlock.endHour));
@@ -1098,7 +1114,7 @@ export class CalendarComponent implements OnInit {
       // Se editan todos los bloqueos con el mismo weekID
       blocksToUpdate.forEach(myBlock => {
         this.updateBlockCalendarEvent(myBlock.id, addHours(startOfDay(myBlock.startHour), startDifference), addHours(startOfDay(myBlock.endHour), endDifference));
-        this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();        
+        this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
       });
     } else {
       this.updateBlockCalendarEvent(event.id + '', newStart, newEnd);
@@ -1223,7 +1239,7 @@ export class CalendarComponent implements OnInit {
   public openCreationBlocksDialog() {
     const dialogRef = this.dialog.open(BlockModalComponent).afterClosed().subscribe(
       result => {
-        if (result != undefined){
+        if (result != undefined) {
           this.createBlocksFromModal(result)
         }
       });
@@ -1245,7 +1261,7 @@ export class CalendarComponent implements OnInit {
     contBlocksPerWeek.fill(0);
 
     blocksToCheck.forEach(myBlock => {
-      if(differenceInHours(myBlock.startHour, myBlock.endHour) != hoursOfDifference) {
+      if (differenceInHours(myBlock.startHour, myBlock.endHour) != hoursOfDifference) {
         checkHoursOfDifference = true;
       }
       contBlocksPerWeek[differenceInWeeks(myBlock.startHour, this.startSchoolYear)] += 1;
@@ -1253,7 +1269,7 @@ export class CalendarComponent implements OnInit {
 
     const maxBlocksPerWeek: number = contBlocksPerWeek[0];
     contBlocksPerWeek.forEach(blocksInWeek => {
-      if(blocksInWeek != maxBlocksPerWeek) {
+      if (blocksInWeek != maxBlocksPerWeek) {
         checkHoursOfDifference = true;
       }
     });

@@ -617,3 +617,7 @@
 .cal-schedule-container .cdk-drop-list-dragging .dis-cls-subject {
   display: none;
 }
+
+.cal-pan-element {
+  touch-action: pan-y !important;
+}

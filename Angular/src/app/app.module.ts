@@ -28,7 +28,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { DataService } from './shared/data.service';
-import { CalendarComponent, OverlapClassConfirmationDialog } from './calendar/calendar.component';
+import { CalendarComponent, OverlapClassConfirmationDialog, MyHammerConfig } from './calendar/calendar.component';
 import localeEs from '@angular/common/locales/es';
 import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
 import { ShoppingCartComponent } from './calendar/menu-tabs/shopping-cart/shopping-cart.component';
@@ -74,7 +74,11 @@ registerLocaleData(localeEs);
 
   providers: [
     DataService,
-    {provide: LOCALE_ID, useValue: 'es'}
+    {provide: LOCALE_ID, useValue: 'es'},
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })
