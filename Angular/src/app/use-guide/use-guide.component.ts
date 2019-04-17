@@ -6,23 +6,23 @@ import { IImage } from 'ng-simple-slideshow';
   templateUrl: './use-guide.component.html'
 })
 export class UseGuideComponent implements OnInit {
-  imageUrls: (string | IImage)[];
-  height: string = '70vh';
-  arrowSize: string = '30px';
-  showArrows: boolean = true;
-  disableSwiping: boolean = false;
-  autoPlay: boolean = false;
-  backgroundSize: string = 'cover';
-  backgroundPosition: string = 'center center';
-  backgroundRepeat: string = 'no-repeat';
-  showDots: boolean = false;
-  showCaptions: boolean = true;
-  captionColor: string = '#FFF';
-  captionBackground: string = 'rgba(0, 0, 0, .35)';
-  width: string = '100%';
+  private imageUrls: (string | IImage)[];
+  private height: string = '70vh';
+  private arrowSize: string = '30px';
+  private showArrows: boolean = true;
+  private disableSwiping: boolean = false;
+  private autoPlay: boolean = false;
+  private backgroundSize: string = 'cover';
+  private backgroundPosition: string = 'center center';
+  private backgroundRepeat: string = 'no-repeat';
+  private showDots: boolean = false;
+  private showCaptions: boolean = true;
+  private captionColor: string = '#FFF';
+  private captionBackground: string = 'rgba(0, 0, 0, .35)';
+  private width: string = '100%';
 
-  device;
-
+  private device :string;
+  private guideTitles:string[] = ['Buscar Materias', 'Información de Materia','Alternativas de Horario','Bloqueos','Visualizar Horario','Remover Materias','Conflictos','Inscribir Materias'];
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth <= 768) {
@@ -35,7 +35,7 @@ export class UseGuideComponent implements OnInit {
       this.device = 'desktop';
     }
   }
-  descriptions = {
+  private descriptions = {
     mobile : {
       search:'Para buscar materias, utiliza el buscador de la aplicación, puedes utilizar el filtro básico o el avanzado, llenar los criterios de búsqueda deseados y una lista de materias que cumplan tus criterios será desplegada',
       moreInfo:'Una vez tengas la lista de materias, se mostrará una lista con los diferentes horarios ofrecidos en dicha materia, para obtener más información de esta, presiona sobre ella y podrás ver todos los datos.',
