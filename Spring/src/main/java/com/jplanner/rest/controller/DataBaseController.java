@@ -25,7 +25,7 @@ import com.jplanner.rest.model.Usuario;
 import com.jplanner.rest.model.key.AlternativaKey;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "*", allowCredentials = "true")
 public class DataBaseController {
 
 	// VARIABLES
