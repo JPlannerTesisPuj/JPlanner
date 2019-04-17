@@ -1,6 +1,10 @@
 body {
   margin: 0;
   zoom: 0.95;
+
+  &.float-open{
+    overflow: hidden;
+  }
 }
 
 .cmp-header {
