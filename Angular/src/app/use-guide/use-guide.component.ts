@@ -38,21 +38,21 @@ export class UseGuideComponent implements OnInit {
   descriptions = {
     mobile : {
       search:'Para buscar materias, utiliza el buscador de la aplicación, puedes utilizar el filtro básico o el avanzado,'+
-      'llenar los criterios de búsqueda deseados y una lista de materias que cumplan tus criterios sera desplegada',
+      'llenar los criterios de búsqueda deseados y una lista de materias que cumplan tus criterios será desplegada',
       plan:'plan - mobile',
       block:'block - mobile',
       enroll:'enroll - mobile',
     },
     desktop : {
       search:'Para buscar materias, utiliza el buscador de la aplicación, puedes utilizar el filtro básico o el avanzado,'+
-      'llenar los criterios de búsqueda deseados y una lista de materias que cumplan tus criterios sera desplegada',
+      'llenar los criterios de búsqueda deseados y una lista de materias que cumplan tus criterios será desplegada',
       plan:'plan - desk',
       block:'block- desk',
       enroll:'enroll - desk',        
     },
     tablet : {
       search:'Para buscar materias, utiliza el buscador de la aplicación, puedes utilizar el filtro básico o el avanzado,'+
-      'llenar los criterios de búsqueda deseados y una lista de materias que cumplan tus criterios sera desplegada',
+      'llenar los criterios de búsqueda deseados y una lista de materias que cumplan tus criterios será desplegada',
       plan:'plan - tablet',
       block:'block - tablet',
       enroll:'enroll - tablet',          

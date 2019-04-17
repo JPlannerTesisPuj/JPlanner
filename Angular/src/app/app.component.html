@@ -2,12 +2,12 @@
 
 <body>
   <div *ngIf="showOptions" class="app-blocked-menu"></div>
-  <a *ngIf="showOptions==false" (click)="showOptions=true" class="app-float-btn-cross"> <i
+  <a *ngIf="showOptions==false" (click)="showOptions=true; blockScroll(true)" class="app-float-btn-cross"> <i
       class="material-icons btn-icon"> add </i> </a>
 
   <!-- <a *ngIf="showOptions==true"(click)="showOptions=false" class="app-float-btn-x"></a> -->
   <ul class="app-menu-options" *ngIf="showOptions==true">
-    <a (click)="showOptions=false" class="app-float-btn-x"> <i class="material-icons btn-icon"> clear </i> </a>
+    <a (click)="showOptions=false ; blockScroll(false)" class="app-float-btn-x"> <i class="material-icons btn-icon"> clear </i> </a>
 
     <li class="hidden-desktop"><a (click)="openCreationBlockModal()">
         <p>Agregar bloqueo</p>
