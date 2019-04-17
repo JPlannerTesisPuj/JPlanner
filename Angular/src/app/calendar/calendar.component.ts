@@ -271,15 +271,24 @@ export class CalendarComponent implements OnInit {
       if (change.length > 1) {
 
         //Pintar las clases que tienen conflicto
-        let overlappedClasses:any = document.getElementsByClassName("cal-event ng-star-inserted");
-        for (let i = 0 ; i<overlappedClasses.length ; i++){
-          overlappedClasses[i].style.backgroundColor = '#ec660c';
-        }
+        this.classes.forEach(myClass => {
+          this.overLappedIds.forEach(idQueSeCruza => {
+            if (myClass.id == idQueSeCruza) {
+              myClass.cssClass = 'cal-event-overLapped-color';
+            }
+          });
+        });
 
         this.sholudDisplayDialog[this.currentAlternative] = true;
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
       else if (change.length == 0 || change.length == 1) {
+
+        //Pintar las clases de su color normal
+        this.classes.forEach(myClass => {
+              myClass.cssClass = '';
+        });
+
         this.sholudDisplayDialog[this.currentAlternative] = false;
         this.overLappedIds.clear();
       }
@@ -608,6 +617,19 @@ export class CalendarComponent implements OnInit {
     //Remueve tambien de los ids sobrepuestos si es el caso
     this.removeOverLappedIds(id);
 
+    //Pintar las clases de su color normal si ya no están sobrepuestas
+    this.classes.forEach(myClass => {
+      let ifNotOverLapped = false;
+      this.overLappedIds.forEach(idQueSeCruza => {
+        if (myClass.id == idQueSeCruza) {
+          ifNotOverLapped= true;
+        }
+      });
+      if(!ifNotOverLapped){
+        myClass.cssClass = '';
+      }
+    });
+
     let newClasses: CalendarEvent[];
     newClasses = Object.assign([], this.classes);
     newClasses = newClasses.filter(subject => subject.id != id);
@@ -621,6 +643,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
     this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre, [])).subscribe();
+
   }
 
   /**

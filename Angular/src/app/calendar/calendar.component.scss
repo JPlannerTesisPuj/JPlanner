@@ -635,3 +635,12 @@
 .cal-schedule-container .cdk-drop-list-dragging .dis-cls-subject {
   display: none;
 }
+
+
+.cal-schedule-container {
+  .cal-event-overLapped-color {
+    div.cal-event {
+      background: $red !important;
+    }
+  }
+}
