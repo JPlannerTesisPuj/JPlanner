@@ -33,6 +33,7 @@ import localeEs from '@angular/common/locales/es';
 import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
 import { ShoppingCartComponent } from './calendar/menu-tabs/shopping-cart/shopping-cart.component';
 import { BlockModalComponent } from './block-modal/block-modal.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 registerLocaleData(localeEs);
 
@@ -50,6 +51,7 @@ registerLocaleData(localeEs);
     BlockModalComponent
   ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -150,13 +150,13 @@ export class CalendarComponent implements OnInit {
 
 
   private verticalMenuIndex: number = 0;
-  private verticalMenuIndexMobile: number = 3;
+  private verticalMenuIndexMobile: number = 0;
   private dragToCreateActive = false;
   private blockIdCount: number = 0;
   /** @var startSchoolYear Fecha de inicio del ciclo lectivo */
-  private startSchoolYear: Date = new Date('2019-1-20 00:00:00');
+  private startSchoolYear: Date = new Date('2019/1/20 00:00:00');
   /** @var endSchoolYear Fecha de fin del ciclo lectivo */
-  private endSchoolYear: Date = endOfWeek(new Date('2019-6-1 00:00:00'));
+  private endSchoolYear: Date = endOfWeek(new Date('2019/6/1 00:00:00'));
   /**
    * @var
    * Esta variable contiene las clases que se mostrarán en el horario. Los atributos cada clase que se muestra son:
@@ -323,6 +323,7 @@ export class CalendarComponent implements OnInit {
     });
 
     this.dialogEventSubscription = this.dialogEvent.subscribe(() => this.openCreationBlocksDialog());
+    this.refresh.next();
 
   }
 
@@ -747,7 +748,7 @@ export class CalendarComponent implements OnInit {
    */
   private startDragToCreateBlock(
     segment: DayViewHourSegment,
-    mouseTouchDownEvent: MouseEvent | TouchEvent,
+    mouseTouchDownEvent: MouseEvent,
     segmentElement: HTMLElement
   ) {
 
@@ -830,17 +831,12 @@ export class CalendarComponent implements OnInit {
         }),
         takeUntil(fromEvent(document, eventEnd))
       )
-      .subscribe((mouseTouchMoveEvent: MouseEvent | TouchEvent) => {
+      .subscribe((mouseTouchMoveEvent: MouseEvent) => {
 
         let clientX: number = 0;
         let clientY: number = 0;
-        if (mouseTouchMoveEvent instanceof TouchEvent) {
-          clientX = mouseTouchMoveEvent.changedTouches[0].clientX;
-          clientY = mouseTouchMoveEvent.changedTouches[0].clientY;
-        } else {
-          clientX = mouseTouchMoveEvent.clientX;
-          clientY = mouseTouchMoveEvent.clientY;
-        }
+        clientX = mouseTouchMoveEvent.clientX;
+        clientY = mouseTouchMoveEvent.clientY;
 
         let segmentMinutes = 70;
 
