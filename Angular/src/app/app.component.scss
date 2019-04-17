@@ -1,5 +1,8 @@
 body {
   margin: 0;
+  &.float-open{
+    overflow: hidden;
+  }
 }
 
 .cmp-header {
