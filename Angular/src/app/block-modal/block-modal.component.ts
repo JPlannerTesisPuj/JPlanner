@@ -123,8 +123,7 @@ export class BlockModalComponent {
       ['hourFrom']: selectedFrom,
       ['hourTo']: selectedTo
     }
-    console.log(data)
-
+    
     this.dialogRef.close(data);
   }
 }

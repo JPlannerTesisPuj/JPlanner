@@ -125,6 +125,11 @@
     min-width: 56px;
     padding:0;
     color: #2c5697;
+
+    @media (max-width: $vp-mobile){
+      margin-left: 16px;
+    }
+
     &:first-child{
       margin-left:0;
     }
