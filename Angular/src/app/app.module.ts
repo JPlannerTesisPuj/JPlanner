@@ -34,13 +34,10 @@ import localeEs from '@angular/common/locales/es';
 import { DisplaySubjectsComponent } from './display-subjects/display-subjects.component';
 import { ShoppingCartComponent } from './calendar/menu-tabs/shopping-cart/shopping-cart.component';
 import { BlockModalComponent } from './block-modal/block-modal.component';
-<<<<<<< HEAD
 import { UseGuideComponent } from './use-guide/use-guide.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
-=======
 import {NgxPaginationModule} from 'ngx-pagination';
 
->>>>>>> 540d52441a3bc8df03275e9d4caac775afe07415
 registerLocaleData(localeEs);
 
 @NgModule({
