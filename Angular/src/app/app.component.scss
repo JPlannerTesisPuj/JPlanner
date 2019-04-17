@@ -150,6 +150,13 @@ body {
 
 
 #slider-container{
+  .slideshow-container{
+    .slides{
+      &:focus{
+        outline:0;
+      }
+    }
+  }
   .slick-dots{
     li{
       button{
