@@ -18,6 +18,7 @@ import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
+import { identifierModuleUrl } from '@angular/compiler';
 /**
  * The documentation used to 
  
@@ -226,7 +227,7 @@ export class CalendarComponent implements OnInit {
   private overLappedInCellByAlternative: Array<Set<any>>;
 
   /**
-   * @var Set Collecion la cual tiene las clases cruzadas de la alternativa actual y el cual obserbamos cualquier cambio
+   * @var Set Collecion la cual tiene las clases cruzadas de la alternativa actual y el cual observamos cualquier cambio
    */
   @Input() private overLappedIds: Set<any>;
 
@@ -268,6 +269,13 @@ export class CalendarComponent implements OnInit {
     if (change) {
       //Si hay mas de una clase sobrepuesta muestre el mensaje de conflicto
       if (change.length > 1) {
+
+        //Pintar las clases que tienen conflicto
+        let overlappedClasses:any = document.getElementsByClassName("cal-event ng-star-inserted");
+        for (let i = 0 ; i<overlappedClasses.length ; i++){
+          overlappedClasses[i].style.backgroundColor = '#ec660c';
+        }
+
         this.sholudDisplayDialog[this.currentAlternative] = true;
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
@@ -464,6 +472,7 @@ export class CalendarComponent implements OnInit {
           this.overLappedIds.add(theClass.id);
           overLappedInSubject.add(theClass.id);
           overLappedInSubject.add(subjectToDisplay.numeroClase);
+
           break;
         }
       }
