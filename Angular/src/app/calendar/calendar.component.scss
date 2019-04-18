@@ -642,10 +642,18 @@
 }
 
 .cal-schedule-container {
-  .cal-event-overLapped-mobile {
+  .cal-event-overlapped-mobile {
     div.cal-event {
       @media (max-width: $vp-mobile){
         max-width: 50% !important;
+      }
+    }
+  }
+  .cal-event-overLapped-mobile-right {
+    div.cal-event {
+      @media (max-width: $vp-mobile){
+        max-width: 50% !important;
+        float: right !important;
       }
     }
   }
