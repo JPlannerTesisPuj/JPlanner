@@ -270,14 +270,16 @@ export class CalendarComponent implements OnInit {
       //Si hay mas de una clase sobrepuesta muestre el mensaje de conflicto
       if (change.length > 1) {
 
-        //Pintar las clases que tienen conflicto
-        this.classes.forEach(myClass => {
-          this.overLappedIds.forEach(idQueSeCruza => {
-            if (myClass.id == idQueSeCruza) {
-              myClass.cssClass = 'cal-event-overLapped-color';
-            }
+        if(!this.isMobile){
+          //Pintar las clases que tienen conflicto
+          this.classes.forEach(myClass => {
+            this.overLappedIds.forEach(idQueSeCruza => {
+              if (myClass.id == idQueSeCruza) {
+                myClass.cssClass = 'cal-event-overlapped';
+              }
+            });
           });
-        });
+        }
 
         this.sholudDisplayDialog[this.currentAlternative] = true;
       }
@@ -483,15 +485,14 @@ export class CalendarComponent implements OnInit {
           overLappedInSubject.add(theClass.id);
           overLappedInSubject.add(subjectToDisplay.numeroClase);
 
-          //Colocar un ancho de 50% para las materias cruzadas en mobile
-          this.classes.forEach(myClass => {
-            if (myClass.id == subjectToDisplay.numeroClase) {
-              myClass.cssClass = 'cal-event-overlapped-mobile';
-            }
-            if (myClass.id == theClass.id) {
-              myClass.cssClass = 'cal-event-overLapped-mobile-right';
-            }
-          });
+          if(this.isMobile){
+            //Colocar un ancho de 50% para las materias cruzadas en mobile
+            this.classes.forEach(myClass => {
+              if (myClass.id == theClass.id) {
+                myClass.cssClass = 'cal-event-overlapped-right';
+              }
+            });
+          }
 
           break;
         }
@@ -555,6 +556,17 @@ export class CalendarComponent implements OnInit {
           );
         }
         this.addClass(newClasses, subjectToDisplay);
+
+        if(this.isMobile){
+          //Colocar un ancho de 50% para las materias cruzadas en mobile
+          this.classes.forEach(myClass => {
+            this.overLappedIds.forEach(overlappedId => {
+              if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
+                myClass.cssClass = 'cal-event-overlapped-left';
+              }
+            });
+          });
+        }
       }
     }
   }
