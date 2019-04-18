@@ -18,6 +18,7 @@ import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
+import { identifierModuleUrl } from '@angular/compiler';
 /**
  * The documentation used to 
  
@@ -226,7 +227,7 @@ export class CalendarComponent implements OnInit {
   private overLappedInCellByAlternative: Array<Set<any>>;
 
   /**
-   * @var Set Collecion la cual tiene las clases cruzadas de la alternativa actual y el cual obserbamos cualquier cambio
+   * @var Set Collecion la cual tiene las clases cruzadas de la alternativa actual y el cual observamos cualquier cambio
    */
   @Input() private overLappedIds: Set<any>;
 
@@ -268,12 +269,22 @@ export class CalendarComponent implements OnInit {
     if (change) {
       //Si hay mas de una clase sobrepuesta muestre el mensaje de conflicto
       if (change.length > 1) {
+
+        //Pintar las clases que tienen conflicto
+        this.classes.forEach(myClass => {
+          this.overLappedIds.forEach(idQueSeCruza => {
+            if (myClass.id == idQueSeCruza) {
+              myClass.cssClass = 'cal-event-overLapped-color';
+            }
+          });
+        });
+
         this.sholudDisplayDialog[this.currentAlternative] = true;
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
       else if (change.length == 0 || change.length == 1) {
 
-        //Ancho normal de las materias en mobile
+        //Que las clases vuelvan a su estado normal
         this.classes.forEach(myClass => {
           myClass.cssClass = '';
          });
@@ -665,7 +676,7 @@ export class CalendarComponent implements OnInit {
     //Remueve tambien de los ids sobrepuestos si es el caso
     this.removeOverLappedIds(id);
 
-    //Colocar el ancho normal de las materias en mobile que ya no están sobrepuestas
+    //Que las clases vuelvan a su estado normal
     this.classes.forEach(myClass => {
       let ifNotOverLapped = false;
       this.overLappedIds.forEach(idQueSeCruza => {
@@ -691,6 +702,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
     this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre, [])).subscribe();
+
   }
 
   /**

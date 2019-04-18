@@ -426,7 +426,7 @@
         padding: 0;
         margin: 0;
         height:100% ;
-        background: $dark-blue !important;
+        background-color: $dark-blue !important;
         border: solid 0.1px;
         @media (max-width: $vp-mobile) {
           border:0;
@@ -657,4 +657,9 @@
       }
     }
   }
-} 
+  .cal-event-overLapped-color {
+    div.cal-event {
+      background: $red !important;
+    }
+  }
+}
