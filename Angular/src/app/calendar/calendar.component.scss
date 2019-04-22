@@ -626,3 +626,7 @@
 .cal-pan-element {
   touch-action: pan-y !important;
 }
+
+.cal-day-view mwl-calendar-day-view-hour-segment {
+  display: initial;
+}
