@@ -630,3 +630,11 @@
 .cal-day-view mwl-calendar-day-view-hour-segment {
   display: initial;
 }
+
+.cal-schedule-container {
+  .cal-event-overLapped-color {
+    div.cal-event {
+      background: $red !important;
+    }
+  }
+}
