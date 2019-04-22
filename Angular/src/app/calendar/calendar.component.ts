@@ -360,7 +360,6 @@ export class CalendarComponent implements OnInit {
    */
   onSwipeLeft(evt: any) {
     this.viewDate = addDays(this.viewDate, 1);
-    console.log('left');
   }
 
   /**
