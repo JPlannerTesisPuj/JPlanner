@@ -150,3 +150,24 @@ body {
     display: none;
   }
 }
+
+
+#slider-container{
+  .slideshow-container{
+    .slides{
+      &:focus{
+        outline:0;
+      }
+    }
+  }
+  .slick-dots{
+    li{
+      button{
+        &::before{
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
