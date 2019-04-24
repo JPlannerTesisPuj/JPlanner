@@ -21,8 +21,8 @@ import { AlternativaKey } from '../model/rest/keys/AlternativaKey';
 
 export class ReadJsonFileService {
   // URL base a donde se harán las peticiones
-  //private baseUrl: string = 'http://localhost:8080/';
-  private baseUrl: string = 'http://10.34.1.47:8080/';
+  private baseUrl: string = 'http://localhost:8080/';
+  //private baseUrl: string = 'http://10.34.1.47:8080/';
   private userToken: User = null;
 
   // Se pide la dependencia de HTTP para poder realizar peticiones
