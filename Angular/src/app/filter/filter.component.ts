@@ -766,7 +766,7 @@ for(let i = 0 ; i<basic_btns.length ; i++){
     let txt_boxes:any = document.getElementsByClassName('search-box-fil-txt');
     for (let i = 0 ; i<txt_boxes.length ; i++){
       txt_boxes[i].onkeydown = function (e) {
-        if (!e.key.match(/^[A-Za-z ÁÉÍÓÚáéíóú]*$/)) {
+        if (!e.key.match(/^[A-Za-z ÁÉÍÓÚáéíóú0-9]*$/)) {
           e.preventDefault();  
         }
       };
