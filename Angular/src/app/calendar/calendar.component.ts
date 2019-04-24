@@ -601,10 +601,15 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses.push(subjectToDisplay);
     this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
+    this.alertUser(subjectToDisplay.nombre);
     this.refresh.next();
   }
 
+  private alertUser(className:string){
 
+    alert(className + " será inscrita en la alternativa: " + this.alternativeTitles[this.currentAlternative]);
+
+  }
   sleep(milliseconds) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {

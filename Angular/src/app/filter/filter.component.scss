@@ -191,7 +191,7 @@
     padding: 20px;
     text-align: center;
     margin-left: 12px;
-    background-color: #f44336; /* Red */
+    background-color: $red; /* Red */
     color: white;
     margin-bottom: 15px;
     width: 100%;
@@ -214,3 +214,7 @@
   .closebtn:hover {
     color: black;
   }
+
+.fil-alert-fix{
+  margin-top: 12px;
+}
