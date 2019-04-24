@@ -112,15 +112,27 @@
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input [(ngModel)]="searchedFilterId" class="atom-input-field"/>
+      <input [(ngModel)]="searchedFilterId" class="atom-input-field fil-number-field" (click)="onlyNumbers()"
+      (ngModelChange)="checkInputFieldNumberID($event)"/>
     </div>
+
+    <div class="alert" *ngIf="errorFilterNumbersID">
+      <span class="closebtn"></span>
+        Por favor, solo utilice números en este campo
+    </div> 
   
     <div id="fil-number-filter" class="col-12 grid-noGutter">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input  [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
+      <input  [(ngModel)]="searchedFilterNumber" class="atom-input-field fil-number-field" (click)="onlyNumbers()"
+      (ngModelChange)="checkInputFieldNumberNum($event)"/>
     </div>
+
+    <div class="alert" *ngIf="errorFilterNumbersNum">
+      <span class="closebtn"></span>
+        Por favor, solo utilice números en este campo
+    </div> 
   
     <div id="fil-schoolyear-filter" class="col-12 grid-noGutter">
       <label for="fil-schoolyear-filter" class="col-12">
@@ -315,15 +327,28 @@
       <label for="fil-id-filter" class="col-12">
         <strong>ID Curso:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterId" class="atom-input-field"/>
+      <input type="number" [(ngModel)]="searchedFilterId" class="atom-input-field fil-number-field" (click)="onlyNumbers()"
+      (ngModelChange)="checkInputFieldNumberID($event)"/>
+
+      <div class="alert fil-alert-fix" *ngIf="errorFilterNumbersID">
+        <span class="closebtn"></span>
+        Por favor, solo utilice números en este campo
+      </div> 
     </div>
   
     <div id="fil-number-filter" class="col-6 grid-noGutter fil-tablet-right-advanced">
       <label for="fil-number-filter" class="col-12">
         <strong>Número de Clase:</strong>
       </label>
-      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field"/>
+      <input type="number" [(ngModel)]="searchedFilterNumber" class="atom-input-field fil-number-field" (click)="onlyNumbers()"
+      (ngModelChange)="checkInputFieldNumberNum($event)"/>
+
+      <div class="alert fil-alert-fix" *ngIf="errorFilterNumbersNum">
+        <span class="closebtn"></span>
+          Por favor, solo utilice números en este campo
+      </div> 
     </div>
+
   
     <div id="fil-schoolyear-filter" class="col-6 grid-noGutter">
       <label for="fil-schoolyear-filter" class="col-12">

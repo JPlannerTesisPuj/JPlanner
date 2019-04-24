@@ -3,6 +3,8 @@ import { ReadJsonFileService } from 'src/app/shared/read-json-file/read-json-fil
 import { DataService } from 'src/app/shared/data.service';
 import { User } from './shared/model/User';
 import { Subject as SubjectRxJs } from 'rxjs';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { UseGuideComponent } from './use-guide/use-guide.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,7 @@ export class AppComponent implements OnInit {
 
   private dialogEventSubjectRxJs: SubjectRxJs<void> = new SubjectRxJs<void>();
 
-  constructor(private readJSONFileService: ReadJsonFileService, private data: DataService) { }
+  constructor(private readJSONFileService: ReadJsonFileService, private data: DataService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.userAuthenticaded = [];
@@ -67,6 +69,11 @@ export class AppComponent implements OnInit {
   private openCreationBlockModal() {
     this.showOptions = false;
     this.dialogEventSubjectRxJs.next();
+  }
+  private openUseGuide() {
+    let dialogRef: any = this.dialog.open(UseGuideComponent, {
+      width: '100vw',
+    });
   }
 
   /**

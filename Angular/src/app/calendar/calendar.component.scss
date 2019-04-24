@@ -434,7 +434,7 @@
         padding: 0;
         margin: 0;
         height:100% ;
-        background: $dark-blue !important;
+        background-color: $dark-blue !important;
         border: solid 0.1px;
         @media (max-width: $vp-mobile) {
           border:0;
@@ -481,7 +481,7 @@
               text-align: right;
               @media (max-width: $vp-mobile) {
                 text-align: left;
-                left:15px;
+                padding-left:15px;
               }
               padding-right: 15px;
               padding-left: 5px;
@@ -650,6 +650,7 @@
   display: none;
 }
 
+
 .calendar-fix-checkbox{
   margin-left: 12px;
   max-width: 550px;
@@ -670,3 +671,28 @@
     }
   }
 }
+  .cal-schedule-container {
+    .cal-event-overlapped {
+      div.cal-event {
+        background: $red !important;
+      }
+    }
+    .cal-event-overlapped-right {
+      div.cal-event {
+        background: $red !important;
+        @media (max-width: $vp-mobile){
+          max-width: 50% !important;
+          float: right !important;
+        }
+      }
+    }
+    .cal-event-overlapped-left {
+      div.cal-event {
+        background: $red !important;
+        @media (max-width: $vp-mobile){
+          max-width: 50% !important;
+          float: left !important;
+        }
+      }
+    }
+ }
