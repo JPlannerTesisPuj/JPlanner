@@ -270,24 +270,26 @@ export class CalendarComponent implements OnInit {
       //Si hay mas de una clase sobrepuesta muestre el mensaje de conflicto
       if (change.length > 1) {
 
-        //Pintar las clases que tienen conflicto
-        this.classes.forEach(myClass => {
-          this.overLappedIds.forEach(idQueSeCruza => {
-            if (myClass.id == idQueSeCruza) {
-              myClass.cssClass = 'cal-event-overLapped-color';
-            }
+        if(!this.isMobile){
+          //Pintar las clases que tienen conflicto
+          this.classes.forEach(myClass => {
+            this.overLappedIds.forEach(idQueSeCruza => {
+              if (myClass.id == idQueSeCruza) {
+                myClass.cssClass = 'cal-event-overlapped';
+              }
+            });
           });
-        });
+        }
 
         this.sholudDisplayDialog[this.currentAlternative] = true;
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
       else if (change.length == 0 || change.length == 1) {
 
-        //Pintar las clases de su color normal
+        //Que las clases vuelvan a su estado normal
         this.classes.forEach(myClass => {
-              myClass.cssClass = '';
-        });
+          myClass.cssClass = '';
+         });
 
         this.sholudDisplayDialog[this.currentAlternative] = false;
         this.overLappedIds.clear();
@@ -483,6 +485,15 @@ export class CalendarComponent implements OnInit {
           overLappedInSubject.add(theClass.id);
           overLappedInSubject.add(subjectToDisplay.numeroClase);
 
+          if(this.isMobile){
+            //Colocar un ancho de 50% para las materias cruzadas en mobile
+            this.classes.forEach(myClass => {
+              if (myClass.id == theClass.id) {
+                myClass.cssClass = 'cal-event-overlapped-right';
+              }
+            });
+          }
+
           break;
         }
       }
@@ -494,7 +505,6 @@ export class CalendarComponent implements OnInit {
    * Añade la clase cand se agrega presionando el boton
    */
   private addClassSubject(subjectToDisplay) {
-
     // Mira si la clase no ha sido agregada al horario
     if (!this.calendarClasses.some(myClass => myClass.numeroClase == subjectToDisplay.numeroClase)) {
       let newClasses: CalendarEvent[];
@@ -546,6 +556,17 @@ export class CalendarComponent implements OnInit {
           );
         }
         this.addClass(newClasses, subjectToDisplay);
+
+        if(this.isMobile){
+          //Colocar un ancho de 50% para las materias cruzadas en mobile
+          this.classes.forEach(myClass => {
+            this.overLappedIds.forEach(overlappedId => {
+              if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
+                myClass.cssClass = 'cal-event-overlapped-left';
+              }
+            });
+          });
+        }
       }
     }
   }
@@ -672,7 +693,7 @@ export class CalendarComponent implements OnInit {
     //Remueve tambien de los ids sobrepuestos si es el caso
     this.removeOverLappedIds(id);
 
-    //Pintar las clases de su color normal si ya no están sobrepuestas
+    //Que las clases vuelvan a su estado normal
     this.classes.forEach(myClass => {
       let ifNotOverLapped = false;
       this.overLappedIds.forEach(idQueSeCruza => {
