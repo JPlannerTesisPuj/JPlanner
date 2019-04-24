@@ -21,6 +21,9 @@
   }
   .mat-tab-body-wrapper {
     flex: 1 1 auto;
+    @media (min-width: 1221px){
+      height: 705px;
+    }
   }
   .mat-tab-body-content {
     border: 1px solid $black-20;
@@ -226,6 +229,10 @@
 }
 
 .cal-conflict-msj{
+
+  margin-left: 12px;
+  margin-top: 8px;
+
   span{
     font-size: 18px;
     font-family: $font-secondary;
@@ -247,6 +254,7 @@
 .cal-schedule-container {
   .cal-view-container {
     border-top: 1px solid $black-20;
+    margin-top: 9.5px;
   }
 }
 
@@ -266,7 +274,7 @@
       border: none;
 
       .cal-header {
-        padding-top: 24px;
+        padding-top: 16px;
 
         &:first-child {
           border-left: none;
@@ -523,7 +531,8 @@
   padding: 6px 10px;
   padding-right: 0;
   margin: 0;
-  padding-top: 9px;
+  padding-top: 16.5px;
+  padding-bottom: 16.5px;
   @media (max-width: $vp-mobile) {
     display: none;
   }
@@ -641,28 +650,49 @@
   display: none;
 }
 
-.cal-schedule-container {
-  .cal-event-overlapped {
-    div.cal-event {
-      background: $red !important;
+
+.calendar-fix-checkbox{
+  margin-left: 12px;
+  max-width: 550px;
+  height: auto;
+  @media (max-width: $vp-mobile){
+    label.checkbox-atom-container.checkbox-atom-fix{
+      margin-bottom: 12px; 
     }
   }
-  .cal-event-overlapped-right {
-    div.cal-event {
-      background: $red !important;
-      @media (max-width: $vp-mobile){
-        max-width: 50% !important;
-        float: right !important;
-      }
+  @media (min-width: $vp-mobile) and (max-width: $vp-tablet){
+    label.checkbox-atom-container.checkbox-atom-fix{
+      width: 550px;
     }
   }
-  .cal-event-overlapped-left {
-    div.cal-event {
-      background: $red !important;
-      @media (max-width: $vp-mobile){
-        max-width: 50% !important;
-        float: left !important;
-      }
+  @media (min-width: $vp-mobile+1) and (max-width: $vp-tablet){
+    label.checkbox-atom-container.checkbox-atom-fix{
+      margin-top: 32px; 
     }
   }
 }
+  .cal-schedule-container {
+    .cal-event-overlapped {
+      div.cal-event {
+        background: $red !important;
+      }
+    }
+    .cal-event-overlapped-right {
+      div.cal-event {
+        background: $red !important;
+        @media (max-width: $vp-mobile){
+          max-width: 50% !important;
+          float: right !important;
+        }
+      }
+    }
+    .cal-event-overlapped-left {
+      div.cal-event {
+        background: $red !important;
+        @media (max-width: $vp-mobile){
+          max-width: 50% !important;
+          float: left !important;
+        }
+      }
+    }
+ }

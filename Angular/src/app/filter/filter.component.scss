@@ -119,8 +119,8 @@
 
   h2{
     text-align: center;
-    margin-top: 7.8px;
-    margin-bottom: 7.8px;
+    margin-top: 14px;
+    margin-bottom: 14px;
   }
 
   div{
@@ -148,6 +148,9 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  @media (min-width: 1456px){
+    margin-top: 20px;
+  }
 }
 
 .fil-padding-left{

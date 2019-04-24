@@ -72,7 +72,7 @@
         <label class="number-credits">{{creditCounter[currentAlternative]}}</label>
       </label>
     </div>
-    <div class="checkbox-atom-fix-div">
+    <div class="checkbox-atom-fix-div calendar-fix-checkbox">
       <label class="checkbox-atom-container checkbox-atom-fix" for="editBlockOption">
         Eliminar un único bloqueo semanalmente / Editar bloqueo semanalmente
         <input [(ngModel)]="editBlockOption" class="hidden-checkbox" id="editBlockOption" name="editBlockOption"
@@ -112,7 +112,6 @@
     </div>
   </ng-template>
   <!--FIN PLANTILLAS PERSONALIZADAS -->
-  <br />
   <!--
     Los atributos de las vistas que cambiaron fueron:
     * hourSegments: de 2 a 1
@@ -178,7 +177,7 @@
           <div class="cal-day-text">
             {{ viewDate | calendarDate:'weekViewColumnHeader':locale }}
           </div>
-          <div class="checkbox-atom-fix-div">
+          <div class="checkbox-atom-fix-div calendar-fix-checkbox">
             <label class="checkbox-atom-container checkbox-atom-fix" for="editBlockOption">
               Eliminar un único bloqueo semanalmente / Editar bloqueo semanalmente
               <input [(ngModel)]="editBlockOption" class="hidden-checkbox" id="editBlockOption" name="editBlockOption"

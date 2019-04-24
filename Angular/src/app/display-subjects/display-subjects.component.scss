@@ -4,8 +4,8 @@
         font-size: 20px;
         font-family: $font-main;
         line-height: 24px;
-        margin: 0;
-        padding: 10px 0;
+        margin: 0px;
+        padding: 16px 0;
         border-bottom: 1px solid $black-20;
     }
 
@@ -59,7 +59,7 @@
         &-btn {
             border: none;
             cursor: pointer;
-            padding-right: 8px;
+            padding-right: 12px;
             padding-left: 12px;
 
             i {
@@ -76,6 +76,9 @@
 
         &-header {
             border-bottom: 1px solid $black-20;
+            height: 54px;
+            padding-left: 4px;
+            padding-top: 12px;
         }
 
         &-subtitle {

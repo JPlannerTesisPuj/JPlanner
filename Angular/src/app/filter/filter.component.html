@@ -153,13 +153,13 @@
       <div class="checkbox-atom-fix-div">
         <label class="checkbox-atom-container col-4 checkbox-atom-fix">{{openStateCheckbox.name}}
             <input id="{{openStateCheckbox.id}}" [(ngModel)]="openStateCheckbox.isChecked" type="checkbox">
-            <span class="checkbox-atom col-1"></span>
+            <span class="checkbox-atom"></span>
         </label>
       </div>
       <div class="checkbox-atom-fix-div">
         <label class="checkbox-atom-container col-4 checkbox-atom-fix">{{closedStateCheckbox.name}}
             <input id="{{closedStateCheckbox.id}}" [(ngModel)]="closedStateCheckbox.isChecked" type="checkbox">
-            <span class="checkbox-atom col-1"></span>
+            <span class="checkbox-atom"></span>
         </label>
       </div>
     </div>
@@ -213,7 +213,7 @@
   </div>
 
   <div class="fil-center">
-    <button class="atom-buttons" (click)="CleanAll()">Limpiar</button>
+    <button class="atom-buttons" (click)="CleanAll()">Limpiar<i class="material-icons">delete</i></button>
     <button class="atom-buttons-primary" (click)="searchClasses()">Buscar<i class="material-icons">search</i></button>
   </div>
 </div>
@@ -369,13 +369,13 @@
       <div class="checkbox-atom-fix-div">
         <label class="checkbox-atom-container col-4 checkbox-atom-fix">{{openStateCheckbox.name}}
             <input id="{{openStateCheckbox.id}}" [(ngModel)]="openStateCheckbox.isChecked" type="checkbox">
-            <span class="checkbox-atom col-1"></span>
+            <span class="checkbox-atom"></span>
         </label>
       </div>
       <div class="checkbox-atom-fix-div">
         <label class="checkbox-atom-container col-4 checkbox-atom-fix">{{closedStateCheckbox.name}}
             <input id="{{closedStateCheckbox.id}}" [(ngModel)]="closedStateCheckbox.isChecked" type="checkbox">
-            <span class="checkbox-atom col-1"></span>
+            <span class="checkbox-atom"></span>
         </label>
       </div>
     </div>
@@ -429,7 +429,7 @@
   </div>
 
   <div class="fil-center">
-    <button class="atom-buttons" (click)="CleanAll()">Limpiar</button>
+    <button class="atom-buttons" (click)="CleanAll()">Limpiar<i class="material-icons">delete</i></button>
     <button class="atom-buttons-primary" (click)="searchClasses()">Buscar<i class="material-icons">search</i></button>
   </div>
 </div>
