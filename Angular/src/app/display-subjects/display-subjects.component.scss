@@ -78,7 +78,9 @@
             border-bottom: 1px solid $black-20;
             height: 54px;
             padding-left: 4px;
-            padding-top: 12px;
+            padding-top: 4px;
+            display: flex;
+            align-items: center;
         }
 
         &-subtitle {
@@ -89,7 +91,7 @@
             font-family: $font-main;
             line-height: 24px;
             text-transform: lowercase;
-
+            top:5px;
             &::first-letter {
                 text-transform: uppercase;
             }
