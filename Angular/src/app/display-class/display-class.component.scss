@@ -6,13 +6,15 @@
     margin-bottom: 12px;
     margin-left: 12px;
     height: 130px;
+    position: relative;
     
     .add-btn{
         cursor: pointer;
         border: solid 2px;
         border-radius: 50%;
         margin-top: 8px;
-        bottom: 30px;
+        position: relative;
+        z-index: 50;
     }
     a {
         cursor: pointer;
@@ -21,8 +23,9 @@
 }
 
 .dis-fix-quotas{
-    float: right; 
-    margin-right: 115px;
+    position: absolute;
+    width: 100%;
+    right: 0
 }
 
 .dis-fix-classes{

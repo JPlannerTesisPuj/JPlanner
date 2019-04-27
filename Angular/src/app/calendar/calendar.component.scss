@@ -193,7 +193,14 @@
     overflow-x: inherit;
   }
 }
+.cal-week-view{
+  .cal-event-container.cal-starts-within-day{
+    &:not(.cal-draggable){
+      cursor:auto;
+    }
 
+  }
+}
 .cal-day-view .cal-event-container {
   width: calc(100% - 70px) !important;
   @media (max-width: $vp-mobile) {
@@ -429,6 +436,7 @@
         }
       }
       [class|="cal-display"] div.cal-event{
+        padding-right:20px;
         width: 100% ;
         border-radius: 0 ;
         padding: 0;

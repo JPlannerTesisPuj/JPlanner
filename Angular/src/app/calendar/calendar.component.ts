@@ -75,16 +75,12 @@ function ceilToNearest(amount: number, precision: number) {
  * Clase que permite el uso de Tooltips en el calendario
  */
 export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
-  weekTooltip(event: CalendarEvent, title: string) {
-    if (!event.meta.tmpEvent) {
-      return super.weekTooltip(event, title);
-    }
+  weekTooltip(event: CalendarEvent): string {
+    return;
   }
-
-  dayTooltip(event: CalendarEvent, title: string) {
-    if (!event.meta.tmpEvent) {
-      return super.dayTooltip(event, title);
-    }
+ 
+  dayTooltip(event: CalendarEvent): string {
+    return;
   }
 }
 
