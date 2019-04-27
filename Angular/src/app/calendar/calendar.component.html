@@ -133,9 +133,9 @@
     </mwl-calendar-week-view>
   </div>
 </div>
-<div class="movilMenu col-12 ">
 
 
+<div class="movilMenu col-12" *ngIf="isMobile">
   <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndexMobile">
     <mat-tab>
       <ng-template mat-tab-label>

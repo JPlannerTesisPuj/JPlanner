@@ -99,7 +99,7 @@ export class FilterComponent implements OnInit {
     this.dropdownListSearch = [
       'Nombre de Asignatura',
       'Profesor',
-      'Departamento'
+      'Unidad Academica'
     ];
     this.dropdownListWeek = [
       'Lunes',
@@ -364,7 +364,6 @@ export class FilterComponent implements OnInit {
    * Crea el objeto filtro que se le enviara al servicio read-json-files
    */
   private searchClasses() {
-
     if(this.errorFilterSearchN || this.errorFilterSearchS || this.errorFilterNumbersID || this.errorFilterNumbersNum){
       alert("Por favor, revise las alertas");
     } else {
@@ -426,8 +425,10 @@ export class FilterComponent implements OnInit {
       }
 
       let selectedDropdownSearch = this.selectedItemsSearch.toString().replace(/,/g, '-');
+      selectedDropdownSearch = selectedDropdownSearch.replace(/ /g, '');
+      
       if (selectedDropdownSearch === '') {
-        selectedDropdownSearch = 'none';
+        selectedDropdownSearch = 'NombredeAsignatura-Profesor-UnidadAcademica';
       }
       let sendedSearchBox = this.searchBox;
       if (this.searchBox === '' || this.searchBox === undefined){
