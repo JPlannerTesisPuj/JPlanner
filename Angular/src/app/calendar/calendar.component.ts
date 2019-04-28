@@ -18,7 +18,6 @@ import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
-import { identifierModuleUrl, IfStmt } from '@angular/compiler';
 /**
  * The documentation used to 
  
