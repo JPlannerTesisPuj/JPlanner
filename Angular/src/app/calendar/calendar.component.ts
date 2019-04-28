@@ -18,7 +18,7 @@ import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
-import { identifierModuleUrl } from '@angular/compiler';
+import { identifierModuleUrl, IfStmt } from '@angular/compiler';
 /**
  * The documentation used to 
  
@@ -599,6 +599,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.alertUser(subjectToDisplay.nombre);
     this.refresh.next();
+    this.checkSameClassConflict();
   }
 
   private alertUser(className:string){
@@ -715,6 +716,7 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
     this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre, [])).subscribe();
+    this.checkSameClassConflict();
 
   }
 
@@ -1359,6 +1361,28 @@ export class CalendarComponent implements OnInit {
 
     return checkHoursOfDifference;
   }
+
+  private checkSameClassConflict(){
+
+    let sameClass: boolean = false;
+
+    this.alternativeCalendarClasses[this.currentAlternative].forEach(myFirstClass => {
+      this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass => {
+        if(myFirstClass.numeroClase != myClass.numeroClase){
+          if(myFirstClass.idCurso == myClass.idCurso){
+            sameClass= true;
+            this.sholudDisplayDialog[this.currentAlternative] = true;
+          }
+        }
+      });
+    });
+
+    if(!sameClass){
+      this.sholudDisplayDialog[this.currentAlternative] = false;
+    }
+
+  }
+
 }
 
 /**
