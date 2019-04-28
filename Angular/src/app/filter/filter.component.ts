@@ -321,6 +321,7 @@ export class FilterComponent implements OnInit {
         "value":i,
         "disabled":false,
       })
+      this.selectedSizeValue2 = Number(value)+1;
     } 
   }
 
@@ -351,7 +352,7 @@ export class FilterComponent implements OnInit {
         creditFilterValues['firstOp'] = 'none';
         creditFilterValues['secondOp'] = this.selectedSizeValue2;
       } else if (this.sizeComparator.key == 4) {
-        creditFilterValues['firstOp'] = this.selectedSizeValue1;
+        creditFilterValues['firstOp'] = Number(this.selectedSizeValue1);
         creditFilterValues['secondOp'] = this.selectedSizeValue2;
       }
       creditFilterValues['comp'] = this.sizeComparator.key;
@@ -547,7 +548,6 @@ export class FilterComponent implements OnInit {
       creditValue1 = null;
       creditValue2 = Number(this.selectedCreditValue2);
     }
-
     return {
       'creditComparator': operator,
       'creditValue1': creditValue1,
@@ -664,6 +664,9 @@ export class FilterComponent implements OnInit {
        "disabled":false,
      })
    }
+
+   this.selectedCreditValue2 = from;
+   
   }
   
 
