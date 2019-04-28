@@ -10,6 +10,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jplanner.rest.model.key.BloqueoKey;
 
 @Entity
@@ -25,6 +26,7 @@ public class Bloqueo {
 	@JoinColumns({
 			@JoinColumn(name = "id_alternativa", referencedColumnName = "id_alternativa", insertable = false, updatable = false),
 			@JoinColumn(name = "id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false) })
+	@JsonIgnore
 	private Alternativa alternativa;
 
 	private BigInteger horaInicio;

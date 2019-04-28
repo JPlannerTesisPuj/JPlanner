@@ -194,6 +194,24 @@ public class DataBaseController {
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha producido un error al intentar eliminar el bloqueo "
 				+ block.getNombre() + " de la alternativa de horario\"}", HttpStatus.BAD_REQUEST);
 	}
+	
+	/**
+	 * 
+	 * @param idUser
+	 * @return
+	 * @throws JsonProcessingException
+	 */
+	@RequestMapping(value = "/rest/user-alternatives/{idUser}", method = RequestMethod.GET)
+	public ResponseEntity<List<Alternativa>> getUserAlternatives(@PathVariable("idUser") String idUser)  {
+
+		Usuario user = usuarioService.findUserById(idUser);
+		if (user != null) {
+			return new ResponseEntity<List<Alternativa>>(user.getAlternativas(), HttpStatus.OK);
+		}
+
+		return new ResponseEntity<List<Alternativa>>(new ArrayList<Alternativa>(), HttpStatus.NOT_FOUND);
+
+	}
 
 
 }

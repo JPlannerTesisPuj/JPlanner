@@ -19,6 +19,7 @@ import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
 import { identifierModuleUrl } from '@angular/compiler';
+import { Alternativa } from '../shared/model/rest/Alternativa';
 /**
  * The documentation used to 
  
@@ -240,7 +241,9 @@ export class CalendarComponent implements OnInit {
 
   private incommingMessage: any;
   private dialogEventSubscription: any;
+  private loadEventSubscription: any;
   @Input() private dialogEvent: Observable<void>;
+  @Input() private loadEvent: Observable<string>;
 
   /**
    * @var Object creado para subscripcion a diferencias en el array
@@ -326,7 +329,78 @@ export class CalendarComponent implements OnInit {
 
     this.dialogEventSubscription = this.dialogEvent.subscribe(() => this.openCreationBlocksDialog());
     this.refresh.next();
+    this.loadEventSubscription = this.loadEvent.subscribe(
+      () => {
+        this.readJSONFileService.getUserAlternatives().subscribe(alternatives => {
+          this.loadAlternatives(alternatives);
+        });
+      }
+    );
+  }
 
+  /**
+   * Método que carga las alternativas y bloqueos que un usuario tiene guardado en la base de datos
+   * 
+   * @param restAlternatives Alternativas del modelo a cargar
+   */
+  private loadAlternatives(restAlternatives: Alternativa[]) {
+    this.showLoader = true;
+    let contSubscribeEvents: number = 0;
+
+    for (const restAlternative of restAlternatives) {
+      let alternativeNumber = restAlternative.alternativaKey.idAlternativa - 1;
+      let newClasses: CalendarEvent[] = Object.assign([], this.alternativeClasses[alternativeNumber]);
+
+      restAlternative.materias.forEach(restSubject => {
+        contSubscribeEvents++;
+        let dataToSend = {
+          'type': 'filter',
+          'days': 'none',
+          'dayComparator': '0',
+          'hours': {'from': 0, 'to': 86399},
+          'searchBox':  {'searched': "none", 'params': "none"},
+          'credits': {'creditComparator': 0, 'creditValue1': -1, 'creditValue2': -1},
+          'teachingMode': "none",
+          'state': "both",
+          'class-ID': restSubject.numeroClase,
+          'class-number': "none",
+          'class-size': {'firstOp': "none", 'comp': "0", 'secondOp': "none"},
+          'scholar-year': "none",
+          'grade': "none"
+       }
+
+      this.readJSONFileService.filter('', dataToSend).subscribe(subject => {
+        contSubscribeEvents--;
+        if (subject != undefined && subject.length > 0) {
+          this.addClassFromDatabase(newClasses, subject[0], alternativeNumber);
+        }
+
+        if (contSubscribeEvents==0) {
+         this.showLoader = false; 
+        } else {
+          this.showLoader = true;
+        }
+       });
+      });
+
+      restAlternative.bloqueos.forEach(restBlock => {
+        this.createBlockCalendarEventFromDatabase(
+          new Date(restBlock.horaInicio),
+          new Date(restBlock.horaFin),
+          restBlock.bloqueoKey.idBloqueo,
+          restBlock.nombre,
+          restBlock.idPadre,
+          restBlock.idDia,
+          alternativeNumber
+        )
+      });
+    }
+
+    if (contSubscribeEvents==0) {
+      this.showLoader = false; 
+    } else {
+      this.showLoader = true;
+    }
   }
 
   /**
@@ -601,6 +675,122 @@ export class CalendarComponent implements OnInit {
     this.refresh.next();
   }
 
+  /**
+    * 
+    * @param newClasses Arreglo auxiliar en el cual se almacenan las clases
+    * @param subjectToDisplay Nueva clase que se agregara
+    * El metodo agrega una materia nueva al calendario cuando se cargó desde la base de datos
+    */
+   private addClassFromDatabase(newClasses: CalendarEvent[], subjectToDisplay: Subject, alternativeNumber: number) {
+    // Se llama al servicio que guarda las materias en la base de datos
+    for (let horary of subjectToDisplay.horarios) {
+      let startHour: Date = new Date(horary.horaInicio);
+      let endHour: Date = new Date(horary.horaFin);
+      let newClass: CalendarEvent = null;
+
+      // newClasses.push({
+      //   start: startHour,
+      //   end: endHour,
+      //   color: colors.black,
+      //   title: '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + subjectToDisplay.cuposDisponibles + '</p>',
+      //   id: subjectToDisplay.numeroClase,
+      //   actions: this.actions,
+      //   meta: {
+      //     tmpEvent: false
+      //   },
+      // });
+
+      newClass = {
+        start: startHour,
+        end: endHour,
+        color: colors.black,
+        title: '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + subjectToDisplay.cuposDisponibles + '</p>',
+        id: subjectToDisplay.numeroClase,
+        actions: this.actions,
+        meta: {
+          tmpEvent: false
+        },
+      };
+
+      if (this.alternativeClasses[alternativeNumber] == undefined) {
+        this.alternativeClasses[alternativeNumber] = new Array<CalendarEvent>();
+      }
+      this.alternativeClasses[alternativeNumber] = [...this.alternativeClasses[alternativeNumber], newClass];
+    }
+
+    if (this.alternativeCalendarClasses[alternativeNumber] == undefined){
+      this.alternativeCalendarClasses[alternativeNumber] = new Array<Subject>();
+    }
+    this.alternativeCalendarClasses[alternativeNumber].push(subjectToDisplay);
+    
+    if (this.currentAlternative == alternativeNumber) {
+      this.classes = this.alternativeClasses[alternativeNumber];
+    }
+    this.refresh.next();
+  }
+
+  /**
+   * Crea un bloqueo en el calendario con el bloqueo cargado de la base de datos
+   * 
+   * @param startDate Fecha de inicio del bloqueo
+   * @param endDate Fecha de fin del bloqueo
+   * @param blockIdentifier ID del bloqueo
+   * @param blockTitle Título del bloqueo
+   * @param blockParentID ID que representa el grupo al cual pertenece el bloqueo
+   * @returns CalendarEvent Retorna un nuevo evento en el calendario.
+   */
+  private createBlockCalendarEventFromDatabase(startDate: Date, endDate: Date, blockIdentifier: string, blockTitle: string, blockParentID: string, dayID: any, alternativeNumber: number) {
+    let newBlock: CalendarEvent = null;
+
+      newBlock = {
+        start: startDate,
+        end: endDate,
+        color: colors.red,
+        title: blockTitle,
+        id: blockIdentifier,
+        actions: this.actionsBlock,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+        meta: {
+          tmpEvent: false
+        },
+        cssClass: "cal-block"
+      };
+
+      let newCalendarBlock: CalendarBlock = new CalendarBlock(
+        newBlock.id + '',
+        newBlock.start,
+        newBlock.end,
+        blockParentID,
+        dayID,
+        blockTitle
+      )
+
+      // this.classes = [...this.classes, newBlock];
+      if (this.alternativeClasses[alternativeNumber] == undefined) {
+        this.alternativeClasses[alternativeNumber] = new Array<CalendarEvent>();
+      }
+      this.alternativeClasses[alternativeNumber] = [...this.alternativeClasses[alternativeNumber], newBlock];
+
+      if (this.alternativeCalendarBlocks[alternativeNumber] == undefined) {
+        this.alternativeCalendarBlocks[alternativeNumber] = new Array<CalendarBlock>();
+      }
+      this.alternativeCalendarBlocks[alternativeNumber].push(newCalendarBlock);
+    
+      if (this.currentAlternative == alternativeNumber) {
+        this.classes = this.alternativeClasses[alternativeNumber];
+      }
+      this.refresh.next();
+
+    return newBlock;
+  }
+
+  /**
+   * 
+   */
   private alertUser(className:string){
 
     alert(className + " será inscrita en la alternativa: " + this.alternativeTitles[this.currentAlternative]);
