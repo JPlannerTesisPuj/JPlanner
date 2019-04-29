@@ -25,14 +25,11 @@
             font-weight: 500;
             font-style: italic;
             font-size: 11px;
-            line-height: 18px;
-            text-align: right;
             display: block;
             margin-top: 16px;
             font-family: $font-main;
-            position: relative;
-            left: 100px;
-
+            margin-right: 10px;
+            float:right;
             em {
                 font-size: 14px;
                 font-family: $font-main;
