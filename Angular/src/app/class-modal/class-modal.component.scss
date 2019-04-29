@@ -76,6 +76,7 @@
 
     @media (max-width: $vp-mobile) {
         min-width: 200px !important;
+        border-bottom: 0px;
     }
 }
 
@@ -116,8 +117,11 @@
         font-weight: bold;
         margin-bottom: 8px;
         border-right-width: 0px;
-        @media (max-width: $vp-mobile) {
-            padding-top: 42px;
+        @media (min-width: 560px) and (max-width: 645px) {
+            padding-top: 32px;
+        }
+        @media (max-width: 560px) {
+            padding-top: 24px;
         }
         @media (max-width: 320px) {
             margin-top: 32px;
@@ -320,5 +324,12 @@
 #cdk-overlay-0{
     @media (max-width: $vp-mobile) {
         overflow-y: scroll;
+    }
+}
+
+.cls-mod-border{
+    @media (max-width: $vp-mobile){
+        height: 35px;
+        border-bottom: 1px solid #e6e6e6;
     }
 }

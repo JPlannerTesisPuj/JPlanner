@@ -99,7 +99,7 @@ export class FilterComponent implements OnInit {
     this.dropdownListSearch = [
       'Nombre de Asignatura',
       'Profesor',
-      'Departamento'
+      'Unidad Academica'
     ];
     this.dropdownListWeek = [
       'Lunes',
@@ -321,6 +321,7 @@ export class FilterComponent implements OnInit {
         "value":i,
         "disabled":false,
       })
+      this.selectedSizeValue2 = Number(value)+1;
     } 
   }
 
@@ -351,7 +352,7 @@ export class FilterComponent implements OnInit {
         creditFilterValues['firstOp'] = 'none';
         creditFilterValues['secondOp'] = this.selectedSizeValue2;
       } else if (this.sizeComparator.key == 4) {
-        creditFilterValues['firstOp'] = this.selectedSizeValue1;
+        creditFilterValues['firstOp'] = Number(this.selectedSizeValue1);
         creditFilterValues['secondOp'] = this.selectedSizeValue2;
       }
       creditFilterValues['comp'] = this.sizeComparator.key;
@@ -364,7 +365,6 @@ export class FilterComponent implements OnInit {
    * Crea el objeto filtro que se le enviara al servicio read-json-files
    */
   private searchClasses() {
-
     if(this.errorFilterSearchN || this.errorFilterSearchS || this.errorFilterNumbersID || this.errorFilterNumbersNum){
       alert("Por favor, revise las alertas");
     } else {
@@ -426,8 +426,10 @@ export class FilterComponent implements OnInit {
       }
 
       let selectedDropdownSearch = this.selectedItemsSearch.toString().replace(/,/g, '-');
+      selectedDropdownSearch = selectedDropdownSearch.replace(/ /g, '');
+      
       if (selectedDropdownSearch === '') {
-        selectedDropdownSearch = 'none';
+        selectedDropdownSearch = 'NombredeAsignatura-Profesor-UnidadAcademica';
       }
       let sendedSearchBox = this.searchBox;
       if (this.searchBox === '' || this.searchBox === undefined){
@@ -546,7 +548,6 @@ export class FilterComponent implements OnInit {
       creditValue1 = null;
       creditValue2 = Number(this.selectedCreditValue2);
     }
-
     return {
       'creditComparator': operator,
       'creditValue1': creditValue1,
@@ -663,6 +664,9 @@ export class FilterComponent implements OnInit {
        "disabled":false,
      })
    }
+
+   this.selectedCreditValue2 = from;
+   
   }
   
 

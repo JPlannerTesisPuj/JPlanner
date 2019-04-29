@@ -11,8 +11,8 @@
     <b>Seleccione un nombre para el bloqueo</b>
     <br>
 
-    <div class="search-container col-12">
-      <input [(ngModel)]="blockName" type="text" class="col-12" placeholder="Nombre del bloqueo">
+    <div class="search-container col-12 b-modal-input-box-fix">
+      <input [(ngModel)]="blockName" type="text" class="col-12 atom-input-field b-modal-input-fix" placeholder="Nombre del bloqueo">
     </div>
 
     <b>Seleccione el/los día(s) en los que desea añadir el bloqueo</b>
@@ -20,7 +20,7 @@
     <div class="grid-noGutter" id="basic-search">
       <div id="week-days" class="col-12 grid-noGutter">
         <label class="col-12" for="week-days"></label>
-        <ng-multiselect-dropdown class="col-12" [placeholder]="'Días de la Semana'" [data]="dropdownListWeek"
+        <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-list b-modal-atom-custom-margin-fix b-modal-atom-custom-list-fix" [placeholder]="'Días de la Semana'" [data]="dropdownListWeek"
           [(ngModel)]="blockSelectedItemsWeek" [settings]="dropdownSettings">
         </ng-multiselect-dropdown>
       </div>
@@ -30,14 +30,14 @@
 
     <div id="week-hours">
       <label for='week-hours'></label>
-      <select id="blockHourFrom" class="hour-dropdown col-6" [(ngModel)]="blockSelectedOptionFrom"
+      <select id="blockHourFrom" class="hour-dropdown col-6 atom-dropdown b-modal-atom-dropdown-fix" [(ngModel)]="blockSelectedOptionFrom"
         (ngModelChange)="onChangeFromBlockHour($event)">
         <option value="" disabled selected>Hora inicial</option>
         <option *ngFor="let hour of blockHoursFrom">
           {{hour}}
         </option>
       </select>
-      <select id="blockHourTo" [(ngModel)]="blockSelectedOptionTo" class="hour-dropdown col-6" data-push-left="off-2">
+      <select id="blockHourTo" [(ngModel)]="blockSelectedOptionTo" class="hour-dropdown col-6 atom-dropdown b-modal-atom-dropdown-fix" data-push-left="off-2">
         <option value="" disabled selected>Hora final</option>
         <option *ngFor="let hour of blockHoursTo">
           {{hour}}
@@ -47,6 +47,8 @@
 
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="createBlocks()">Agregar Bloqueo</button>
+    <div class="b-modal-center">
+        <button mat-button (click)="createBlocks()" class="atom-buttons b-modal-atom-buttons-fix">Agregar Bloqueo</button>
+    </div>
   </mat-dialog-actions>
 </div>
