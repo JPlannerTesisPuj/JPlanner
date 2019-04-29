@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   ];
 
   private dialogEventSubjectRxJs: SubjectRxJs<void> = new SubjectRxJs<void>();
+  private loadEvent: SubjectRxJs<string> = new SubjectRxJs<string>();
 
   constructor(private readJSONFileService: ReadJsonFileService, private data: DataService, public dialog: MatDialog) { }
 
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit {
         this.readJSONFileService.setUSer(this.userAuthenticaded[0]);
         // Se llama al servicio que guarda el usuario en la base de datos
         this.readJSONFileService.saveUser(this.userAuthenticaded[0].GID, this.userAuthenticaded[0].credenciales).subscribe();
+        this.loadEvent.next('user');
       }
     });
 
