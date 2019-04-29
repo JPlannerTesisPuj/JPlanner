@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, MyHammerConfig } from './app.component';
 import { DisplayClassesComponent } from './display-classes/display-classes.component';
 import { DisplayClassComponent } from './display-class/display-class.component';
 
@@ -82,7 +82,11 @@ registerLocaleData(localeEs);
 
   providers: [
     DataService,
-    {provide: LOCALE_ID, useValue: 'es'}
+    {provide: LOCALE_ID, useValue: 'es'},
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })

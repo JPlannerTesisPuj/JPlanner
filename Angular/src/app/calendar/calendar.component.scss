@@ -728,3 +728,17 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
+.mat-tab-body {
+  &-active{
+    height: 100%;
+  }
+}
+
+.cal-pan-element {
+  touch-action: auto !important;
+}
+
+.cal-day-view mwl-calendar-day-view-hour-segment {
+  display: initial;
+}
