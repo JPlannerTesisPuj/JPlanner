@@ -51,7 +51,7 @@
         </i>
       </ng-template>
       <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]'
-        [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
+        [classes]='alternativeCalendarClasses[currentAlternative]' [conflict]="sholudDisplayDialog[this.currentAlternative]"></app-shopping-cart>
     </mat-tab>
   </mat-tab-group>
 </div>
@@ -164,7 +164,7 @@
         </i>
       </ng-template>
       <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]'
-        [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
+        [classes]='alternativeCalendarClasses[currentAlternative]' [conflict]="sholudDisplayDialog[this.currentAlternative]"></app-shopping-cart>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>

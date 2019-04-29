@@ -10,6 +10,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
+  @Input() private conflict: boolean;
   @Input() private altTitle: String;
   @Input() private classes: Subject[];
   @Output() removeSubject = new EventEmitter<string>();

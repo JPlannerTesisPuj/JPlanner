@@ -34,6 +34,10 @@
     font-style: italic;
     margin-top: 8px;
     margin-bottom: 8px !important;
+
+    span.selected-item.ng-star-inserted{
+        background-color: $light-blue !important;
+    }
  }
 
  .b-modal-atom-custom-list-fix .multiselect-dropdown .dropdown-list {
