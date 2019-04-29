@@ -2,6 +2,10 @@
 <hr>
 <div>
 
+  <div class="alert" *ngIf="conflict">
+    <span class="closebtn"></span>
+      Inscripción inhabilitada debido a conflictos
+  </div> 
 
   <!-- Se recorre la lista de materias agregadas y se crea un app-display-class por cada materia -->
   <div class="grid-2_sm-2_md-4 cal-shopping-cart">
