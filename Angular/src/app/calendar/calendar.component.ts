@@ -767,6 +767,8 @@ export class CalendarComponent implements OnInit {
     if (this.currentAlternative == alternativeNumber) {
       this.overLappedIds = this.overLappedInCellByAlternative[alternativeNumber];
     }
+    
+    this.creditCounter[alternativeNumber] += subjectToDisplay.creditos;
 
     this.refresh.next();
   }
