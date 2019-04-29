@@ -35,7 +35,7 @@ export class ReadJsonFileService {
    * @param fileName Nombre del archivo que se quiere obtener
    * @param filter Objeto con los diferentes parametros enviados al backend para filtrar las clases
    */
-  public filter(fileName: string, filter: any): Observable<Subject[]> {
+  public filter(filter: any): Observable<Subject[]> {
     // Variables que comparan las operaciones del filtro de cupos
     /** @var op1 Número que representa el menor que */
     let op1: any;
@@ -68,8 +68,8 @@ export class ReadJsonFileService {
         + '/' + filter['searchBox']['params']
         + '/' + filter['teachingMode']
         + '/' + filter['state']
-        + '/' + filter['class-ID']
         + '/' + filter['class-number']
+        + '/' + filter['class-ID']
         + '/' + classSizePieces
         + '/' + filter['scholar-year']
         + '/' + filter['grade']

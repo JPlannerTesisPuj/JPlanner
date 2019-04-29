@@ -36,7 +36,9 @@ export class DisplaySubjectsComponent implements OnInit {
 
   constructor(
     private readJSONFileService: ReadJsonFileService,
-    private data: DataService
+    private data: DataService,
+    
+    
   ) { }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class DisplaySubjectsComponent implements OnInit {
         this.showLoader = true;
         this.sortedClasses = [];
 
-        this.readJSONFileService.filter('classes', this.filter).subscribe(
+        this.readJSONFileService.filter(this.filter).subscribe(
           allClasses => {
             allClasses.forEach(oneClass => {
 
@@ -78,6 +80,7 @@ export class DisplaySubjectsComponent implements OnInit {
             if (this.sortedClasses.length == 0) {
               this.sortedClasses = Array.from(this.sortClasses());
               this.sortedClasses = this.getNotOverlappedClasses(this.sortedClasses);
+
             }
           }
         );
