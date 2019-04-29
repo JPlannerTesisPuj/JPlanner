@@ -718,3 +718,7 @@
 .cal-day-view mwl-calendar-day-view-hour-segment {
   display: initial;
 }
+
+* {
+  overflow-y: scroll !important;
+}
