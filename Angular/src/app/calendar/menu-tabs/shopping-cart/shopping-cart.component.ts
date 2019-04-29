@@ -32,10 +32,8 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   private inscribe(){
-    if(this.conflict){
-      alert("Antes de inscribir materias debes corregir el conflicto");
-    }else{
-      alert("Las materias se inscribieron correctamente");
+    if(!this.conflict){
+      //Se llama el servicio para inscribir materias
     }
   }
 
