@@ -404,41 +404,6 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param newClasses Arreglo auxiliar con las clases inscritas en el calendario
-   * @param subjectToDisplay Clase que se ingresara
-   * Retorna un arreglo con los ids de clases que tienen conflicto con la materia que se inscribira y almacena los ids de las clases en la variable
-   * global overLappedIds
-   */
-  private getOverLappedFromDatabase(newClasses: CalendarEvent[], subjectToDisplay: Subject): boolean {
-    let overLappedInSubject = new Set();
-    for (let theClass of newClasses) {
-      for (let horary of subjectToDisplay.horarios) {
-        let startHour: Date = new Date(horary.horaInicio);
-        let endHour: Date = new Date(horary.horaFin);
-        if (areRangesOverlapping(startHour, endHour, theClass.start, theClass.end)) {
-          this.overLappedIds.add(subjectToDisplay.numeroClase);
-          this.overLappedIds.add(theClass.id);
-          overLappedInSubject.add(theClass.id);
-          overLappedInSubject.add(subjectToDisplay.numeroClase);
-
-          if(this.isMobile){
-            //Colocar un ancho de 50% para las materias cruzadas en mobile
-            this.classes.forEach(myClass => {
-              if (myClass.id == theClass.id) {
-                myClass.cssClass = 'cal-event-overlapped-right';
-              }
-            });
-          }
-
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  /**
    * Captura el evento swipe cuando este se realice en el calendar: left o right
    * 
    * @param evt Evento de movimiento
@@ -711,6 +676,41 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
+   * 
+   * @param newClasses Arreglo auxiliar con las clases inscritas en el calendario
+   * @param subjectToDisplay Clase que se ingresara
+   * Retorna un arreglo con los ids de clases que tienen conflicto con la materia que se inscribira y almacena los ids de las clases en la variable
+   * global overLappedIds
+   */
+  private getOverLappedFromDatabase(newClasses: CalendarEvent[], subjectToDisplay: Subject, alternativeNumber: number): Set<string | number> {
+    let overLappedInSubject = new Set();
+    for (let theClass of newClasses) {
+      for (let horary of subjectToDisplay.horarios) {
+        let startHour: Date = new Date(horary.horaInicio);
+        let endHour: Date = new Date(horary.horaFin);
+        if (areRangesOverlapping(startHour, endHour, theClass.start, theClass.end)) {
+          this.overLappedInCellByAlternative[alternativeNumber].add(subjectToDisplay.numeroClase);
+          this.overLappedInCellByAlternative[alternativeNumber].add(theClass.id);
+          overLappedInSubject.add(theClass.id);
+          overLappedInSubject.add(subjectToDisplay.numeroClase);
+
+          if(this.isMobile){
+            //Colocar un ancho de 50% para las materias cruzadas en mobile
+            this.alternativeClasses[alternativeNumber].forEach(myClass => {
+              if (myClass.id == theClass.id) {
+                myClass.cssClass = 'cal-event-overlapped-right';
+              }
+            });
+          }
+
+          break;
+        }
+      }
+    }
+    return overLappedInSubject;
+  }
+
+  /**
     * 
     * @param newClasses Arreglo auxiliar en el cual se almacenan las clases
     * @param subjectToDisplay Nueva clase que se agregara
@@ -723,10 +723,7 @@ export class CalendarComponent implements OnInit {
       let endHour: Date = new Date(horary.horaFin);
       let newClass: CalendarEvent = null;
       let subjectCssClass: string = '';
-
-      if (this.getOverLappedFromDatabase(this.alternativeClasses[alternativeNumber], subjectToDisplay)) {
-        subjectCssClass = 'cal-event-overlapped-left';
-      }
+      let overLappedInAdded: Set<string | number> = this.getOverLappedFromDatabase(this.alternativeClasses[alternativeNumber], subjectToDisplay, alternativeNumber);
 
       newClass = {
         start: startHour,
@@ -754,6 +751,21 @@ export class CalendarComponent implements OnInit {
     
     if (this.currentAlternative == alternativeNumber) {
       this.classes = this.alternativeClasses[alternativeNumber];
+    }
+
+    if(this.isMobile){
+      //Colocar un ancho de 50% para las materias cruzadas en mobile
+      this.alternativeClasses[alternativeNumber].forEach(myClass => {
+        this.overLappedInCellByAlternative[alternativeNumber].forEach(overlappedId => {
+          if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
+            myClass.cssClass = 'cal-event-overlapped-left';
+          }
+        });
+      });
+    }
+
+    if (this.currentAlternative == alternativeNumber) {
+      this.overLappedIds = this.overLappedInCellByAlternative[alternativeNumber];
     }
 
     this.refresh.next();
