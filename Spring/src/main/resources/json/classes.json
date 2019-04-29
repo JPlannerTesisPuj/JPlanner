@@ -14230,7 +14230,7 @@
   },
   {
     "numeroClase": 564879,
-    "idCurso": 9147,
+    "idCurso": 999999147,
     "nombre": "ROSE",
     "creditos": 2,
     "profesor": "",
@@ -14241,7 +14241,7 @@
     "grado": "Postgrado",
     "unidadAcademica": "HOLT COURT",
     "cicloLectivo": "2019-3",
-    "puedeVerMateria": false,
+    "puedeVerMateria": true,
     "descripcion": "Quis ea elit magna duis ullamco et velit do excepteur anim ex reprehenderit Lorem excepteur. Elit est velit laboris laborum elit duis qui irure reprehenderit anim. Reprehenderit labore occaecat deserunt eu Lorem est. Incididunt do aute ex ad velit elit ipsum dolore culpa elit cillum eu. Eu ipsum proident minim duis sit in occaecat ex Lorem ex aliqua sunt dolor. Tempor ipsum consectetur cillum culpa culpa elit reprehenderit anim occaecat Lorem irure velit nisi id.\r\n",
     "horarios": [
       {
@@ -27354,7 +27354,7 @@
     "grado": "Postgrado",
     "unidadAcademica": "SCHENCK AVENUE",
     "cicloLectivo": "2018-2",
-    "puedeVerMateria": false,
+    "puedeVerMateria": true,
     "descripcion": "Ullamco eiusmod aliqua exercitation duis nisi ea eu qui labore duis ut quis dolor. Irure consequat irure et aute ut officia. Laborum excepteur Lorem adipisicing eu enim Lorem id consequat velit eu fugiat Lorem ut. Exercitation nostrud nulla esse ullamco commodo. Officia esse est eu anim sunt quis.\r\n",
     "horarios": [
       {
@@ -44037,7 +44037,7 @@
     ]
   },
   {
-    "numeroClase": 7484105,
+    "numeroClase": 7484105, inicio
     "idCurso": 9923,
     "nombre": "Cálculo Diferencial",
     "creditos": 7,
@@ -47998,7 +47998,7 @@
   },
   {
     "numeroClase": 234344,
-    "idCurso": 9923,
+    "idCurso": 99923,
     "nombre": "Cálculo Vectorial",
     "creditos": 5,
     "profesor": "",
@@ -48187,7 +48187,7 @@
   },
   {
     "numeroClase": 8810511,
-    "idCurso": 9923,
+    "idCurso": 99923,
     "nombre": "Cálculo Vectorial",
     "creditos": 3,
     "profesor": "",
@@ -48547,7 +48547,7 @@
   },
   {
     "numeroClase": 674651,
-    "idCurso": 9923,
+    "idCurso": 99923,
     "nombre": "Cálculo Vectorial",
     "creditos": 3,
     "profesor": "",
@@ -49078,7 +49078,7 @@
   },
   {
     "numeroClase": 1028993,
-    "idCurso": 9923,
+    "idCurso": 99923,
     "nombre": "Cálculo Vectorial",
     "creditos": 5,
     "profesor": "",
@@ -49609,7 +49609,7 @@
   },
   {
     "numeroClase": 379281,
-    "idCurso": 9923,
+    "idCurso": 99923,
     "nombre": "Cálculo Vectorial",
     "creditos": 5,
     "profesor": "",
@@ -49969,7 +49969,7 @@
   },
   {
     "numeroClase": 424367,
-    "idCurso": 9923,
+    "idCurso": 99923,
     "nombre": "Cálculo Vectorial",
     "creditos": 4,
     "profesor": "",
@@ -50329,7 +50329,7 @@
   },
   {
     "numeroClase": 3312101,
-    "idCurso": 9923,
+    "idCurso": 99923,
     "nombre": "Cálculo Vectorial",
     "creditos": 2,
     "profesor": "",

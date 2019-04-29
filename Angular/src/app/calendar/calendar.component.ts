@@ -698,7 +698,7 @@ export class CalendarComponent implements OnInit {
           ifNotOverLapped= true;
         }
       });
-      if(!ifNotOverLapped){
+      if(!ifNotOverLapped && myClass.cssClass != 'cal-block'){
         myClass.cssClass = '';
       }
     });

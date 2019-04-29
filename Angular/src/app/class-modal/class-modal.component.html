@@ -8,8 +8,8 @@
     </div>
 
 
-    <div class="cls-mod-elements-line col-12">
-      <div> ID Curso: {{ subject.idCurso }} | N. de clase: {{ subject.numeroClase }} | Creditos: {{ subject.creditos }} | Estado:
+    <div class="col-12 cls-mod-border">
+      <div class="cls-mod-elements-line" > ID Curso: {{ subject.idCurso }} | N. de clase: {{ subject.numeroClase }} | Creditos: {{ subject.creditos }} | Estado:
         <span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span>
         <span class="dot" *ngIf="showCircle"></span>
         <span class="square" *ngIf="showRectangle"></span>
