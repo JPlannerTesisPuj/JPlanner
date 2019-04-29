@@ -372,14 +372,14 @@ export class CalendarComponent implements OnInit {
           'credits': {'creditComparator': 0, 'creditValue1': -1, 'creditValue2': -1},
           'teachingMode': "none",
           'state': "both",
-          'class-ID': restSubject.numeroClase,
-          'class-number': "none",
+          'class-ID': "none",
+          'class-number': restSubject.numeroClase,
           'class-size': {'firstOp': "none", 'comp': "0", 'secondOp': "none"},
           'scholar-year': "none",
           'grade': "none"
        }
 
-      this.readJSONFileService.filter('', dataToSend).subscribe(subject => {
+      this.readJSONFileService.filter(dataToSend).subscribe(subject => {
         contSubscribeEvents--;
         if (subject != undefined && subject.length > 0) {
           this.addClassFromDatabase(newClasses, subject[0], alternativeNumber);
