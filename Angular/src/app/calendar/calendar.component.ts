@@ -6,7 +6,7 @@ import { Subject } from '../shared/model/Subject';
 import { Subject as SubjectRXJS, fromEvent, generate, Observable } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatHeaderRow, MatDialogConfig } from '@angular/material';
 import { ClassModalComponent } from '../class-modal/class-modal.component';
-import { HammerGestureConfig } from '@angular/platform-browser';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { DataService } from '../shared/data.service';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { IterableDiffers } from '@angular/core';
@@ -19,6 +19,7 @@ import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
 import { identifierModuleUrl } from '@angular/compiler';
+import { MyHammerConfig } from '../app.component';
 /**
  * The documentation used to 
  
@@ -91,6 +92,10 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
     {
       provide: CalendarEventTitleFormatter,
       useClass: CustomEventTitleFormatter
+    },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
     }
   ],
   styles: [
@@ -329,20 +334,16 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  /**
-   * Captura el evento swipe cuando este se realice en el calendar: left o right
-   * 
-   * @param evt Evento de movimiento
-   */
-  onSwipe(evt: any) {
-    const verticalSwipeMove = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left') : '';
-    if (verticalSwipeMove == 'right') {
-      // Left Swipe: devolverse un dia, es decir, substraer 1 dia al dia actual mostrado.
-      this.viewDate = subDays(this.viewDate, 1);
-    } else if (verticalSwipeMove == 'left') {
-      // Right Swipe: aumentar un dia, es decir, aumentar 1 dia al dia actual mostrado.
-      this.viewDate = addDays(this.viewDate, 1);
-    }
+  /** Captura el evento swipe cuando este se realice en el calendar: right
+  * 
+  * @param evt Evento de movimiento
+  */
+  onSwipeRight(evt: any) {
+    this.viewDate = subDays(this.viewDate, 1);
+  }
+
+  onSwipeLeft(evt: any) {
+    this.viewDate = addDays(this.viewDate, 1);
   }
 
   /**
@@ -818,6 +819,21 @@ export class CalendarComponent implements OnInit {
       this.alternativeIterationArray[i - 1] = i - 1;
     }
 
+  }
+
+  moveIt(touchEvent: TouchEvent) {
+    let posY: number = touchEvent.touches[0].clientY;
+
+    fromEvent(document, 'touchmove')
+      .pipe(
+        takeUntil(fromEvent(document, 'touchend'))
+      )
+      .subscribe((touchMoveEvent: TouchEvent) => {
+        let actualPosY: number = touchMoveEvent.touches[0].clientY;
+        let pixelsToMove: number = posY - actualPosY;
+        window.scrollBy(0, pixelsToMove);
+        posY = actualPosY;
+      });
   }
 
   // ---------------------------------------------------------------------------------------------

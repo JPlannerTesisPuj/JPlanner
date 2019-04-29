@@ -5,6 +5,8 @@ import { User } from './shared/model/User';
 import { Subject as SubjectRxJs } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { UseGuideComponent } from './use-guide/use-guide.component';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import Hammer from 'hammerjs';
 
 @Component({
   selector: 'app-root',
@@ -92,3 +94,8 @@ export class AppComponent implements OnInit {
   
 }
 
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    swipe: { direction: Hammer.DIRECTION_HORIZONTAL },
+  };
+}
