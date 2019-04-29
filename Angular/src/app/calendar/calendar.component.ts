@@ -431,15 +431,12 @@ export class CalendarComponent implements OnInit {
           this.overLappedIds.add(theClass.id);
           overLappedInSubject.add(theClass.id);
           overLappedInSubject.add(subjectToDisplay.numeroClase);
-
-          if(this.isMobile){
-            //Colocar un ancho de 50% para las materias cruzadas en mobile
-            this.classes.forEach(myClass => {
-              if (myClass.id == theClass.id) {
-                myClass.cssClass = 'cal-event-overlapped-right';
-              }
-            });
-          }
+          // Colocar un ancho de 50% para las materias cruzadas en mobile
+          this.classes.forEach(myClass => {
+            if (myClass.id == theClass.id) {
+              myClass.cssClass = 'cal-event-overlapped-right';
+            }
+          });
 
           return true;
         }
