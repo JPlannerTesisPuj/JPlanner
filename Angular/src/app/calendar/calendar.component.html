@@ -1,5 +1,10 @@
 <!-- <app-block-modal class="col-12" (messageEvent)="receiveMessage($event)"></app-block-modal> -->
 
+<mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [locale]="locale"
+                [dayStartHour]="7" [dayEndHour]="22" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
+                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" class="cal-display-sm  col-12">
+              </mwl-calendar-day-view>
+
 <div *ngIf="showLoader" class="dispclass-loader updating-size"></div>
 <div *ngIf="blocksOverlapsClassesAndBlocks[currentAlternative]" class="cal-conflict-msj col-12">
   <span>¡El bloqueo se cruza con clases modulares u otros bloqueos por lo que no fue creado igual en todas las semanas!</span>
