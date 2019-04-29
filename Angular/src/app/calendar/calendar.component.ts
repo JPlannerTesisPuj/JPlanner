@@ -1621,6 +1621,14 @@ export class CalendarComponent implements OnInit {
       }
     }
     this.blockIdCount++;
+
+    this.calendarBlocks.forEach(myBlock => {
+      // Se llama el servicio que guarda el bloqueo en la base de datos
+      if (myBlock.parentID == blockParentID) {
+        this.readJSONFileService.addBlock(myBlock, (this.currentAlternative + 1)).subscribe();
+      }
+    });
+
     this.refreshCal();
   }
 
