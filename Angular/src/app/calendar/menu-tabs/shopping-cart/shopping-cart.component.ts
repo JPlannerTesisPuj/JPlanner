@@ -10,7 +10,6 @@ import { EventEmitter } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  @Input() private conflict: boolean;
   @Input() private altTitle: String;
   @Input() private classes: Subject[];
   @Output() removeSubject = new EventEmitter<string>();
@@ -29,12 +28,6 @@ export class ShoppingCartComponent implements OnInit {
       return word;
     }
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
-  }
-
-  private inscribe(){
-    if(!this.conflict){
-      //Se llama el servicio para inscribir materias
-    }
   }
 
 }

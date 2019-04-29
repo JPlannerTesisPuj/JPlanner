@@ -704,27 +704,3 @@
       }
     }
  }
-
- .alert {
-  padding: 20px;
-  text-align: center;
-  margin-left: 12px;
-  background-color: $red; /* Red */
-  color: white;
-  margin-top: 12px;
-  margin-bottom: 15px;
-  width: 100%;
-  max-width: calc(100% - 24px);
-}
-
-/* The close button */
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
