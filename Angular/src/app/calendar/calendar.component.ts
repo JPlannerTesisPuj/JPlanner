@@ -57,7 +57,7 @@ const colors: any = {
  * @returns Número de casillas a la izquierda (número negativo) o derecha (número positivo) que el cursor ha recorrido
  */
 function floorToNearest(amount: number, precision: number) {
-  return Math.floor(amount / precision) * precision;
+  return Math.floor(amount / precision * 2) * precision;
 }
 
 /**
@@ -1234,21 +1234,35 @@ export class CalendarComponent implements OnInit {
         clientY = mouseTouchMoveEvent.clientY;
 
         let segmentMinutes = 70;
-
         // Toma los minutos que el mouse se ha desplazado hacia arriba o hacia abajo
+        let diffY = clientY - segmentPosition.top;
         let minutesDiff = ceilToNearest(
           clientY - segmentPosition.top,
           segmentMinutes
         );
+
+        
         if (minutesDiff == 0 || minutesDiff == -0) {
           minutesDiff = segmentMinutes;
         }
+        console.log(minutesDiff);
         // Toma los días que el mouse se ha desplazado hacia la izquierda o derecha
-        const daysDiff =
+        let diffX = clientX - segmentPosition.left;
+        let daysDiff: number = 0;
+
+        if(diffX > 0) {
+          daysDiff =
           floorToNearest(
-            clientX - segmentPosition.left,
+            diffX,
+            segmentPosition.width
+          ) / segmentPosition.width;  
+        } else {
+          daysDiff =
+          ceilToNearest(
+            diffX,
             segmentPosition.width
           ) / segmentPosition.width;
+        }
 
         // Calcula la nueva hora de inicio y de fin del bloqueo
         let newEnd = addHours(firstBlockDate, minutesDiff / segmentMinutes);
