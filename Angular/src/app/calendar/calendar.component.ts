@@ -18,6 +18,7 @@ import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
 import { BlockModalComponent } from '../block-modal/block-modal.component';
 import { Materia } from '../shared/model/rest/Materia';
+import { identifierModuleUrl } from '@angular/compiler';
 /**
  * The documentation used to 
  
@@ -265,28 +266,18 @@ export class CalendarComponent implements OnInit {
       //Si hay mas de una clase sobrepuesta muestre el mensaje de conflicto
       if (change.length > 1) {
 
-        //Se verifica si la clase está siendo agregada encima de un bloqueo
-        let isBlock: boolean= false;
-        this.overLappedIds.forEach(id =>{
-          let stringId: string= ""+ id;
-          if(stringId.indexOf("block") > -1){
-            isBlock= true;
-          }
-        });
-
-        if(!isBlock){
-          if(!this.isMobile){
-            //Pintar las clases que tienen conflicto
-            this.classes.forEach(myClass => {
-              this.overLappedIds.forEach(idQueSeCruza => {
-                if (myClass.id == idQueSeCruza) {
-                  myClass.cssClass = 'cal-event-overlapped';
-                }
-              });
+        if(!this.isMobile){
+          //Pintar las clases que tienen conflicto
+          this.classes.forEach(myClass => {
+            this.overLappedIds.forEach(idQueSeCruza => {
+              if (myClass.id == idQueSeCruza) {
+                myClass.cssClass = 'cal-event-overlapped';
+              }
             });
-          }
-          this.sholudDisplayDialog[this.currentAlternative] = true;
+          });
         }
+
+        this.sholudDisplayDialog[this.currentAlternative] = true;
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
       else if (change.length == 0 || change.length == 1) {
@@ -409,66 +400,43 @@ export class CalendarComponent implements OnInit {
       } else {
         // Si hay dos materias en la casilla en la que se intenta meter la nueva materia muestre el popup
         if (overLappedInAdded.size >= 3) {
+          let overlappedSubjectsInfo: Object[] = [];
 
-          //Se verifica si la clase está siendo agregada encima de un bloqueo
-          let isBlock: boolean= false;
-          this.overLappedIds.forEach(id =>{
-            let stringId: string= ""+id;
-            if(stringId.indexOf("block") > -1){
-              isBlock= true;
+          // Se busca la información de cada materia en el arreglo de materias que se muestran en el calendario
+          // NOTA: Si se quiere eliminar bloqueos también se debe hacer la búsqueda en this.classes no en this.calendarClases
+          overLappedInAdded.forEach(overlappedClassNumber => {
+            let className: string = '';
+            let classInfo: Subject = this.calendarClasses.find(myClass => myClass.numeroClase == overlappedClassNumber);
+
+            // Se guarda el Nombre y el Número de Clase para mostrarlos en el modal
+            if (classInfo != undefined) {
+              className = classInfo.nombre;
+            } else {
+              className = subjectToDisplay.nombre;
             }
+            overlappedSubjectsInfo.push({
+              classNumber: overlappedClassNumber,
+              title: className,
+              toDelete: false
+            });
           });
 
-          if(!isBlock){
-            let overlappedSubjectsInfo: Object[] = [];
-
-            // Se busca la información de cada materia en el arreglo de materias que se muestran en el calendario
-            // NOTA: Si se quiere eliminar bloqueos también se debe hacer la búsqueda en this.classes no en this.calendarClases
-            overLappedInAdded.forEach(overlappedClassNumber => {
-              let className: string = '';
-              let classInfo: Subject = this.calendarClasses.find(myClass => myClass.numeroClase == overlappedClassNumber);
-
-              // Se guarda el Nombre y el Número de Clase para mostrarlos en el modal
-              if (classInfo != undefined) {
-                className = classInfo.nombre;
-              } else {
-                className = subjectToDisplay.nombre;
-              }
-              overlappedSubjectsInfo.push({
-                classNumber: overlappedClassNumber,
-                title: className,
-                toDelete: false
-              });
-            });
-
-            this.displaySelectingOptions(subjectToDisplay, overlappedSubjectsInfo).then(
-              //Respuesta del usuario al formulario
-              (userResponse) => {
-                if (userResponse) {
-                  // Mira cuáles clases del horario el usuario desea eliminar
-                  userResponse.forEach(subjectOverlapped => {
-                    if (subjectOverlapped.toDelete) {
-                      this.removeClass(subjectOverlapped.classNumber);
-                    }
-                  });
-                  //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
-                }
-              }
-            );
-            this.addClass(newClasses, subjectToDisplay);
-
-            if(this.isMobile){
-              //Colocar un ancho de 50% para las materias cruzadas en mobile
-              this.classes.forEach(myClass => {
-                this.overLappedIds.forEach(overlappedId => {
-                  if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
-                    myClass.cssClass = 'cal-event-overlapped-left';
+          this.displaySelectingOptions(subjectToDisplay, overlappedSubjectsInfo).then(
+            //Respuesta del usuario al formulario
+            (userResponse) => {
+              if (userResponse) {
+                // Mira cuáles clases del horario el usuario desea eliminar
+                userResponse.forEach(subjectOverlapped => {
+                  if (subjectOverlapped.toDelete) {
+                    this.removeClass(subjectOverlapped.classNumber);
                   }
                 });
-              });
+                //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
+              }
             }
-          }
+          );
         }
+        this.addClass(newClasses, subjectToDisplay);
       }
     }
   }
@@ -543,70 +511,57 @@ export class CalendarComponent implements OnInit {
       }
       let overLappedInAdded = this.getOverLapped(newClasses, subjectToDisplay);
       if (this.overLappedIds.size == 0) {
-        console.log("Entra acá");
         this.addClass(newClasses, subjectToDisplay);
       } else {
         // Si hay dos materias en la casilla en la que se intenta meter la nueva materia muestre el popup
         if (overLappedInAdded.size >= 3) {
+          let overlappedSubjectsInfo: Object[] = [];
 
-          //Se verifica si la clase está siendo agregada encima de un bloqueo
-          let isBlock: boolean= false;
-          this.overLappedIds.forEach(id =>{
-            let stringId: string= ""+id;
-            if(stringId.indexOf("block") > -1){
-              isBlock= true;
+          // Se busca la información de cada materia en el arreglo de materias que se muestran en el calendario
+          // NOTA: Si se quiere eliminar bloqueos también se debe hacer la búsqueda en this.classes no en this.calendarClases
+          overLappedInAdded.forEach(overlappedClassNumber => {
+            let className: string = '';
+            let classInfo: Subject = this.calendarClasses.find(myClass => myClass.numeroClase == overlappedClassNumber);
+
+            // Se guarda el Nombre y el Número de Clase para mostrarlos en el modal
+            if (classInfo != undefined) {
+              className = classInfo.nombre;
+            } else {
+              className = subjectToDisplay.nombre;
             }
+            overlappedSubjectsInfo.push({
+              classNumber: overlappedClassNumber,
+              title: className,
+              toDelete: false
+            });
           });
 
-          if(!isBlock){
-            let overlappedSubjectsInfo: Object[] = [];
-
-            // Se busca la información de cada materia en el arreglo de materias que se muestran en el calendario
-            // NOTA: Si se quiere eliminar bloqueos también se debe hacer la búsqueda en this.classes no en this.calendarClases
-            overLappedInAdded.forEach(overlappedClassNumber => {
-              let className: string = '';
-              let classInfo: Subject = this.calendarClasses.find(myClass => myClass.numeroClase == overlappedClassNumber);
-
-              // Se guarda el Nombre y el Número de Clase para mostrarlos en el modal
-              if (classInfo != undefined) {
-                className = classInfo.nombre;
-              } else {
-                className = subjectToDisplay.nombre;
-              }
-              overlappedSubjectsInfo.push({
-                classNumber: overlappedClassNumber,
-                title: className,
-                toDelete: false
-              });
-            });
-
-            this.displaySelectingOptions(subjectToDisplay, overlappedSubjectsInfo).then(
-              //Respuesta del usuario al formulario
-              (userResponse) => {
-                if (userResponse) {
-                  // Mira cuáles clases del horario el usuario desea eliminar
-                  userResponse.forEach(subjectOverlapped => {
-                    if (subjectOverlapped.toDelete) {
-                      this.removeClass(subjectOverlapped.classNumber);
-                    }
-                  });
-                  //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
-                }
-              }
-            );
-            this.addClass(newClasses, subjectToDisplay);
-
-            if(this.isMobile){
-              //Colocar un ancho de 50% para las materias cruzadas en mobile
-              this.classes.forEach(myClass => {
-                this.overLappedIds.forEach(overlappedId => {
-                  if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
-                    myClass.cssClass = 'cal-event-overlapped-left';
+          this.displaySelectingOptions(subjectToDisplay, overlappedSubjectsInfo).then(
+            //Respuesta del usuario al formulario
+            (userResponse) => {
+              if (userResponse) {
+                // Mira cuáles clases del horario el usuario desea eliminar
+                userResponse.forEach(subjectOverlapped => {
+                  if (subjectOverlapped.toDelete) {
+                    this.removeClass(subjectOverlapped.classNumber);
                   }
                 });
-              });
+                //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
+              }
             }
-          }
+          );
+        }
+        this.addClass(newClasses, subjectToDisplay);
+
+        if(this.isMobile){
+          //Colocar un ancho de 50% para las materias cruzadas en mobile
+          this.classes.forEach(myClass => {
+            this.overLappedIds.forEach(overlappedId => {
+              if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
+                myClass.cssClass = 'cal-event-overlapped-left';
+              }
+            });
+          });
         }
       }
     }
@@ -644,8 +599,6 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.alertUser(subjectToDisplay.nombre);
     this.refresh.next();
-    //Este método verifica si el usuario agregó una clase de la misma materia, si es así, le muestra una alerta 
-    this.checkSameClassConflict();
   }
 
   private alertUser(className:string){
@@ -762,7 +715,6 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.refresh.next();
     this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre, [])).subscribe();
-    this.checkSameClassConflict();
 
   }
 
@@ -1407,28 +1359,6 @@ export class CalendarComponent implements OnInit {
 
     return checkHoursOfDifference;
   }
-
-  private checkSameClassConflict(){
-
-    let sameClass: boolean = false;
-
-    this.alternativeCalendarClasses[this.currentAlternative].forEach(myFirstClass => {
-      this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass => {
-        if(myFirstClass.numeroClase != myClass.numeroClase){
-          if(myFirstClass.idCurso == myClass.idCurso){
-            sameClass= true;
-            this.sholudDisplayDialog[this.currentAlternative] = true;
-          }
-        }
-      });
-    });
-
-    if(!sameClass){
-      this.sholudDisplayDialog[this.currentAlternative] = false;
-    }
-
-  }
-
 }
 
 /**
