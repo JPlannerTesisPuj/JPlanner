@@ -821,6 +821,21 @@ export class CalendarComponent implements OnInit {
 
   }
 
+  moveIt(touchEvent: TouchEvent) {
+    let posY: number = touchEvent.touches[0].clientY;
+
+    fromEvent(document, 'touchmove')
+      .pipe(
+        takeUntil(fromEvent(document, 'touchend'))
+      )
+      .subscribe((touchMoveEvent: TouchEvent) => {
+        let actualPosY: number = touchMoveEvent.touches[0].clientY;
+        let pixelsToMove: number = posY - actualPosY;
+        window.scrollBy(0, pixelsToMove);
+        posY = actualPosY;
+      });
+  }
+
   // ---------------------------------------------------------------------------------------------
   // CREAR BLOQUEO
   // ---------------------------------------------------------------------------------------------

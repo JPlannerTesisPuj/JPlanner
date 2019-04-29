@@ -185,8 +185,8 @@
               <span class="checkbox-atom"></span>
             </label>
           </div>
-          <div class="cal-schedule-container cal-mobile col-9_xs-12_sm-12_md-12_lg-9 ">
-            <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="cal-pan-element">
+          <div class="cal-schedule-container cal-mobile col-9_xs-12_sm-12_md-12_lg-9 " (touchstart)="moveIt($event)">
+            <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
               <mwl-calendar-day-view [viewDate]="viewDate" [events]="classes" [refresh]="refresh" [hourSegments]="1" [locale]="locale"
                 [dayStartHour]="7" [dayEndHour]="22" [hourSegmentTemplate]="customDayViewHourSegmentTemplateJplanner" [hourSegmentHeight]="35"
                 (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" class="cal-display-sm  col-12">
