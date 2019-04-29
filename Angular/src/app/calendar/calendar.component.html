@@ -51,7 +51,7 @@
         </i>
       </ng-template>
       <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]'
-        [classes]='alternativeCalendarClasses[currentAlternative]'></app-shopping-cart>
+        [classes]='alternativeCalendarClasses[currentAlternative]' [conflict]="sholudDisplayDialog[this.currentAlternative]"></app-shopping-cart>
     </mat-tab>
   </mat-tab-group>
 </div>
@@ -133,9 +133,9 @@
     </mwl-calendar-week-view>
   </div>
 </div>
-<div class="movilMenu col-12 ">
 
 
+<div class="movilMenu col-12" *ngIf="isMobile">
   <mat-tab-group headerPosition="below" [(selectedIndex)]="verticalMenuIndexMobile">
     <mat-tab>
       <ng-template mat-tab-label>
