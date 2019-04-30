@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="slider-container">
+<div id="slider-container" #sliderContainer>
   <h1 style="text-align:center">
     {{guideTitles[slideshow.slideIndex]}}
   </h1>
@@ -25,7 +25,17 @@
                [captionBackground]="captionBackground"
                [lazyLoad]="lazyLoad"
                [hideOnNoSlides]="hideOnNoSlides"
-               [fullscreen]="fullscreen">
+               [fullscreen]="fullscreen"
+               [dotColor]="dotColor">
     </slideshow>
   </div>
 </div>
+<ul class="slick-dots" *ngIf="showDots">
+    <li *ngFor="let imageUrl of imageUrls; let i = index"
+        (click)="goTo(i)">
+      <button type="button"
+              [attr.style]="safeStyleDotColor">
+        {{i}}
+      </button>
+    </li>
+  </ul>
