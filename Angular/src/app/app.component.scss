@@ -68,6 +68,8 @@ body {
   text-align: center;
   font-size: 22px;
   line-height:100px;
+  height:0;
+  color: $white;
   &.displayed{
     opacity: 1;
     visibility: visible;
