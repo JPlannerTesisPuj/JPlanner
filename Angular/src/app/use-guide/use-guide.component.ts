@@ -18,8 +18,8 @@ export class UseGuideComponent implements OnInit {
   private backgroundRepeat: string = 'no-repeat';
   private showDots: boolean = false;
   private showCaptions: boolean = true;
-  private captionColor: string = '#FFF';
-  private captionBackground: string = 'rgba(0, 0, 0, .35)';
+  private captionColor: string = '#4b4b4b';
+  private captionBackground: string = '#e4f2f5';
   private width: string = '100%';
   private dotColor: string = '#008ca4';
 
