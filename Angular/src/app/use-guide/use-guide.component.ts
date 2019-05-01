@@ -10,13 +10,13 @@ export class UseGuideComponent implements OnInit {
   private imageUrls: (string | IImage)[];
   private height: string = '70vh';
   private arrowSize: string = '30px';
-  private showArrows: boolean = true;
+  private showArrows: boolean = false;
   private disableSwiping: boolean = false;
   private autoPlay: boolean = false;
   private backgroundSize: string = 'cover';
   private backgroundPosition: string = 'center center';
   private backgroundRepeat: string = 'no-repeat';
-  private showDots: boolean = true;
+  private showDots: boolean = false;
   private showCaptions: boolean = true;
   private captionColor: string = '#FFF';
   private captionBackground: string = 'rgba(0, 0, 0, .35)';
@@ -26,10 +26,6 @@ export class UseGuideComponent implements OnInit {
   private device :string;
   private guideTitles:string[] = ['Buscar Materias', 'Información de Materia','Alternativas de Horario','Bloqueos','Visualizar Horario','Remover Materias','Conflictos','Inscribir Materias'];
   private guideMiniTitles:string[] = ['Buscar', 'Info. Materia','Alternativas','Bloqueos','Horario','Remover Materias','Conflictos','Inscribir Materias'];
-
-  get safeStyleDotColor(): SafeStyle {
-    return this.sanitizer.bypassSecurityTrustStyle(`--dot-color: ${ this.dotColor }`);
-  }
 
   @ViewChild('slideshow') slides: any;
 
@@ -127,10 +123,11 @@ export class UseGuideComponent implements OnInit {
     ];
   }
 
-  private goTo(index: number) {
-    console.log(index);
-    console.log(this.slides);
+  private changeSlide(index: number) {
     this.slides.goToSlide(index);
   }
 
+  private nextPrevSlide(index: number) {
+    this.slides.onSlide(index);
+  }
 }

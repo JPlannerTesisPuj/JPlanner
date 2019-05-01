@@ -1,0 +1,143 @@
+.slideshow-container[_ngcontent-c6] .slides[_ngcontent-c6]:not(.link) {
+    background-color: $white;
+}
+
+.use-guide--dialog {
+    mat-dialog-container {
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+div.slideshow-main-container {
+    border-top: 1px solid $black-20;
+    position: relative;
+}
+
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $light-blue;
+
+    @media screen and (max-width: $vp-mobile) {
+        display: none;
+    }
+
+    &--right {
+        right: 0;
+    }
+
+    &--left {
+        left: 0;
+    }
+
+    &:hover {
+        background-color: $light-blue-30;
+    }
+
+    &--link {
+        cursor: pointer;
+
+        i {
+            color: $white;
+            font-size: 48px;
+        }
+    }
+}
+
+.slide-menu {
+    $self: &;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    padding-top: 10px;
+    height: 40px;
+    background-color: $light-blue;
+    z-index: 100;
+    transition-property: height;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    overflow: hidden;
+
+    @media screen and (max-width: $vp-mobile) {
+        width: 100%;   
+    }
+
+    &:hover {
+        height: 100%;
+        right: -15px;
+        overflow-y: scroll;
+
+        @media screen and (max-width: $vp-mobile) {
+            right: 0;
+            height: calc(100% - 50px);
+        }
+
+        + #{$self}--close {
+            height: 50px;
+            padding: 20px;
+        }
+    }
+
+    &--close {
+        position: absolute;
+        display: none;
+        transition-property: height, padding;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in;
+        padding: 0;
+        height: 0;
+        width: 100%;
+        background-color: $red;
+        text-align: center;
+        bottom: 0;
+        left: 0;
+        color: $white;
+        font-weight: 900;
+
+        @media screen and (max-width: $vp-mobile) {
+            display: block;
+        }
+    }
+
+    &--container {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 50px;
+
+        #{$self}--item {
+            padding: 4px;
+            color: $white;
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+
+            &:hover {
+                background-color: $white;
+                color: $black;
+            }
+
+            #{$self}--link {
+                cursor: pointer;
+            }
+        }
+
+        #{$self}--item-title {
+            position: absolute;
+            top: 10px;
+            right: 0;
+            width: 100%;
+            padding: 4px;
+            color: $white;
+            text-align: center;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+    }
+}

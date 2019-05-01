@@ -4,7 +4,7 @@
     {{guideTitles[slideshow.slideIndex]}}
   </h1>
   <div style="display:block;"
-       [style.width]="width">
+       [style.width]="width" class="slideshow-main-container">
     <slideshow #slideshow
                [imageUrls]="imageUrls"
                [height]="height"
@@ -28,14 +28,34 @@
                [fullscreen]="fullscreen"
                [dotColor]="dotColor">
     </slideshow>
+
+    <div class="slide-arrow slide-arrow--right" (click)="nextPrevSlide(1)">
+      <a class="slide-arrow--link">
+        <i class="material-icons">
+          keyboard_arrow_right
+        </i>
+      </a>
+    </div>
+
+    <div class="slide-arrow slide-arrow--left" (click)="nextPrevSlide(-1)">
+        <a class="slide-arrow--link">
+          <i class="material-icons">
+            keyboard_arrow_left
+          </i>
+        </a>
+      </div>
   </div>
 </div>
-<ul class="slick-dots" *ngIf="showDots">
-    <li *ngFor="let imageUrl of imageUrls; let i = index"
-        (click)="goTo(i)">
-      <button type="button"
-              [attr.style]="safeStyleDotColor">
-        {{i}}
-      </button>
+<div class="slide-menu">
+  <ul class="slide-menu--container">
+    <li class="slide-menu--item-title">MENÚ</li>
+    <li *ngFor="let title of guideTitles; let i = index" (click)="changeSlide(i)" class="slide-menu--item">
+      <a class="slide-menu--link">
+        {{ title }}
+      </a>
     </li>
   </ul>
+</div>
+<div class="slide-menu--close">
+  <span class="slide-menu--close-text">CERRAR MENÚ</span>
+</div>
