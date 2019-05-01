@@ -254,7 +254,10 @@ export class CalendarComponent implements OnInit {
    * @var Object creado para subscripcion a diferencias en el array
   */s
   private differ: any;
-  private sholudDisplayDialog: any;
+
+  private conflictSize = new Array(this.numberOfAlternatives);
+  private conflictCrossedClasses = new Array(this.numberOfAlternatives);;
+  private conflictsameClass = new Array(this.numberOfAlternatives);;
   constructor(
     differs: IterableDiffers,
     public dialog: MatDialog,
@@ -287,15 +290,15 @@ export class CalendarComponent implements OnInit {
           if(!this.isMobile){
             //Pintar las clases que tienen conflicto
             this.classes.forEach(myClass => {
-              this.overLappedIds.forEach(idQueSeCruza => {
-                if (myClass.id == idQueSeCruza) {
+              this.overLappedIds.forEach(crossedID => {
+                if (myClass.id == crossedID) {
                   myClass.cssClass = 'cal-event-overlapped';
                 }
               });
             });
           }
   
-          this.sholudDisplayDialog[this.currentAlternative] = true;
+          this.conflictCrossedClasses[this.currentAlternative] = true;
         }
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
@@ -304,12 +307,12 @@ export class CalendarComponent implements OnInit {
         //Que las clases vuelvan a su estado normal
         this.classes.forEach(myClass => {
           let stringId: string= ""+ myClass.id;
-          if(stringId.indexOf("block") == -1){
+          if(stringId.indexOf("block") == -1 ){
             myClass.cssClass = '';
           }
          });
 
-        this.sholudDisplayDialog[this.currentAlternative] = false;
+        this.conflictCrossedClasses[this.currentAlternative] = false;
         this.overLappedIds.clear();
       }
     }
@@ -323,8 +326,6 @@ export class CalendarComponent implements OnInit {
     this.numberOfAlternatives = 6;
     this.overLappedInCellByAlternative = new Array(this.numberOfAlternatives);
     this.overLappedInCellByAlternative.fill(new Set());
-    this.sholudDisplayDialog = new Array(this.numberOfAlternatives);
-    this.sholudDisplayDialog.fill(false);
     this.blocksOverlapsClassesAndBlocks = new Array(this.numberOfAlternatives);
     this.blocksOverlapsClassesAndBlocks.fill(false);
     this.creditCounter = new Array(this.numberOfAlternatives);
@@ -332,6 +333,10 @@ export class CalendarComponent implements OnInit {
     this.initTitles();
     this.onItemChange(0);
     this.viewDate = this.readJSONFileService.consumeLectiveCycle();
+
+    this.conflictCrossedClasses.fill(false);
+    this.conflictSize.fill(false);
+    this.conflictsameClass.fill(false);
 
     /**
    * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
@@ -545,8 +550,12 @@ export class CalendarComponent implements OnInit {
             }
           });
           this.overLappedIds.delete(subjectToDisplay.numeroClase);
+          this.alertUser(3,subjectToDisplay.nombre,'block');
         }
       }
+    }
+    else{
+      this.alertUser(2,subjectToDisplay.nombre,'alreadyAdded');
     }
   }
 
@@ -691,9 +700,13 @@ export class CalendarComponent implements OnInit {
             }
           });
           this.overLappedIds.delete(subjectToDisplay.numeroClase);
+          this.alertUser(3,subjectToDisplay.nombre,'block');
         }
       }
     }
+    else{
+      this.alertUser(2,subjectToDisplay.nombre,'alreadyAdded');
+     }
   }
   /**
     * 
@@ -726,7 +739,7 @@ export class CalendarComponent implements OnInit {
     this.calendarClasses.push(subjectToDisplay);
     this.creditCounter[this.currentAlternative] += subjectToDisplay.creditos;
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
-    this.alertUser(subjectToDisplay.nombre);
+    this.alertUser(1,subjectToDisplay.nombre,'success');
     this.refresh.next();
     //Este método verifica si el usuario agregó una clase de la misma materia, si es así, le muestra una alerta 
     this.checkSameClassConflict();
@@ -892,9 +905,25 @@ export class CalendarComponent implements OnInit {
   /**
    * 
    */
-  private alertUser(className:string){
-
-    alert(className + " será inscrita en la alternativa: " + this.alternativeTitles[this.currentAlternative]);
+  private alertUser(caseNumber:number,className:string, caseType:string){
+    let content = '';
+    if(caseNumber == 1){
+      content = className + " será inscrita en la alternativa: " + this.alternativeTitles[this.currentAlternative];
+    }
+    if(caseNumber == 2){
+      content = className + " ya esta añadida en la alternativa: " + this.alternativeTitles[this.currentAlternative];
+    }
+    if(caseNumber == 3){
+      content = className + " se esta intentando agregar sobre un bloqueo en la alternativa: " + this.alternativeTitles[this.currentAlternative];
+    }
+    let msjBanner = document.getElementById('information-msj');
+    msjBanner.classList.add('displayed');
+    msjBanner.classList.add(caseType);
+    msjBanner.innerHTML = content;
+    setTimeout(function () {
+      msjBanner.classList.remove("displayed");
+      msjBanner.classList.remove(caseType);
+    }, 5000);
 
   }
   sleep(milliseconds) {
@@ -976,6 +1005,7 @@ export class CalendarComponent implements OnInit {
    * Se remueva la materia del horario
    */
   private removeClass(id: string | number) {
+    this.checkSameClassConflict();
 
     //Remueve tambien de los ids sobrepuestos si es el caso
     this.removeOverLappedIds(id);
@@ -983,8 +1013,8 @@ export class CalendarComponent implements OnInit {
     //Que las clases vuelvan a su estado normal
     this.classes.forEach(myClass => {
       let ifNotOverLapped = false;
-      this.overLappedIds.forEach(idQueSeCruza => {
-        if (myClass.id == idQueSeCruza) {
+      this.overLappedIds.forEach(crossedID => {
+        if (myClass.id == crossedID) {
           ifNotOverLapped= true;
         }
       });
@@ -1008,9 +1038,10 @@ export class CalendarComponent implements OnInit {
     this.readJSONFileService.deleteAlternativeSubject(this.currentAlternative + 1, new Materia(auxClass[0].numeroClase, auxClass[0].nombre, [])).subscribe();
     //Este método verifica si el usuario agregó una clase de la misma materia, si es así, le muestra una alerta 
     this.checkSameClassConflict();
-
+    this.updateClassSize();
   }
 
+ 
   /**
    * 
    * @param id Id de la materia que sera removida
@@ -1539,13 +1570,23 @@ export class CalendarComponent implements OnInit {
    * Actualiza los cupos en las clases del calendario
    */
   private updateClassSize() {
-    let newClassSize;
     let updatedIndexes = new Map();
     let indexesArray = new Set();
     let finishedObservables = 0;
+    let isNoSizeClass = false;
     this.classes.forEach((value) => {
       indexesArray.add(value.id);
+      if(!isNoSizeClass){
+        if(this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0] != undefined){
+          if(this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0].cuposTotales == 0){
+            isNoSizeClass =true;
+          }
+        }
+      }
     });
+    if(!isNoSizeClass){
+      this.conflictSize[this.currentAlternative] = false;
+    }
     indexesArray.forEach(value => {
       if (!updatedIndexes.has(value)) {
         this.showLoader = true;
@@ -1559,7 +1600,16 @@ export class CalendarComponent implements OnInit {
               let subjectToDisplay = this.calendarClasses.filter(subj => subj.numeroClase == value)[0];
               let altClasses = this.classes.filter(subj => subj.id == value);
               altClasses.forEach(subj => {
-                subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
+                if(updatedIndexes.get(subjectToDisplay.numeroClase) == 0){
+                  subj.cssClass = 'cal-event-overlapped';
+                  isNoSizeClass = true;
+                 }else{
+                  let stringId: string= ""+ subj.id;
+                  if(stringId.indexOf("block") == -1 ){
+                    subj.cssClass = '';
+                  }
+                 }
+                  subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
               });
               finishedObservables++;
               if (finishedObservables == indexesArray.size) {
@@ -1568,10 +1618,12 @@ export class CalendarComponent implements OnInit {
             } else {
               this.showLoader = false;
             }
+            this.conflictSize[this.currentAlternative] = isNoSizeClass;
           },
         );
       }
     });
+   
   }
 
   /**
@@ -1684,14 +1736,14 @@ export class CalendarComponent implements OnInit {
         if(myFirstClass.numeroClase != myClass.numeroClase){
           if(myFirstClass.idCurso == myClass.idCurso){
             sameClass= true;
-            this.sholudDisplayDialog[this.currentAlternative] = true;
-          }
+            this.conflictsameClass[this.currentAlternative] = true;
+            }
         }
       });
     });
 
     if(!sameClass){
-      this.sholudDisplayDialog[this.currentAlternative] = false;
+      this.conflictsameClass[this.currentAlternative] = false;
     }
 
   }
