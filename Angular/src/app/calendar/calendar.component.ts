@@ -1202,9 +1202,7 @@ export class CalendarComponent implements OnInit {
     this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
 
     this.overLappedInCellByAlternative[2].add(69);
-    for(let i=0; i<6; i++){
-      console.log(i,this.overLappedInCellByAlternative[i]);
-    }
+
     this.updateClassSize();
   }
   /**
