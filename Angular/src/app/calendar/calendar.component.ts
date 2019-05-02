@@ -12,7 +12,7 @@ import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.ser
 import { IterableDiffers } from '@angular/core';
 import { Input } from '@angular/core';
 import { DayViewHourSegment } from 'calendar-utils';
-import { finalize, takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil, map } from 'rxjs/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { User } from '../shared/model/User';
@@ -142,7 +142,7 @@ export class CalendarComponent implements OnInit {
   private verticalMenuIndex: number = 0;
   private verticalMenuIndexMobile: number = 0;
   private dragToCreateActive = false;
-  private blockIdCount: number = 0;
+  private blockIdCounters: Array<number> = new Array<number>();
   /** @var startSchoolYear Fecha de inicio del ciclo lectivo */
   private startSchoolYear: Date = new Date('2019/1/20 00:00:00');
   /** @var endSchoolYear Fecha de fin del ciclo lectivo */
@@ -272,10 +272,14 @@ export class CalendarComponent implements OnInit {
    * Subscripción a cambios en el numero de clases sobrepuestas de la alternativa actual
    */
   ngDoCheck() {
+    console.log('1')
     const change = this.differ.diff(this.overLappedIds);
+    console.log(change);
     if (change) {
+      console.log('2')
       //Si hay mas de una clase sobrepuesta muestre el mensaje de conflicto
       if (change.length > 1) {
+        console.log('3')
 
         //Se verifica si la clase está siendo agregada encima de un bloqueo
         let isBlock: boolean= false;
@@ -303,6 +307,7 @@ export class CalendarComponent implements OnInit {
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
       else if (change.length == 0 || change.length == 1) {
+        console.log('4')
 
         //Que las clases vuelvan a su estado normal
         this.classes.forEach(myClass => {
@@ -337,6 +342,8 @@ export class CalendarComponent implements OnInit {
     this.conflictCrossedClasses.fill(false);
     this.conflictSize.fill(false);
     this.conflictsameClass.fill(false);
+    this.blockIdCounters = new Array<number>(this.numberOfAlternatives);
+    this.blockIdCounters.fill(0);
 
     /**
    * Se suscribe al envío de mensajes de si ha habido una búsqueda o no, en caso de que
@@ -418,6 +425,12 @@ export class CalendarComponent implements OnInit {
           alternativeNumber
         )
       });
+
+      for (let alternativeCounter = 0; alternativeCounter < this.numberOfAlternatives; alternativeCounter++) {
+        if (this.alternativeCalendarBlocks[alternativeCounter] != undefined) {
+          this.addBlockID(this.alternativeCalendarBlocks[alternativeCounter], alternativeCounter);
+        }
+      }
     }
 
     if (contSubscribeEvents==0) {
@@ -437,6 +450,28 @@ export class CalendarComponent implements OnInit {
 
   onSwipeLeft(evt: any) {
     this.viewDate = addDays(this.viewDate, 1);
+  }
+
+  /**
+   * Actualiza el contador de los IDs de los bloqueos al agregar un nuevo bloqueo
+   * 
+   * @param calendarBlocks Bloqueos de la alternativa a actualizar su id
+   * @param alternativeNumber Número de la alternativa a actualizar
+   */
+  private addBlockID(calendarBlocks: CalendarBlock[], alternativeNumber: number) {
+    let currentID: number = this.blockIdCounters[alternativeNumber];
+    let idsMap: Map<number, boolean> = new Map<number, boolean>();
+
+    calendarBlocks.forEach(myBlock => {
+      let currentParentID: number = +myBlock.parentID.split('_', 2)[1];
+      idsMap.set(currentParentID, true);
+    });
+
+    while (idsMap.has(currentID)) {
+      currentID++;
+    }
+
+    this.blockIdCounters[alternativeNumber] = currentID;
   }
 
   /**
@@ -771,7 +806,10 @@ export class CalendarComponent implements OnInit {
             //Colocar un ancho de 50% para las materias cruzadas en mobile
             this.alternativeClasses[alternativeNumber].forEach(myClass => {
               if (myClass.id == theClass.id) {
-                myClass.cssClass = 'cal-event-overlapped-right';
+                let stringID: string = '' + myClass.id;
+                if (stringID.indexOf('block') == -1) {
+                  myClass.cssClass = 'cal-event-overlapped-right';
+                }
               }
             });
           }
@@ -824,18 +862,19 @@ export class CalendarComponent implements OnInit {
     
     if (this.currentAlternative == alternativeNumber) {
       this.classes = this.alternativeClasses[alternativeNumber];
+      this.overLappedIds = this.overLappedInCellByAlternative[alternativeNumber];
     }
 
-    if(this.isMobile){
-      //Colocar un ancho de 50% para las materias cruzadas en mobile
-      this.alternativeClasses[alternativeNumber].forEach(myClass => {
-        this.overLappedInCellByAlternative[alternativeNumber].forEach(overlappedId => {
-          if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
-            myClass.cssClass = 'cal-event-overlapped-left';
-          }
-        });
-      });
-    }
+    // if(this.isMobile){
+    //   //Colocar un ancho de 50% para las materias cruzadas en mobile
+    //   this.alternativeClasses[alternativeNumber].forEach(myClass => {
+    //     this.overLappedInCellByAlternative[alternativeNumber].forEach(overlappedId => {
+    //       if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
+    //         myClass.cssClass = 'cal-event-overlapped-left';
+    //       }
+    //     });
+    //   });
+    // }
 
     if (this.currentAlternative == alternativeNumber) {
       this.overLappedIds = this.overLappedInCellByAlternative[alternativeNumber];
@@ -1127,12 +1166,15 @@ export class CalendarComponent implements OnInit {
       this.alternativeClasses[this.currentAlternative] = new Array<CalendarEvent>();
       this.alternativeCalendarClasses[this.currentAlternative] = new Array<Subject>();
       this.alternativeCalendarBlocks[this.currentAlternative] = new Array<CalendarBlock>();
+      this.overLappedInCellByAlternative[this.currentAlternative] = new Set<any>();
     }
 
+    console.log('last', this.overLappedIds);
     this.classes = this.alternativeClasses[this.currentAlternative];
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
     this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
     this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
+    console.log('current', this.overLappedIds);
 
     this.updateClassSize();
   }
@@ -1209,10 +1251,10 @@ export class CalendarComponent implements OnInit {
       }
     }
 
-    blockParentID = 'block_' + this.blockIdCount;
-    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, addHours(firstBlockDate, 1), blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCount + 1), blockParentID, blockParentID + '__0');
+    blockParentID = 'block_' + this.blockIdCounters[this.currentAlternative];
+    const dragToSelectEvent: CalendarEvent = this.createBlockCalendarEvent(firstBlockDate, addHours(firstBlockDate, 1), blockParentID + '__0__0', 'Bloqueo ' + (this.blockIdCounters[this.currentAlternative] + 1), blockParentID, blockParentID + '__0');
 
-    this.blockIdCount++;
+    this.addBlockID(this.calendarBlocks, this.currentAlternative);
     // Se toma la posición del cuadro que fue seleccionado para agregar el bloqueo
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
@@ -1337,7 +1379,7 @@ export class CalendarComponent implements OnInit {
             if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
               startDay > startOfView && startDay < endOfView &&
               endDay > startOfView && endDay < endOfView) {
-              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID, dayWeekID);
+              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCounters[this.currentAlternative], blockParentID, dayWeekID);
             } else {
               this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
             }
@@ -1635,7 +1677,7 @@ export class CalendarComponent implements OnInit {
    */
   private createBlocksFromModal($event: any) {
     this.incommingMessage = $event;
-    const blockParentID: string = 'block_' + this.blockIdCount;
+    const blockParentID: string = 'block_' + this.blockIdCounters[this.currentAlternative];
     const daysBlock: any = this.incommingMessage['daysBlock'];
     const startHour: number = +this.incommingMessage['hourFrom'];
     const endHour: number = +this.incommingMessage['hourTo'];
@@ -1646,7 +1688,7 @@ export class CalendarComponent implements OnInit {
     const endOfView = endOfWeek(this.endSchoolYear);
 
     if (blockName == undefined) {
-      blockName = 'Bloqueo ' + this.blockIdCount;
+      blockName = 'Bloqueo ' + this.blockIdCounters[this.currentAlternative];
     }
 
     // Reccorre los días para crear los bloqueos
@@ -1675,7 +1717,7 @@ export class CalendarComponent implements OnInit {
         }
       }
     }
-    this.blockIdCount++;
+    this.addBlockID(this.calendarBlocks, this.currentAlternative);
 
     this.calendarBlocks.forEach(myBlock => {
       // Se llama el servicio que guarda el bloqueo en la base de datos
