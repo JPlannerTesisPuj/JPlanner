@@ -1,10 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="slider-container">
+<div id="slider-container" #sliderContainer>
   <h1 style="text-align:center">
     {{guideTitles[slideshow.slideIndex]}}
   </h1>
   <div style="display:block;"
-       [style.width]="width">
+       [style.width]="width" class="slideshow-main-container">
     <slideshow #slideshow
                [imageUrls]="imageUrls"
                [height]="height"
@@ -25,7 +25,39 @@
                [captionBackground]="captionBackground"
                [lazyLoad]="lazyLoad"
                [hideOnNoSlides]="hideOnNoSlides"
-               [fullscreen]="fullscreen">
+               [fullscreen]="fullscreen"
+               [dotColor]="dotColor">
     </slideshow>
+
+    <div class="slide-arrow slide-arrow--right" (click)="nextPrevSlide(1)">
+      <a class="slide-arrow--link">
+        <i class="material-icons">
+          keyboard_arrow_right
+        </i>
+      </a>
+    </div>
+
+    <div class="slide-arrow slide-arrow--left" (click)="nextPrevSlide(-1)">
+        <a class="slide-arrow--link">
+          <i class="material-icons">
+            keyboard_arrow_left
+          </i>
+        </a>
+      </div>
   </div>
+</div>
+<div class="slide-menu">
+  <div class="slide-menu--title">
+    <span class="slide-menu--item-title">MENÚ</span>
+  </div>
+  <ul class="slide-menu--container">
+    <li *ngFor="let title of guideTitles; let i = index" (click)="changeSlide(i)" class="slide-menu--item">
+      <a class="slide-menu--link">
+        {{ title }}
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="slide-menu--close">
+  <span class="slide-menu--close-text">CERRAR MENÚ</span>
 </div>

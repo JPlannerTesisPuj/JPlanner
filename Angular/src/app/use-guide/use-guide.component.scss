@@ -1,0 +1,161 @@
+.slideshow-container[_ngcontent-c6] .slides[_ngcontent-c6]:not(.link) {
+    background-color: $white;
+}
+
+.use-guide--dialog {
+    mat-dialog-container {
+        position: relative;
+        overflow: hidden;
+
+        @media screen and (max-width: $vp-mobile) {
+            padding-top: 50px;
+        }
+    }
+}
+
+div.slideshow-main-container {
+    border-top: 1px solid $black-20;
+    position: relative;
+}
+
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $light-blue;
+    height: 48px;
+    width: 48px;
+
+    @media screen and (max-width: $vp-mobile) {
+        display: none;
+    }
+
+    &--right {
+        right: 0;
+    }
+
+    &--left {
+        left: 0;
+    }
+
+    &:hover {
+        background-color: $light-blue-30;
+    }
+
+    &--link {
+        cursor: pointer;
+
+        i {
+            position: absolute;
+            color: $white;
+            font-size: 48px;
+            top: 0;
+            right: 0;
+        }
+    }
+}
+
+.slide-menu {
+    $self: &;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 50px;
+    background-color: rgba($light-blue, 0.7);
+    z-index: 100;
+    overflow: hidden;
+
+    @media screen and (max-width: $vp-mobile) {
+        width: 100%;   
+        background-color: $light-blue;
+    }
+
+    &:hover {
+        height: 100%;
+        overflow-y: auto;
+        padding-bottom: 20px;
+
+        @media screen and (max-width: $vp-mobile) {
+            right: 0;
+            height: calc(100% - 50px);
+        }
+
+        + #{$self}--close {
+            height: 50px;
+            padding: 20px;
+        }
+
+        > #{$self}--container {
+            height: calc(100% - 50px);
+        }
+    }
+
+    &--title {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        height: 50px;
+
+        #{$self}--item-title {
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translateX(50%) translateY(-50%);
+            font-weight: 900;
+            color: $white;
+        }
+    }
+
+    &--close {
+        cursor: pointer;
+        position: absolute;
+        display: none;
+        padding: 0;
+        height: 0;
+        width: 100%;
+        background-color: $red;
+        text-align: center;
+        bottom: 0;
+        left: 0;
+        color: $white;
+        font-weight: 900;
+
+        @media screen and (max-width: $vp-mobile) {
+            display: block;
+        }
+    }
+
+    &--container {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        height: 0;
+
+        @media screen and (max-width: $vp-mobile) {
+            overflow: scroll;
+        }
+
+        #{$self}--item {
+            cursor: pointer;
+            padding: 4px;
+            color: $white;
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+
+            &:hover {
+                background-color: $white;
+                color: $black;
+            }
+
+            #{$self}--link {
+                cursor: pointer;
+            }
+        }
+    }
+}

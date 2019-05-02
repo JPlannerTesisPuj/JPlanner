@@ -1241,6 +1241,8 @@ export class CalendarComponent implements OnInit {
       }
     }
 
+    let lastContDaysDiff: number = 0;
+    let lastContHoursDiff: number = 0;
 
     fromEvent(document, eventMove)
       .pipe(
@@ -1264,6 +1266,7 @@ export class CalendarComponent implements OnInit {
 
         let clientX: number = 0;
         let clientY: number = 0;
+        let updateBlocks: boolean = false;
         clientX = mouseTouchMoveEvent.clientX;
         clientY = mouseTouchMoveEvent.clientY;
 
@@ -1284,69 +1287,82 @@ export class CalendarComponent implements OnInit {
             segmentPosition.width
           ) / segmentPosition.width;
 
-        // Calcula la nueva hora de inicio y de fin del bloqueo
-        let newEnd = addHours(firstBlockDate, minutesDiff / segmentMinutes);
-        let newStart = firstBlockDate;
-
-        if (newEnd < firstBlockDate && newEnd > startOfView) {
-          newStart = newEnd;
-          newEnd = firstBlockDate;
+        if (daysDiff != lastContDaysDiff){
+          lastContDaysDiff = daysDiff;
+          updateBlocks = true;
         }
 
-        // Contadores para agregar el bloqueo en otros días en el calendario, por defecto agrega a la derecha
-        let contDays = 0;
-        let contDaysEnd = daysDiff;
-        // Contadores para eliminar los bloqueos fuera de rango, por defecto elimina a la izquierda
-        let deleteFromIndex = -1;
-        let deleteToIndex = -6;
-
-        // Cambia el valor de los contadores para agregar a la izquierda y eliminar a la derecha
-        if (daysDiff < 0) {
-          contDays = daysDiff;
-          contDaysEnd = 0;
-          deleteFromIndex = 1;
-          deleteToIndex = 6;
+        if (lastContHoursDiff != minutesDiff){
+          lastContHoursDiff = minutesDiff;
+          updateBlocks = true;
         }
 
-        this.deleteBlocksNotInRage(
-          contDays,
-          contDaysEnd,
-          newStart,
-          newEnd,
-          blockParentID,
-          true
-        );
-
-        // Agrega los bloqueos hacia los lados
-        for (; contDays <= contDaysEnd; contDays++) {
-          let startDay: Date = addDays(newStart, contDays);
-          let endDay: Date = addDays(newEnd, contDays);
-
-          // Agrega los bloqueos de los días en todas las semanas
-          for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
-            /**
-             * @var blockIDWeek 
-             * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
-             */
-            let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
-            let dayWeekID: string = blockParentID + '__' + contDays;
-            let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
-            let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
-
-            // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
-            if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
-              startDay > startOfView && startDay < endOfView &&
-              endDay > startOfView && endDay < endOfView) {
-              this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID, dayWeekID);
-            } else {
-              this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
+        if (updateBlocks) {
+          // Calcula la nueva hora de inicio y de fin del bloqueo
+          let newEnd = addHours(firstBlockDate, minutesDiff / segmentMinutes);
+          let newStart = firstBlockDate;
+  
+          if (newEnd < firstBlockDate && newEnd > startOfView) {
+            newStart = newEnd;
+            newEnd = firstBlockDate;
+          }
+  
+          // Contadores para agregar el bloqueo en otros días en el calendario, por defecto agrega a la derecha
+          let contDays = 0;
+          let contDaysEnd = daysDiff;
+          // Contadores para eliminar los bloqueos fuera de rango, por defecto elimina a la izquierda
+          let deleteFromIndex = -1;
+          let deleteToIndex = -6;
+  
+          // Cambia el valor de los contadores para agregar a la izquierda y eliminar a la derecha
+          if (daysDiff < 0) {
+            contDays = daysDiff;
+            contDaysEnd = 0;
+            deleteFromIndex = 1;
+            deleteToIndex = 6;
+          }
+  
+          this.deleteBlocksNotInRage(
+            contDays,
+            contDaysEnd,
+            newStart,
+            newEnd,
+            blockParentID,
+            true
+          );
+  
+          // Agrega los bloqueos hacia los lados
+          for (; contDays <= contDaysEnd; contDays++) {
+            let startDay: Date = addDays(newStart, contDays);
+            let endDay: Date = addDays(newEnd, contDays);
+  
+            // Agrega los bloqueos de los días en todas las semanas
+            for (let weekToAddBlock = this.startSchoolYear, contWeeks = 0; weekToAddBlock <= this.endSchoolYear; weekToAddBlock = addWeeks(weekToAddBlock, 1), contWeeks++) {
+              /**
+               * @var blockIDWeek 
+               * ID del bloqueo a agregar: block_[ContadorDeBLoqueos]__[DíaEnElQueSeAgrega]__[SemanaDelCicloLectivo]
+               */
+              let blockIDWeek: string = blockParentID + '__' + contDays + '__' + contWeeks;
+              let dayWeekID: string = blockParentID + '__' + contDays;
+              let startDayOnWeek: Date = addWeeks(startDay, contWeeks);
+              let endDayOnWeek: Date = addWeeks(endDay, contWeeks);
+  
+              // Mira si el bloqueo que se está agregando está en los rangos de días desplazados por el mouse y si el bloqueo ya existe
+              if (!this.calendarBlocks.some(myBlock => myBlock.id == blockIDWeek) &&
+                startDay > startOfView && startDay < endOfView &&
+                endDay > startOfView && endDay < endOfView) {
+                this.createBlockCalendarEvent(startDayOnWeek, endDayOnWeek, blockIDWeek, 'Bloqueo ' + this.blockIdCount, blockParentID, dayWeekID);
+              } else {
+                this.updateBlockCalendarEvent(blockIDWeek, startDayOnWeek, endDayOnWeek);
+              }
             }
           }
+  
+          // ACtualiza el bloqueo principal
+          this.updateBlockCalendarEvent(dragToSelectEvent.id + '', newStart, newEnd);
+          this.refreshCal();
         }
 
-        // ACtualiza el bloqueo principal
-        this.updateBlockCalendarEvent(dragToSelectEvent.id + '', newStart, newEnd);
-        this.refreshCal();
 
       });
   }

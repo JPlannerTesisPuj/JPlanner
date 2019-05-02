@@ -1,5 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { IImage } from 'ng-simple-slideshow';
+import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-use-guide',
@@ -9,7 +10,7 @@ export class UseGuideComponent implements OnInit {
   private imageUrls: (string | IImage)[];
   private height: string = '70vh';
   private arrowSize: string = '30px';
-  private showArrows: boolean = true;
+  private showArrows: boolean = false;
   private disableSwiping: boolean = false;
   private autoPlay: boolean = false;
   private backgroundSize: string = 'cover';
@@ -17,12 +18,17 @@ export class UseGuideComponent implements OnInit {
   private backgroundRepeat: string = 'no-repeat';
   private showDots: boolean = false;
   private showCaptions: boolean = true;
-  private captionColor: string = '#FFF';
-  private captionBackground: string = 'rgba(0, 0, 0, .35)';
+  private captionColor: string = '#4b4b4b';
+  private captionBackground: string = '#e4f2f5';
   private width: string = '100%';
+  private dotColor: string = '#008ca4';
 
   private device :string;
   private guideTitles:string[] = ['Buscar Materias', 'Información de Materia','Alternativas de Horario','Bloqueos','Visualizar Horario','Remover Materias','Conflictos','Inscribir Materias'];
+  private guideMiniTitles:string[] = ['Buscar', 'Info. Materia','Alternativas','Bloqueos','Horario','Remover Materias','Conflictos','Inscribir Materias'];
+
+  @ViewChild('slideshow') slides: any;
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth <= 768) {
@@ -67,7 +73,7 @@ export class UseGuideComponent implements OnInit {
       enroll:'Cuando tu cita de inscripción este habilitado, podrás ver en la sección de inscripción las materias de la alternativa actual, podrás remover las que no desees. Cuando estés listo presiona el botón de inscribir y el sistema intentara inscribir dicha alternativa en tu horario universitario.',
     }
   }
-  constructor() { }
+  constructor(public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
       if (window.screen.width <= 768) {
@@ -117,4 +123,11 @@ export class UseGuideComponent implements OnInit {
     ];
   }
 
+  private changeSlide(index: number) {
+    this.slides.goToSlide(index);
+  }
+
+  private nextPrevSlide(index: number) {
+    this.slides.onSlide(index);
+  }
 }
