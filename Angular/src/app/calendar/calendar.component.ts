@@ -603,7 +603,10 @@ export class CalendarComponent implements OnInit {
             //Colocar un ancho de 50% para las materias cruzadas en mobile
             this.classes.forEach(myClass => {
               if (myClass.id == theClass.id) {
-                myClass.cssClass = 'cal-event-overlapped-right';
+                let stringId: string= ""+ myClass.id;
+                if(stringId.indexOf("block") == -1){
+                  myClass.cssClass = 'cal-event-overlapped-right';
+                }
               }
             });
           }

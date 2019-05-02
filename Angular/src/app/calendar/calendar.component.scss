@@ -562,16 +562,14 @@
     margin: 12px 8px;
   }
   @media (min-width: $vp-mobile) and (max-width: $vp-tablet){
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-
+    text-align: center;
+    margin-bottom: 12px;
   }
 }
 .cal-shopping-cart{
   margin:0;
   @media (min-width: $vp-mobile) and (max-width: $vp-tablet){
-    margin-bottom: 100px;
+    margin-bottom: 20px;
   }
   .cal-shopping-item{
     height:65px;
