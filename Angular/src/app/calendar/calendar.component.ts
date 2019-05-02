@@ -288,7 +288,7 @@ export class CalendarComponent implements OnInit {
 
         if(!isBlock){
           if(!this.isMobile){
-            this.pintarConflictos();
+            this.printConflicts();
           }
         }
       }
@@ -345,13 +345,16 @@ export class CalendarComponent implements OnInit {
     //Inicializa el numero de alternativas, el arreglo de titulos y la alterativa escogida por defecto
     this.numberOfAlternatives = 6;
     this.overLappedInCellByAlternative = new Array(this.numberOfAlternatives);
-    this.overLappedInCellByAlternative.fill(new Set());
+    for(let i=0; i<this.numberOfAlternatives; i++){
+      this.overLappedInCellByAlternative[i]=new Set();
+    }
     this.blocksOverlapsClassesAndBlocks = new Array(this.numberOfAlternatives);
     this.blocksOverlapsClassesAndBlocks.fill(false);
     this.creditCounter = new Array(this.numberOfAlternatives);
     this.creditCounter.fill(0);
     this.initTitles();
     this.onItemChange(0);
+
     this.viewDate = this.readJSONFileService.consumeLectiveCycle();
 
     this.conflictCrossedClasses.fill(false);
@@ -771,7 +774,7 @@ export class CalendarComponent implements OnInit {
     this.checkSameClassConflict();
 
     if(!this.isMobile){
-      this.pintarConflictos();
+      this.printConflicts();
     }
 
   }
@@ -1198,6 +1201,10 @@ export class CalendarComponent implements OnInit {
     this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
     this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
 
+    this.overLappedInCellByAlternative[2].add(69);
+    for(let i=0; i<6; i++){
+      console.log(i,this.overLappedInCellByAlternative[i]);
+    }
     this.updateClassSize();
   }
   /**
@@ -1894,7 +1901,7 @@ export class CalendarComponent implements OnInit {
     return fullYear + '-' + actualCycle
   }
 
-  private pintarConflictos(){
+  private printConflicts(){
     //Que las clases se pinten
     this.alternativeClasses[this.currentAlternative].forEach(subj => {
 
