@@ -30,46 +30,10 @@ div.slideshow-main-container {
 
     &--right {
         right: 0;
-
-        &::after {
-            content: '';
-            border-top: 5px solid $light-blue;
-            border-right: 5px solid $white;
-            border-bottom: 5px solid $white;
-            border-left: 5px solid $light-blue;
-            position: absolute;
-            bottom: -9px;
-            right: 0px;
-        }
-
-        &:hover {
-            &::after {
-                border-top-color: $light-blue-30;
-                border-left-color: $light-blue-30;
-            }
-        }
     }
 
     &--left {
         left: 0;
-
-        &::after {
-            content: '';
-            border-top: 5px solid $light-blue;
-            border-right: 5px solid $light-blue;
-            border-bottom: 5px solid $white;
-            border-left: 5px solid $white;
-            position: absolute;
-            bottom: -9px;
-            left: 0px;
-        }
-
-        &:hover {
-            &::after {
-                border-top-color: $light-blue-30;
-                border-right-color: $light-blue-30;
-            }
-        }
     }
 
     &:hover {
