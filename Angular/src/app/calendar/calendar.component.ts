@@ -358,8 +358,6 @@ export class CalendarComponent implements OnInit {
     this.loadEventSubscription = this.loadEvent.subscribe(
       () => {
         this.readJSONFileService.getUserAlternatives().subscribe(alternatives => {
-          console.log(alternatives);
-          console.log(alternatives.length);
           this.loadAlternatives(alternatives);
         });
       }
