@@ -272,14 +272,10 @@ export class CalendarComponent implements OnInit {
    * Subscripción a cambios en el numero de clases sobrepuestas de la alternativa actual
    */
   ngDoCheck() {
-    console.log('1')
     const change = this.differ.diff(this.overLappedIds);
-    console.log(change);
     if (change) {
-      console.log('2')
       //Si hay mas de una clase sobrepuesta muestre el mensaje de conflicto
       if (change.length > 1) {
-        console.log('3')
 
         //Se verifica si la clase está siendo agregada encima de un bloqueo
         let isBlock: boolean= false;
@@ -307,7 +303,6 @@ export class CalendarComponent implements OnInit {
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
       else if (change.length == 0 || change.length == 1) {
-        console.log('4')
 
         //Que las clases vuelvan a su estado normal
         this.classes.forEach(myClass => {
@@ -363,6 +358,8 @@ export class CalendarComponent implements OnInit {
     this.loadEventSubscription = this.loadEvent.subscribe(
       () => {
         this.readJSONFileService.getUserAlternatives().subscribe(alternatives => {
+          console.log(alternatives);
+          console.log(alternatives.length);
           this.loadAlternatives(alternatives);
         });
       }
@@ -792,32 +789,35 @@ export class CalendarComponent implements OnInit {
    */
   private getOverLappedFromDatabase(newClasses: CalendarEvent[], subjectToDisplay: Subject, alternativeNumber: number): Set<string | number> {
     let overLappedInSubject = new Set();
-    for (let theClass of newClasses) {
-      for (let horary of subjectToDisplay.horarios) {
-        let startHour: Date = new Date(horary.horaInicio);
-        let endHour: Date = new Date(horary.horaFin);
-        if (areRangesOverlapping(startHour, endHour, theClass.start, theClass.end)) {
-          this.overLappedInCellByAlternative[alternativeNumber].add(subjectToDisplay.numeroClase);
-          this.overLappedInCellByAlternative[alternativeNumber].add(theClass.id);
-          overLappedInSubject.add(theClass.id);
-          overLappedInSubject.add(subjectToDisplay.numeroClase);
-
-          if(this.isMobile){
-            //Colocar un ancho de 50% para las materias cruzadas en mobile
-            this.alternativeClasses[alternativeNumber].forEach(myClass => {
-              if (myClass.id == theClass.id) {
-                let stringID: string = '' + myClass.id;
-                if (stringID.indexOf('block') == -1) {
-                  myClass.cssClass = 'cal-event-overlapped-right';
+    if (newClasses != undefined) {
+      for (let theClass of newClasses) {
+        for (let horary of subjectToDisplay.horarios) {
+          let startHour: Date = new Date(horary.horaInicio);
+          let endHour: Date = new Date(horary.horaFin);
+          if (areRangesOverlapping(startHour, endHour, theClass.start, theClass.end)) {
+            this.overLappedInCellByAlternative[alternativeNumber].add(subjectToDisplay.numeroClase);
+            this.overLappedInCellByAlternative[alternativeNumber].add(theClass.id);
+            overLappedInSubject.add(theClass.id);
+            overLappedInSubject.add(subjectToDisplay.numeroClase);
+  
+            if(this.isMobile){
+              //Colocar un ancho de 50% para las materias cruzadas en mobile
+              this.alternativeClasses[alternativeNumber].forEach(myClass => {
+                if (myClass.id == theClass.id) {
+                  let stringID: string = '' + myClass.id;
+                  if (stringID.indexOf('block') == -1) {
+                    myClass.cssClass = 'cal-event-overlapped-right';
+                  }
                 }
-              }
-            });
+              });
+            }
+  
+            break;
           }
-
-          break;
         }
       }
     }
+
     return overLappedInSubject;
   }
 
@@ -865,22 +865,18 @@ export class CalendarComponent implements OnInit {
       this.overLappedIds = this.overLappedInCellByAlternative[alternativeNumber];
     }
 
-    // if(this.isMobile){
-    //   //Colocar un ancho de 50% para las materias cruzadas en mobile
-    //   this.alternativeClasses[alternativeNumber].forEach(myClass => {
-    //     this.overLappedInCellByAlternative[alternativeNumber].forEach(overlappedId => {
-    //       if (myClass.id == subjectToDisplay.numeroClase && myClass.id == overlappedId) {
-    //         myClass.cssClass = 'cal-event-overlapped-left';
-    //       }
-    //     });
-    //   });
-    // }
+    if (subjectToDisplay.cuposDisponibles <= 0) {
+      this.conflictSize[alternativeNumber] = true;
+    }
 
     if (this.currentAlternative == alternativeNumber) {
       this.overLappedIds = this.overLappedInCellByAlternative[alternativeNumber];
     }
+
+    this.checkSameClassConflict();
     
     this.creditCounter[alternativeNumber] += subjectToDisplay.creditos;
+
 
     this.refresh.next();
   }
@@ -939,6 +935,7 @@ export class CalendarComponent implements OnInit {
       if (this.currentAlternative == alternativeNumber) {
         this.classes = this.alternativeClasses[alternativeNumber];
       }
+
       this.refresh.next();
 
     return newBlock;
@@ -1169,12 +1166,10 @@ export class CalendarComponent implements OnInit {
       this.overLappedInCellByAlternative[this.currentAlternative] = new Set<any>();
     }
 
-    console.log('last', this.overLappedIds);
     this.classes = this.alternativeClasses[this.currentAlternative];
     this.calendarClasses = this.alternativeCalendarClasses[this.currentAlternative];
     this.calendarBlocks = this.alternativeCalendarBlocks[this.currentAlternative];
     this.overLappedIds = this.overLappedInCellByAlternative[this.currentAlternative];
-    console.log('current', this.overLappedIds);
 
     this.updateClassSize();
   }
@@ -1622,9 +1617,11 @@ export class CalendarComponent implements OnInit {
     this.classes.forEach((value) => {
       indexesArray.add(value.id);
       if(!isNoSizeClass){
-        if(this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0] != undefined){
-          if(this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0].cuposTotales == 0){
-            isNoSizeClass =true;
+        if (this.calendarClasses != undefined) {
+          if(this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0] != undefined){
+            if(this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0].cuposTotales == 0){
+              isNoSizeClass =true;
+            }
           }
         }
       }

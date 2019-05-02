@@ -66,14 +66,17 @@ body {
   opacity: 0;
   visibility: hidden;
   text-align: center;
-  font-size: 22px;
-  line-height:100px;
+  font-size: 18px;
+  line-height: 50px;
   height:0;
   color: $white;
   &.displayed{
     opacity: 1;
     visibility: visible;
-    height:100px;
+    height: auto;
+    min-height: 50px;
+    margin-bottom: 10px;
+    
     &.success{
       background:$green-90;
     }
