@@ -51,7 +51,7 @@
         </i>
       </ng-template>
       <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]'
-        [classes]='alternativeCalendarClasses[currentAlternative]' [conflict]="sholudDisplayDialog[this.currentAlternative]"></app-shopping-cart>
+        [classes]='alternativeCalendarClasses[currentAlternative]' [conflict]="conflictCrossedClasses[currentAlternative] || conflictsameClass[currentAlternative] || conflictSize[currentAlternative]"></app-shopping-cart>
     </mat-tab>
   </mat-tab-group>
 </div>
@@ -81,7 +81,7 @@
       </label>
     </div>
   </div>
-  <div *ngIf="sholudDisplayDialog[currentAlternative]" class="cal-conflict-msj">
+  <div *ngIf="conflictCrossedClasses[currentAlternative] || conflictsameClass[currentAlternative] || conflictSize[currentAlternative]" class="cal-conflict-msj">
     <span>
       ¡Conflicto!</span>
     <i class="material-icons">warning</i>
@@ -164,7 +164,7 @@
         </i>
       </ng-template>
       <app-shopping-cart (removeSubject)="removeClass($event)" [altTitle]='alternativeTitles[currentAlternative]'
-        [classes]='alternativeCalendarClasses[currentAlternative]' [conflict]="sholudDisplayDialog[this.currentAlternative]"></app-shopping-cart>
+        [classes]='alternativeCalendarClasses[currentAlternative]' [conflict]="conflictCrossedClasses[currentAlternative] || conflictsameClass[currentAlternative] || conflictSize[currentAlternative]"></app-shopping-cart>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>

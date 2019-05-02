@@ -61,7 +61,27 @@ body {
     display: none;
   }
 }
-
+#information-msj{
+  transition: opacity 600ms, visibility 600ms;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  font-size: 22px;
+  line-height:100px;
+  height:0;
+  color: $white;
+  &.displayed{
+    opacity: 1;
+    visibility: visible;
+    height:100px;
+    &.success{
+      background:$green-90;
+    }
+    &.alreadyAdded,&.block{
+      background:$red-90;
+    }
+  }
+}
 .app-blocked-menu{
   position: fixed;
   background: $black;
