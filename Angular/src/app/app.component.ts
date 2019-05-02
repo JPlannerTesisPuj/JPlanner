@@ -77,7 +77,8 @@ export class AppComponent implements OnInit {
   private openUseGuide() {
     let dialogRef: any = this.dialog.open(UseGuideComponent, {
       width: '100vw',
-    });
+      panelClass: 'use-guide--dialog'
+    })
   }
 
   /**
