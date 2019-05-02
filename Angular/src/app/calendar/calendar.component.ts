@@ -288,17 +288,8 @@ export class CalendarComponent implements OnInit {
 
         if(!isBlock){
           if(!this.isMobile){
-            //Pintar las clases que tienen conflicto
-            this.classes.forEach(myClass => {
-              this.overLappedIds.forEach(crossedID => {
-                if (myClass.id == crossedID) {
-                  myClass.cssClass = 'cal-event-overlapped';
-                }
-              });
-            });
+            this.pintarConflictos();
           }
-  
-          this.conflictCrossedClasses[this.currentAlternative] = true;
         }
       }
       //Si hay 0 o 1 clase sobrepuesta singifica que ya no hay clases sobrepuestas
@@ -521,13 +512,6 @@ export class CalendarComponent implements OnInit {
         }
         let overLappedInAdded = this.getOverLapped(newClasses, subjectToDisplay);
         if (this.overLappedIds.size == 0) {
-          if(subjectToDisplay.cuposTotales == 0){
-            this.classes.forEach(myClass => {
-              if(subjectToDisplay.numeroClase == myClass.id){
-                myClass.cssClass = 'cal-event-overlapped';
-              }
-            });
-          }
           this.addClass(newClasses, subjectToDisplay);
         } else {
           //Se verifica si la clase está siendo agregada encima de un bloqueo
@@ -670,13 +654,6 @@ export class CalendarComponent implements OnInit {
         }
         let overLappedInAdded = this.getOverLapped(newClasses, subjectToDisplay);
         if (this.overLappedIds.size == 0) {
-          if(subjectToDisplay.cuposTotales == 0){
-            this.classes.forEach(myClass => {
-              if(subjectToDisplay.numeroClase == myClass.id){
-                myClass.cssClass = 'cal-event-overlapped';
-              }
-            });
-          }
           this.addClass(newClasses, subjectToDisplay);
         } else {
 
@@ -792,6 +769,10 @@ export class CalendarComponent implements OnInit {
     this.refresh.next();
     //Este método verifica si el usuario agregó una clase de la misma materia, si es así, le muestra una alerta 
     this.checkSameClassConflict();
+
+    if(!this.isMobile){
+      this.pintarConflictos();
+    }
 
   }
 
@@ -1911,6 +1892,51 @@ export class CalendarComponent implements OnInit {
     }
 
     return fullYear + '-' + actualCycle
+  }
+
+  private pintarConflictos(){
+    //Que las clases se pinten
+    this.alternativeClasses[this.currentAlternative].forEach(subj => {
+
+      //Bandera para verificar que no haya muchas clases de la misma materia
+      let sameClass= false;
+
+      //Acá verifica si hay materias con clases repetidas y que esa clase sea la misma de la iteración
+      this.alternativeCalendarClasses[this.currentAlternative].forEach(myFirstClass => {
+        this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass => {
+          if(myFirstClass.numeroClase != myClass.numeroClase){
+            if(myFirstClass.idCurso == myClass.idCurso && myFirstClass.numeroClase == subj.id){
+              sameClass= true;
+              this.conflictsameClass[this.currentAlternative] = true;
+            }
+          }
+        });
+      });
+
+      //Bandera para revisar si el id es igual a alguna clase
+      let idOverLapped= false;
+      //Acá se comprueba si el id se la clase se cruza con alguno de los ids de la lista de ids cruzados
+      this.overLappedIds.forEach(crossedID => {
+        if (subj.id == crossedID) {
+          idOverLapped= true;
+          this.conflictCrossedClasses[this.currentAlternative] = true;
+        }
+      });
+
+      //Bandera para revisar si la clase tiene los cupos en cero
+      let quotas= false;
+      this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass => {
+          if(myClass.cuposTotales == 0 && myClass.numeroClase == subj.id){
+            quotas= true;
+            this.conflictSize[this.currentAlternative] = true;
+          }
+      });
+
+      //Si la clase tiene los cupos en cero, otras clases de la misma materia u horario cruzado la pinta
+      if(quotas || sameClass || idOverLapped){
+        subj.cssClass = 'cal-event-overlapped';
+      }
+    });
   }
 
 }
