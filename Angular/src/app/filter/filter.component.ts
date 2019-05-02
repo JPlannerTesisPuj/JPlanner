@@ -465,7 +465,6 @@ export class FilterComponent implements OnInit {
         'scholar-year': yearToSend,
         'grade': gradeToSend
       }
-      console.log(data);
       // Si el filtro es básico , no envie los datos de esos filtros
       if (!this.isAdvancedSearch) {
         this.restartAdvFilter(data);
