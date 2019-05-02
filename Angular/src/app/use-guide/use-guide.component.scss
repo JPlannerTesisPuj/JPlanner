@@ -23,6 +23,8 @@ div.slideshow-main-container {
     top: 50%;
     transform: translateY(-50%);
     background-color: $light-blue;
+    height: 48px;
+    width: 48px;
 
     @media screen and (max-width: $vp-mobile) {
         display: none;
@@ -44,8 +46,11 @@ div.slideshow-main-container {
         cursor: pointer;
 
         i {
+            position: absolute;
             color: $white;
             font-size: 48px;
+            top: 0;
+            right: 0;
         }
     }
 }
@@ -57,7 +62,7 @@ div.slideshow-main-container {
     top: 0;
     right: 0;
     padding: 20px;
-    padding-top: 50px;
+    padding-top: 0;
     padding-bottom: 0;
     height: 50px;
     background-color: rgba($light-blue, 0.7);
@@ -86,6 +91,22 @@ div.slideshow-main-container {
 
         > #{$self}--container {
             height: calc(100% - 50px);
+        }
+    }
+
+    &--title {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        height: 50px;
+
+        #{$self}--item-title {
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translateX(50%) translateY(-50%);
+            font-weight: 900;
+            color: $white;
         }
     }
 
@@ -136,18 +157,5 @@ div.slideshow-main-container {
                 cursor: pointer;
             }
         }
-
-        #{$self}--item-title {
-            position: absolute;
-            top: 15px;
-            right: 0;
-            width: 100%;
-            padding: 4px;
-            color: $white;
-            text-align: center;
-            font-weight: 900;
-            margin-bottom: 10px;
-        }
-
     }
 }
