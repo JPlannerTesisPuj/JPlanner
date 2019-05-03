@@ -81,7 +81,7 @@ div.slideshow-main-container {
 
         @media screen and (max-width: $vp-mobile) {
             right: 0;
-            height: 0;
+            height: 50px;
         }
 
         + #{$self}--close {

@@ -28,6 +28,7 @@ export class UseGuideComponent implements OnInit {
   private guideMiniTitles:string[] = ['Buscar', 'Info. Materia','Alternativas','Bloqueos','Horario','Remover Materias','Conflictos','Inscribir Materias'];
 
   @ViewChild('slideshow') slides: any;
+  @ViewChild('slideMenu') slideMenu: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -129,5 +130,13 @@ export class UseGuideComponent implements OnInit {
 
   private nextPrevSlide(index: number) {
     this.slides.onSlide(index);
+  }
+
+  private openMenu() {
+    this.slideMenu.nativeElement.classList.add('slide-menu--open');
+  }
+
+  private closeMenu() {
+    this.slideMenu.nativeElement.classList.remove('slide-menu--open');
   }
 }

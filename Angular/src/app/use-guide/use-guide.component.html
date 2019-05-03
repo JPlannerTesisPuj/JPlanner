@@ -46,7 +46,7 @@
       </div>
   </div>
 </div>
-<div class="slide-menu">
+<div #slideMenu class="slide-menu" (touchstart)="openMenu()">
   <div class="slide-menu--title">
     <span class="slide-menu--item-title">MENÚ</span>
   </div>
@@ -58,6 +58,6 @@
     </li>
   </ul>
 </div>
-<div class="slide-menu--close">
+<div class="slide-menu--close" (touchstart)="closeMenu()">
   <span class="slide-menu--close-text">CERRAR MENÚ</span>
 </div>
