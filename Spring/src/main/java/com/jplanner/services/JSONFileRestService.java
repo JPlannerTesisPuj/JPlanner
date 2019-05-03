@@ -182,7 +182,7 @@ public class JSONFileRestService {
 				filter_search += ")";
 				
 			} else {
-				filter_search = "@.unidadAcademica && @.profesor && @.nombre";
+				filter_search = "@.unidadAcademica && @.nombre";
 			}
 			
 			//Filtro de Hora y Dias
@@ -216,7 +216,7 @@ public class JSONFileRestService {
 				for (int diaHorario = 0; diaHorario < 7; ++diaHorario) {
 					filter_days_hours += "(@.horarios[" + diaHorario + "].dia==" + dayNumber + " && (@.horarios["
 							+ diaHorario + "].horaNumeroInicio >= " + hourFromNumber + " && @.horarios[" + diaHorario
-							+ "].horaNumeroFin <= " + hourToNumber + "))" + "||";
+							+ "].horaNumeroFin <= " + hourToNumber + " && @.horarios[" + diaHorario + "].profesor" + "))" + "||";
 				}
 			}
 
