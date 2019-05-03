@@ -155,6 +155,7 @@ export class FilterComponent implements OnInit {
       isChecked: false,
     };
 
+    
     // Subscripción para recbir mensajes
     this.initDropDowns();
     this.data.currentMessage.subscribe(message => this.filterMsj = message);
@@ -384,7 +385,7 @@ export class FilterComponent implements OnInit {
       if (this.year === 'Cualquiera') {
         yearToSend = this.yearActualCycle;
         if(this.isAdvancedSearch){
-          yearToSend = 'none';
+          yearToSend = this.yearActualCycle;
         }
       }
       if (this.gradeFilter === 'Cualquiera') {
@@ -413,18 +414,23 @@ export class FilterComponent implements OnInit {
       let splittedTo = hmsTo.split(':');
       let secondsTo = (+splittedTo[0]) * 60 * 60 + (+splittedTo[1]) * 60 + (+splittedTo[2]);
 
+      if(!isNaN(secondsTo) && isNaN(secondsFrom)){
+        secondsFrom = 0;
+        secondsTo = 86399;
+      }else{
       if (isNaN(secondsTo)) {
         secondsTo = 86399;
       }
       if (isNaN(secondsFrom)) {
         secondsFrom = 0;
       }
+    }
 
       let hours: any = {
         'from': secondsFrom,
         'to': secondsTo
       }
-
+ 
       let selectedDropdownSearch = this.selectedItemsSearch.toString().replace(/,/g, '-');
       selectedDropdownSearch = selectedDropdownSearch.replace(/ /g, '');
       
@@ -459,7 +465,6 @@ export class FilterComponent implements OnInit {
         'scholar-year': yearToSend,
         'grade': gradeToSend
       }
-
       // Si el filtro es básico , no envie los datos de esos filtros
       if (!this.isAdvancedSearch) {
         this.restartAdvFilter(data);
