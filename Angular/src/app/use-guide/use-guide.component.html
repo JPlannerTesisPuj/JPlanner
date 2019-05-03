@@ -51,7 +51,7 @@
     <span class="slide-menu--item-title">MENÚ</span>
   </div>
   <ul class="slide-menu--container">
-    <li *ngFor="let title of guideTitles; let i = index" (click)="changeSlide(i)" class="slide-menu--item">
+    <li *ngFor="let title of guideTitles; let i = index" (click)="changeSlide(i); closeMenu()" class="slide-menu--item">
       <a class="slide-menu--link">
         {{ title }}
       </a>
