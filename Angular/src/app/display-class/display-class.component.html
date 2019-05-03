@@ -1,0 +1,13 @@
+<!-- Mira si la materia que le llego no es nula y si no lo es imprime su información -->
+<div *ngIf="subject" class="dis-cls-subject class-box">
+  <div class="dis-fix-classes">
+    <a *ngFor="let horary of weekHoraries(subject.horarios) | keyvalue" (click)="openDialog(subject)">
+      {{ horary.value[0] | date:'EEEE: H:mm':locale }} - {{ horary.value[1] | date:'H:mm':locale }}
+    </a>
+    <a *ngIf="moreClasses">...</a>
+  </div>
+  <div class="dis-fix-quotas">
+    <span>Cupos disponibles: <em>{{ subject.cuposDisponibles }}</em></span>
+  </div>
+    <i (click)="addSubject()" class="material-icons add-btn">add</i>
+ </div>

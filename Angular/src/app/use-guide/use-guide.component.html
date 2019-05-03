@@ -1,0 +1,63 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="slider-container" #sliderContainer>
+  <h1 style="text-align:center">
+    {{guideTitles[slideshow.slideIndex]}}
+  </h1>
+  <div style="display:block;"
+       [style.width]="width" class="slideshow-main-container">
+    <slideshow #slideshow
+               [imageUrls]="imageUrls"
+               [height]="height"
+               [minHeight]="minHeight"
+               [arrowSize]="arrowSize"
+               [showArrows]="showArrows"
+               [disableSwiping]="disableSwiping"
+               [autoPlay]="autoPlay"
+               [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
+               [debug]="debug"
+               [backgroundSize]="backgroundSize"
+               [backgroundPosition]="backgroundPosition"
+               [backgroundRepeat]="backgroundRepeat"
+               [showDots]="showDots"
+               [dotColor]="dotColor"
+               [showCaptions]="showCaptions"
+               [captionColor]="captionColor"
+               [captionBackground]="captionBackground"
+               [lazyLoad]="lazyLoad"
+               [hideOnNoSlides]="hideOnNoSlides"
+               [fullscreen]="fullscreen"
+               [dotColor]="dotColor">
+    </slideshow>
+
+    <div class="slide-arrow slide-arrow--right" (click)="nextPrevSlide(1)">
+      <a class="slide-arrow--link">
+        <i class="material-icons">
+          keyboard_arrow_right
+        </i>
+      </a>
+    </div>
+
+    <div class="slide-arrow slide-arrow--left" (click)="nextPrevSlide(-1)">
+        <a class="slide-arrow--link">
+          <i class="material-icons">
+            keyboard_arrow_left
+          </i>
+        </a>
+      </div>
+  </div>
+</div>
+<div #slideMenu class="slide-menu" (touchstart)="openMenu()">
+  <div class="slide-menu--title">
+    <span class="slide-menu--item-title">MENÚ</span>
+  </div>
+  <ul class="slide-menu--container">
+    <li *ngFor="let title of guideTitles; let i = index" (click)="changeSlide(i); closeMenu()" class="slide-menu--item" (touchstart)="closeMenu()">
+      <a class="slide-menu--link">
+        {{ title }}
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="slide-menu--close" (touchstart)="closeMenu()">
+  <span class="slide-menu--close-text">CERRAR MENÚ</span>
+</div>

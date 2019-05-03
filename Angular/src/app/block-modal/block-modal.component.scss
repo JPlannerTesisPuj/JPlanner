@@ -1,0 +1,68 @@
+.b-modal {
+    width: 100%;
+    max-width: calc(100% - 24px);
+    height: 650px;
+
+    &--content {
+        height: 70%;
+        padding-right: 0px;
+    }
+
+    b{
+        margin-top: 8px;
+    }
+}
+
+.b-modal-input-fix{
+    min-width: 100%;
+    margin-left: 0px;
+    max-width: calc(100% - 24px);
+    padding: 0px 0px 0px 12px;
+    font-size: 14px;
+}
+
+.b-modal-input-box-fix{
+    min-width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 0px;
+    max-width: calc(100% - 24px);
+}
+
+.b-modal-atom-custom-margin-fix .multiselect-dropdown .dropdown-btn {
+    font-size: 14px !important;
+    font-style: italic;
+    margin-top: 8px;
+    margin-bottom: 8px !important;
+
+    span.selected-item.ng-star-inserted{
+        background-color: $light-blue !important;
+    }
+ }
+
+ .b-modal-atom-custom-list-fix .multiselect-dropdown .dropdown-list {
+    min-width: 100%;
+    max-width: calc(100% - 24px) !important;
+    margin-left: 0px !important; 
+ }
+
+ .b-modal-atom-dropdown-fix{
+    font-size: 14px;
+    padding-left: 12px;
+    margin-top: 8px;
+    margin-right: 8px;
+    width: 120px;
+ }
+
+ .b-modal-atom-buttons-fix{
+    font-size: 14px;
+    margin-top: 12px;
+    margin-right: 0px; 
+  }
+
+.b-modal-center{
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,79 @@
+<div class="cls-mod-small">
+
+  <div class="cls-mod-block-title grid-noGutter">
+
+    <div class="cls-mod-title col-12">
+      <span>{{ subject.nombre }}</span>
+      <span class="cls-mod-title subtitle">| {{ subject.unidadAcademica }}</span>
+    </div>
+
+
+    <div class="col-12 cls-mod-border">
+      <div class="cls-mod-elements-line" > ID Curso: {{ subject.idCurso }} | N. de clase: {{ subject.numeroClase }} | Creditos: {{ subject.creditos }} | Estado:
+        <span class="cls-mod-elements-line status">{{ colorStatus( subject.estado ) }}</span>
+        <span class="dot" *ngIf="showCircle"></span>
+        <span class="square" *ngIf="showRectangle"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cls-mod-block-content">
+    <div class="cls-mod-description">
+      <div class="cls-mod-description title">Descripción</div>
+      <div class="cls-mod-description below">{{ subject.descripcion }}</div>
+    </div>
+    <div class="cls-mod-middle-data block">
+      <div class="cls-mod-middle-data below">
+        <span class="cls-mod-middle-data subtitle">Cupos totales</span>
+        <span>{{ subject.cuposTotales }}</span>
+      </div>
+      <div class="cls-mod-middle-data below">
+        <span class="cls-mod-middle-data subtitle">Cupos disponibles </span>
+        <span class="cls-mod-middle-data underline">{{ subject.cuposDisponibles }}</span>
+      </div>
+      <div class="cls-mod-middle-data below">
+        <span class="cls-mod-middle-data subtitle">Modo enseñanza </span>
+        <span>{{ subject.modoEnsenanza }}</span>
+      </div>
+      <div class="cls-mod-middle-data below">
+        <span class="cls-mod-middle-data subtitle">Grado </span>
+        <span>{{ subject.grado }}</span>
+      </div>
+      <div class="cls-mod-middle-data below">
+        <span class="cls-mod-middle-data subtitle">Ciclo Lectivo </span>
+        <span>{{ subject.cicloLectivo }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="cls-mod-main-container">
+
+    <table>
+      <thead>
+        <tr>
+          <th>DÍA Y HORA</th>
+          <th>SALÓN</th>
+          <th>PROFESOR</th>
+          <th>FECHA</th>
+        </tr>
+      </thead>
+
+      <ng-container *ngFor="let horary of paginatedHoraries[currentHoraryPage]">
+        <tr>
+          <td class="modal-table-hour">{{textToDate( horary.horaInicio) | date:'EEEE: hh:mm':locale}} - {{textToDate( horary.horaFin) | date:'hh:mm':locale}}
+          </td>
+          <td>{{horary.salon}}</td>
+          <td>{{horary.profesor}}</td>
+          <td>{{textToDate( horary.horaInicio) | date:'d \'de\' MMMM \'de\' y':locale}}</td>
+        </tr>
+      </ng-container>
+    </table>
+
+    <div *ngFor="let item of paginatedHoraries | paginate: { itemsPerPage: 1, currentPage: p }"></div>
+    <pagination-controls (pageChange)="p = $event ;pageChanged($event-1); " previousLabel="" nextLabel="">
+    </pagination-controls>
+
+  </div>
+
+</div>

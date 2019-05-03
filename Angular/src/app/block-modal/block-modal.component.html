@@ -1,0 +1,54 @@
+<div class="b-modal">
+
+  <div *ngIf="errorExists" class="cal-conflict-msj">
+    <i class="material-icons">warning</i>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <h2 mat-dialog-tittle> Datos del bloqueo</h2>
+
+  <mat-dialog-content class="mat-typography b-modal--content">
+    <b>Seleccione un nombre para el bloqueo</b>
+    <br>
+
+    <div class="search-container col-12 b-modal-input-box-fix">
+      <input [(ngModel)]="blockName" type="text" class="col-12 atom-input-field b-modal-input-fix" placeholder="Nombre del bloqueo">
+    </div>
+
+    <b>Seleccione el/los día(s) en los que desea añadir el bloqueo</b>
+
+    <div class="grid-noGutter" id="basic-search">
+      <div id="week-days" class="col-12 grid-noGutter">
+        <label class="col-12" for="week-days"></label>
+        <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-list b-modal-atom-custom-margin-fix b-modal-atom-custom-list-fix" [placeholder]="'Días de la Semana'" [data]="dropdownListWeek"
+          [(ngModel)]="blockSelectedItemsWeek" [settings]="dropdownSettings">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <b>Seleccione una franja horaria</b>
+
+    <div id="week-hours">
+      <label for='week-hours'></label>
+      <select id="blockHourFrom" class="hour-dropdown col-6 atom-dropdown b-modal-atom-dropdown-fix" [(ngModel)]="blockSelectedOptionFrom"
+        (ngModelChange)="onChangeFromBlockHour($event)">
+        <option value="" disabled selected>Hora inicial</option>
+        <option *ngFor="let hour of blockHoursFrom">
+          {{hour}}
+        </option>
+      </select>
+      <select id="blockHourTo" [(ngModel)]="blockSelectedOptionTo" class="hour-dropdown col-6 atom-dropdown b-modal-atom-dropdown-fix" data-push-left="off-2">
+        <option value="" disabled selected>Hora final</option>
+        <option *ngFor="let hour of blockHoursTo">
+          {{hour}}
+        </option>
+      </select>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="b-modal-center">
+        <button mat-button (click)="createBlocks()" class="atom-buttons b-modal-atom-buttons-fix">Agregar Bloqueo</button>
+    </div>
+  </mat-dialog-actions>
+</div>
