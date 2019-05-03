@@ -86,37 +86,37 @@ export class UseGuideComponent implements OnInit {
       this.device = 'desktop';
     }
     this.imageUrls = [
-      { url: 'assets/start-guide/images/'+this.device+'_search.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_search.PNG',
       caption: this.descriptions[this.device]["search"],
       backgroundSize: 'contain', backgroundPosition: 'center', 
       
       },
       
-      { url: 'assets/start-guide/images/'+this.device+'_moreInfo.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_moreInfo.PNG',
       caption: this.descriptions[this.device]["moreInfo"],
       backgroundSize: 'contain', backgroundPosition: 'center'      
       }, 
-      { url: 'assets/start-guide/images/'+this.device+'_plan.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_plan.PNG',
       caption: this.descriptions[this.device]["plan"],
       backgroundSize: 'contain', backgroundPosition: 'center'      
       }, 
-      { url: 'assets/start-guide/images/'+this.device+'_block.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_block.PNG',
       caption: this.descriptions[this.device]["block"],
       backgroundSize: 'contain', backgroundPosition: 'center',
       },
-      { url: 'assets/start-guide/images/'+this.device+'_horaries.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_horaries.PNG',
       caption: this.descriptions[this.device]["horaries"],
       backgroundSize: 'contain', backgroundPosition: 'center',
       },
-      { url: 'assets/start-guide/images/'+this.device+'_remove.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_remove.PNG',
       caption: this.descriptions[this.device]["remove"],
       backgroundSize: 'contain', backgroundPosition: 'center',
       },
-      { url: 'assets/start-guide/images/'+this.device+'_conflicts.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_conflicts.PNG',
       caption: this.descriptions[this.device]["conflicts"],
       backgroundSize: 'contain', backgroundPosition: 'center',
       },
-      { url: 'assets/start-guide/images/'+this.device+'_enroll.jpg',
+      { url: 'assets/start-guide/images/'+this.device+'_enroll.PNG',
       caption: this.descriptions[this.device]["enroll"],
       backgroundSize: 'contain', backgroundPosition: 'center'
       },
