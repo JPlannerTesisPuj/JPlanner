@@ -81,12 +81,24 @@ div.slideshow-main-container {
 
         @media screen and (max-width: $vp-mobile) {
             right: 0;
+            height: 50px;
+        }
+
+        > #{$self}--container {
+            height: calc(100% - 50px);
+        }
+    }
+
+    &#{$self}--open {
+        @media screen and (max-width: $vp-mobile) {
             height: calc(100% - 50px);
         }
 
         + #{$self}--close {
-            height: 50px;
-            padding: 20px;
+            @media screen and (max-width: $vp-mobile) {
+                height: 50px;
+                padding: 20px;
+            }
         }
 
         > #{$self}--container {

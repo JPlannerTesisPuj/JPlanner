@@ -39,7 +39,8 @@ export class DisplayClassComponent implements OnInit {
     horaries.forEach(horary => {
       if (!weekHours.has(getDay(horary.horaInicio))) {
         contClasses++;
-        weekHours.set(getDay(horary.horaInicio), [new Date(horary.horaInicio), new Date(horary.horaFin)]);
+        if(contClasses <= 3)
+          weekHours.set(getDay(horary.horaInicio), [new Date(horary.horaInicio), new Date(horary.horaFin)]);
       }
     });
     
