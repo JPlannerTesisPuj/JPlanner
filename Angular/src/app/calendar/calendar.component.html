@@ -9,7 +9,7 @@
 <div *ngIf="isMobile" class="col-12 cal-display-sm lg-hidden md-hidden cal-alt-mobile">
   <div *ngIf="verticalMenuIndexMobile!=0" class="cal-alternatives-paginator ">
     <div class="cal-alt-title-div">
-      <input [(ngModel)]="alternativeTitles[currentAlternative]" class="atom-alternative-input-field" id="cal-alt-title"
+      <input [(ngModel)]="alternativeTitles[currentAlternative]" class="atom-alternative-input-field" id="cal-alt-title" readonly
         maxlength="25" name="Alternative Title" type="text"></div>
     <div class="cal-alt-radio-group">
       <label *ngFor='let ind of alternativeIterationArray ' class="cal-radio-container">
@@ -58,7 +58,7 @@
 <div class="cal-schedule-container col-9_xs-12_sm-12_md-12_lg-9 sm-hidden">
   <div *ngIf="!isMobile" class="cal-alternatives-paginator sm-hidden xs-hidden">
     <div class="cal-alt-title-div">
-      <input [(ngModel)]="alternativeTitles[currentAlternative]" class="atom-alternative-input-field" id="cal-alt-title"
+      <input [(ngModel)]="alternativeTitles[currentAlternative]" class="atom-alternative-input-field" id="cal-alt-title" readonly
         maxlength="25" name="Alternative Title" type="text"></div>
     <div class="cal-alt-radio-group">
       <label *ngFor='let ind of alternativeIterationArray ' class="cal-radio-container">
