@@ -1,0 +1,23 @@
+<div class="autocomplete-horary-box-modal">
+  <h1>Autocompletar Horario</h1>
+
+  <b>Seleccione la(s) materias que desea agregar a la alternativa</b>
+  <div class="grid-noGutter" id="basic-search">
+    <div id="week-days" class="col-12 grid-noGutter">
+      <label class="col-12" for="week-days"></label>
+      <ng-multiselect-dropdown class="col-12 dropdown-specific-field atom-custom-list autocomplete-horary-atom-custom-margin-fix autocomplete-horary-atom-custom-list-fix" [placeholder]="'Materias recomendadas'" [data]="dropdownListClasses"
+        [(ngModel)]="autocompleteHorarySelectedItems" [settings]="dropdownSettings">
+      </ng-multiselect-dropdown>
+    </div>
+  </div>
+
+  <b>Seleccione la cantidad de créditos que desea tener en esta alternativa</b>
+  <div class="search-container col-12 b-modal-input-box-fix">
+    <input [(ngModel)]="blockName" type="number" class="col-12 atom-input-field autocomplete-horary-input-fix" placeholder="Número de créditos">
+  </div>
+
+  <div class="autocomplete-horary-center">
+    <button mat-button (click)="function()" class="atom-buttons autocomplete-horary-atom-buttons-fix">Autocompletar Horario</button>
+  </div>
+
+</div>

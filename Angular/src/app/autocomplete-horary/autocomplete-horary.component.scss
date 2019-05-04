@@ -1,0 +1,64 @@
+.autocomplete-horary--dialog {
+    mat-dialog-container {
+        position: relative;
+        overflow: hidden;
+
+        @media screen and (max-width: $vp-mobile) {
+            padding-top: 50px;
+        }
+    }
+}
+
+.autocomplete-horary-box-modal{
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 425px) {
+        height: 400px;
+    }
+    height: 350px;
+    b{
+        margin-top: 12px;
+    }
+}
+
+.autocomplete-horary-atom-custom-margin-fix .multiselect-dropdown .dropdown-btn {
+    font-size: 14px !important;
+    font-style: italic;
+    margin-top: 8px;
+    margin-bottom: 8px !important;
+
+    &:active,&:focus{
+        outline-color: $light-blue !important;
+    }
+
+    span.selected-item.ng-star-inserted{
+        background-color: $light-blue !important;
+    }
+ }
+
+ .autocomplete-horary-atom-custom-list-fix .multiselect-dropdown .dropdown-list {
+    min-width: 100%;
+    max-width: calc(100% - 24px) !important;
+    margin-left: 0px !important; 
+ }
+
+ .autocomplete-horary-input-fix{
+    min-width: 100%;
+    margin-left: 0px;
+    max-width: calc(100% - 24px);
+    padding: 0px 0px 0px 12px;
+    font-size: 14px;
+}
+
+.autocomplete-horary-center{
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.autocomplete-horary-atom-buttons-fix{
+    font-size: 14px;
+    margin-top: 12px;
+    margin-right: 0px; 
+  }

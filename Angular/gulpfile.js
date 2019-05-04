@@ -14,6 +14,7 @@ var sassFiles = [
     './src/app/calendar/calendar.component.scss',
     './src/app/block-modal/block-modal.component.scss',
     './src/app/display-subjects/display-subjects.component.scss',
+    './src/app/autocomplete-horary/autocomplete-horary.component.scss',
     './src/app/styles/atomic-styles/*',
     './src/app/styles/molecular-styles/*',
 ]

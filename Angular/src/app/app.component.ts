@@ -7,6 +7,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { UseGuideComponent } from './use-guide/use-guide.component';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import Hammer from 'hammerjs';
+import { AutocompleteHoraryComponent } from './autocomplete-horary/autocomplete-horary.component';
 
 @Component({
   selector: 'app-root',
@@ -74,10 +75,18 @@ export class AppComponent implements OnInit {
     this.showOptions = false;
     this.dialogEventSubjectRxJs.next();
   }
+
   private openUseGuide() {
     let dialogRef: any = this.dialog.open(UseGuideComponent, {
       width: '100vw',
       panelClass: 'use-guide--dialog'
+    })
+  }
+
+  private openAutocompleteHorary() {
+    let dialogRef: any = this.dialog.open(AutocompleteHoraryComponent, {
+      width: '100vw',
+      panelClass: 'autocomplete-horary--dialog'
     })
   }
 
