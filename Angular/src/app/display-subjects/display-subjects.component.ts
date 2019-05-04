@@ -148,6 +148,7 @@ export class DisplaySubjectsComponent implements OnInit {
    */
   private getNotOverlappedClasses(subjects: Array<Subject[]>): Array<Subject[]> {
 
+    console.log(subjects);
     // Lista de clases que no se cruzan con los horarios de los bloqueos
     let notOverLappedSubjects: Array<Subject[]> = [];
 
