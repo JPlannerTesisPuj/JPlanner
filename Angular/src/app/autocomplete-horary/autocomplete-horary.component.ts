@@ -140,12 +140,69 @@ export class AutocompleteHoraryComponent implements OnInit {
 
   }
 
+  private maxValue(first: number, second: number, firstSubject: Subject, recomended: Subject[]) {
+    if (first > second) {
+      if (!recomended.some(myClass => firstSubject.idCurso == myClass.idCurso)) {
+        let overLapped: boolean = false;
+        recomended.forEach(myClass => {
+          myClass.horarios.forEach(myClassHorary => {
+            firstSubject.horarios.forEach(firstHorary => {
+              //En esta condición se está comprobando su el bloqueo se cruza con el horario de la clase
+              if (areRangesOverlapping(myClassHorary.horaInicio, myClassHorary.horaFin, firstHorary.horaInicio, firstHorary.horaFin) && !overLapped) {
+                overLapped = true;
+              }
+            })
+          })
+        });
+        if (!overLapped) {
+          console.log(firstSubject)
+          recomended.push(firstSubject);
+          return first;
+        }
+      }
+    }
+    return second;
+  }
+
+  private kanpSack(weight: number, subjects: Subject[], values: number[], index: number, recomended: Subject[]){
+
+    if (index == 0 || weight == 0) {
+      return 0;
+    }
+
+    if (subjects[index - 1].creditos > weight) {
+      return this.kanpSack(weight, subjects, values, index - 1, recomended);
+    } else {
+      return this.maxValue(
+        subjects[index - 1].creditos + this.kanpSack(weight - subjects[index - 1].creditos, subjects, values, index - 1, recomended),
+        this.kanpSack(weight, subjects, values, index - 1, recomended),
+        subjects[index - 1],
+        recomended
+      )
+    }
+  }
+
   private autocompleteHorary(){
+    let subjectArray: Subject[] = [];
+    let subjectValues: number[] = [];
+    let maxWeight: number = 0;
+    let limit: number = 0;
+    let recomendedSubjects: Subject[] = [];
 
     this.autocompleteHorarySelectedItems.forEach(myClass =>{
       this.classesSelectedUserMap.set(myClass.item_id, this.classesMap.get(myClass.item_id));
+      subjectArray = subjectArray.concat(this.classesMap.get(myClass.item_id));
+      maxWeight += this.classesMap.get(myClass.item_id)[0].creditos;
+      limit += this.classesMap.get(myClass.item_id).length;
     });
 
+    subjectValues = new Array<number>(limit);
+    subjectValues.fill(1);
+
+    console.log(subjectValues);
+    console.log(subjectArray);
+    console.log(this.kanpSack(maxWeight, subjectArray, subjectValues, limit, recomendedSubjects))
+    console.log(recomendedSubjects);
   }
 
 }
