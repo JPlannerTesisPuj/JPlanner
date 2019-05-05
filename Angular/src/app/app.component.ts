@@ -85,10 +85,7 @@ export class AppComponent implements OnInit {
   }
 
   private openAutocompleteHorary() {
-    let dialogRef: any = this.dialog.open(AutocompleteHoraryComponent, {
-      width: '100vw',
-      panelClass: 'autocomplete-horary--dialog'
-    })
+    this.loadEvent.next('auto-complete');
   }
 
   /**

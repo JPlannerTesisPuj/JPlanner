@@ -2,20 +2,16 @@
     mat-dialog-container {
         position: relative;
         overflow: hidden;
-
-        @media screen and (max-width: $vp-mobile) {
-            padding-top: 50px;
-        }
     }
 }
 
 .autocomplete-horary-box-modal{
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 425px) {
-        height: 400px;
+    @media (max-width: $vp-mobile){
+        height: 50vh;
     }
-    height: 350px;
+    height: 40vh;
     b{
         margin-top: 12px;
     }
@@ -33,6 +29,7 @@
 
     span.selected-item.ng-star-inserted{
         background-color: $light-blue !important;
+        margin-bottom: 4px !important;
     }
  }
 

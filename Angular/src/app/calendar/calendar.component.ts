@@ -21,6 +21,7 @@ import { Materia } from '../shared/model/rest/Materia';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Alternativa } from '../shared/model/rest/Alternativa';
 import { MyHammerConfig } from '../app.component';
+import { AutocompleteHoraryComponent } from '../autocomplete-horary/autocomplete-horary.component';
 /**
  * The documentation used to 
  
@@ -379,42 +380,26 @@ export class CalendarComponent implements OnInit {
     this.dialogEventSubscription = this.dialogEvent.subscribe(() => this.openCreationBlocksDialog());
     this.refresh.next();
     this.loadEventSubscription = this.loadEvent.subscribe(
-      () => {
-        this.readJSONFileService.getUserAlternatives().subscribe(alternatives => {
-          this.loadAlternatives(alternatives);
-        });
+      (eventName) => {
+        if (eventName == 'user') {
+          this.readJSONFileService.getUserAlternatives().subscribe(alternatives => {
+            this.loadAlternatives(alternatives);
+          });
+        } else if(eventName == 'auto-complete') {
+          let dialogRef: any = this.dialog.open(AutocompleteHoraryComponent, {
+            width: '100vw',
+            panelClass: 'autocomplete-horary--dialog',
+            data: {
+              'classes': this.classes,
+              'calendarBlocks': this.calendarBlocks
+            },
+          });
+        }
       }
     );
   }
 
-  autocompleteSchedule() {
-    //Con el que se alimenta la lista
-    let subjects: Map<string, Subject[]> = new Map<string, Subject[]>();
-    let filteredArray = new Array<Subject[]>();
-      
-    this.readJSONFileService.getSuggestedClasses(1).subscribe(allClasses => {
-      allClasses.forEach(oneClass => {
-          if (!subjects.has(oneClass.idCurso)) {
-            let subjectArray: Subject[] = [];
-            subjectArray.push(oneClass);
-            subjects.set(oneClass.idCurso, subjectArray);
-          } else {
-            subjects.get(oneClass.idCurso).push(oneClass);
-          }
-      });
-      subjects.forEach((value:Subject[],key:string)=> {
-        filteredArray.push(value);
-      });
-      filteredArray =this.getNotOverlappedClasses(filteredArray);
-    });
-
-   
-    //Map
-    //subjects.delete("6474");
-
-
-
-  }
+  
   /**
    * Método que carga las alternativas y bloqueos que un usuario tiene guardado en la base de datos
    * 
@@ -454,7 +439,6 @@ export class CalendarComponent implements OnInit {
 
           if (contSubscribeEvents == 0) {
             this.showLoader = false;
-            this.autocompleteSchedule();
           } else {
             this.showLoader = true;
           }
@@ -482,7 +466,6 @@ export class CalendarComponent implements OnInit {
 
     if (contSubscribeEvents == 0) {
       this.showLoader = false;
-      this.autocompleteSchedule();
     } else {
       this.showLoader = true;
     }
@@ -705,58 +688,7 @@ export class CalendarComponent implements OnInit {
     return overLappedInSubject;
   }
 
-  private getNotOverlappedClasses(subjects: Array<Subject[]>): Array<Subject[]> {
-
-    // Lista de clases que no se cruzan con los horarios de los bloqueos
-    let notOverLappedSubjects: Array<Subject[]> = [];
-
-    let overLapped: boolean;
-
-    subjects.forEach(subject => {
-
-      overLapped = false;
-
-      subject.forEach(myClass => {
-        if(this.calendarBlocks != undefined){
-          this.calendarBlocks.forEach(blocking => {
-            myClass.horarios.forEach(horary => {
   
-              //En esta condición se está comprobando su el bloqueo se cruza con el horario de la clase
-              if(areRangesOverlapping(blocking.startHour, blocking.endHour, horary.horaInicio, horary.horaFin)){
-                overLapped = true; 
-              }
-  
-            });
-          });
-        }
-        
-        if (this.classes != undefined) {
-          let overLappedInSubject = new Set();
-          for (let theClass of this.classes) {
-            for (let horary of myClass.horarios) {
-              let startHour: Date = new Date(horary.horaInicio);
-              let endHour: Date = new Date(horary.horaFin);
-              if (areRangesOverlapping(startHour, endHour, theClass.start, theClass.end)) {
-                overLapped = true;
-                break;
-              }
-            }
-          }
-        }
-
-      });
-
-      //Si el bloqueo no se cruza con el horario de la clase lo agrega a la lista
-      if(!overLapped){
-        notOverLappedSubjects.push(subject);
-      }
-
-    });
-    
-
-    return notOverLappedSubjects;
-
-  }
   /**
    * Añade la clase cand se agrega presionando el boton
    */

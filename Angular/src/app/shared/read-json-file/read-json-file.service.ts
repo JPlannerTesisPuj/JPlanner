@@ -232,10 +232,8 @@ export class ReadJsonFileService {
   }
 
   public getSuggestedClasses(userToken) : Observable<Subject[]>{
-    let url = 'http://localhost:8080/files/read/json/class-filter/Lunes-Martes-Miercoles-Jueves-Viernes-Sabado-Domingo/0/0/86399/0/-1/-1/none/NombredeAsignatura-Profesor-UnidadAcademica/none/open/none/none/none/0/none/2019-1/none/00020109620';
-    return (this.http.get<Subject[]>(url, { withCredentials: true }));
     if (this.userToken != null) {
-    //return this.http.get<Subject[]>(this.baseUrl + this.userToken.GID, { withCredentials: true });
+    return this.http.get<Subject[]>(this.baseUrl + "rest/recomended-classes", { withCredentials: true });
     }{
       return null;
     }
