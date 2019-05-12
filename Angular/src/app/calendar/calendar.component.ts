@@ -393,6 +393,10 @@ export class CalendarComponent implements OnInit {
               'classes': this.classes,
               'calendarBlocks': this.calendarBlocks
             },
+          }).afterClosed().subscribe(recomendedSubjects => {
+            recomendedSubjects.forEach(myClass => {
+              this.addClassSubject(myClass);
+            });
           });
         }
       }

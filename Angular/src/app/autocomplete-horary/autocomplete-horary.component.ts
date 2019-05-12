@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Subject } from '../shared/model/Subject';
 import { ReadJsonFileService } from '../shared/read-json-file/read-json-file.service';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getDay, areRangesOverlapping, addMinutes, endOfWeek, startOfWeek, addWeeks, subWeeks, differenceInHours, differenceInWeeks } from 'date-fns';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CalendarBlock } from '../shared/model/CalendarBlock';
 import { CalendarEvent } from 'calendar-utils';
 import { Subject as SubjectRXJS, fromEvent, generate, Observable } from 'rxjs';
@@ -22,9 +22,12 @@ export class AutocompleteHoraryComponent implements OnInit {
   private classes: CalendarEvent[] = [];
   private refresh: SubjectRXJS<any> = new SubjectRXJS();
   private suggestedClassesData = [];
+  private creditLimit: number = 13;
+
   constructor(
     private readJSONFileService: ReadJsonFileService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<AutocompleteHoraryComponent>
   ) {
 
     this.classes = data['classes'];
@@ -38,16 +41,16 @@ export class AutocompleteHoraryComponent implements OnInit {
       enableCheckAll: true,
       allowSearchFilter: true,
       maxHeight: '150',
-      limitSelection: 10
+      limitSelection: 4
     };
     this.autocompleteSchedule();
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-
-  }
-
+  /**
+   * 
+   */
   autocompleteSchedule() {
     //Con el que se alimenta la lista
     let subjects: Map<string, Subject[]> = new Map<string, Subject[]>();
@@ -84,6 +87,10 @@ export class AutocompleteHoraryComponent implements OnInit {
     );
   }
 
+  /**
+   * 
+   * @param subjects 
+   */
   private getNotOverlappedClasses(subjects: Array<Subject[]>): Array<Subject[]> {
 
     // Lista de clases que no se cruzan con los horarios de los bloqueos
@@ -140,69 +147,93 @@ export class AutocompleteHoraryComponent implements OnInit {
 
   }
 
-  private maxValue(first: number, second: number, firstSubject: Subject, recomended: Subject[]) {
-    if (first > second) {
-      if (!recomended.some(myClass => firstSubject.idCurso == myClass.idCurso)) {
-        let overLapped: boolean = false;
-        recomended.forEach(myClass => {
-          myClass.horarios.forEach(myClassHorary => {
-            firstSubject.horarios.forEach(firstHorary => {
-              //En esta condición se está comprobando su el bloqueo se cruza con el horario de la clase
-              if (areRangesOverlapping(myClassHorary.horaInicio, myClassHorary.horaFin, firstHorary.horaInicio, firstHorary.horaFin) && !overLapped) {
-                overLapped = true;
-              }
-            })
-          })
-        });
-        if (!overLapped) {
-          console.log(firstSubject)
-          recomended.push(firstSubject);
-          return first;
-        }
-      }
+  /**
+   * 
+   * @param sum 
+   * @param pick 
+   * @param count 
+   * @param subjects 
+   * @param retArr 
+   * @param maxWeight 
+   */
+  private knapsack(sum: number, pick: number, subjects: Subject[], retArr: Subject[], maxWeight: number): boolean {
+
+    if (pick == subjects.length) {
+      return false;
     }
-    return second;
+
+    if (subjects[pick].creditos < sum) {
+      let r = this.knapsack(sum - subjects[pick].creditos, pick + 1, subjects, retArr, maxWeight);
+
+      if (!r) {
+        return this.knapsack(sum, pick + 1, subjects, retArr, maxWeight);
+      } else {
+        return this.addRecomendedSubject(retArr, subjects[pick], maxWeight);
+      }
+    } else if(subjects[pick].creditos > sum) {
+      return this.knapsack(sum, pick + 1, subjects, retArr, maxWeight);
+    } else {
+      return this.addRecomendedSubject(retArr, subjects[pick], maxWeight);
+    }
+
   }
 
-  private kanpSack(weight: number, subjects: Subject[], values: number[], index: number, recomended: Subject[]){
+  /**
+   * 
+   * @param retArr 
+   * @param subject 
+   * @param maxWeight 
+   */
+  private addRecomendedSubject(retArr: Subject[], subject: Subject, maxWeight: number): boolean {
+    if (!retArr.some(myClass => myClass.idCurso == subject.idCurso)) {
+      let sum: number = 0;
+      let areOverlapping: boolean = false;
 
-    if (index == 0 || weight == 0) {
-      return 0;
-    }
+      for (let index=0; index <= retArr.length; ++index) {
+        if (retArr[index] != undefined) {
+          sum += retArr[index].creditos;
+          if (this.areSubjectsOverlapping(retArr[index], subject)) {
+            areOverlapping = true;
+          }
+        }
+      }
 
-    if (subjects[index - 1].creditos > weight) {
-      return this.kanpSack(weight, subjects, values, index - 1, recomended);
-    } else {
-      return this.maxValue(
-        subjects[index - 1].creditos + this.kanpSack(weight - subjects[index - 1].creditos, subjects, values, index - 1, recomended),
-        this.kanpSack(weight, subjects, values, index - 1, recomended),
-        subjects[index - 1],
-        recomended
-      )
+      if (sum + subject.creditos <= maxWeight && !areOverlapping) {
+        retArr.push(subject);
+        return true;
+      }
     }
+    return false;
+  }
+
+  /**
+   * 
+   * @param firstSubject 
+   * @param secondSubject 
+   */
+  private areSubjectsOverlapping(firstSubject: Subject, secondSubject: Subject): boolean {
+    firstSubject.horarios.forEach(firstHorary => {
+      secondSubject.horarios.forEach(secondHorary => {
+        if (areRangesOverlapping(firstHorary.horaInicio, firstHorary.horaFin, secondHorary.horaInicio, secondHorary.horaFin)) {
+          return true;
+        }
+      });
+    });
+    return false;
   }
 
   private autocompleteHorary(){
     let subjectArray: Subject[] = [];
-    let subjectValues: number[] = [];
-    let maxWeight: number = 0;
-    let limit: number = 0;
     let recomendedSubjects: Subject[] = [];
 
     this.autocompleteHorarySelectedItems.forEach(myClass =>{
       this.classesSelectedUserMap.set(myClass.item_id, this.classesMap.get(myClass.item_id));
       subjectArray = subjectArray.concat(this.classesMap.get(myClass.item_id));
-      maxWeight += this.classesMap.get(myClass.item_id)[0].creditos;
-      limit += this.classesMap.get(myClass.item_id).length;
     });
 
-    subjectValues = new Array<number>(limit);
-    subjectValues.fill(1);
-
-    console.log(subjectValues);
-    console.log(subjectArray);
-    console.log(this.kanpSack(maxWeight, subjectArray, subjectValues, limit, recomendedSubjects))
-    console.log(recomendedSubjects);
+    this.knapsack(this.creditLimit, 0, subjectArray, recomendedSubjects, this.creditLimit);
+    
+    this.dialogRef.close(recomendedSubjects);
   }
 
 }
