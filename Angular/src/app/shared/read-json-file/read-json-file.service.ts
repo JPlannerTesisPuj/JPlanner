@@ -12,6 +12,7 @@ import { Bloqueo } from '../model/rest/Bloqueo';
 import { BloqueoKey } from '../model/rest/keys/BloqueoKey';
 import { AlternativaKey } from '../model/rest/keys/AlternativaKey';
 import { Alternativa } from '../model/rest/Alternativa';
+import { endOfTomorrow } from 'date-fns';
 
 /**
  * Permite consumir servicios externos para leer archivos JSON
@@ -238,4 +239,19 @@ export class ReadJsonFileService {
       return null;
     }
   }
+
+  public enrollClasses(enrollJson) : Observable<any> {
+    return this.getToken();
+    
+  }
+
+  public getToken() : Observable<any>{
+    return this.http.get<any>(this.baseUrl+"rest/get-token", { withCredentials: true, });
+  }
+
+  public enrollClassesService(enrollJson, user_token) : Observable<any>{
+    let body = user_token + " <--> " + JSON.stringify(enrollJson);
+    return this.http.post<any>(this.baseUrl + "rest/enroll-classes", body) ;
+  }
 }
+
