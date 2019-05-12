@@ -596,7 +596,6 @@ public class JSONFileRestService {
 		        while ((inputLine = in .readLine()) != null) {
 		            response.append(inputLine);
 		        } in .close();
-		        System.out.println("dsdfsf");
 		        return new ResponseEntity<>(response.toString(), HttpStatus.OK);
 		       } else {
 		        System.out.println("POST NOT WORKED");

@@ -76,7 +76,6 @@ export class ReadJsonFileService {
         + '/' + filter['grade']
         + '/' + this.userToken.GID;
 
-      console.log(url);
       return (this.http.get<Subject[]>(url, { withCredentials: true }));
     }
 

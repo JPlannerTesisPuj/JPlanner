@@ -155,7 +155,6 @@ export class AutocompleteHoraryComponent implements OnInit {
           })
         });
         if (!overLapped) {
-          console.log(firstSubject)
           recomended.push(firstSubject);
           return first;
         }
@@ -198,11 +197,6 @@ export class AutocompleteHoraryComponent implements OnInit {
 
     subjectValues = new Array<number>(limit);
     subjectValues.fill(1);
-
-    console.log(subjectValues);
-    console.log(subjectArray);
-    console.log(this.kanpSack(maxWeight, subjectArray, subjectValues, limit, recomendedSubjects))
-    console.log(recomendedSubjects);
   }
 
 }
