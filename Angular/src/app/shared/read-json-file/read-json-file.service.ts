@@ -12,6 +12,7 @@ import { Bloqueo } from '../model/rest/Bloqueo';
 import { BloqueoKey } from '../model/rest/keys/BloqueoKey';
 import { AlternativaKey } from '../model/rest/keys/AlternativaKey';
 import { Alternativa } from '../model/rest/Alternativa';
+import { endOfTomorrow } from 'date-fns';
 
 /**
  * Permite consumir servicios externos para leer archivos JSON
@@ -75,7 +76,6 @@ export class ReadJsonFileService {
         + '/' + filter['grade']
         + '/' + this.userToken.GID;
 
-      console.log(url);
       return (this.http.get<Subject[]>(url, { withCredentials: true }));
     }
 
@@ -232,12 +232,25 @@ export class ReadJsonFileService {
   }
 
   public getSuggestedClasses(userToken) : Observable<Subject[]>{
-    let url = 'http://localhost:8080/files/read/json/class-filter/Lunes-Martes-Miercoles-Jueves-Viernes-Sabado-Domingo/0/0/86399/0/-1/-1/none/NombredeAsignatura-Profesor-UnidadAcademica/none/open/none/none/none/0/none/2019-1/none/00020109620';
-    return (this.http.get<Subject[]>(url, { withCredentials: true }));
     if (this.userToken != null) {
-    //return this.http.get<Subject[]>(this.baseUrl + this.userToken.GID, { withCredentials: true });
+    return this.http.get<Subject[]>(this.baseUrl + "rest/recomended-classes", { withCredentials: true });
     }{
       return null;
     }
   }
+
+  public enrollClasses(enrollJson) : Observable<any> {
+    return this.getToken();
+    
+  }
+
+  public getToken() : Observable<any>{
+    return this.http.get<any>(this.baseUrl+"rest/get-token", { withCredentials: true, });
+  }
+
+  public enrollClassesService(enrollJson, user_token) : Observable<any>{
+    let body = user_token + " <--> " + JSON.stringify(enrollJson);
+    return this.http.post<any>(this.baseUrl + "rest/enroll-classes", body) ;
+  }
 }
+
