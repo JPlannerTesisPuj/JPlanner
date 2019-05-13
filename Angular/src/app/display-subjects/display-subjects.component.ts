@@ -154,32 +154,35 @@ export class DisplaySubjectsComponent implements OnInit {
     let overLapped: boolean;
 
     subjects.forEach(subject => {
-
-      overLapped = false;
-
+      let classesNotOverlapped: Subject[] = [];
+      
       subject.forEach(myClass => {
-
-        if(this.calendarBlocks != undefined){
+        overLapped = false;
+        if (this.calendarBlocks != undefined) {
           this.calendarBlocks.forEach(blocking => {
             myClass.horarios.forEach(horary => {
-  
+
               //En esta condición se está comprobando su el bloqueo se cruza con el horario de la clase
-              if(areRangesOverlapping(blocking.startHour, blocking.endHour, horary.horaInicio, horary.horaFin)){
-                overLapped = true; 
+              if (areRangesOverlapping(blocking.startHour, blocking.endHour, horary.horaInicio, horary.horaFin) && !overLapped) {
+                overLapped = true;
               }
-  
+
             });
           });
         }
 
-      });
+        if (!overLapped) {
+          classesNotOverlapped.push(myClass);
+        }
 
+      });
       //Si el bloqueo no se cruza con el horario de la clase lo agrega a la lista
-      if(!overLapped){
-        notOverLappedSubjects.push(subject);
+      if (classesNotOverlapped.length > 0) {
+        notOverLappedSubjects.push(classesNotOverlapped);
       }
 
     });
+
 
     return notOverLappedSubjects;
 

@@ -7,6 +7,8 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { UseGuideComponent } from './use-guide/use-guide.component';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import Hammer from 'hammerjs';
+import { AutocompleteHoraryComponent } from './autocomplete-horary/autocomplete-horary.component';
+import { Subject } from './shared/model/Subject';
 
 @Component({
   selector: 'app-root',
@@ -50,8 +52,8 @@ export class AppComponent implements OnInit {
     });
 
     
-    
   }
+
 
   /**
    * Genera un random index
@@ -74,11 +76,16 @@ export class AppComponent implements OnInit {
     this.showOptions = false;
     this.dialogEventSubjectRxJs.next();
   }
+
   private openUseGuide() {
     let dialogRef: any = this.dialog.open(UseGuideComponent, {
       width: '100vw',
       panelClass: 'use-guide--dialog'
     })
+  }
+
+  private openAutocompleteHorary() {
+    this.loadEvent.next('auto-complete');
   }
 
   /**
@@ -94,7 +101,6 @@ export class AppComponent implements OnInit {
       body.classList.remove("float-open");
     }
   }
-  
 }
 
 export class MyHammerConfig extends HammerGestureConfig {

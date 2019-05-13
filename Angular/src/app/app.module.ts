@@ -37,6 +37,7 @@ import { BlockModalComponent } from './block-modal/block-modal.component';
 import { UseGuideComponent } from './use-guide/use-guide.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AutocompleteHoraryComponent } from './autocomplete-horary/autocomplete-horary.component';
 
 registerLocaleData(localeEs);
 
@@ -52,7 +53,8 @@ registerLocaleData(localeEs);
     DisplaySubjectsComponent,
     ShoppingCartComponent,
     BlockModalComponent,
-    UseGuideComponent
+    UseGuideComponent,
+    AutocompleteHoraryComponent
   ],
   imports: [
     SlideshowModule,
@@ -77,7 +79,8 @@ registerLocaleData(localeEs);
     ClassModalComponent,
     OverlapClassConfirmationDialog,
     BlockModalComponent,
-    UseGuideComponent
+    UseGuideComponent,
+    AutocompleteHoraryComponent
   ],
 
   providers: [
