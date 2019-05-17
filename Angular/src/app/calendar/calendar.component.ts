@@ -1727,7 +1727,7 @@ export class CalendarComponent implements OnInit {
       if (!isNoSizeClass) {
         if (this.calendarClasses != undefined) {
           if (this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0] != undefined) {
-            if (this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0].cuposTotales == 0) {
+            if (this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0].cuposDisponibles == 0) {
               isNoSizeClass = true;
             }
           }
@@ -1778,6 +1778,7 @@ export class CalendarComponent implements OnInit {
                 if (!idOverLapped) {
                   //Si la clase no tiene otras clases inscritas de la misma clase
                   if (!sameClass) {
+                    console.log(updatedIndexes.get(subjectToDisplay.numeroClase) + subjectToDisplay)
                     if (updatedIndexes.get(subjectToDisplay.numeroClase) == 0) {
                       subj.cssClass = 'cal-event-overlapped';
                     } else {
