@@ -2022,6 +2022,20 @@ export class CalendarComponent implements OnInit {
     });
   }
 
+  private getConflictReason(){
+    let conflictReason : string = "";
+    if(this.conflictCrossedClasses[this.currentAlternative]){
+      conflictReason += "hay materias cruzadas en el horario,"
+    }
+    if(this.conflictsameClass[this.currentAlternative]){
+      conflictReason += "inscribió varias veces la misma materia,"
+    }
+    if(this.conflictSize[this.currentAlternative]){
+      conflictReason += "algunas de las materias no tiene cupos disponibles,"
+    }
+    conflictReason = conflictReason.substr(0, conflictReason.length-1);
+    return ": "+this.titleCaseWord(conflictReason);
+  }
 }
 
 /**
