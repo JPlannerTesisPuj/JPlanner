@@ -513,8 +513,8 @@ public class JSONFileRestService {
 	ResponseEntity<String> getToken() throws JsonProcessingException {
 		URL obj;
 		final String POST_PARAMS = "{\n" + 
-		        "    \"nombre\": \"cs-matriculador\",\r\n" +
-		        "    \"password\": \"G5j1q4ZT\"" + "\n}";
+		        "    \"nombre\": \" \",\r\n" +
+		        "    \"password\": \" \"" + "\n}";
 		try {
 			obj = new URL("http://apitst.javeriana.edu.co/api/v1/seguridad/token");
 			HttpURLConnection postConnection = (HttpURLConnection) obj.openConnection();
