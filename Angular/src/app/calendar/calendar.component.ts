@@ -443,6 +443,62 @@ export class CalendarComponent implements OnInit {
 
           if (contSubscribeEvents == 0) {
             this.showLoader = false;
+
+            let overLappedInAdded;
+            let overLappedInAddedAuxiliar;
+            let newClasses: CalendarEvent[];
+            newClasses = Object.assign([], this.classes);
+            let subjectOverlapped: Subject;
+            this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass =>{
+              overLappedInAddedAuxiliar = this.getOverLapped(newClasses, myClass);
+              if(overLappedInAddedAuxiliar != undefined){
+                if(overLappedInAddedAuxiliar.size >= 3){
+                  subjectOverlapped = myClass;
+                  overLappedInAdded = overLappedInAddedAuxiliar;
+                }
+              }
+            });
+
+            // Si hay dos materias en la casilla en la que se intenta meter la nueva materia muestre el popup
+            if (overLappedInAdded.size >= 3) {
+
+              let overlappedSubjectsInfo: Object[] = [];
+
+              // Se busca la información de cada materia en el arreglo de materias que se muestran en el calendario
+              // NOTA: Si se quiere eliminar bloqueos también se debe hacer la búsqueda en this.classes no en this.calendarClases
+              overLappedInAdded.forEach(overlappedClassNumber => {
+                let className: string = '';
+                let classInfo: Subject = this.calendarClasses.find(myClass => myClass.numeroClase == overlappedClassNumber);
+
+                // Se guarda el Nombre y el Número de Clase para mostrarlos en el modal
+                if (classInfo != undefined) {
+                  className = classInfo.nombre;
+                } else {
+                  className = subjectOverlapped.nombre;
+                }
+                overlappedSubjectsInfo.push({
+                  classNumber: overlappedClassNumber,
+                  title: className,
+                  toDelete: false
+                });
+              });
+
+              this.displaySelectingOptions(subjectOverlapped, overlappedSubjectsInfo).then(
+                //Respuesta del usuario al formulario
+                (userResponse) => {
+                  if (userResponse) {
+                    // Mira cuáles clases del horario el usuario desea eliminar
+                    userResponse.forEach(subjectOverlapped => {
+                      if (subjectOverlapped.toDelete) {
+                        this.removeClass(subjectOverlapped.classNumber);
+                      }
+                    });
+                    //this.exchangeClasses(subjectToDisplay, arrayClassesOverlapped);
+                  }
+                }
+              );
+            }
+
           } else {
             this.showLoader = true;
           }
@@ -822,9 +878,8 @@ export class CalendarComponent implements OnInit {
     this.alternativeCalendarClasses[this.currentAlternative] = Object.assign([], this.calendarClasses);
     this.alertUser(1, subjectToDisplay.nombre, 'success');
     this.refresh.next();
-    //Este método verifica si el usuario agregó una clase de la misma materia, si es así, le muestra una alerta 
     this.checkSameClassConflict();
-
+    
     if (!this.isMobile) {
       this.printConflicts();
     }
@@ -1727,7 +1782,7 @@ export class CalendarComponent implements OnInit {
       if (!isNoSizeClass) {
         if (this.calendarClasses != undefined) {
           if (this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0] != undefined) {
-            if (this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0].cuposTotales == 0) {
+            if (this.calendarClasses.filter(subj => subj.numeroClase == value.id)[0].cuposDisponibles == 0) {
               isNoSizeClass = true;
             }
           }
@@ -1778,6 +1833,7 @@ export class CalendarComponent implements OnInit {
                 if (!idOverLapped) {
                   //Si la clase no tiene otras clases inscritas de la misma clase
                   if (!sameClass) {
+                    //Si los cupos son iguales a cero
                     if (updatedIndexes.get(subjectToDisplay.numeroClase) == 0) {
                       subj.cssClass = 'cal-event-overlapped';
                     } else {
@@ -1790,17 +1846,20 @@ export class CalendarComponent implements OnInit {
                 }
                 if (updatedIndexes.get(subjectToDisplay.numeroClase) == 0) {
                   isNoSizeClass = true;
+                } else {
+                  isNoSizeClass = false;
                 }
+                this.conflictSize[this.currentAlternative] = isNoSizeClass;
                 subj.title = '<span class="cal-class-title">' + subjectToDisplay.nombre + '</span>' + '<p class="cal-class-size-alert">' + 'Cupos Disponibles: ' + updatedIndexes.get(subjectToDisplay.numeroClase) + '</p>';
+                subjectToDisplay.cuposDisponibles = updatedIndexes.get(subjectToDisplay.numeroClase);
               });
               finishedObservables++;
               if (finishedObservables == indexesArray.size) {
                 this.showLoader = false;
               }
-            } else {
-              this.showLoader = false;
-            }
-            this.conflictSize[this.currentAlternative] = isNoSizeClass;
+              } else {
+                this.showLoader = false;
+              }
 
           },
         );
@@ -2022,6 +2081,20 @@ export class CalendarComponent implements OnInit {
     });
   }
 
+  private getConflictReason(){
+    let conflictReason : string = "";
+    if(this.conflictCrossedClasses[this.currentAlternative]){
+      conflictReason += "hay materias cruzadas en el horario,"
+    }
+    if(this.conflictsameClass[this.currentAlternative]){
+      conflictReason += "inscribió varias veces la misma materia,"
+    }
+    if(this.conflictSize[this.currentAlternative]){
+      conflictReason += "algunas de las materias no tiene cupos disponibles,"
+    }
+    conflictReason = conflictReason.substr(0, conflictReason.length-1);
+    return ": "+this.titleCaseWord(conflictReason);
+  }
 }
 
 /**

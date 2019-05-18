@@ -220,6 +220,9 @@
 }
 
 .ovr-confirm-dialog {
+  &:hover{
+    cursor:move;
+  }
   .ovr-displayed-data-dailog {
     text-transform: capitalize;
     font-weight: bold;

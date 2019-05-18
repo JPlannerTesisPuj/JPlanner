@@ -1,7 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="slider-container" #sliderContainer>
+  <span><strong>{{slideshow.slideIndex + 1}} / {{guideTitles.length}}</strong></span>
   <h1 style="text-align:center">
-    {{guideTitles[slideshow.slideIndex]}}
+    {{guideTitles[slideshow.slideIndex]}} 
   </h1>
   <div style="display:block;"
        [style.width]="width" class="slideshow-main-container">

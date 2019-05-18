@@ -83,7 +83,8 @@
   </div>
   <div *ngIf="conflictCrossedClasses[currentAlternative] || conflictsameClass[currentAlternative] || conflictSize[currentAlternative]" class="cal-conflict-msj">
     <span>
-      ¡Conflicto!</span>
+      ¡Conflicto!{{getConflictReason()}}
+    </span>
     <i class="material-icons">warning</i>
   </div>
   <!--

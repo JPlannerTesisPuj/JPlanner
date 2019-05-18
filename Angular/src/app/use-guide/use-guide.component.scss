@@ -1,7 +1,12 @@
 .slideshow-container[_ngcontent-c6] .slides[_ngcontent-c6]:not(.link) {
     background-color: $white;
 }
-
+.caption{
+    @media screen and (max-width: $vp-mobile) {
+        max-height: 30%;
+        overflow-y: scroll;
+    }
+}
 .use-guide--dialog {
     mat-dialog-container {
         position: relative;
