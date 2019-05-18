@@ -1,7 +1,7 @@
 <div class="autocomplete-horary-box-modal">
   <h1>Autocompletar Horario</h1>
 
-  <b>Seleccione la(s) materias que desea agregar a la alternativa (Máximo 10 materias)</b>
+  <b>Seleccione la(s) materias que desea agregar a la alternativa (Máximo {{dropdownSettings.limitSelection}} materias)</b>
   <div class="grid-noGutter" id="basic-search">
     <div id="week-days" class="col-12 grid-noGutter">
       <label class="col-12" for="week-days"></label>
@@ -12,11 +12,13 @@
     </div>
   </div>
   
-  <b>Seleccione la cantidad de créditos que desea tener en esta alternativa</b>
-  <div class="search-container col-12 b-modal-input-box-fix">
-    <input [(ngModel)]="blockName" type="number" class="col-12 atom-input-field autocomplete-horary-input-fix" placeholder="Número de créditos">
-  </div>
-
+  <!--
+    <b>Seleccione la cantidad de créditos que desea tener en esta alternativa</b>
+    <div class="search-container col-12 b-modal-input-box-fix">
+      <input [(ngModel)]="creditLimit" type="number" class="col-12 atom-input-field autocomplete-horary-input-fix" placeholder="Número de créditos" max="13">
+    </div>
+  -->
+  
   <div class="autocomplete-horary-center">
     <button mat-button (click)="autocompleteHorary()" class="atom-buttons autocomplete-horary-atom-buttons-fix">Autocompletar Horario</button>
   </div>
