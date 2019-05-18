@@ -316,7 +316,7 @@ export class CalendarComponent implements OnInit {
           //Bandera para revisar si la clase tiene los cupos en cero
           let quotas = false;
           this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass => {
-            if (myClass.cuposTotales == 0 && myClass.numeroClase == subj.id) {
+            if (myClass.cuposDisponibles == 0 && myClass.numeroClase == subj.id) {
               quotas = true;
             }
           });
@@ -393,6 +393,10 @@ export class CalendarComponent implements OnInit {
               'classes': this.classes,
               'calendarBlocks': this.calendarBlocks
             },
+          }).afterClosed().subscribe(recomendedSubjects => {
+            recomendedSubjects.forEach(myClass => {
+              this.addClassSubject(myClass);
+            });
           });
         }
       }
@@ -920,7 +924,9 @@ export class CalendarComponent implements OnInit {
       this.overLappedIds = this.overLappedInCellByAlternative[alternativeNumber];
     }
 
-    this.checkSameClassConflict();
+    //this.checkSameClassConflict();
+
+    this.printConflicts();
 
     this.creditCounter[alternativeNumber] += subjectToDisplay.creditos;
 
@@ -1125,7 +1131,7 @@ export class CalendarComponent implements OnInit {
       //Bandera para revisar si la clase tiene los cupos en cero
       let quotas = false;
       this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass => {
-        if (myClass.cuposTotales == 0 && myClass.numeroClase == subj.id) {
+        if (myClass.cuposDisponibles == 0 && myClass.numeroClase == subj.id) {
           quotas = true;
         }
       });
@@ -2003,7 +2009,7 @@ export class CalendarComponent implements OnInit {
       //Bandera para revisar si la clase tiene los cupos en cero
       let quotas = false;
       this.alternativeCalendarClasses[this.currentAlternative].forEach(myClass => {
-        if (myClass.cuposTotales == 0 && myClass.numeroClase == subj.id) {
+        if (myClass.cuposDisponibles == 0 && myClass.numeroClase == subj.id) {
           quotas = true;
           this.conflictSize[this.currentAlternative] = true;
         }
